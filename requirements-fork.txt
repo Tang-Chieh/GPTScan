@@ -1,0 +1,7 @@
+# Tested fork environment: Python 3.10. Upstream requirements.txt preserved.
+antlr4-python3-runtime==4.12.0
+setuptools==75.8.2
+PyYAML==6.0.2
+rich==13.9.4
+solc-select==1.1.0
+falcon-analyzer @ git+https://github.com/MetaTrustLabs/falcon-metatrust@93c1be7914f24e5567ff17da45be6f87b506c069
