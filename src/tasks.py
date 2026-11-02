@@ -66,11 +66,10 @@ def load_rule(rule_indexs: List[int]):
 
 
 def load_all_rules():
+    from profiles import rule_paths
     result = []
-    for file in os.listdir("rules"):
-        if file.endswith(".yml"):
-            result.append(
-                yaml.load(open(os.path.join("rules", file), "r"), Loader=yaml.FullLoader))
+    for path in rule_paths("rules", os.environ.get("GPTSCAN_PROFILE", "price")):
+        result.append(yaml.safe_load(path.read_text()))
     return result
 
 
@@ -116,6 +115,7 @@ def simple_cli():
     parser.add_argument("-o", "--output", help="The output file", required=True)
     parser.add_argument("-k", "--gptkey", help="Legacy API key; prefer OPENAI_API_KEY in explicit API mode")
     parser.add_argument("--provider", choices=("codex-gateway", "api"), default="codex-gateway")
+    parser.add_argument("--profile", choices=("price", "general"), default="price")
     parser.add_argument("--model", default="openai-codex/gpt-5.6-luna")
     parser.add_argument("--gateway-url", default="http://127.0.0.1:4000/v1")
     parser.add_argument("--gateway-token-file")
@@ -128,7 +128,7 @@ def simple_cli():
         if not options.gateway_token_file or not os.path.isfile(options.gateway_token_file):
             parser.error("Provide --gateway-token-file for the authorized local gateway")
     os.environ.update(GPTSCAN_PROVIDER=options.provider, GPTSCAN_MODEL=options.model,
-                      GPTSCAN_BASE_URL=options.gateway_url)
+                      GPTSCAN_PROFILE=options.profile, GPTSCAN_BASE_URL=options.gateway_url)
     if options.gateway_token_file:
         os.environ["GPTSCAN_GATEWAY_TOKEN_FILE"] = os.path.abspath(options.gateway_token_file)
     if options.gptkey:
@@ -387,6 +387,7 @@ def simple_cli():
         meta_data[key] = None
     meta_data["estimated_cost"] = None
     meta_data["model"] = options.model
+    meta_data["profile"] = options.profile
 
     for metadata_key, metadata_value in meta_data.copy().items():
         if isinstance(metadata_value, set):
