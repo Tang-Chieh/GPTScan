@@ -28,7 +28,8 @@ activate:
 output:
   title: "MWE-200: Insecure LP Token Value Calculation"
   description: Liquidity token value/price can be manipulated to cause flashloan attacks.
-  recommendation: Do not use AMM pool or custom liquidity calculation to caculate LP token value/price.
+  impact: Manipulating reserve, balance or exchange-rate inputs may misvalue LP tokens and distort financial operation amounts. Concrete exploitability and losses require further verification.
+  recommendation: Value LP tokens using manipulation-resistant component prices and an appropriate LP valuation method; do not trust transient pool reserves or balances without validation.
 static:
   format: json
   prompt: |

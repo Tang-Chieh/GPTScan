@@ -149,3 +149,11 @@ experiments
 
 # IDEA
 .idea
+
+# Local credentials and generated runs
+.local/
+outputs/
+candidate-repos/
+*.token
+*oauth*.json
+auth.json

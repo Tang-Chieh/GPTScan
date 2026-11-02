@@ -66,11 +66,10 @@ def load_rule(rule_indexs: List[int]):
 
 
 def load_all_rules():
+    from profiles import rule_paths
     result = []
-    for file in os.listdir("rules"):
-        if file.endswith(".yml"):
-            result.append(
-                yaml.load(open(os.path.join("rules", file), "r"), Loader=yaml.FullLoader))
+    for path in rule_paths("rules", os.environ.get("GPTSCAN_PROFILE", "price")):
+        result.append(yaml.safe_load(path.read_text()))
     return result
 
 
@@ -114,13 +113,46 @@ def simple_cli():
     # not need ast, compile first
     # parser.add_argument("-a", "--ast", help="The AST directory", required=True)
     parser.add_argument("-o", "--output", help="The output file", required=True)
-    parser.add_argument("-k", "--gptkey", help="The OpenAI API key", required=True)
+    parser.add_argument("-k", "--gptkey", help="Legacy API key; prefer OPENAI_API_KEY in explicit API mode")
+    parser.add_argument("--provider", choices=("codex-gateway", "api"), default="codex-gateway")
+    parser.add_argument("--profile", choices=("price", "general"), default="price")
+    parser.add_argument("--model", default="openai-codex/gpt-5.6-luna")
+    parser.add_argument("--gateway-url", default="http://127.0.0.1:4000/v1")
+    parser.add_argument("--gateway-token-file")
+    parser.add_argument("--repo-id")
+    parser.add_argument("--repo-root", help="Original repository root for relative source locations")
+    parser.add_argument("--prediction-output", help="Write PredictionCase after a successful scan")
+    parser.add_argument("--strict", action="store_true", help="Fail on compile/analysis errors")
+    options = parser.parse_args()
+    from model_transport import gateway_url, record_event
+    if options.gptkey and options.provider != "api":
+        parser.error("-k is only allowed with --provider api; never use it for OAuth")
+    if options.provider == "codex-gateway":
+        gateway_url(options.gateway_url)
+        if not options.gateway_token_file or not os.path.isfile(options.gateway_token_file):
+            parser.error("Provide --gateway-token-file for the authorized local gateway")
+    if options.prediction_output and not options.repo_id:
+        parser.error("--prediction-output requires --repo-id")
+    os.environ.update(GPTSCAN_PROVIDER=options.provider, GPTSCAN_MODEL=options.model,
+                      GPTSCAN_PROFILE=options.profile, GPTSCAN_BASE_URL=options.gateway_url)
+    if options.gateway_token_file:
+        os.environ["GPTSCAN_GATEWAY_TOKEN_FILE"] = os.path.abspath(options.gateway_token_file)
+    if options.gptkey:
+        os.environ["OPENAI_API_KEY"] = options.gptkey
+    class ErrorTracker(logging.Handler):
+        count = 0
+        def emit(self, record):
+            if record.levelno >= logging.ERROR:
+                self.count += 1
+                record_event("failed", error="analysis_error", component=record.name)
+    tracker = ErrorTracker()
+    logging.getLogger().addHandler(tracker)
     
     
     scan_rules = load_all_rules()
     console.log(f"Loaded [bold green]{len(scan_rules)}[/bold green] rules")
     
-    source_dir = parser.parse_args().source
+    source_dir = os.path.abspath(options.source)
 
     try:
         falcon_instance = compile_project(source_dir)
@@ -129,10 +161,10 @@ def simple_cli():
         console.log("Compile [bold red]failed[/bold red].")
         console.log("[yellow]Since the compilation is failed, some static analysis tool may not be enabled, which may cause lower precision and recall.[/yellow]")
         falcon_instance = None
-    output_file = parser.parse_args().output
-    gptkey = parser.parse_args().gptkey
-
-    os.environ["OPENAI_API_KEY"] = gptkey
+        record_event("failed", error="compile_failed")
+        if options.strict:
+            raise RuntimeError("Compilation failed; no clean-result PredictionCase exported")
+    output_file = options.output
 
     import analyze_pipeline
     import chatgpt_api
@@ -233,7 +265,7 @@ def simple_cli():
                                                 else:
                                                     args.append(answer[arg])
 
-                                        res_1 = static_check.run_static_check(checker, args, function1, falcon_instance, function1_text)
+                                        res_1 = static_check.run_static_check(checker, args, function1, falcon_instance, function1_text, contract, file)
                                         function1_tmp_result[vul["name"]] = res_1
                                     except:
                                         logger.error(
@@ -312,7 +344,7 @@ def simple_cli():
                                                     args.append(arg["CONSTANT"])
                                                 else:
                                                     args.append(answer[arg])
-                                        res_2 = static_check.run_static_check(checker, args, function2_func, falcon_instance, function2_text)
+                                        res_2 = static_check.run_static_check(checker, args, function2_func, falcon_instance, function2_text, function2_contract, function2_file)
                                     except:
                                         logger.error(
                                             "Static analysis failed: Invalid args")
@@ -368,7 +400,15 @@ def simple_cli():
     meta_data["token_received"] = chatgpt_api.tokens_received.value # 接收的Token数量
     meta_data["token_sent_gpt4"] = chatgpt_api.tokens_sent_gpt4.value # 发送的Token数量
     meta_data["token_received_gpt4"] = chatgpt_api.tokens_received_gpt4.value # 接收的Token数量
-    meta_data["estimated_cost"] = (meta_data["token_sent"] * global_config.SEND_PRICE) + (meta_data["token_received"] * global_config.RECEIVE_PRICE) + (meta_data["token_sent_gpt4"] * global_config.GPT4_SEND_PRICE) + (meta_data["token_received_gpt4"] * global_config.GPT4_RECEIVE_PRICE)# 预估的花费
+    # Legacy counters were not reliable across spawned workers. Do not claim zero
+    # tokens or use historical GPT-3.5 prices for a subscription model.
+    for key in ("token_sent", "token_received", "token_sent_gpt4", "token_received_gpt4"):
+        meta_data[key] = None
+    meta_data["estimated_cost"] = None
+    meta_data["model"] = options.model
+    meta_data["profile"] = options.profile
+    meta_data["compile_succeeded"] = falcon_instance is not None
+    meta_data["analysis_errors"] = tracker.count
 
     for metadata_key, metadata_value in meta_data.copy().items():
         if isinstance(metadata_value, set):
@@ -392,3 +432,11 @@ def simple_cli():
 
     json.dump(output_json, open(output_file, "w"), indent=4)
     json.dump(meta_data, open(output_file+".metadata.json", "w"), indent=4)
+    if options.strict and tracker.count:
+        raise RuntimeError("Analysis had errors; raw output retained but PredictionCase not exported")
+    if options.prediction_output:
+        from prediction_export import export_prediction_case
+        prediction = export_prediction_case(output_json, options.repo_id,
+                                            options.repo_root or source_dir, options.model,
+                                            "gptscan-price-v1" if options.profile == "price" else "gptscan-general-adapted-v1")
+        json.dump(prediction, open(options.prediction_output, "w"), indent=2)

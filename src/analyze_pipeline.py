@@ -4,6 +4,8 @@ import multiprocessing
 from typing import List, Dict, Tuple
 from query_template import prompt_single_yes_no_question, prompt_multiple_choice_scenarios
 from chatgpt_api import Chat
+from model_transport import record_event
+from answer_validation import parse_choices, is_yes
 from utils import split_answer_section
 from antlr4helper import parseString
 from antlr4helper.callgraph import CallGraph
@@ -22,20 +24,17 @@ def ask_with_timeout(prompt, gpt4=False, timeout=90):
     # logger.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
     # logger.info(f"Sending message: \n{prompt}")
     # logger.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
-    pool = multiprocessing.Pool(processes=1)
-    process = pool.apply_async(Chat().sendMessages, args=(prompt, gpt4))
-    pool.close()
-    start_time = time.time()
-    while True:
-        if time.time() - start_time > timeout:
-            pool.terminate()
-            raise TimeoutError("Timeout")
-        if process.ready() == True:
-            res = process.get()
-            # logger.info("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
-            # logger.info(f"Received message: \n{res}")
-            # logger.info("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
-            return res
+    events_path = os.environ.get("GPTSCAN_EVENTS")
+    if events_path and os.path.isfile(events_path):
+        if any(json.loads(line).get("status") == "failed" for line in open(events_path)):
+            raise RuntimeError("Earlier model/analysis failure; refusing further model requests")
+    with multiprocessing.Pool(processes=1) as pool:
+        process = pool.apply_async(Chat().sendMessages, args=(prompt, gpt4))
+        try:
+            return process.get(timeout=timeout)
+        except multiprocessing.TimeoutError:
+            record_event("failed", error="request_wall_timeout")
+            raise TimeoutError("Model request exceeded wall timeout") from None
 
 
 def ask_for_function_to_focus_with_feature_words_v2(source_dir: str, feature_words: List[List[str]]) -> Tuple[CallGraph, Dict[str, Dict[str, List[int]]]]:
@@ -300,7 +299,7 @@ def ask_whether_has_vul_with_scenario_v9(src_folder: str, rules: List[dict]) -> 
                         prompt = prompt_multiple_choice_scenarios(
                             list(map(lambda x: x["property"][0], has_property_rules)), function_data["source"])
                         res = ask_with_timeout(prompt)
-                        answer = json.loads(res.split("}")[0]+"}")
+                        answer = parse_choices(res, len(has_property_rules))
                         for key, value in answer.items():
                             try:
                                 int_key = int(key)
@@ -309,7 +308,7 @@ def ask_whether_has_vul_with_scenario_v9(src_folder: str, rules: List[dict]) -> 
                             except:
                                 logger.error("Wrong format: {}".format(key))
                                 continue
-                            if value.lower().startswith("yes"):
+                            if is_yes(value):
                                 meta_data["files_after_step_1"].add(file)
                                 meta_data["contracts_after_step_1"].add(f"{file}!!!{contract}")
                                 meta_data["functions_after_step_1"].add(f"{file}!!!{contract}!!!{func_}")
@@ -320,7 +319,7 @@ def ask_whether_has_vul_with_scenario_v9(src_folder: str, rules: List[dict]) -> 
                                     console.print(rich_utils.make_prompt_panel(function_data["source"], has_property_rules[int_key-1]["property"][0]+" "+has_property_rules[int_key-1]["property"][1], "Single Choice Scenario"))
                                     res = ask_with_timeout(prompt)
                                     # process answer
-                                    if res.lower().startswith("yes"):
+                                    if is_yes(res):
                                         meta_data["files_after_step_2"].add(file)
                                         meta_data["contracts_after_step_2"].add(f"{file}!!!{contract}")
                                         meta_data["functions_after_step_2"].add(f"{file}!!!{contract}!!!{func_}")
@@ -328,7 +327,7 @@ def ask_whether_has_vul_with_scenario_v9(src_folder: str, rules: List[dict]) -> 
                                             file_contract_function_res_map[file][contract][func_]["__ONLY_FUNCTION__"] = {
                                                 "source": function_data["source"], "data": []}
                                         file_contract_function_res_map[file][contract][func_]["__ONLY_FUNCTION__"]["data"].append(
-                                            function_data["data"][int_key-1])
+                                            has_property_rules[int_key-1])
                                 except TimeoutError:
                                     logger.error(
                                         "Timeout when asking function {}".format(func_))
@@ -390,7 +389,7 @@ def ask_whether_has_vul_with_scenario_v9(src_folder: str, rules: List[dict]) -> 
                         try:
                             console.print(rich_utils.make_prompt_panel(caller_c+"\n"+function_data["source"], "\n".join(list(map(lambda x: x["property"][0], rules_for_caller))), "Multiple Choice Scenarios"))
                             res = ask_with_timeout(prompt)
-                            answer = json.loads(res.split("}")[0]+"}")
+                            answer = parse_choices(res, len(rules_for_caller))
                         except TimeoutError:
                             logger.error(
                                 "Timeout when asking function {}".format(func_))
@@ -413,7 +412,7 @@ def ask_whether_has_vul_with_scenario_v9(src_folder: str, rules: List[dict]) -> 
                             except:
                                 logger.error("Wrong format: {}".format(key))
                                 continue
-                            if value.lower().startswith("yes"):
+                            if is_yes(value):
                                 meta_data["files_after_step_1"].add(file)
                                 meta_data["contracts_after_step_1"].add(f"{file}!!!{contract}")
                                 meta_data["functions_after_step_1"].add(f"{file}!!!{contract}!!!{func_}")
@@ -427,7 +426,7 @@ def ask_whether_has_vul_with_scenario_v9(src_folder: str, rules: List[dict]) -> 
                                     console.print(rich_utils.make_prompt_panel(caller_c+"\n"+function_data["source"], rules_for_caller[int_key-1]["property"][0]+" "+rules_for_caller[int_key-1]["property"][1], "Single Choice Scenario"))
                                     res = ask_with_timeout(prompt)
                                     # process answer
-                                    if res.lower().startswith("yes"):
+                                    if is_yes(res):
                                         meta_data["files_after_step_2"].add(file)
                                         meta_data["contracts_after_step_2"].add(f"{file}!!!{contract}")
                                         meta_data["functions_after_step_2"].add(f"{file}!!!{contract}!!!{func_}")
