@@ -119,6 +119,9 @@ def simple_cli():
     parser.add_argument("--model", default="openai-codex/gpt-5.6-luna")
     parser.add_argument("--gateway-url", default="http://127.0.0.1:4000/v1")
     parser.add_argument("--gateway-token-file")
+    parser.add_argument("--repo-id")
+    parser.add_argument("--repo-root", help="Original repository root for relative source locations")
+    parser.add_argument("--prediction-output", help="Write PredictionCase after a successful scan")
     options = parser.parse_args()
     from model_transport import gateway_url, record_event
     if options.gptkey and options.provider != "api":
@@ -127,6 +130,8 @@ def simple_cli():
         gateway_url(options.gateway_url)
         if not options.gateway_token_file or not os.path.isfile(options.gateway_token_file):
             parser.error("Provide --gateway-token-file for the authorized local gateway")
+    if options.prediction_output and not options.repo_id:
+        parser.error("--prediction-output requires --repo-id")
     os.environ.update(GPTSCAN_PROVIDER=options.provider, GPTSCAN_MODEL=options.model,
                       GPTSCAN_PROFILE=options.profile, GPTSCAN_BASE_URL=options.gateway_url)
     if options.gateway_token_file:
@@ -411,3 +416,9 @@ def simple_cli():
 
     json.dump(output_json, open(output_file, "w"), indent=4)
     json.dump(meta_data, open(output_file+".metadata.json", "w"), indent=4)
+    if options.prediction_output:
+        from prediction_export import export_prediction_case
+        prediction = export_prediction_case(output_json, options.repo_id,
+                                            options.repo_root or source_dir, options.model,
+                                            "gptscan-price-v1" if options.profile == "price" else "gptscan-general-adapted-v1")
+        json.dump(prediction, open(options.prediction_output, "w"), indent=2)

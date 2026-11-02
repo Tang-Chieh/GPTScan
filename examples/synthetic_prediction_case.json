@@ -1,0 +1,28 @@
+{
+  "repo_id": "synthetic-price",
+  "detector_metadata": {
+    "detector_version": "gptscan-price-v1",
+    "llm_model": "openai-codex/gpt-5.6-luna"
+  },
+  "predictions": [
+    {
+      "finding_id": "GPTSCAN-83b7b1604191f718",
+      "title": "GPTSCAN-PM-001: Manipulable Price Used in a Financial Operation",
+      "description": "A financial operation depends on a price or valuation derived from potentially attacker-influenceable market or protocol state without sufficient manipulation-resistant validation.",
+      "impact": "Manipulating the pricing input may distort asset valuation or financial operation amounts, potentially causing excessive borrowing, incorrect payouts or liquidation losses. Actual exploitability and loss require further verification.",
+      "mitigation": "Use an appropriate manipulation-resistant oracle or validated time-weighted price, validate freshness and deviation where applicable, and ensure financial operations cannot rely on transient attacker-controlled state.",
+      "vulnerable_code": [
+        {
+          "file": "Oracle.sol",
+          "contract": "Oracle",
+          "function": "borrow",
+          "start_line": 15,
+          "end_line": 23
+        }
+      ],
+      "severity": "HIGH",
+      "report_basis": "rule-template; not an LLM-generated exploit proof",
+      "rule_id": "oracle-price-manipulation"
+    }
+  ]
+}

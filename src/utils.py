@@ -212,6 +212,23 @@ def convert_output(origin_output:Dict, scan_rules:List[Dict], cg:CallGraph, base
         if not dup_flag:
             res["results"].append(result)
     
+    # Preserve parser identities before serialization (no regex/name guessing).
+    for result in res["results"]:
+        rule = next(rule for rule in scan_rules if rule["name"] == result["code"])
+        result["impact"] = rule["output"].get("impact", rule["output"]["description"])
+        result["report_basis"] = "rule-template"
+        for affected in result["affectedFiles"]:
+            filename = os.path.abspath(affected["filePath"])
+            start = affected["range"]["start"]["line"]
+            end = affected["range"]["end"]["line"]
+            matches = [(contract["name"], fn["name"])
+                       for contract in cg.files[filename]["subcontracts"]
+                       for fn in contract["functions"]
+                       if int(fn["loc"]["start"].split(":")[0]) == start
+                       and int(fn["loc"]["end"].split(":")[0]) == end]
+            if len(matches) != 1:
+                raise ValueError("Ambiguous function identity; refusing to export guessed location")
+            affected["contract"], affected["function"] = matches[0]
     # printing output:
     table = Table("Type", "Description", "Affected Files",title="Scan Results", show_lines=True)
     for result in res["results"]:
