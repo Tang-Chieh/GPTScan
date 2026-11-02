@@ -265,7 +265,7 @@ def simple_cli():
                                                 else:
                                                     args.append(answer[arg])
 
-                                        res_1 = static_check.run_static_check(checker, args, function1, falcon_instance, function1_text)
+                                        res_1 = static_check.run_static_check(checker, args, function1, falcon_instance, function1_text, contract, file)
                                         function1_tmp_result[vul["name"]] = res_1
                                     except:
                                         logger.error(
@@ -344,7 +344,7 @@ def simple_cli():
                                                     args.append(arg["CONSTANT"])
                                                 else:
                                                     args.append(answer[arg])
-                                        res_2 = static_check.run_static_check(checker, args, function2_func, falcon_instance, function2_text)
+                                        res_2 = static_check.run_static_check(checker, args, function2_func, falcon_instance, function2_text, function2_contract, function2_file)
                                     except:
                                         logger.error(
                                             "Static analysis failed: Invalid args")

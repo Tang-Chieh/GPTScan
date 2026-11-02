@@ -90,8 +90,16 @@ def __emit_at_end(function:str, text:str):
 def __in_code(pattern:str, text:str):
     return pattern.lower() in text.lower()
 
-def run_static_check(checker:str, args, function_name:str, falcon:Falcon, text:str) -> bool:
+def run_static_check(checker:str, args, function_name:str, falcon:Falcon, text:str, contract_name=None, file_path=None) -> bool:
     # if there is a vulnerability, return true
+    if falcon is not None and contract_name is not None:
+        from pathlib import Path
+        from types import SimpleNamespace
+        contracts = [c for c in falcon.contracts if c.name == contract_name
+                     and Path(c.source_mapping.filename.absolute).resolve() == Path(file_path).resolve()]
+        if len(contracts) != 1:
+            raise ValueError("Cannot uniquely resolve static-analysis contract")
+        falcon = SimpleNamespace(contracts=contracts)
     match checker:
         case "find_data_dependency":
             if args[0] is None or args[0] == '' or args[0] == 'N/A':

@@ -142,7 +142,7 @@ class CallGraph:
                     self.files[os.path.abspath(os.path.join(root, file))] = parseString(open(os.path.join(root, file), "r", encoding="utf-8", errors="ignore").read())
 
     def __run_jar(self):
-        subprocess.run(["java", "-jar", "jars/SolidityCallgraph-1.0-SNAPSHOT-standalone.jar", self.root, "callgraph.json"], stdout=subprocess.DEVNULL)
+        subprocess.run(["java", "-jar", "jars/SolidityCallgraph-1.0-SNAPSHOT-standalone.jar", self.root, "callgraph.json"], stdout=subprocess.DEVNULL, check=True)
         self.call_data = json.load(open("callgraph.json", "r"))
 
 
@@ -153,6 +153,11 @@ class CallGraph:
             self_file_to_remove_functions[file] = {}
             for contract_data in file_data["subcontracts"]:
                 self_file_to_remove_functions[file][contract_data["name"]] = []
+                # Upstream maps functions by name only. Fail closed rather than
+                # silently attributing one overload's result to another.
+                names = [f["name"] for f in contract_data["functions"] if f["kind"] == "function"]
+                if len(names) != len(set(names)):
+                    raise ValueError(f"Overloaded functions unsupported in {file}:{contract_data['name']}")
                 for function_data in contract_data["functions"]:
                     function_content = "\n".join(open(file).read().splitlines()[int(function_data["loc"]["start"].split(":")[0])-1:int(function_data["loc"]["end"].split(":")[0])])
                     if function_data["kind"] != "function":
@@ -184,10 +189,10 @@ class CallGraph:
                 matched_contract = None
                 for contract_ in self.files[file]["subcontracts"]:
                     if contract_["name"] == contract:
-                        match_flag = True
+                        match_contract_flag = True
                         matched_contract = contract_
                         break
-                if match_flag == False:
+                if match_contract_flag == False:
                     self.call_data[file].pop(contract)
                     continue
                 for function in self.call_data[file][contract].copy():
