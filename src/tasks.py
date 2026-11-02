@@ -122,6 +122,7 @@ def simple_cli():
     parser.add_argument("--repo-id")
     parser.add_argument("--repo-root", help="Original repository root for relative source locations")
     parser.add_argument("--prediction-output", help="Write PredictionCase after a successful scan")
+    parser.add_argument("--strict", action="store_true", help="Fail on compile/analysis errors")
     options = parser.parse_args()
     from model_transport import gateway_url, record_event
     if options.gptkey and options.provider != "api":
@@ -138,6 +139,16 @@ def simple_cli():
         os.environ["GPTSCAN_GATEWAY_TOKEN_FILE"] = os.path.abspath(options.gateway_token_file)
     if options.gptkey:
         os.environ["OPENAI_API_KEY"] = options.gptkey
+    class ErrorTracker(logging.Handler):
+        count = 0
+        def emit(self, record):
+            if record.levelno >= logging.ERROR:
+                self.count += 1
+                record_event("failed", error="analysis_error", component=record.name)
+    tracker = ErrorTracker()
+    logging.getLogger().addHandler(tracker)
+    
+    
     scan_rules = load_all_rules()
     console.log(f"Loaded [bold green]{len(scan_rules)}[/bold green] rules")
     
@@ -150,6 +161,9 @@ def simple_cli():
         console.log("Compile [bold red]failed[/bold red].")
         console.log("[yellow]Since the compilation is failed, some static analysis tool may not be enabled, which may cause lower precision and recall.[/yellow]")
         falcon_instance = None
+        record_event("failed", error="compile_failed")
+        if options.strict:
+            raise RuntimeError("Compilation failed; no clean-result PredictionCase exported")
     output_file = options.output
 
     import analyze_pipeline
@@ -393,6 +407,8 @@ def simple_cli():
     meta_data["estimated_cost"] = None
     meta_data["model"] = options.model
     meta_data["profile"] = options.profile
+    meta_data["compile_succeeded"] = falcon_instance is not None
+    meta_data["analysis_errors"] = tracker.count
 
     for metadata_key, metadata_value in meta_data.copy().items():
         if isinstance(metadata_value, set):
@@ -416,6 +432,8 @@ def simple_cli():
 
     json.dump(output_json, open(output_file, "w"), indent=4)
     json.dump(meta_data, open(output_file+".metadata.json", "w"), indent=4)
+    if options.strict and tracker.count:
+        raise RuntimeError("Analysis had errors; raw output retained but PredictionCase not exported")
     if options.prediction_output:
         from prediction_export import export_prediction_case
         prediction = export_prediction_case(output_json, options.repo_id,
