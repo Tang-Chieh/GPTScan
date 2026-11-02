@@ -1,5 +1,16 @@
 # GPTScan
 
+## Tang-Chieh fork: Price Manipulation / Codex Gateway / LLM Judge
+
+Development branch: [`price-manipulation`](https://github.com/Tang-Chieh/GPTScan/tree/price-manipulation).
+See [中文重現與修改說明](docs/REPRODUCE_ZH.md) and [validation record](docs/VALIDATION.md).
+The fork accepts existing dataset repos without flattening, uses an explicitly selected local
+subscription gateway, selects price-manipulation rules before analysis, and exports
+`PredictionCase` alongside native JSON. Ground truth and credentials are not included.
+Compatibility is tested with a synthetic fixture; this is not a claim that all dataset repos
+or the original paper benchmark have been reproduced. The upstream README below is retained;
+its API-key command describes the upstream interface, not the fork's default gateway workflow.
+
 ## Description
 
 Using ChatGPT for logic vulnerability detection.
