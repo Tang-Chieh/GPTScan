@@ -114,13 +114,29 @@ def simple_cli():
     # not need ast, compile first
     # parser.add_argument("-a", "--ast", help="The AST directory", required=True)
     parser.add_argument("-o", "--output", help="The output file", required=True)
-    parser.add_argument("-k", "--gptkey", help="The OpenAI API key", required=True)
-    
-    
+    parser.add_argument("-k", "--gptkey", help="Legacy API key; prefer OPENAI_API_KEY in explicit API mode")
+    parser.add_argument("--provider", choices=("codex-gateway", "api"), default="codex-gateway")
+    parser.add_argument("--model", default="openai-codex/gpt-5.6-luna")
+    parser.add_argument("--gateway-url", default="http://127.0.0.1:4000/v1")
+    parser.add_argument("--gateway-token-file")
+    options = parser.parse_args()
+    from model_transport import gateway_url, record_event
+    if options.gptkey and options.provider != "api":
+        parser.error("-k is only allowed with --provider api; never use it for OAuth")
+    if options.provider == "codex-gateway":
+        gateway_url(options.gateway_url)
+        if not options.gateway_token_file or not os.path.isfile(options.gateway_token_file):
+            parser.error("Provide --gateway-token-file for the authorized local gateway")
+    os.environ.update(GPTSCAN_PROVIDER=options.provider, GPTSCAN_MODEL=options.model,
+                      GPTSCAN_BASE_URL=options.gateway_url)
+    if options.gateway_token_file:
+        os.environ["GPTSCAN_GATEWAY_TOKEN_FILE"] = os.path.abspath(options.gateway_token_file)
+    if options.gptkey:
+        os.environ["OPENAI_API_KEY"] = options.gptkey
     scan_rules = load_all_rules()
     console.log(f"Loaded [bold green]{len(scan_rules)}[/bold green] rules")
     
-    source_dir = parser.parse_args().source
+    source_dir = os.path.abspath(options.source)
 
     try:
         falcon_instance = compile_project(source_dir)
@@ -129,10 +145,7 @@ def simple_cli():
         console.log("Compile [bold red]failed[/bold red].")
         console.log("[yellow]Since the compilation is failed, some static analysis tool may not be enabled, which may cause lower precision and recall.[/yellow]")
         falcon_instance = None
-    output_file = parser.parse_args().output
-    gptkey = parser.parse_args().gptkey
-
-    os.environ["OPENAI_API_KEY"] = gptkey
+    output_file = options.output
 
     import analyze_pipeline
     import chatgpt_api
@@ -368,7 +381,12 @@ def simple_cli():
     meta_data["token_received"] = chatgpt_api.tokens_received.value # 接收的Token数量
     meta_data["token_sent_gpt4"] = chatgpt_api.tokens_sent_gpt4.value # 发送的Token数量
     meta_data["token_received_gpt4"] = chatgpt_api.tokens_received_gpt4.value # 接收的Token数量
-    meta_data["estimated_cost"] = (meta_data["token_sent"] * global_config.SEND_PRICE) + (meta_data["token_received"] * global_config.RECEIVE_PRICE) + (meta_data["token_sent_gpt4"] * global_config.GPT4_SEND_PRICE) + (meta_data["token_received_gpt4"] * global_config.GPT4_RECEIVE_PRICE)# 预估的花费
+    # Legacy counters were not reliable across spawned workers. Do not claim zero
+    # tokens or use historical GPT-3.5 prices for a subscription model.
+    for key in ("token_sent", "token_received", "token_sent_gpt4", "token_received_gpt4"):
+        meta_data[key] = None
+    meta_data["estimated_cost"] = None
+    meta_data["model"] = options.model
 
     for metadata_key, metadata_value in meta_data.copy().items():
         if isinstance(metadata_value, set):
