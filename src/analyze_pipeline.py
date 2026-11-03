@@ -520,10 +520,10 @@ def ask_for_static(prompts, source, answer_keys):
     return answer
 
 def ask_for_static_json(prompts, source, answer_keys):
-    res = ask_with_timeout(prompts+"\n"+source)
+    from json_questions import ask_json
     # process answer
     answer = {}
-    data = json.loads(res[:res.rindex("}")+1])
+    data = ask_json(ask_with_timeout, prompts+"\n"+source, required_keys=answer_keys)
     for key in answer_keys:
         if key in data:
             have_result_flag = False
@@ -538,8 +538,8 @@ def ask_for_static_json(prompts, source, answer_keys):
     return answer, data
 
 def ask_for_static_json_single(prompts, source, answer_key):
-    res = ask_with_timeout(prompts+"\n"+source)
-    data = json.loads(res[:res.rindex("}")+1])
+    from json_questions import ask_json
+    data = ask_json(ask_with_timeout, prompts+"\n"+source, single=True)
     return {answer_key: list(data.values())[0]}
 
 
