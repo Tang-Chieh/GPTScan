@@ -14,6 +14,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 class Gateway(BaseHTTPRequestHandler):
     mode = "positive"
+    bad_json_sent = False
 
     def log_message(self, *args):
         pass
@@ -30,8 +31,12 @@ class Gateway(BaseHTTPRequestHandler):
             answer = json.dumps({key: "no" if self.mode == "negative" or (self.mode == "rejected" and key != "1")
                                  else "yes" for key in keys})
         elif "VariableA" in prompt:
-            answer = json.dumps({"VariableA": {"price": "pool spot price"},
-                                 "VariableB": {"valuation": "not monetary" if self.mode == "rejected" else "collateral valuation"}})
+            if self.mode == "retry_json" and not Gateway.bad_json_sent:
+                Gateway.bad_json_sent = True
+                answer = '{"VariableA":{"price":"bad"quote"}}'
+            else:
+                answer = json.dumps({"VariableA": {"price": "pool spot price"},
+                                     "VariableB": {"valuation": "not monetary" if self.mode == "rejected" else "collateral valuation"}})
         else:
             answer = "yes"
         body = json.dumps({"status": "completed", "output": [
@@ -52,8 +57,9 @@ def main():
         thread = threading.Thread(target=server.serve_forever, daemon=True)
         thread.start()
         try:
-            for mode in ("positive", "negative", "malformed", "rejected"):
+            for mode in ("positive", "negative", "malformed", "rejected", "retry_json"):
                 Gateway.mode = mode
+                Gateway.bad_json_sent = False
                 out = temporary / mode
                 source = ROOT / "tests/fixtures/price-repo"
                 if mode == "rejected":
@@ -73,11 +79,14 @@ def main():
                 else:
                     assert proc.returncode == 0 and status == "completed", (out / "execution.log").read_text()
                     prediction = json.loads((out / "prediction_case.json").read_text())
-                    assert len(prediction["predictions"]) == (1 if mode == "positive" else 0)
+                    assert len(prediction["predictions"]) == (1 if mode in {"positive", "retry_json"} else 0)
                     metadata = json.loads((out / "output.json.metadata.json").read_text())
                     assert metadata["compile_succeeded"] and metadata["analysis_errors"] == 0
                     if mode == "rejected":
                         assert "Candidate rejected by rule" in (out / "execution.log").read_text()
+                    if mode == "retry_json":
+                        events = [json.loads(line) for line in (out / "model_events.jsonl").read_text().splitlines()]
+                        assert sum(event["status"] == "format_retry" for event in events) == 1
                 print(f"Full runtime regression passed: {mode}")
         finally:
             server.shutdown()
