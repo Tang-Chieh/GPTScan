@@ -18,6 +18,7 @@ from rich.progress import Progress
 from rich.table import Table
 from rich_utils import *
 import falcon
+from rule_validation import CandidateRejected, require_rule_condition
 
 logger = logging.getLogger(__name__)
 
@@ -244,7 +245,7 @@ def simple_cli():
                                                                         break
                                                                 validate_flag = validate_flag and v_line_flag
                                                         if validate_flag == False:
-                                                            raise Exception("The description of variable did not pass the `validate_description` validation")
+                                                            raise CandidateRejected("The description of variable did not pass the `validate_description` validation")
                                                 if "exclude_variable" in vul["static"]:
                                                     for to_exclude_key, to_exclude_values in vul["static"]["exclude_variable"].items():
                                                         validate_flag = True
@@ -253,7 +254,7 @@ def simple_cli():
                                                                 validate_flag = False
                                                                 break
                                                         if validate_flag == False:
-                                                            raise Exception("The description of variable did not pass the `exclude_variable` validation")
+                                                            raise CandidateRejected("The description of variable did not pass the `exclude_variable` validation")
                                             elif "format" in vul["static"] and vul["static"]["format"] == "json_single":
                                                 answer = analyze_pipeline.ask_for_static_json_single(vul["static"]["prompt"], function1_text, vul["static"]["output_keys"][0])
                                             elif "format" in vul["static"] and vul["static"]["format"] == "not_need":
@@ -282,6 +283,9 @@ def simple_cli():
 
                                         res_1 = static_check.run_static_check(checker, args, function1, falcon_instance, function1_text, contract, file)
                                         function1_tmp_result[vul["name"]] = res_1
+                                    except CandidateRejected as rejected:
+                                        logger.info("Candidate rejected by rule %s: %s", vul["name"], rejected)
+                                        function1_tmp_result[vul["name"]] = False
                                     except:
                                         logger.error(
                                             "Static analysis failed: Invalid args")
@@ -324,7 +328,7 @@ def simple_cli():
                                                                         break
                                                                 validate_flag = validate_flag and v_line_flag
                                                         if validate_flag == False:
-                                                            raise Exception("The description of variable did not pass the validation")
+                                                            raise CandidateRejected("The description of variable did not pass the validation")
                                                 if "exclude_variable" in vul["static"]:
                                                     for to_exclude_key, to_exclude_values in vul["static"]["exclude_variable"].items():
                                                         validate_flag = True
@@ -333,7 +337,7 @@ def simple_cli():
                                                                 validate_flag = False
                                                                 break
                                                         if validate_flag == False:
-                                                            raise Exception("The description of variable did not pass the `exclude_variable` validation")
+                                                            raise CandidateRejected("The description of variable did not pass the `exclude_variable` validation")
                                             elif "format" in vul["static"] and vul["static"]["format"] == "json_single":
                                                 answer = analyze_pipeline.ask_for_static_json_single(vul["static"]["prompt"], function2_text, vul["static"]["output_keys"][0])
                                             elif "format" in vul["static"] and vul["static"]["format"] == "not_need":
@@ -360,6 +364,9 @@ def simple_cli():
                                                 else:
                                                     args.append(answer[arg])
                                         res_2 = static_check.run_static_check(checker, args, function2_func, falcon_instance, function2_text, function2_contract, function2_file)
+                                    except CandidateRejected as rejected:
+                                        logger.info("Caller candidate rejected by rule %s: %s", vul["name"], rejected)
+                                        res_2 = False
                                     except:
                                         logger.error(
                                             "Static analysis failed: Invalid args")
