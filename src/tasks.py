@@ -123,7 +123,18 @@ def simple_cli():
     parser.add_argument("--repo-root", help="Original repository root for relative source locations")
     parser.add_argument("--prediction-output", help="Write PredictionCase after a successful scan")
     parser.add_argument("--strict", action="store_true", help="Fail on compile/analysis errors")
+    parser.add_argument("--archive", help="Verified, path-rebased Crytic Compile archive; never recompile")
+    parser.add_argument("--scope-file", help="Shared compiled target inventory from reusable adapter")
     options = parser.parse_args()
+    if bool(options.archive) != bool(options.scope_file):
+        parser.error("--archive and --scope-file must be provided together")
+    if options.scope_file:
+        from reusable_archive import validate_scope, sha256
+        scope = json.load(open(options.scope_file))
+        validate_scope(scope, options.source)
+        if scope.get("archive_sha256") != sha256(options.archive):
+            parser.error("Archive and scope hash do not match")
+        os.environ["GPTSCAN_SCOPE_FILE"] = os.path.abspath(options.scope_file)
     from model_transport import gateway_url, record_event
     if options.gptkey and options.provider != "api":
         parser.error("-k is only allowed with --provider api; never use it for OAuth")
@@ -155,7 +166,11 @@ def simple_cli():
     source_dir = os.path.abspath(options.source)
 
     try:
-        falcon_instance = compile_project(source_dir)
+        if options.archive:
+            from reusable_archive import load_falcon
+            falcon_instance = load_falcon(options.archive)
+        else:
+            falcon_instance = compile_project(source_dir)
     except:
         console.log(traceback.format_exc())
         console.log("Compile [bold red]failed[/bold red].")
@@ -409,6 +424,7 @@ def simple_cli():
     meta_data["profile"] = options.profile
     meta_data["compile_succeeded"] = falcon_instance is not None
     meta_data["analysis_errors"] = tracker.count
+    meta_data["input_mode"] = "reusable-archive" if options.archive else "compile-project"
 
     for metadata_key, metadata_value in meta_data.copy().items():
         if isinstance(metadata_value, set):

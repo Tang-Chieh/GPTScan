@@ -99,6 +99,13 @@ class CallGraph:
         return os.path.relpath(path, self.root)
 
     def __parse_all_files(self):
+        scope_file = os.environ.get("GPTSCAN_SCOPE_FILE")
+        if scope_file:
+            from reusable_archive import validate_scope
+            scope = json.load(open(scope_file))
+            for path in validate_scope(scope, self.root):
+                self.files[str(path)] = parseString(path.read_text(encoding="utf-8"))
+            return
         for root, dirs, files in os.walk(self.root):
             for file in files:
                 if "node_modules" in file or "node_modules" in root:
