@@ -2,6 +2,7 @@
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 import json
 import os
+import re
 from pathlib import Path
 import subprocess
 import sys
@@ -25,10 +26,12 @@ class Gateway(BaseHTTPRequestHandler):
         if self.mode == "malformed":
             answer = "not a valid answer"
         elif '"1": Does it' in prompt:
-            answer = json.dumps({"1": "no" if self.mode == "negative" else "yes"})
+            keys = re.findall(r'"(\d+)": Does it', prompt)
+            answer = json.dumps({key: "no" if self.mode == "negative" or (self.mode == "rejected" and key != "1")
+                                 else "yes" for key in keys})
         elif "VariableA" in prompt:
             answer = json.dumps({"VariableA": {"price": "pool spot price"},
-                                 "VariableB": {"valuation": "collateral valuation"}})
+                                 "VariableB": {"valuation": "not monetary" if self.mode == "rejected" else "collateral valuation"}})
         else:
             answer = "yes"
         body = json.dumps({"status": "completed", "output": [
@@ -49,11 +52,17 @@ def main():
         thread = threading.Thread(target=server.serve_forever, daemon=True)
         thread.start()
         try:
-            for mode in ("positive", "negative", "malformed"):
+            for mode in ("positive", "negative", "malformed", "rejected"):
                 Gateway.mode = mode
                 out = temporary / mode
+                source = ROOT / "tests/fixtures/price-repo"
+                if mode == "rejected":
+                    source = temporary / "rule-rejection-source"
+                    source.mkdir()
+                    (source / "Oracle.sol").write_text((ROOT / "tests/fixtures/price-repo/Oracle.sol").read_text().replace(
+                        "function borrow(", "function getLiquidity("))
                 command = [sys.executable, str(ROOT / "scripts/run_dataset.py"),
-                           "--repo-id", "synthetic-price", "--repo-path", str(ROOT / "tests/fixtures/price-repo"),
+                           "--repo-id", "synthetic-price", "--repo-path", str(source),
                            "--output-dir", str(out), "--token-file", str(token), "--solc-version", "0.8.19",
                            "--gateway-url", f"http://127.0.0.1:{server.server_port}/v1", "--timeout-minutes", "2"]
                 proc = subprocess.run(command, capture_output=True, text=True, timeout=150)
@@ -67,6 +76,8 @@ def main():
                     assert len(prediction["predictions"]) == (1 if mode == "positive" else 0)
                     metadata = json.loads((out / "output.json.metadata.json").read_text())
                     assert metadata["compile_succeeded"] and metadata["analysis_errors"] == 0
+                    if mode == "rejected":
+                        assert "Candidate rejected by rule" in (out / "execution.log").read_text()
                 print(f"Full runtime regression passed: {mode}")
         finally:
             server.shutdown()
