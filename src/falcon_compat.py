@@ -16,6 +16,11 @@ def contract_bytecode(compilation_unit, contract, runtime=False):
     return unit.bytecode_runtime(contract.name) if runtime else unit.bytecode_init(contract.name)
 
 
+def is_bytecode_member(value):
+    # Falcon can supply an unhashable Constant, so do not use a set here.
+    return value in ("creationCode", "runtimeCode")
+
+
 def install():
     import falcon.ir.convert as convert
     if getattr(convert._convert_type_contract, "_gptscan_source_unit_compat", False):
@@ -25,7 +30,7 @@ def install():
     original = convert._convert_type_contract
 
     def wrapped(ir, compilation_unit):
-        if ir.variable_right not in {"creationCode", "runtimeCode"}:
+        if not is_bytecode_member(ir.variable_right):
             return original(ir, compilation_unit)
         contract = ir.variable_left.type.type
         bytecode = contract_bytecode(compilation_unit.crytic_compile_compilation_unit,

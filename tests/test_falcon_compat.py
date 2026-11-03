@@ -4,7 +4,7 @@ from types import SimpleNamespace as S
 import unittest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
-from falcon_compat import contract_bytecode
+from falcon_compat import contract_bytecode, is_bytecode_member
 
 
 class Filename:
@@ -13,6 +13,10 @@ class Filename:
 
 
 class BytecodeTests(unittest.TestCase):
+    def test_unhashable_non_bytecode_member_delegates(self):
+        self.assertFalse(is_bytecode_member(S(value="name")))
+        self.assertTrue(is_bytecode_member("creationCode"))
+        self.assertTrue(is_bytecode_member("runtimeCode"))
     def contract(self, path):
         return S(name="SameName", source_mapping=S(filename=Filename(path)))
 
