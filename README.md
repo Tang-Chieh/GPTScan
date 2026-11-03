@@ -3,6 +3,9 @@
 ## Tang-Chieh fork: Price Manipulation / Codex Gateway / LLM Judge
 
 Development branch: [`price-manipulation`](https://github.com/Tang-Chieh/GPTScan/tree/price-manipulation).
+**Recommended dataset entrypoint:** [共用 Reusable Dataset archive adapter](docs/REUSABLE_ADAPTER_ZH.md).
+It delegates compilation to the existing Docker runner and feeds verified archives to Falcon
+without recompiling; the old local compilation runner remains available for comparison.
 See [中文重現與修改說明](docs/REPRODUCE_ZH.md) and [validation record](docs/VALIDATION.md).
 The fork accepts existing dataset repos without flattening, uses an explicitly selected local
 subscription gateway, selects price-manipulation rules before analysis, and exports

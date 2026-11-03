@@ -1,5 +1,9 @@
 # GPTScan：Price Manipulation + Codex Gateway + PredictionCase
 
+> 更新：dataset 的建議入口現在是 [`run_reusable.py`](REUSABLE_ADAPTER_ZH.md)，
+> 重用既有 Docker build/archive 並直接載入 Falcon。以下 `run_dataset.py` 是先前的
+> 本機編譯模式，保留供比較；不要把其限制誤認為新 adapter 仍須逐 repo 本機設定。
+
 這是 `GPTScan/GPTScan` 的正式 fork，保留 AGPL-3.0 與 upstream history。
 `main` 保留 upstream；`price-manipulation` 是本次開發 branch。
 
