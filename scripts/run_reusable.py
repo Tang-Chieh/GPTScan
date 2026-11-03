@@ -16,6 +16,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 from reusable_archive import materialize_archive, reusable_runner, safe_relative, sha256, verify_archive
 from run_dataset import execute, git_value, repo_id, save
+from docker_runtime import image_id
 
 
 def main():
@@ -78,18 +79,20 @@ def main():
                 fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
                 save(cached / "build.json", build)
                 container = "gptscan-build-" + uuid.uuid4().hex[:12]
+                selected_image = image_id(args.image)
                 command = ["docker", "run", "--rm", "--name", container, "--platform", "linux/amd64",
                            "--mount", f"type=bind,source={reusable},target=/reusable,readonly",
                            "--mount", f"type=bind,source={ROOT / 'scripts/reusable_build_bridge.py'},target=/bridge.py,readonly",
                            "--mount", f"type=bind,source={source},target=/workspace/{source_relative},readonly",
                            "--mount", f"type=bind,source={cached},target=/workspace/dataset/repos/{args.repo_id}",
                            "--mount", f"type=volume,source={args.docker_cache_volume},target=/cache",
-                           "--env", "PYTHONPATH=/reusable:/opt/pmdetector", "--entrypoint", "python", args.image,
+                           "--env", "PYTHONPATH=/reusable:/opt/pmdetector", "--entrypoint", "python", selected_image,
                            "/bridge.py", "/reusable/scripts/docker_repo_runner.py", "--workspace-root", "/workspace",
                            "--build-json", f"/workspace/dataset/repos/{args.repo_id}/build.json"]
                 manifest["build_command"] = command
-                manifest["image_id"] = subprocess.check_output(
-                    ["docker", "image", "inspect", args.image, "--format", "{{.Id}}"], text=True).strip()
+                manifest["image_reference"] = args.image
+                manifest["image_id"] = selected_image
+                manifest["build_bridge_sha256"] = sha256(ROOT / "scripts/reusable_build_bridge.py")
                 save(out / "adapter_manifest.json", manifest)
                 code, timed_out = execute(command, ROOT, os.environ.copy(), out / "build.log",
                                           args.build_timeout_minutes * 60)
