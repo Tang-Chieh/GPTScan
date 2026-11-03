@@ -27,6 +27,8 @@ output.json + prediction_case.json
 
 `scripts/run_reusable.py` 是建議入口；舊 `run_dataset.py` 保留作原始流程比較。
 新模式預設只做 build/archive/Falcon/CallGraph preflight，**不消耗模型額度**。
+實際三 repo 的完整測試結果與開發中失敗紀錄摘要見
+[ADAPTER_VALIDATION_20261103.md](ADAPTER_VALIDATION_20261103.md)。
 
 需要：
 
@@ -146,6 +148,10 @@ execution.log / model_events.jsonl
 - scope、IR 或模型錯誤都不會輸出可假裝成功的 PredictionCase。
 - findings 的 description/impact/mitigation 仍是 rule templates；沒有暗中改成 LLM enrichment。
 - 此 adapter 不會執行 LLM Judge。仍需用既有 `validate_prediction.py` 驗證，再明確執行 evaluation。
+
+完整測試另外修正兩個錯誤分類／格式問題：規則條件不成立是正常 negative candidate，
+不是 infrastructure failure；static-variable JSON 若格式錯誤，最多要求模型重答一次。
+不會把無效 JSON 當成 No、也不會自行補造變數或漏洞內容。重試仍失敗會回傳 failed。
 
 ## 自動化測試
 
