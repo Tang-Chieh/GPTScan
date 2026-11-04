@@ -81,7 +81,7 @@ def load_file(falcon_base_dir: str, sol_file_path: str) -> Falcon:
 def find_data_dependency(source: str, sink: str, function: str, falcon: Falcon):
     for contract in falcon.contracts:
         for fn in contract.functions:
-            if function == fn.name:
+            if function == (fn.full_name if "(" in function else fn.name):
                 source_ = None
                 sink_ = None
                 # support temp vars
@@ -124,7 +124,7 @@ def find_data_dependency(source: str, sink: str, function: str, falcon: Falcon):
 def first_deposit_check(current_pool_var: str, deposit_amount: str, total_share: str, function: str, falcon: Falcon):
     for contract in falcon.contracts:
         for fn in contract.functions:
-            if function == fn.name:
+            if function == (fn.full_name if "(" in function else fn.name):
                 deposit_amount_ = None
                 total_share_ = None
                 for node in fn.nodes:
@@ -223,7 +223,7 @@ def first_deposit_check(current_pool_var: str, deposit_amount: str, total_share:
 def is_arg_taint(call: str, arg_index: int, function:str, falcon:Falcon):
     for contract in falcon.contracts:
         for fn in contract.functions_declared:
-            if fn.name != function:
+            if (fn.full_name if "(" in function else fn.name) != function:
                 continue
             if fn.is_constructor or fn.is_protected():
                 continue

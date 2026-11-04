@@ -229,7 +229,7 @@ def ask_whether_has_vul_with_scenario_v9(src_folder: str, rules: List[dict]) -> 
                             check_only_modifier_flag = False
 
                     # reachable problem
-                    callers = cg.get_callers(func["name"])
+                    callers = cg.get_callers(func["name"], file, contract["name"])
                     visited = set()
                     tovisit = set()
                     frozenset_origin_map = {}
@@ -253,7 +253,7 @@ def ask_whether_has_vul_with_scenario_v9(src_folder: str, rules: List[dict]) -> 
                                 func_reachable_flag = True
                                 break
                             else:
-                                for x in cg.get_callers(frozenset_origin_map[caller][2]):
+                                for x in cg.get_callers(frozenset_origin_map[caller][2], *frozenset_origin_map[caller][:2]):
                                     if frozenset(x) not in frozenset_origin_map:
                                         frozenset_origin_map[frozenset(x)] = x
                                     tovisit.add(frozenset(x))
@@ -348,7 +348,7 @@ def ask_whether_has_vul_with_scenario_v9(src_folder: str, rules: List[dict]) -> 
                 rules_for_caller = list(filter(lambda x: ("function_public" not in x or x["function_public"] == False) and (
                     "property" in x) and ("only_this_function" not in x or x["only_this_function"] == False), function_data["data"]))
                 # find callers
-                callers = cg.get_callers(func_)
+                callers = cg.get_callers(func_, file, contract)
 
                 functions_ = set()
                 for caller in callers:

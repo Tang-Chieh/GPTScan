@@ -91,6 +91,11 @@ class CallGraph:
         self.call_data = {}
 
         self.__parse_all_files()
+        self.compiled_edges = None
+        if os.environ.get("GPTSCAN_SCOPE_FILE"):
+            import analysis_context
+            if analysis_context.falcon is not None:
+                self.__compiled_identities(analysis_context.falcon)
         self.__run_jar()
 
         self.__clean()
@@ -149,8 +154,43 @@ class CallGraph:
                     self.files[os.path.abspath(os.path.join(root, file))] = parseString(open(os.path.join(root, file), "r", encoding="utf-8", errors="ignore").read())
 
     def __run_jar(self):
+        if self.compiled_edges is not None:
+            self.call_data = {}
+            for (file, contract, function), callees in self.compiled_edges.items():
+                self.call_data.setdefault(file, {}).setdefault(contract, {})[function] = [c[2] for c in callees]
+            return
         subprocess.run(["java", "-jar", "jars/SolidityCallgraph-1.0-SNAPSHOT-standalone.jar", self.root, "callgraph.json"], stdout=subprocess.DEVNULL, check=True)
         self.call_data = json.load(open("callgraph.json", "r"))
+
+    def __compiled_identities(self, instance):
+        """Map exact source ranges to compiler signatures, not Java name-only edges."""
+        from pathlib import Path
+        declared = []
+        identities = {}
+        for contract in instance.contracts:
+            for function in contract.functions_declared:
+                declared.append(function)
+        for file, data in self.files.items():
+            for contract in data["subcontracts"]:
+                for function in contract["functions"]:
+                    if function["kind"] != "function":
+                        continue
+                    line = int(function["loc"]["start"].split(":")[0])
+                    matches = [f for f in declared if f.name == function["name"]
+                               and f.contract_declarer.name == contract["name"]
+                               and Path(f.source_mapping.filename.absolute).resolve() == Path(file).resolve()
+                               and f.source_mapping.lines and min(f.source_mapping.lines) == line]
+                    if not matches or len({f.full_name for f in matches}) != 1:
+                        raise ValueError(f"Cannot uniquely map compiler function: {file}:{contract['name']}:{function['name']}:{line}")
+                    compiled = matches[0]
+                    function["original_name"] = function["name"]
+                    function["name"] = compiled.full_name
+                    for equivalent in matches:
+                        identities[equivalent] = (file, contract["name"], compiled.full_name)
+        self.compiled_edges = {}
+        for function, identity in identities.items():
+            calls = list(function.internal_calls) + [f for _, f in function.high_level_calls]
+            self.compiled_edges[identity] = sorted(set(self.compiled_edges.get(identity, [])) | {identities[f] for f in calls if f in identities})
 
 
     def __clean(self):
@@ -173,7 +213,7 @@ class CallGraph:
                     if is_empty_function(function_content):
                         self_file_to_remove_functions[file][contract_data["name"]].append(function_data)
                         continue
-                    if is_in_whitelist(contract_data, function_data["name"], function_content, function_data["visibility"]):
+                    if is_in_whitelist(contract_data, function_data.get("original_name", function_data["name"]), function_content, function_data["visibility"]):
                         self_file_to_remove_functions[file][contract_data["name"]].append(function_data)
                         continue
                     if is_in_modifier_whitelist(function_content):
@@ -212,7 +252,13 @@ class CallGraph:
                         self.call_data[file][contract].pop(function)
                         continue
 
-    def get_callers(self, function:str)->List[Tuple[str, str, str]]:
+    def get_callers(self, function:str, file=None, contract=None)->List[Tuple[str, str, str]]:
+        if self.compiled_edges is not None:
+            # This legacy API supplies no source identity. Return every exact
+            # compiled caller for matching signatures; never collapse by name.
+            return [caller for caller, callees in self.compiled_edges.items()
+                    if any(callee[2] == function and (file is None or callee[:2] == (file, contract)) for callee in callees)
+                    if self.get_function_detail(*caller) is not None]
         result = []
         for file in self.call_data:
             for contract in self.call_data[file]:
@@ -226,6 +272,9 @@ class CallGraph:
     
 
     def get_callees(self, file:str, contract:str, function:str)->List[Tuple[str, str, str]]:
+        if self.compiled_edges is not None:
+            return [callee for callee in self.compiled_edges.get((file, contract, function), [])
+                    if self.get_function_detail(*callee) is not None]
         functions = []
         for file_ in self.call_data:
             if self.get_rel_path(file) == self.get_rel_path(file_):

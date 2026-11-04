@@ -97,8 +97,12 @@ def run_static_check(checker:str, args, function_name:str, falcon:Falcon, text:s
         from types import SimpleNamespace
         contracts = [c for c in falcon.contracts if c.name == contract_name
                      and Path(c.source_mapping.filename.absolute).resolve() == Path(file_path).resolve()]
-        if len(contracts) != 1:
+        locations = {(c.source_mapping.start, c.source_mapping.length) for c in contracts}
+        if not contracts or len(locations) != 1:
             raise ValueError("Cannot uniquely resolve static-analysis contract")
+        # Identical declarations may occur in several compilation units. Keep
+        # their compiled variants for the existing existential checks, rather
+        # than rejecting duplicates or selecting an arbitrary instance.
         falcon = SimpleNamespace(contracts=contracts)
     match checker:
         case "find_data_dependency":

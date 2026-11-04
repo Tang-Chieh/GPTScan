@@ -36,9 +36,13 @@ def main():
         for contract in data["subcontracts"]:
             matches = [item for item in instance.contracts if item.name == contract["name"]
                        and Path(item.source_mapping.filename.absolute).resolve() == Path(filename).resolve()]
-            if len(matches) != 1:
+            # The same declaration can appear in multiple compilation units.
+            # Require identical source ranges, not a single Python instance.
+            locations = {(c.source_mapping.start, c.source_mapping.length) for c in matches}
+            if not matches or len(locations) != 1:
                 raise ValueError(f"Parser target is not uniquely compiled: {filename}:{contract['name']}")
     result = {"status": "passed", "compiler_invoked": False, "model_requests": 0,
+              "analysis_limitations": ["Yul memory/storage builtins use Falcon opaque call representation; no complete EVM alias or transient-storage data-flow model"],
               "falcon_contracts": len(instance.contracts), "ir_errors": len(errors),
               "parser_files": len(graph.files),
               "parser_functions": sum(len(c["functions"]) for d in graph.files.values() for c in d["subcontracts"]),

@@ -75,17 +75,32 @@ def materialize_archive(data, manifest, build, repository):
     project = repository.joinpath(*working.parts)
     replacements = {}
     texts = {}
+    logical_paths = {}
+    folded_paths = {}
     for name, content in data["source_content"].items():
         if not isinstance(name, str) or not isinstance(content, str):
             raise ValueError("Invalid embedded source")
         original = PurePosixPath(name)
         if not original.is_absolute() or ".." in original.parts:
             raise ValueError(f"Source path is not absolute and normalized: {name}")
-        relative = original.relative_to(old_repo)
+        try:
+            relative = original.relative_to(old_repo)
+        except ValueError:
+            parts = original.parts
+            markers = [i for i, part in enumerate(parts[:-1]) if part == '.brownie' and parts[i + 1] == 'packages']
+            if len(markers) != 1 or original.suffix != '.sol':
+                raise ValueError(f'External source outside supported dependency roots: {name}')
+            relative = working / '_external_dependencies' / 'brownie'
+            relative = relative.joinpath(*parts[markers[0] + 2:])
         safe_relative(str(relative))
         destination = repository.joinpath(*relative.parts)
+        folded = str(destination).casefold()
+        if folded in folded_paths and folded_paths[folded] != str(destination):
+            destination = project / '_case_variants' / hashlib.sha256(name.encode()).hexdigest()[:12] / str(relative)
+        folded_paths[folded] = str(repository.joinpath(*relative.parts))
         replacements[name] = str(destination)
         texts[destination] = content
+        logical_paths[str(destination)] = str(relative)
 
     rebased = copy.deepcopy(data)
     rebased["working_dir"] = str(project)
@@ -103,6 +118,11 @@ def materialize_archive(data, manifest, build, repository):
 
     def ast_paths(value):
         if isinstance(value, dict):
+            path = value.get('absolutePath')
+            if isinstance(path, str) and path.startswith('project:/'):
+                canonical = str(old_project / path[len('project:/'):])
+                if canonical in replacements:
+                    value['absolutePath'] = replacements[canonical]
             if value.get("absolutePath") in replacements:
                 value["absolutePath"] = replacements[value["absolutePath"]]
             for item in value.values():
@@ -134,10 +154,11 @@ def materialize_archive(data, manifest, build, repository):
         unit["source_units"] = sources
     targets = []
     excluded_targets = {}
-    dependency_directories = {"node_modules", "lib", "external", "openzeppelin", "uniswap", "pancakeswap", "legacy"}
+    dependency_directories = {"node_modules", "lib", "external", "openzeppelin", "uniswap", "pancakeswap", "legacy",
+                              "test", "tests", "mock", "mocks", "script", "scripts", '_external_dependencies'}
     for name in sorted(compiled):
         relative = Path(name).relative_to(project)
-        if name not in dependencies and not dependency_directories.intersection(part.casefold() for part in relative.parts[:-1]):
+        if name not in dependencies and not dependency_directories.intersection(part.casefold() for part in relative.parts[:-1]) and not relative.name.endswith(('.t.sol', '.s.sol')):
             targets.append(name)
         else:
             excluded_targets[name] = "dependency/vendor context retained for Falcon, not a report target"
@@ -154,10 +175,11 @@ def materialize_archive(data, manifest, build, repository):
                      "compiled_sources": sorted(compiled),
                      "dependency_sources": sorted(dependencies),
                      "excluded_analysis_files": excluded_targets,
-                     "target_policy": {"version": "gptscan-production-v1",
+                     "target_policy": {"version": "gptscan-production-v2",
                                        "dependency_directories": sorted(dependency_directories)},
                      "source_files_sha256": {str(path): hashlib.sha256(text.encode()).hexdigest()
                                               for path, text in texts.items()},
+                     "original_relative_paths": logical_paths,
                      "analysis_scope": manifest["analysis_scope"]}
 
 
@@ -184,7 +206,11 @@ def load_falcon(archive):
     from crytic_compile import CryticCompile
     from crytic_compile.platform.archive import Archive
     from falcon import Falcon
-    from falcon_compat import install
+    from falcon_compat import install, expand_global_using
     install()
     compiled = CryticCompile(Archive(str(Path(archive).resolve())))
-    return Falcon(compiled, disallow_partial=True)
+    expand_global_using(compiled)
+    instance = Falcon(compiled, disallow_partial=True)
+    import analysis_context
+    analysis_context.falcon = instance
+    return instance
