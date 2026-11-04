@@ -1,5 +1,10 @@
 # 共用 Reusable Dataset → GPTScan adapter
 
+2026-11-05 的 dataset 相容性、舊 archive 模式與 compiler-context build 修正見
+[COMPATIBILITY_20261105_ZH.md](COMPATIBILITY_20261105_ZH.md)。該更新保留 strict
+archive 驗證，並在 archive 模式改用 compiler signature／Falcon resolved CallGraph；
+下列 Java requirements 主要仍適用舊的 source-only 執行模式。
+
 ## 不是 Falcon 與 Crytic Compile 二選一
 
 Falcon 本身使用 Crytic Compile。既有 Docker runner 輸出的 Crytic Compile archive
