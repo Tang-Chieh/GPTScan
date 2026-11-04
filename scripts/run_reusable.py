@@ -26,6 +26,8 @@ def main():
     parser.add_argument("--repo-path", type=Path)
     parser.add_argument("--build-json", type=Path)
     parser.add_argument("--archive", type=Path, help="Reuse an existing archive with its verified sidecar")
+    parser.add_argument("--legacy-archive", type=Path, help="Explicitly import an archive without provenance sidecar; compare embedded sources")
+    parser.add_argument("--target-root", action="append", default=[], help="Legacy mode: explicit project-relative production roots plus compiler import closure")
     parser.add_argument("--image", default="pmdetector-reusable:per-repo-final")
     parser.add_argument("--build-cache", type=Path, default=ROOT / ".local/reusable-builds")
     parser.add_argument("--docker-cache-volume", default="pmdetector-reusable-cache")
@@ -37,6 +39,10 @@ def main():
     parser.add_argument("--gateway-url", default="http://127.0.0.1:4000/v1")
     parser.add_argument("--model", default="openai-codex/gpt-5.6-luna")
     args = parser.parse_args()
+    if args.archive and args.legacy_archive:
+        parser.error('--archive and --legacy-archive are mutually exclusive')
+    if args.target_root and not args.legacy_archive:
+        parser.error('--target-root requires explicit --legacy-archive mode')
     if min(args.build_timeout_minutes, args.timeout_minutes) <= 0:
         parser.error("Timeouts must be positive")
     if args.run_analysis and (not args.token_file or not args.token_file.is_file()):
@@ -69,7 +75,10 @@ def main():
     try:
         runner = reusable_runner(reusable)
         archive_relative = safe_relative(build["analysis_input"]["path"])
-        if args.archive:
+        if args.legacy_archive:
+            archive = args.legacy_archive.resolve()
+            manifest['build_reused'] = True
+        elif args.archive:
             archive = args.archive.resolve()
             manifest["build_reused"] = True
         else:
@@ -105,16 +114,30 @@ def main():
                     raise RuntimeError(f"Reusable build failed: {result.get('failure', {})}; see build.log")
             archive = cached.joinpath(*archive_relative.parts)
             manifest["build_reused"] = result.get("cache_decisions", {}).get("archive", {}).get("status") == "hit"
-        sidecar = verify_archive(runner, build, archive)
-        manifest.update(stage="archive", archive=str(archive), archive_sha256=sha256(archive),
-                        archive_manifest_sha256=sha256(runner.archive_manifest_path(archive)))
-        normalized, scope = materialize_archive(json.loads(archive.read_text()), sidecar, build, out / "source")
-        # Original production files must match the archived bytes, including on cache hits.
-        for name, digest in scope["source_files_sha256"].items():
-            relative = Path(name).relative_to(out / "source")
-            original = source / relative
-            if original.is_file() and sha256(original) != digest:
-                raise ValueError(f"Original source differs from archive: {relative}")
+        manifest.update(stage='archive', archive=str(archive), archive_sha256=sha256(archive))
+        if args.legacy_archive:
+            legacy = out / 'legacy_input'
+            command = [sys.executable, str(ROOT / 'scripts/import_legacy_archive.py'),
+                       '--archive', str(archive), '--build-json', str(build_path), '--repo', str(source),
+                       '--output-dir', str(legacy)]
+            for target in args.target_root:
+                command += ['--target-root', target]
+            code, timed_out = execute(command, ROOT, os.environ.copy(), out / 'legacy_import.log', 300)
+            if code or timed_out:
+                raise RuntimeError('Explicit legacy import failed; see legacy_import.log and legacy_input/')
+            normalized = json.loads((legacy / 'input_export_archive.json').read_text())
+            scope = json.loads((legacy / 'scope.json').read_text())
+            manifest['legacy_import'] = json.loads((legacy / 'legacy_import.json').read_text())
+            manifest['build_provenance_verified'] = False
+        else:
+            sidecar = verify_archive(runner, build, archive)
+            manifest['archive_manifest_sha256'] = sha256(runner.archive_manifest_path(archive))
+            normalized, scope = materialize_archive(json.loads(archive.read_text()), sidecar, build, out / "source")
+            for name, digest in scope["source_files_sha256"].items():
+                relative = Path(scope['original_relative_paths'][name])
+                original = source / relative
+                if original.is_file() and sha256(original) != digest:
+                    raise ValueError(f"Original source differs from archive: {relative}")
         save(out / "input_export_archive.json", normalized)
         save(out / "scope.json", scope)
         scope["archive_sha256"] = sha256(out / "input_export_archive.json")
@@ -149,7 +172,7 @@ def main():
         save(out / "adapter_manifest.json", manifest)
         command = [sys.executable, str(ROOT / "src/main.py"), "-s", scope["project_root"],
                    "-o", str(out / "output.json"), "--strict", "--repo-id", args.repo_id,
-                   "--repo-root", str(out / "source"), "--prediction-output", str(out / "prediction_case.json"),
+                   "--repo-root", scope['repository_root'], "--prediction-output", str(out / "prediction_case.json"),
                    "--archive", str(out / "input_export_archive.json"), "--scope-file", str(out / "scope.json"),
                    "--profile", "price", "--model", args.model, "--gateway-url", args.gateway_url,
                    "--gateway-token-file", str(args.token_file.resolve())]
