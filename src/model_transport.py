@@ -1,5 +1,7 @@
 """Small, bounded model boundary. Gateway bearer tokens are NOT OpenAI keys."""
 import json
+import hashlib
+from datetime import datetime, timezone
 import os
 import time
 from pathlib import Path
@@ -37,6 +39,18 @@ def extract_response(body):
                    for part in item.get("content", []) if part.get("type") == "output_text")
     if not text.strip():
         raise ValueError("Model returned no output text")
+    # Audit only server metadata, not prompts, responses or bearer tokens.
+    usage = body.get('usage') if isinstance(body.get('usage'), dict) else {}
+    counts = {k: usage[k] for k in ('input_tokens', 'output_tokens', 'total_tokens')
+              if type(usage.get(k)) is int and usage[k] >= 0}
+    for category, field in (('input_tokens_details', 'cached_tokens'), ('output_tokens_details', 'reasoning_tokens')):
+        detail = usage.get(category) if isinstance(usage.get(category), dict) else {}
+        value = detail.get(field)
+        if type(value) is int and value >= 0:
+            counts[field] = value
+    record_event('response_metadata', server_model=body.get('model') if isinstance(body.get('model'), str) else None, usage=counts,
+                 response_id_sha256=hashlib.sha256(str(body['id']).encode()).hexdigest() if body.get('id') else None,
+                 observed_at=datetime.now(timezone.utc).isoformat())
     return text
 
 
@@ -83,13 +97,16 @@ def send(messages):
     request = Request(url, data=json.dumps(payload).encode(), headers={
         "Authorization": "Bearer " + token, "Content-Type": "application/json"})
     for attempt in range(2):
+        started = time.monotonic()
         try:
             with opener.open(request, timeout=timeout) as response:
                 result = (read_response(response) if provider == "codex-gateway"
                           else json.load(response)["choices"][0]["message"]["content"])
             if not isinstance(result, str) or not result.strip():
                 raise ValueError("Empty model response")
-            record_event("completed", model=model, provider=provider)
+            record_event("completed", model=model, provider=provider,
+                         observed_at=datetime.now(timezone.utc).isoformat(),
+                         elapsed_seconds=round(time.monotonic() - started, 3))
             return result
         except HTTPError as error:
             if error.code >= 500 and attempt == 0:
