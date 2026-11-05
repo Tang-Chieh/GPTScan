@@ -27,6 +27,8 @@ def main():
                    '--output-dir', str(run)]
         for root in item.get('target_roots', []):
             command += ['--target-root', root]
+        if item.get('build_json'):
+            command += ['--build-json', item['build_json']]
         with (out / (name + '.log')).open('w') as log:
             result = subprocess.run(command, cwd=ROOT, stdout=log, stderr=subprocess.STDOUT)
         manifest = run / 'adapter_manifest.json'
