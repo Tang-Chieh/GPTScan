@@ -1,0 +1,153 @@
+{
+  "schema_version": "1.1.0",
+  "repo_id": "2024-03-woofi-swap",
+  "source_commit": "65185691c91541e33f84b77d4c6290182f137092",
+  "build_recipe_fingerprint": "c193f295bbf0ae692733726fc2c10baf8846e96c3ba5b7db7c25c0b1f8a03643",
+  "compile_scope": {
+    "adapter": "foundry",
+    "target": ".",
+    "compile_framework": "foundry",
+    "ignore_compile": "--foundry-ignore-compile",
+    "compiler_arguments": [],
+    "solc_version": null
+  },
+  "analysis_scope": {
+    "scope_root": "WooPoolV2",
+    "policy_version": "production-v1",
+    "implementation_version": "1",
+    "exclude": [
+      "**/mock/**",
+      "**/mocks/**",
+      "**/script/**",
+      "**/scripts/**",
+      "**/test/**",
+      "**/tests/**",
+      "**/*.s.sol",
+      "**/*.t.sol"
+    ],
+    "include": [],
+    "scope_fingerprint": "98c3c961cdc54c3ec248fed0b8db2dfd1c76e6ead1da410e6ff1f26758eb96c9"
+  },
+  "archive_source_root": "/work/2024-03-woofi-swap/compile-source/WooPoolV2",
+  "solidity_compilers": {
+    "configured_versions": [
+      "0.4.18",
+      "0.8.14"
+    ],
+    "pragma_constraints": [
+      {
+        "expression": "0.8.14",
+        "files": [
+          "contracts/earn/strategies/VoidStrategy.sol",
+          "contracts/interfaces/IMasterChefReward.sol",
+          "contracts/interfaces/IMasterChefWoo.sol",
+          "contracts/interfaces/IRewarder.sol",
+          "contracts/interfaces/IXWoo.sol"
+        ]
+      },
+      {
+        "expression": "=0.8.14",
+        "files": [
+          "contracts/CrossChain/SgInfo.sol",
+          "contracts/CrossChain/WooCrossChainRouter.sol",
+          "contracts/CrossChain/WooCrossChainRouterV2.sol",
+          "contracts/CrossChain/WooCrossChainRouterV3.sol",
+          "contracts/CrossChain/WooCrossChainRouterV4.sol",
+          "contracts/CrossChain/WooCrossFee.sol",
+          "contracts/CrossChain/WooCrossRouterForWidget.sol",
+          "contracts/IntegrationHelper.sol",
+          "contracts/MasterChefReward.sol",
+          "contracts/MasterChefWoo.sol",
+          "contracts/WOOFiDex/NonceCounter.sol",
+          "contracts/WOOFiDex/WOOFiDexCrossChainRouter.sol",
+          "contracts/WOOFiDex/WOOFiDexDepositor.sol",
+          "contracts/WOOFiDex/WOOFiDexTestVault.sol",
+          "contracts/WooAccessManager.sol",
+          "contracts/WooFeeManager.sol",
+          "contracts/WooPPV2.sol",
+          "contracts/WooPPV3/WooPPV3.sol",
+          "contracts/WooPPV3/WooRouterV3.sol",
+          "contracts/WooPPV3/WooUsdOFT.sol",
+          "contracts/WooPPV3/WooUsdOFTCrossRouter.sol",
+          "contracts/WooRebateManager.sol",
+          "contracts/WooRouterV2.sol",
+          "contracts/WooSimpleRewarder.sol",
+          "contracts/WooVaultManager.sol",
+          "contracts/earn/DataProvider.sol",
+          "contracts/earn/VaultV2.sol",
+          "contracts/earn/WooLendingManager.sol",
+          "contracts/earn/WooLendingManagerV1_2.sol",
+          "contracts/earn/WooSuperChargerVaultV2.sol",
+          "contracts/earn/WooWithdrawManagerV2.sol",
+          "contracts/earn/strategies/BaseStrategy.sol",
+          "contracts/interfaces/AggregatorV3Interface.sol",
+          "contracts/interfaces/CrossChain/ISgInfo.sol",
+          "contracts/interfaces/CrossChain/IWooCrossChainRouterV2.sol",
+          "contracts/interfaces/CrossChain/IWooCrossChainRouterV3.sol",
+          "contracts/interfaces/CrossChain/IWooCrossFee.sol",
+          "contracts/interfaces/CrossChain/IWooCrossRouterForWidget.sol",
+          "contracts/interfaces/CrossChain/IWooUsdOFTCrossRouter.sol",
+          "contracts/interfaces/IDataProvider.sol",
+          "contracts/interfaces/IStrategy.sol",
+          "contracts/interfaces/IVaultV2.sol",
+          "contracts/interfaces/IWooAccessManager.sol",
+          "contracts/interfaces/IWooFeeManager.sol",
+          "contracts/interfaces/IWooLendingManager.sol",
+          "contracts/interfaces/IWooPPV2.sol",
+          "contracts/interfaces/IWooPPV2ForTest.sol",
+          "contracts/interfaces/IWooPPV3.sol",
+          "contracts/interfaces/IWooRebateManager.sol",
+          "contracts/interfaces/IWooRouterV2.sol",
+          "contracts/interfaces/IWooRouterV3.sol",
+          "contracts/interfaces/IWooVaultManager.sol",
+          "contracts/interfaces/IWooracleV2.sol",
+          "contracts/interfaces/IWooracleV3.sol",
+          "contracts/interfaces/WOOFiDex/INonceCounter.sol",
+          "contracts/interfaces/WOOFiDex/IWOOFiDexCrossChainRouter.sol",
+          "contracts/interfaces/WOOFiDex/IWOOFiDexDepositor.sol",
+          "contracts/interfaces/WOOFiDex/IWOOFiDexVault.sol",
+          "contracts/test/TestChainLink.sol",
+          "contracts/test/TestERC20Token.sol",
+          "contracts/test/TestUsdtToken.sol",
+          "contracts/test/WFTM.sol",
+          "contracts/wooracle/WooracleV2.sol",
+          "contracts/wooracle/WooracleV2ZKSync.sol",
+          "contracts/wooracle/WooracleV2Zip.sol",
+          "contracts/wooracle/WooracleV2ZipInherit.sol",
+          "contracts/wooracle/WooracleV2_1.sol",
+          "contracts/wooracle/WooracleV2_1_ZKSync.sol",
+          "contracts/wooracle/WooracleV2_1_ZipInherit.sol",
+          "contracts/wooracle/WooracleV2_2.sol",
+          "contracts/wooracle/WooracleV3.sol",
+          "contracts/wooracle/WooracleV3ZKSync.sol",
+          "contracts/wooracle/WooracleV3ZipInherit.sol"
+        ]
+      },
+      {
+        "expression": ">=0.6.0",
+        "files": [
+          "contracts/libraries/TransferHelper.sol"
+        ]
+      },
+      {
+        "expression": "^0.8.0",
+        "files": [
+          "contracts/interfaces/IWETH.sol",
+          "contracts/interfaces/LayerZero/ILzApp.sol",
+          "contracts/interfaces/Stargate/IStargateEthVault.sol",
+          "contracts/interfaces/Stargate/IStargateReceiver.sol",
+          "contracts/interfaces/Stargate/IStargateRouter.sol",
+          "test/foundry/Greeter.t.sol",
+          "test/foundry/TestHelpers.sol"
+        ]
+      },
+      {
+        "expression": "^0.8.4",
+        "files": [
+          "contracts/WooPPV3/WooPPBase.sol"
+        ]
+      }
+    ]
+  },
+  "archive_sha256": "719e99d718194b4124a3fd19d63f6b7365c89d04cfb4ad7f81a67951ecc5d49c"
+}

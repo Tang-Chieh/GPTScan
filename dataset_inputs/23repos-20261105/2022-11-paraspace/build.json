@@ -1,0 +1,576 @@
+{
+  "schema_version": "1.0.0",
+  "generation": {
+    "status": "validated",
+    "generator": "scripts/generate_build_json.py",
+    "evidence_files": [
+      "paraspace-core/.nvmrc",
+      "paraspace-core/foundry.toml",
+      "paraspace-core/hardhat.config.ts",
+      "paraspace-core/package.json",
+      "paraspace-core/yarn.lock"
+    ],
+    "warnings": [
+      "multiple framework markers detected: foundry, hardhat; selected foundry by deterministic priority",
+      "Docker validation pinned Node.js 18.20.8 for the repository's declared Node 18 requirement",
+      "FOUNDRY_OUT overrides the repository's custom foundry_out setting so Crytic Compile can consume standard out/build-info artifacts",
+      "The foundry_test directory is excluded because its referenced foundry_libs/ds-test dependency is not present in the audited repository; production contracts remain in scope"
+    ]
+  },
+  "source": {
+    "repository_url": "https://github.com/code-423n4/2022-11-paraspace",
+    "ref": "c6820a279c64a299a783955749fdc977de8f0449",
+    "repo_path": "candidate-repos/2022-11-paraspace",
+    "working_directory": "paraspace-core",
+    "submodules": false
+  },
+  "framework": "foundry",
+  "toolchain": {
+    "node": {
+      "requirement": "18",
+      "source": ".nvmrc",
+      "resolved_version": "18.20.8"
+    },
+    "solidity": {
+      "configured_versions": [
+        "0.7.6",
+        "0.8.10"
+      ],
+      "pragma_constraints": [
+        {
+          "expression": "0.8.10",
+          "files": [
+            "contracts/dependencies/erc721-collections/IMoonBird.sol",
+            "contracts/dependencies/gnosis/contracts/GPv2SafeERC20.sol",
+            "contracts/dependencies/math/SqrtLib.sol",
+            "contracts/dependencies/openzeppelin/contracts/AccessControl.sol",
+            "contracts/dependencies/openzeppelin/contracts/Context.sol",
+            "contracts/dependencies/openzeppelin/contracts/ERC165.sol",
+            "contracts/dependencies/openzeppelin/contracts/ERC20.sol",
+            "contracts/dependencies/openzeppelin/contracts/ERC721.sol",
+            "contracts/dependencies/openzeppelin/contracts/EnumerableSet.sol",
+            "contracts/dependencies/openzeppelin/contracts/IAccessControl.sol",
+            "contracts/dependencies/openzeppelin/contracts/IERC1271.sol",
+            "contracts/dependencies/openzeppelin/contracts/IERC165.sol",
+            "contracts/dependencies/openzeppelin/contracts/IERC20.sol",
+            "contracts/dependencies/openzeppelin/contracts/IERC20Detailed.sol",
+            "contracts/dependencies/openzeppelin/contracts/IERC2981.sol",
+            "contracts/dependencies/openzeppelin/contracts/IERC721Receiver.sol",
+            "contracts/dependencies/openzeppelin/contracts/IMintableERC20.sol",
+            "contracts/dependencies/openzeppelin/contracts/ITransferHook.sol",
+            "contracts/dependencies/openzeppelin/contracts/MerkleProof.sol",
+            "contracts/dependencies/openzeppelin/contracts/Ownable.sol",
+            "contracts/dependencies/openzeppelin/contracts/SafeCast.sol",
+            "contracts/dependencies/openzeppelin/contracts/SafeERC20.sol",
+            "contracts/dependencies/openzeppelin/contracts/SafeMath.sol",
+            "contracts/dependencies/openzeppelin/contracts/Strings.sol",
+            "contracts/dependencies/openzeppelin/contracts/draft-IERC20Permit.sol",
+            "contracts/dependencies/openzeppelin/upgradeability/AdminUpgradeabilityProxy.sol",
+            "contracts/dependencies/openzeppelin/upgradeability/BaseAdminUpgradeabilityProxy.sol",
+            "contracts/dependencies/openzeppelin/upgradeability/BaseUpgradeabilityProxy.sol",
+            "contracts/dependencies/openzeppelin/upgradeability/InitializableAdminUpgradeabilityProxy.sol",
+            "contracts/dependencies/openzeppelin/upgradeability/InitializableUpgradeabilityProxy.sol",
+            "contracts/dependencies/openzeppelin/upgradeability/Proxy.sol",
+            "contracts/dependencies/openzeppelin/upgradeability/UpgradeabilityProxy.sol",
+            "contracts/dependencies/weth/WETH9.sol",
+            "contracts/dependencies/yoga-labs/ApeCoinStaking.sol",
+            "contracts/deployments/ReservesSetupHelper.sol",
+            "contracts/interfaces/IACLManager.sol",
+            "contracts/interfaces/IAToken.sol",
+            "contracts/interfaces/IAtomicPriceAggregator.sol",
+            "contracts/interfaces/IAuctionableERC721.sol",
+            "contracts/interfaces/ICollateralizableERC721.sol",
+            "contracts/interfaces/ICreditDelegationToken.sol",
+            "contracts/interfaces/IDelegationToken.sol",
+            "contracts/interfaces/IEACAggregatorProxy.sol",
+            "contracts/interfaces/IERC20WithPermit.sol",
+            "contracts/interfaces/IInitializableDebtToken.sol",
+            "contracts/interfaces/IInitializableNToken.sol",
+            "contracts/interfaces/IInitializablePToken.sol",
+            "contracts/interfaces/ILido.sol",
+            "contracts/interfaces/IMarketplace.sol",
+            "contracts/interfaces/INToken.sol",
+            "contracts/interfaces/INTokenApeStaking.sol",
+            "contracts/interfaces/INTokenUniswapV3.sol",
+            "contracts/interfaces/IPToken.sol",
+            "contracts/interfaces/IParaSpaceOracle.sol",
+            "contracts/interfaces/IPool.sol",
+            "contracts/interfaces/IPoolAddressesProvider.sol",
+            "contracts/interfaces/IPoolAddressesProviderRegistry.sol",
+            "contracts/interfaces/IPoolApeStaking.sol",
+            "contracts/interfaces/IPoolConfigurator.sol",
+            "contracts/interfaces/IPoolCore.sol",
+            "contracts/interfaces/IPoolMarketplace.sol",
+            "contracts/interfaces/IPoolParameters.sol",
+            "contracts/interfaces/IPriceOracle.sol",
+            "contracts/interfaces/IPriceOracleGetter.sol",
+            "contracts/interfaces/IPriceOracleSentinel.sol",
+            "contracts/interfaces/IProtocolDataProvider.sol",
+            "contracts/interfaces/IReserveAuctionStrategy.sol",
+            "contracts/interfaces/IReserveInterestRateStrategy.sol",
+            "contracts/interfaces/IRewardController.sol",
+            "contracts/interfaces/IScaledBalanceToken.sol",
+            "contracts/interfaces/ISequencerOracle.sol",
+            "contracts/interfaces/IToken.sol",
+            "contracts/interfaces/IUniswapV3OracleWrapper.sol",
+            "contracts/interfaces/IUniswapV3PositionInfoProvider.sol",
+            "contracts/interfaces/IVariableDebtToken.sol",
+            "contracts/interfaces/IX2Y2.sol",
+            "contracts/interfaces/IXTokenType.sol",
+            "contracts/misc/ERC721OracleWrapper.sol",
+            "contracts/misc/NFTFloorOracle.sol",
+            "contracts/misc/ParaSpaceFallbackOracle.sol",
+            "contracts/misc/ParaSpaceOracle.sol",
+            "contracts/misc/ProtocolDataProvider.sol",
+            "contracts/misc/UniswapV3OracleWrapper.sol",
+            "contracts/misc/flashclaim/AirdropFlashClaimReceiver.sol",
+            "contracts/misc/flashclaim/UserFlashclaimRegistry.sol",
+            "contracts/misc/interfaces/IFlashClaimReceiver.sol",
+            "contracts/misc/interfaces/INFTFloorOracle.sol",
+            "contracts/misc/interfaces/INFTOracle.sol",
+            "contracts/misc/interfaces/IPunks.sol",
+            "contracts/misc/interfaces/IUniswapV2Factory.sol",
+            "contracts/misc/interfaces/IUniswapV2Router01.sol",
+            "contracts/misc/interfaces/IUserFlashclaimRegistry.sol",
+            "contracts/misc/interfaces/IWETH.sol",
+            "contracts/misc/interfaces/IWrappedPunks.sol",
+            "contracts/misc/marketplaces/LooksRareAdapter.sol",
+            "contracts/misc/marketplaces/SeaportAdapter.sol",
+            "contracts/misc/marketplaces/X2Y2Adapter.sol",
+            "contracts/mocks/helpers/MockIncentivesController.sol",
+            "contracts/mocks/helpers/MockPeripheryContract.sol",
+            "contracts/mocks/helpers/MockReserveConfiguration.sol",
+            "contracts/mocks/helpers/SelfDestructTransfer.sol",
+            "contracts/mocks/oracle/CLAggregators/MockAggregator.sol",
+            "contracts/mocks/oracle/PriceOracle.sol",
+            "contracts/mocks/oracle/SequencerOracle.sol",
+            "contracts/mocks/tests/MockAirdropProject.sol",
+            "contracts/mocks/tests/MockReserveAuctionStrategy.sol",
+            "contracts/mocks/tests/MockReserveInterestRateStrategy.sol",
+            "contracts/mocks/tests/WadRayMathWrapper.sol",
+            "contracts/mocks/tokens/AirdropMintableERC721.sol",
+            "contracts/mocks/tokens/BAYC.sol",
+            "contracts/mocks/tokens/CryptoPunksMarket.sol",
+            "contracts/mocks/tokens/MintableDelegationERC20.sol",
+            "contracts/mocks/tokens/MintableERC1155.sol",
+            "contracts/mocks/tokens/MintableERC20.sol",
+            "contracts/mocks/tokens/MintableERC721.sol",
+            "contracts/mocks/tokens/MockAToken.sol",
+            "contracts/mocks/tokens/MockTokenFaucet.sol",
+            "contracts/mocks/tokens/WETH9Mocked.sol",
+            "contracts/mocks/tokens/WrappedPunk/ICryptoPunk.sol",
+            "contracts/mocks/tokens/WrappedPunk/UserProxy.sol",
+            "contracts/mocks/tokens/WrappedPunk/WPunk.sol",
+            "contracts/mocks/tokens/stETH.sol",
+            "contracts/mocks/upgradeability/MockInitializableImplementation.sol",
+            "contracts/mocks/upgradeability/MockNToken.sol",
+            "contracts/mocks/upgradeability/MockPToken.sol",
+            "contracts/mocks/upgradeability/MockPoolCore.sol",
+            "contracts/mocks/upgradeability/MockVariableDebtToken.sol",
+            "contracts/protocol/configuration/ACLManager.sol",
+            "contracts/protocol/configuration/PoolAddressesProvider.sol",
+            "contracts/protocol/configuration/PoolAddressesProviderRegistry.sol",
+            "contracts/protocol/configuration/PriceOracleSentinel.sol",
+            "contracts/protocol/libraries/configuration/ReserveConfiguration.sol",
+            "contracts/protocol/libraries/configuration/UserConfiguration.sol",
+            "contracts/protocol/libraries/helpers/Errors.sol",
+            "contracts/protocol/libraries/helpers/Helpers.sol",
+            "contracts/protocol/libraries/logic/AuctionLogic.sol",
+            "contracts/protocol/libraries/logic/BorrowLogic.sol",
+            "contracts/protocol/libraries/logic/ConfiguratorLogic.sol",
+            "contracts/protocol/libraries/logic/FlashClaimLogic.sol",
+            "contracts/protocol/libraries/logic/GenericLogic.sol",
+            "contracts/protocol/libraries/logic/LiquidationLogic.sol",
+            "contracts/protocol/libraries/logic/MarketplaceLogic.sol",
+            "contracts/protocol/libraries/logic/PoolLogic.sol",
+            "contracts/protocol/libraries/logic/ReserveLogic.sol",
+            "contracts/protocol/libraries/logic/SupplyLogic.sol",
+            "contracts/protocol/libraries/logic/ValidationLogic.sol",
+            "contracts/protocol/libraries/math/MathUtils.sol",
+            "contracts/protocol/libraries/math/PercentageMath.sol",
+            "contracts/protocol/libraries/math/WadRayMath.sol",
+            "contracts/protocol/libraries/paraspace-upgradeability/BaseImmutableAdminUpgradeabilityProxy.sol",
+            "contracts/protocol/libraries/paraspace-upgradeability/InitializableImmutableAdminUpgradeabilityProxy.sol",
+            "contracts/protocol/libraries/paraspace-upgradeability/ParaVersionedInitializable.sol",
+            "contracts/protocol/libraries/paraspace-upgradeability/VersionedInitializable.sol",
+            "contracts/protocol/libraries/types/ConfiguratorInputTypes.sol",
+            "contracts/protocol/libraries/types/DataTypes.sol",
+            "contracts/protocol/pool/DefaultReserveAuctionStrategy.sol",
+            "contracts/protocol/pool/DefaultReserveInterestRateStrategy.sol",
+            "contracts/protocol/pool/PoolApeStaking.sol",
+            "contracts/protocol/pool/PoolConfigurator.sol",
+            "contracts/protocol/pool/PoolCore.sol",
+            "contracts/protocol/pool/PoolMarketplace.sol",
+            "contracts/protocol/pool/PoolParameters.sol",
+            "contracts/protocol/pool/PoolStorage.sol",
+            "contracts/protocol/tokenization/ATokenDebtToken.sol",
+            "contracts/protocol/tokenization/DelegationAwarePToken.sol",
+            "contracts/protocol/tokenization/NToken.sol",
+            "contracts/protocol/tokenization/NTokenApeStaking.sol",
+            "contracts/protocol/tokenization/NTokenBAYC.sol",
+            "contracts/protocol/tokenization/NTokenMAYC.sol",
+            "contracts/protocol/tokenization/NTokenMoonBirds.sol",
+            "contracts/protocol/tokenization/NTokenUniswapV3.sol",
+            "contracts/protocol/tokenization/PToken.sol",
+            "contracts/protocol/tokenization/PTokenAToken.sol",
+            "contracts/protocol/tokenization/PTokenSApe.sol",
+            "contracts/protocol/tokenization/PTokenStETH.sol",
+            "contracts/protocol/tokenization/RebasingDebtToken.sol",
+            "contracts/protocol/tokenization/RebasingPToken.sol",
+            "contracts/protocol/tokenization/StETHDebtToken.sol",
+            "contracts/protocol/tokenization/VariableDebtToken.sol",
+            "contracts/protocol/tokenization/base/DebtTokenBase.sol",
+            "contracts/protocol/tokenization/base/EIP712Base.sol",
+            "contracts/protocol/tokenization/base/IncentivizedERC20.sol",
+            "contracts/protocol/tokenization/base/MintableIncentivizedERC20.sol",
+            "contracts/protocol/tokenization/base/MintableIncentivizedERC721.sol",
+            "contracts/protocol/tokenization/base/ScaledBalanceTokenBaseERC20.sol",
+            "contracts/protocol/tokenization/libraries/ApeStakingLogic.sol",
+            "contracts/protocol/tokenization/libraries/MintableERC721Logic.sol",
+            "contracts/ui/UiIncentiveDataProvider.sol",
+            "contracts/ui/UiPoolDataProvider.sol",
+            "contracts/ui/WETHGateway.sol",
+            "contracts/ui/WPunkGateway.sol",
+            "contracts/ui/WalletBalanceProvider.sol",
+            "contracts/ui/interfaces/IEACAggregatorProxy.sol",
+            "contracts/ui/interfaces/IERC20DetailedBytes.sol",
+            "contracts/ui/interfaces/IRewardsController.sol",
+            "contracts/ui/interfaces/IRewardsDistributor.sol",
+            "contracts/ui/interfaces/ITransferStrategyBase.sol",
+            "contracts/ui/interfaces/IUiIncentiveDataProvider.sol",
+            "contracts/ui/interfaces/IUiPoolDataProvider.sol",
+            "contracts/ui/interfaces/IWETHGateway.sol",
+            "contracts/ui/interfaces/IWPunkGateway.sol",
+            "contracts/ui/libraries/RewardsDataTypes.sol",
+            "foundry_test/NFTFloorOracle.t.sol"
+          ]
+        },
+        {
+          "expression": "=0.7.6",
+          "files": [
+            "contracts/dependencies/univ3/NoDelegateCall.sol",
+            "contracts/dependencies/univ3/UniswapV3Factory.sol",
+            "contracts/dependencies/univ3/UniswapV3Pool.sol",
+            "contracts/dependencies/univ3/UniswapV3PoolDeployer.sol"
+          ]
+        },
+        {
+          "expression": ">=0.4.0",
+          "files": [
+            "contracts/dependencies/uniswap/libraries/FixedPoint128.sol",
+            "contracts/dependencies/uniswap/libraries/FixedPoint96.sol",
+            "contracts/dependencies/univ3/libraries/FixedPoint128.sol",
+            "contracts/dependencies/univ3/libraries/FixedPoint96.sol"
+          ]
+        },
+        {
+          "expression": ">=0.4.0 <0.8.0",
+          "files": [
+            "contracts/dependencies/univ3/libraries/FullMath.sol"
+          ]
+        },
+        {
+          "expression": ">=0.5.0",
+          "files": [
+            "contracts/dependencies/looksrare/contracts/interfaces/IWETH.sol",
+            "contracts/dependencies/uniswap/IPeripheryImmutableState.sol",
+            "contracts/dependencies/uniswap/IUniswapV3Factory.sol",
+            "contracts/dependencies/uniswap/IUniswapV3PoolState.sol",
+            "contracts/dependencies/uniswap/LiquidityAmounts.sol",
+            "contracts/dependencies/uniswap/PoolAddress.sol",
+            "contracts/dependencies/uniswap/libraries/SafeCast.sol",
+            "contracts/dependencies/uniswap/libraries/UnsafeMath.sol",
+            "contracts/dependencies/univ3/interfaces/IERC20Minimal.sol",
+            "contracts/dependencies/univ3/interfaces/IUniswapV3Factory.sol",
+            "contracts/dependencies/univ3/interfaces/IUniswapV3Pool.sol",
+            "contracts/dependencies/univ3/interfaces/IUniswapV3PoolDeployer.sol",
+            "contracts/dependencies/univ3/interfaces/callback/IUniswapV3FlashCallback.sol",
+            "contracts/dependencies/univ3/interfaces/callback/IUniswapV3MintCallback.sol",
+            "contracts/dependencies/univ3/interfaces/callback/IUniswapV3SwapCallback.sol",
+            "contracts/dependencies/univ3/interfaces/pool/IUniswapV3PoolActions.sol",
+            "contracts/dependencies/univ3/interfaces/pool/IUniswapV3PoolDerivedState.sol",
+            "contracts/dependencies/univ3/interfaces/pool/IUniswapV3PoolEvents.sol",
+            "contracts/dependencies/univ3/interfaces/pool/IUniswapV3PoolImmutables.sol",
+            "contracts/dependencies/univ3/interfaces/pool/IUniswapV3PoolOwnerActions.sol",
+            "contracts/dependencies/univ3/interfaces/pool/IUniswapV3PoolState.sol",
+            "contracts/dependencies/univ3/libraries/BitMath.sol",
+            "contracts/dependencies/univ3/libraries/LiquidityMath.sol",
+            "contracts/dependencies/univ3/libraries/SafeCast.sol",
+            "contracts/dependencies/univ3/libraries/SqrtPriceMath.sol",
+            "contracts/dependencies/univ3/libraries/SwapMath.sol",
+            "contracts/dependencies/univ3/libraries/UnsafeMath.sol",
+            "contracts/misc/interfaces/IUniswapV2Pair.sol"
+          ]
+        },
+        {
+          "expression": ">=0.5.0 <0.8.0",
+          "files": [
+            "contracts/dependencies/univ3/libraries/Oracle.sol",
+            "contracts/dependencies/univ3/libraries/Position.sol",
+            "contracts/dependencies/univ3/libraries/Tick.sol",
+            "contracts/dependencies/univ3/libraries/TickBitmap.sol",
+            "contracts/dependencies/univ3/libraries/TickMath.sol"
+          ]
+        },
+        {
+          "expression": ">=0.6.0",
+          "files": [
+            "contracts/dependencies/univ3/libraries/TransferHelper.sol"
+          ]
+        },
+        {
+          "expression": ">=0.7.0",
+          "files": [
+            "contracts/dependencies/univ3/libraries/LowGasSafeMath.sol"
+          ]
+        },
+        {
+          "expression": ">=0.7.5",
+          "files": [
+            "contracts/dependencies/uniswap/IERC721Permit.sol",
+            "contracts/dependencies/uniswap/IMulticall.sol",
+            "contracts/dependencies/uniswap/INonfungiblePositionManager.sol",
+            "contracts/dependencies/uniswap/IPeripheryPayments.sol",
+            "contracts/dependencies/uniswap/IPoolInitializer.sol",
+            "contracts/dependencies/univ3/interfaces/ISwapRouter.sol"
+          ]
+        },
+        {
+          "expression": ">=0.8.0 <0.9.0",
+          "files": [
+            "contracts/mocks/tokens/Moonbirds.sol",
+            "contracts/mocks/tokens/Moonbirds.sol",
+            "contracts/mocks/tokens/Moonbirds.sol",
+            "contracts/mocks/tokens/Moonbirds.sol",
+            "contracts/mocks/tokens/Moonbirds.sol",
+            "contracts/mocks/tokens/Moonbirds.sol",
+            "contracts/mocks/tokens/Moonbirds.sol",
+            "contracts/mocks/tokens/Moonbirds.sol"
+          ]
+        },
+        {
+          "expression": ">=0.8.10 <0.9.0",
+          "files": [
+            "contracts/mocks/tokens/Moonbirds.sol"
+          ]
+        },
+        {
+          "expression": ">=0.8.4",
+          "files": [
+            "contracts/dependencies/math/PRBMath.sol",
+            "contracts/dependencies/math/PRBMathSD59x18.sol",
+            "contracts/dependencies/math/PRBMathUD60x18.sol"
+          ]
+        },
+        {
+          "expression": "^0.8.0",
+          "files": [
+            "contracts/dependencies/looksrare/contracts/CurrencyManager.sol",
+            "contracts/dependencies/looksrare/contracts/ExecutionManager.sol",
+            "contracts/dependencies/looksrare/contracts/LooksRareExchange.sol",
+            "contracts/dependencies/looksrare/contracts/RoyaltyFeeManager.sol",
+            "contracts/dependencies/looksrare/contracts/TransferSelectorNFT.sol",
+            "contracts/dependencies/looksrare/contracts/executionStrategies/StrategyAnyItemFromCollectionForFixedPrice.sol",
+            "contracts/dependencies/looksrare/contracts/executionStrategies/StrategyAnyItemInASetForFixedPrice.sol",
+            "contracts/dependencies/looksrare/contracts/executionStrategies/StrategyDutchAuction.sol",
+            "contracts/dependencies/looksrare/contracts/executionStrategies/StrategyPrivateSale.sol",
+            "contracts/dependencies/looksrare/contracts/executionStrategies/StrategyStandardSaleForFixedPrice.sol",
+            "contracts/dependencies/looksrare/contracts/interfaces/ICurrencyManager.sol",
+            "contracts/dependencies/looksrare/contracts/interfaces/IExecutionManager.sol",
+            "contracts/dependencies/looksrare/contracts/interfaces/IExecutionStrategy.sol",
+            "contracts/dependencies/looksrare/contracts/interfaces/ILooksRareExchange.sol",
+            "contracts/dependencies/looksrare/contracts/interfaces/IOwnable.sol",
+            "contracts/dependencies/looksrare/contracts/interfaces/IRoyaltyFeeManager.sol",
+            "contracts/dependencies/looksrare/contracts/interfaces/IRoyaltyFeeRegistry.sol",
+            "contracts/dependencies/looksrare/contracts/interfaces/ITransferManagerNFT.sol",
+            "contracts/dependencies/looksrare/contracts/interfaces/ITransferSelectorNFT.sol",
+            "contracts/dependencies/looksrare/contracts/libraries/OrderTypes.sol",
+            "contracts/dependencies/looksrare/contracts/libraries/SignatureChecker.sol",
+            "contracts/dependencies/looksrare/contracts/royaltyFeeHelpers/RoyaltyFeeRegistry.sol",
+            "contracts/dependencies/looksrare/contracts/royaltyFeeHelpers/RoyaltyFeeSetter.sol",
+            "contracts/dependencies/looksrare/contracts/transferManagers/TransferManagerERC1155.sol",
+            "contracts/dependencies/looksrare/contracts/transferManagers/TransferManagerERC721.sol",
+            "contracts/dependencies/looksrare/contracts/transferManagers/TransferManagerNonCompliantERC721.sol",
+            "contracts/dependencies/openzeppelin/contracts/ECDSA.sol",
+            "contracts/dependencies/openzeppelin/contracts/ERC1155.sol",
+            "contracts/dependencies/openzeppelin/contracts/ERC1155Holder.sol",
+            "contracts/dependencies/openzeppelin/contracts/ERC1155Receiver.sol",
+            "contracts/dependencies/openzeppelin/contracts/ERC721Holder.sol",
+            "contracts/dependencies/openzeppelin/contracts/IERC1155MetadataURI.sol",
+            "contracts/dependencies/openzeppelin/contracts/Math.sol",
+            "contracts/dependencies/openzeppelin/upgradeability/ContextUpgradeable.sol",
+            "contracts/dependencies/openzeppelin/upgradeability/IERC20Upgradeable.sol",
+            "contracts/dependencies/openzeppelin/upgradeability/OwnableUpgradeable.sol",
+            "contracts/dependencies/openzeppelin/upgradeability/PausableUpgradeable.sol",
+            "contracts/dependencies/openzeppelin/upgradeability/ReentrancyGuardUpgradeable.sol",
+            "contracts/dependencies/openzeppelin/upgradeability/SafeERC20Upgradeable.sol",
+            "contracts/dependencies/openzeppelin/upgradeability/draft-IERC20PermitUpgradeable.sol",
+            "contracts/dependencies/uniswap/libraries/BitMath.sol",
+            "contracts/dependencies/uniswap/libraries/FullMath.sol",
+            "contracts/dependencies/uniswap/libraries/Oracle.sol",
+            "contracts/dependencies/uniswap/libraries/Position.sol",
+            "contracts/dependencies/uniswap/libraries/SqrtPriceMath.sol",
+            "contracts/dependencies/uniswap/libraries/SwapMath.sol",
+            "contracts/dependencies/uniswap/libraries/Tick.sol",
+            "contracts/dependencies/uniswap/libraries/TickBitmap.sol",
+            "contracts/dependencies/uniswap/libraries/TickMath.sol",
+            "contracts/dependencies/x2y2/contracts/ERC721Delegate.sol",
+            "contracts/dependencies/x2y2/contracts/IDelegate.sol",
+            "contracts/dependencies/x2y2/contracts/IWETHUpgradable.sol",
+            "contracts/dependencies/x2y2/contracts/MarketConsts.sol",
+            "contracts/dependencies/x2y2/contracts/X2Y2_r1.sol",
+            "contracts/mocks/tokens/Azuki.sol",
+            "contracts/mocks/tokens/Azuki.sol",
+            "contracts/mocks/tokens/CloneX.sol",
+            "contracts/mocks/tokens/CloneX.sol",
+            "contracts/mocks/tokens/CloneX.sol",
+            "contracts/mocks/tokens/CloneX.sol",
+            "contracts/mocks/tokens/CloneX.sol",
+            "contracts/mocks/tokens/DOODLES.sol",
+            "contracts/mocks/tokens/Land.sol",
+            "contracts/mocks/tokens/Land.sol",
+            "contracts/mocks/tokens/Land.sol",
+            "contracts/mocks/tokens/Land.sol",
+            "contracts/mocks/tokens/Land.sol",
+            "contracts/mocks/tokens/Land.sol",
+            "contracts/mocks/tokens/Land.sol",
+            "contracts/mocks/tokens/Meebits.sol",
+            "contracts/mocks/tokens/Moonbirds.sol",
+            "contracts/mocks/tokens/Moonbirds.sol",
+            "contracts/mocks/tokens/Moonbirds.sol",
+            "contracts/mocks/tokens/Moonbirds.sol",
+            "contracts/mocks/tokens/Moonbirds.sol",
+            "contracts/mocks/tokens/Moonbirds.sol",
+            "contracts/mocks/tokens/Moonbirds.sol",
+            "contracts/mocks/tokens/Moonbirds.sol",
+            "contracts/mocks/tokens/dependencies/ERC721A.sol"
+          ]
+        },
+        {
+          "expression": "^0.8.1",
+          "files": [
+            "contracts/dependencies/openzeppelin/upgradeability/AddressUpgradeable.sol",
+            "contracts/mocks/tokens/DOODLES.sol"
+          ]
+        },
+        {
+          "expression": "^0.8.10",
+          "files": [
+            "contracts/dependencies/chainlink/AggregatorInterface.sol",
+            "contracts/dependencies/openzeppelin/contracts/Address.sol",
+            "contracts/dependencies/openzeppelin/contracts/ERC721Enumerable.sol",
+            "contracts/dependencies/openzeppelin/contracts/IERC1155.sol",
+            "contracts/dependencies/openzeppelin/contracts/IERC1155Receiver.sol",
+            "contracts/dependencies/openzeppelin/contracts/IERC20WithPermit.sol",
+            "contracts/dependencies/openzeppelin/contracts/IERC721.sol",
+            "contracts/dependencies/openzeppelin/contracts/IERC721Enumerable.sol",
+            "contracts/dependencies/openzeppelin/contracts/IERC721Metadata.sol",
+            "contracts/dependencies/openzeppelin/contracts/Pausable.sol",
+            "contracts/dependencies/openzeppelin/contracts/ReentrancyGuard.sol",
+            "contracts/dependencies/seaport/contracts/Seaport.sol",
+            "contracts/interfaces/IParaProxy.sol",
+            "contracts/mocks/tokens/DOODLES.sol",
+            "contracts/mocks/tokens/MAYC.sol",
+            "contracts/protocol/libraries/paraspace-upgradeability/ParaProxy.sol",
+            "contracts/protocol/libraries/paraspace-upgradeability/ParaReentrancyGuard.sol"
+          ]
+        },
+        {
+          "expression": "^0.8.2",
+          "files": [
+            "contracts/dependencies/openzeppelin/upgradeability/Initializable.sol",
+            "contracts/mocks/tokens/CloneX.sol"
+          ]
+        },
+        {
+          "expression": "^0.8.4",
+          "files": [
+            "contracts/mocks/tokens/Moonbirds.sol",
+            "contracts/mocks/tokens/Moonbirds.sol"
+          ]
+        },
+        {
+          "expression": "^0.8.7",
+          "files": [
+            "contracts/dependencies/seaport/contracts/conduit/Conduit.sol",
+            "contracts/dependencies/seaport/contracts/conduit/ConduitController.sol",
+            "contracts/dependencies/seaport/contracts/helpers/TransferHelper.sol",
+            "contracts/dependencies/seaport/contracts/helpers/TransferHelperStructs.sol",
+            "contracts/dependencies/seaport/contracts/interfaces/AbridgedTokenInterfaces.sol",
+            "contracts/dependencies/seaport/contracts/interfaces/AmountDerivationErrors.sol",
+            "contracts/dependencies/seaport/contracts/interfaces/ConduitControllerInterface.sol",
+            "contracts/dependencies/seaport/contracts/interfaces/ConduitInterface.sol",
+            "contracts/dependencies/seaport/contracts/interfaces/ConsiderationEventsAndErrors.sol",
+            "contracts/dependencies/seaport/contracts/interfaces/ConsiderationInterface.sol",
+            "contracts/dependencies/seaport/contracts/interfaces/CriteriaResolutionErrors.sol",
+            "contracts/dependencies/seaport/contracts/interfaces/EIP1271Interface.sol",
+            "contracts/dependencies/seaport/contracts/interfaces/FulfillmentApplicationErrors.sol",
+            "contracts/dependencies/seaport/contracts/interfaces/IERC721Receiver.sol",
+            "contracts/dependencies/seaport/contracts/interfaces/ImmutableCreate2FactoryInterface.sol",
+            "contracts/dependencies/seaport/contracts/interfaces/ReentrancyErrors.sol",
+            "contracts/dependencies/seaport/contracts/interfaces/SeaportInterface.sol",
+            "contracts/dependencies/seaport/contracts/interfaces/SignatureVerificationErrors.sol",
+            "contracts/dependencies/seaport/contracts/interfaces/TokenTransferrerErrors.sol",
+            "contracts/dependencies/seaport/contracts/interfaces/TransferHelperErrors.sol",
+            "contracts/dependencies/seaport/contracts/interfaces/TransferHelperInterface.sol",
+            "contracts/dependencies/seaport/contracts/interfaces/ZoneInteractionErrors.sol",
+            "contracts/dependencies/seaport/contracts/interfaces/ZoneInterface.sol",
+            "contracts/dependencies/seaport/contracts/zones/PausableZone.sol",
+            "contracts/dependencies/seaport/contracts/zones/PausableZoneController.sol",
+            "contracts/dependencies/seaport/contracts/zones/interfaces/PausableZoneControllerInterface.sol",
+            "contracts/dependencies/seaport/contracts/zones/interfaces/PausableZoneEventsAndErrors.sol",
+            "contracts/dependencies/seaport/contracts/zones/interfaces/PausableZoneInterface.sol"
+          ]
+        }
+      ],
+      "source_files_scanned": 363
+    },
+    "package_manager": {
+      "name": "yarn",
+      "version": null,
+      "lockfile": "yarn.lock"
+    }
+  },
+  "environment": {
+    "variables": {
+      "FOUNDRY_OUT": "out"
+    }
+  },
+  "setup": {
+    "network_access": true,
+    "commands": [
+      {
+        "argv": [
+          "yarn",
+          "install",
+          "--frozen-lockfile"
+        ]
+      }
+    ]
+  },
+  "compile": {
+    "network_access": true,
+    "commands": [
+      {
+        "argv": [
+          "forge",
+          "build",
+          "--build-info",
+          "--skip",
+          "test"
+        ]
+      }
+    ],
+    "artifacts": [
+      "out"
+    ],
+    "entrypoints": []
+  },
+  "analysis_input": {
+    "format": "crytic-compile-archive",
+    "path": "analysis_artifacts/2022-11-paraspace_export_archive.json",
+    "adapter": "foundry",
+    "requires_ast": true
+  },
+  "repo_id": "2022-11-paraspace"
+}

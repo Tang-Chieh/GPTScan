@@ -1,0 +1,12 @@
+{
+  "toolchain": {
+    "python": "Python 3.12.7",
+    "node": "v18.20.8",
+    "npm": "10.8.2",
+    "yarn": "1.22.22",
+    "forge": "forge Version: 1.5.1-v1.5.1",
+    "crytic_compile": "0.3.11",
+    "slither": "0.11.3"
+  },
+  "note": "Toolchain-only copy of original build result; not a new build result."
+}

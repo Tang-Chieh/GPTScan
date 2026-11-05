@@ -1,0 +1,129 @@
+{
+  "schema_version": "1.0.0",
+  "generation": {
+    "status": "validated",
+    "generator": "scripts/generate_build_json.py",
+    "evidence_files": [
+      "concentrator/hardhat.config.ts",
+      "concentrator/package-lock.json",
+      "concentrator/package.json"
+    ],
+    "warnings": [
+      "Node.js was not declared upstream; Docker validation pinned Node.js 18.20.8",
+      "Hardhat compile uses a non-routable local RPC placeholder because the upstream config requires ARCHIVE_NODE_RPC_URL during configuration loading",
+      "Hardhat compile uses a public deterministic test private key because the upstream Polygon network config validates PRIVATE_KEY_POLYGON even when no network is contacted"
+    ]
+  },
+  "source": {
+    "repository_url": "https://github.com/sherlock-audit/2023-06-real-wagmi",
+    "ref": "82a234a5c2c1fc1921c63265a9349b71d84675c4",
+    "repo_path": "candidate-repos/2023-06-real-wagmi",
+    "working_directory": "concentrator",
+    "submodules": false
+  },
+  "framework": "hardhat",
+  "toolchain": {
+    "node": {
+      "requirement": null,
+      "source": null,
+      "resolved_version": "18.20.8"
+    },
+    "solidity": {
+      "configured_versions": [
+        "0.6.12",
+        "0.8.18"
+      ],
+      "pragma_constraints": [
+        {
+          "expression": "0.6.12",
+          "files": [
+            "contracts/testsHelpers/ForceSend.sol"
+          ]
+        },
+        {
+          "expression": "0.8.18",
+          "files": [
+            "contracts/Dispatcher.sol",
+            "contracts/DispatcherCode.sol",
+            "contracts/Factory.sol",
+            "contracts/MultiStrategy.sol",
+            "contracts/Multipool.sol",
+            "contracts/MultipoolCode.sol",
+            "contracts/interfaces/ICode.sol",
+            "contracts/interfaces/IDispatcher.sol",
+            "contracts/interfaces/IFactory.sol",
+            "contracts/interfaces/IMultiStrategy.sol",
+            "contracts/interfaces/IMultipool.sol",
+            "contracts/libraries/ErrLib.sol",
+            "contracts/mock/AggregatorMock.sol"
+          ]
+        },
+        {
+          "expression": ">=0.5.0",
+          "files": [
+            "contracts/vendor0.8/uniswap/LiquidityAmounts.sol"
+          ]
+        },
+        {
+          "expression": ">=0.7.5",
+          "files": [
+            "contracts/testsHelpers/ISwapRouter.sol"
+          ]
+        },
+        {
+          "expression": "^0.8.4",
+          "files": [
+            "contracts/vendor0.8/uniswap/Babylonian.sol",
+            "contracts/vendor0.8/uniswap/FullMath.sol",
+            "contracts/vendor0.8/uniswap/TickMath.sol"
+          ]
+        }
+      ],
+      "source_files_scanned": 19
+    },
+    "package_manager": {
+      "name": "npm",
+      "version": null,
+      "lockfile": "package-lock.json"
+    }
+  },
+  "environment": {
+    "variables": {
+      "ARCHIVE_NODE_RPC_URL": "http://127.0.0.1:8545",
+      "PRIVATE_KEY_POLYGON": "0x0000000000000000000000000000000000000000000000000000000000000001"
+    }
+  },
+  "setup": {
+    "network_access": true,
+    "commands": [
+      {
+        "argv": [
+          "npm",
+          "ci"
+        ]
+      }
+    ]
+  },
+  "compile": {
+    "network_access": true,
+    "commands": [
+      {
+        "argv": [
+          "./node_modules/.bin/hardhat",
+          "compile"
+        ]
+      }
+    ],
+    "artifacts": [
+      "artifacts/build-info"
+    ],
+    "entrypoints": []
+  },
+  "analysis_input": {
+    "format": "crytic-compile-archive",
+    "path": "analysis_artifacts/2023-06-real-wagmi_export_archive.json",
+    "adapter": "hardhat",
+    "requires_ast": true
+  },
+  "repo_id": "2023-06-real-wagmi"
+}

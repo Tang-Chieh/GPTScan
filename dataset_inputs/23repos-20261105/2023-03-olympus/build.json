@@ -1,0 +1,133 @@
+{
+  "schema_version": "1.0.0",
+  "generation": {
+    "status": "validated",
+    "generator": "scripts/generate_build_json.py",
+    "evidence_files": [
+      ".gitmodules",
+      "sherlock-olympus/foundry.toml"
+    ],
+    "warnings": [
+      "Docker validation excludes src/test contracts because the audit target is production source and legacy test mocks hit a stack-too-deep compiler error under the pinned toolchain",
+      "Docker validation enables the standard solc optimizer because a production inline-assembly contract exceeds the legacy stack limit without optimization"
+    ]
+  },
+  "source": {
+    "repository_url": "https://github.com/sherlock-audit/2023-03-olympus",
+    "ref": "fae48b3a40f2a2f4ccf412fbee16aeea5b29c410",
+    "repo_path": "candidate-repos/2023-03-olympus",
+    "working_directory": "sherlock-olympus",
+    "submodules": true
+  },
+  "framework": "foundry",
+  "toolchain": {
+    "node": {
+      "requirement": null,
+      "source": null
+    },
+    "solidity": {
+      "configured_versions": [
+        "0.8.15"
+      ],
+      "pragma_constraints": [
+        {
+          "expression": "0.8.15",
+          "files": [
+            "src/Kernel.sol",
+            "src/modules/BLREG/BLREG.v1.sol",
+            "src/modules/BLREG/OlympusBoostedLiquidityRegistry.sol",
+            "src/modules/MINTR/MINTR.v1.sol",
+            "src/modules/MINTR/OlympusMinter.sol",
+            "src/modules/ROLES/OlympusRoles.sol",
+            "src/modules/ROLES/ROLES.v1.sol",
+            "src/modules/TRSRY/OlympusTreasury.sol",
+            "src/modules/TRSRY/TRSRY.v1.sol",
+            "src/policies/BoostedLiquidity/BLVaultLido.sol",
+            "src/policies/BoostedLiquidity/BLVaultManagerLido.sol",
+            "src/policies/RolesAdmin.sol",
+            "src/test/policies/BoostedLiquidity/BLVaultLidoMocks.t.sol",
+            "src/test/policies/BoostedLiquidity/BLVaultManagerLidoMocks.t.sol"
+          ]
+        },
+        {
+          "expression": ">=0.7.5",
+          "files": [
+            "src/external/OlympusERC20.sol"
+          ]
+        },
+        {
+          "expression": ">=0.8.0",
+          "files": [
+            "src/libraries/FullMath.sol",
+            "src/libraries/TransferHelper.sol",
+            "src/policies/BoostedLiquidity/interfaces/IAura.sol",
+            "src/policies/BoostedLiquidity/interfaces/IBLVaultLido.sol",
+            "src/policies/BoostedLiquidity/interfaces/IBLVaultManagerLido.sol",
+            "src/policies/BoostedLiquidity/interfaces/IBalancer.sol",
+            "src/policies/BoostedLiquidity/interfaces/ILido.sol",
+            "src/test/mocks/AuraMocks.sol",
+            "src/test/mocks/BalancerMocks.sol"
+          ]
+        },
+        {
+          "expression": "^0.8.0",
+          "files": [
+            "src/interfaces/AggregatorV2V3Interface.sol",
+            "src/test/mocks/MockLegacyAuthority.sol",
+            "src/test/mocks/MockOhm.sol",
+            "src/test/mocks/MockPriceFeed.sol"
+          ]
+        }
+      ],
+      "source_files_scanned": 28
+    },
+    "package_manager": {
+      "name": "none",
+      "version": null,
+      "lockfile": null
+    }
+  },
+  "environment": {
+    "variables": {}
+  },
+  "setup": {
+    "network_access": false,
+    "commands": [
+      {
+        "argv": [
+          "git",
+          "submodule",
+          "update",
+          "--init",
+          "--recursive"
+        ]
+      }
+    ]
+  },
+  "compile": {
+    "network_access": true,
+    "commands": [
+      {
+        "argv": [
+          "forge",
+          "build",
+          "--build-info",
+          "--skip",
+          "test",
+          "--optimize"
+        ]
+      }
+    ],
+    "artifacts": [
+      "out"
+    ],
+    "entrypoints": []
+  },
+  "analysis_input": {
+    "format": "crytic-compile-archive",
+    "path": "analysis_artifacts/2023-03-olympus_export_archive.json",
+    "adapter": "foundry",
+    "requires_ast": true
+  },
+  "repo_id": "2023-03-olympus"
+}

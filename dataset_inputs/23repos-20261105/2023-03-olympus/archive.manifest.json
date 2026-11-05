@@ -1,0 +1,88 @@
+{
+  "schema_version": "1.1.0",
+  "repo_id": "2023-03-olympus",
+  "source_commit": "fae48b3a40f2a2f4ccf412fbee16aeea5b29c410",
+  "build_recipe_fingerprint": "6b801cf1564cb35676dface0213787b75f9ed60b115679a820a8f254405bd1d8",
+  "compile_scope": {
+    "adapter": "foundry",
+    "target": ".",
+    "compile_framework": "foundry",
+    "ignore_compile": "--foundry-ignore-compile",
+    "compiler_arguments": [],
+    "solc_version": null
+  },
+  "analysis_scope": {
+    "scope_root": "sherlock-olympus",
+    "policy_version": "production-v1",
+    "implementation_version": "1",
+    "exclude": [
+      "**/mock/**",
+      "**/mocks/**",
+      "**/script/**",
+      "**/scripts/**",
+      "**/test/**",
+      "**/tests/**",
+      "**/*.s.sol",
+      "**/*.t.sol"
+    ],
+    "include": [],
+    "scope_fingerprint": "98c3c961cdc54c3ec248fed0b8db2dfd1c76e6ead1da410e6ff1f26758eb96c9"
+  },
+  "archive_source_root": "/work/2023-03-olympus/compile-source/sherlock-olympus",
+  "solidity_compilers": {
+    "configured_versions": [
+      "0.8.15"
+    ],
+    "pragma_constraints": [
+      {
+        "expression": "0.8.15",
+        "files": [
+          "src/Kernel.sol",
+          "src/modules/BLREG/BLREG.v1.sol",
+          "src/modules/BLREG/OlympusBoostedLiquidityRegistry.sol",
+          "src/modules/MINTR/MINTR.v1.sol",
+          "src/modules/MINTR/OlympusMinter.sol",
+          "src/modules/ROLES/OlympusRoles.sol",
+          "src/modules/ROLES/ROLES.v1.sol",
+          "src/modules/TRSRY/OlympusTreasury.sol",
+          "src/modules/TRSRY/TRSRY.v1.sol",
+          "src/policies/BoostedLiquidity/BLVaultLido.sol",
+          "src/policies/BoostedLiquidity/BLVaultManagerLido.sol",
+          "src/policies/RolesAdmin.sol",
+          "src/test/policies/BoostedLiquidity/BLVaultLidoMocks.t.sol",
+          "src/test/policies/BoostedLiquidity/BLVaultManagerLidoMocks.t.sol"
+        ]
+      },
+      {
+        "expression": ">=0.7.5",
+        "files": [
+          "src/external/OlympusERC20.sol"
+        ]
+      },
+      {
+        "expression": ">=0.8.0",
+        "files": [
+          "src/libraries/FullMath.sol",
+          "src/libraries/TransferHelper.sol",
+          "src/policies/BoostedLiquidity/interfaces/IAura.sol",
+          "src/policies/BoostedLiquidity/interfaces/IBLVaultLido.sol",
+          "src/policies/BoostedLiquidity/interfaces/IBLVaultManagerLido.sol",
+          "src/policies/BoostedLiquidity/interfaces/IBalancer.sol",
+          "src/policies/BoostedLiquidity/interfaces/ILido.sol",
+          "src/test/mocks/AuraMocks.sol",
+          "src/test/mocks/BalancerMocks.sol"
+        ]
+      },
+      {
+        "expression": "^0.8.0",
+        "files": [
+          "src/interfaces/AggregatorV2V3Interface.sol",
+          "src/test/mocks/MockLegacyAuthority.sol",
+          "src/test/mocks/MockOhm.sol",
+          "src/test/mocks/MockPriceFeed.sol"
+        ]
+      }
+    ]
+  },
+  "archive_sha256": "9814633660823233d1005e17f31f1f512980c41e2c336133bc173ee947a7798e"
+}

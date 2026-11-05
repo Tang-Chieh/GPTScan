@@ -1,0 +1,113 @@
+{
+  "schema_version": "1.0.0",
+  "generation": {
+    "status": "validated",
+    "generator": "scripts/generate_build_json.py",
+    "evidence_files": [
+      "sandclock/hardhat.config.ts",
+      "sandclock/package.json",
+      "sandclock/yarn.lock"
+    ],
+    "warnings": [
+      "Node.js version was not declared; Docker validation pinned Node.js 16.20.2 for this Hardhat 2.6.5 project"
+    ]
+  },
+  "source": {
+    "repository_url": "https://github.com/code-423n4/2022-01-sandclock",
+    "ref": "a90ad3824955327597be00bb0bd183a9c228a4fb",
+    "repo_path": "candidate-repos/2022-01-sandclock",
+    "working_directory": "sandclock",
+    "submodules": false
+  },
+  "framework": "hardhat",
+  "toolchain": {
+    "node": {
+      "requirement": null,
+      "source": null,
+      "resolved_version": "16.20.2"
+    },
+    "solidity": {
+      "configured_versions": [
+        "0.8.10"
+      ],
+      "pragma_constraints": [
+        {
+          "expression": "=0.8.10",
+          "files": [
+            "contracts/mock/MockERC20.sol",
+            "contracts/mock/MockStrategy.sol",
+            "contracts/test/TestERC20.sol",
+            "contracts/vault/Depositors.sol"
+          ]
+        },
+        {
+          "expression": "^0.8.10",
+          "files": [
+            "contracts/SandclockFactory.sol",
+            "contracts/Vault.sol",
+            "contracts/integrations/IIntegration.sol",
+            "contracts/mock/MockCurvePool.sol",
+            "contracts/mock/MockEthAnchorRouter.sol",
+            "contracts/mock/MockExchangeRateFeeder.sol",
+            "contracts/mock/MockVault.sol",
+            "contracts/strategy/BaseStrategy.sol",
+            "contracts/strategy/IStrategy.sol",
+            "contracts/strategy/NonUSTStrategy.sol",
+            "contracts/strategy/USTStrategy.sol",
+            "contracts/strategy/anchor/IConversionPool.sol",
+            "contracts/strategy/anchor/IEthAnchorRouter.sol",
+            "contracts/strategy/anchor/IExchangeRateFeeder.sol",
+            "contracts/strategy/curve/ICurve.sol",
+            "contracts/vault/Claimers.sol",
+            "contracts/vault/IClaimers.sol",
+            "contracts/vault/IVault.sol",
+            "contracts/vault/IVaultSponsoring.sol"
+          ]
+        }
+      ],
+      "source_files_scanned": 23
+    },
+    "package_manager": {
+      "name": "yarn",
+      "version": null,
+      "lockfile": "yarn.lock"
+    }
+  },
+  "environment": {
+    "variables": {}
+  },
+  "setup": {
+    "network_access": true,
+    "commands": [
+      {
+        "argv": [
+          "yarn",
+          "install",
+          "--frozen-lockfile"
+        ]
+      }
+    ]
+  },
+  "compile": {
+    "network_access": true,
+    "commands": [
+      {
+        "argv": [
+          "./node_modules/.bin/hardhat",
+          "compile"
+        ]
+      }
+    ],
+    "artifacts": [
+      "artifacts/build-info"
+    ],
+    "entrypoints": []
+  },
+  "analysis_input": {
+    "format": "crytic-compile-archive",
+    "path": "analysis_artifacts/2022-01-sandclock_export_archive.json",
+    "adapter": "hardhat",
+    "requires_ast": true
+  },
+  "repo_id": "2022-01-sandclock"
+}

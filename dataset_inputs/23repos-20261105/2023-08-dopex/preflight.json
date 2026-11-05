@@ -1,0 +1,21 @@
+{
+  "repo_id": "2023-08-dopex",
+  "status": "ready_for_analysis",
+  "check": {
+    "status": "passed",
+    "compiler_invoked": false,
+    "model_requests": 0,
+    "analysis_limitations": [
+      "Yul memory/storage builtins use Falcon opaque call representation; no complete EVM alias or transient-storage data-flow model"
+    ],
+    "falcon_contracts": 111,
+    "ir_errors": 0,
+    "parser_files": 62,
+    "parser_functions": 131,
+    "archive_sha256": "86cf11f2ff858e71dedd2308e136247e61b5aa91d47d1890e83f6cb15e24f7e9"
+  },
+  "source_commit": "00601a3f4e3f662007b077bf1b201c9f5f00a8b6",
+  "archive_sha256": "e70b380b2fb79e8d7ba46061fe475d955ba9ec5b9a9016571b38c9765c36d176",
+  "build_provenance_verified": false,
+  "note": "Preflight only; no findings or Judge evaluation. Legacy imports have source comparison, not sidecar attestation."
+}

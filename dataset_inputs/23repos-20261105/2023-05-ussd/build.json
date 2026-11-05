@@ -1,0 +1,99 @@
+{
+  "schema_version": "1.0.0",
+  "generation": {
+    "status": "validated",
+    "generator": "scripts/generate_build_json.py",
+    "evidence_files": [
+      "ussd-contracts/package.json",
+      "ussd-contracts/truffle-config.js"
+    ],
+    "warnings": [
+      "Node.js was not declared upstream; Docker validation pinned Node.js 18.20.8",
+      "package.json exists without a lockfile; npm install is not fully reproducible"
+    ]
+  },
+  "source": {
+    "repository_url": "https://github.com/sherlock-audit/2023-05-USSD",
+    "ref": "6d7a9fdfb1f1ed838632c25b6e1b01748d0bafda",
+    "repo_path": "candidate-repos/2023-05-USSD",
+    "working_directory": "ussd-contracts",
+    "submodules": false
+  },
+  "framework": "truffle",
+  "toolchain": {
+    "node": {
+      "requirement": null,
+      "source": null,
+      "resolved_version": "18.20.8"
+    },
+    "solidity": {
+      "configured_versions": [
+        "0.8.6"
+      ],
+      "pragma_constraints": [
+        {
+          "expression": ">=0.7.6 <0.9.0",
+          "files": [
+            "contracts/interfaces/IStaticOracle.sol"
+          ]
+        },
+        {
+          "expression": "^0.8.6",
+          "files": [
+            "contracts/Migrations.sol",
+            "contracts/USSD.sol",
+            "contracts/USSDRebalancer.sol",
+            "contracts/interfaces/IStableOracle.sol",
+            "contracts/interfaces/IUSSDRebalancer.sol",
+            "contracts/oracles/SimOracle.sol",
+            "contracts/oracles/StableOracleDAI.sol",
+            "contracts/oracles/StableOracleWBGL.sol",
+            "contracts/oracles/StableOracleWBTC.sol",
+            "contracts/oracles/StableOracleWETH.sol",
+            "contracts/oracles/UniswapV3StaticOracle.sol"
+          ]
+        }
+      ],
+      "source_files_scanned": 12
+    },
+    "package_manager": {
+      "name": "npm",
+      "version": null,
+      "lockfile": null
+    }
+  },
+  "setup": {
+    "network_access": true,
+    "commands": [
+      {
+        "argv": [
+          "npm",
+          "install"
+        ]
+      }
+    ]
+  },
+  "compile": {
+    "network_access": true,
+    "commands": [
+      {
+        "argv": [
+          "./node_modules/.bin/truffle",
+          "compile",
+          "--all"
+        ]
+      }
+    ],
+    "artifacts": [
+      "build/contracts"
+    ],
+    "entrypoints": []
+  },
+  "analysis_input": {
+    "format": "crytic-compile-archive",
+    "path": "analysis_artifacts/2023-05-ussd_export_archive.json",
+    "adapter": "truffle",
+    "requires_ast": true
+  },
+  "repo_id": "2023-05-ussd"
+}

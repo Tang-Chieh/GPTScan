@@ -1,0 +1,186 @@
+{
+  "schema_version": "1.0.0",
+  "generation": {
+    "status": "validated",
+    "generator": "scripts/generate_build_json.py",
+    "evidence_files": [
+      "hardhat.config.js",
+      "package-lock.json",
+      "package.json"
+    ],
+    "warnings": [
+      "Node.js version was not declared; manual review or a controlled fallback is required"
+    ]
+  },
+  "source": {
+    "repository_url": "https://github.com/code-423n4/2023-06-lybra",
+    "ref": "4f7ee7b143d75faebfc9cceb21a0ac794d84978a",
+    "repo_path": "candidate-repos/2023-06-lybra",
+    "working_directory": ".",
+    "submodules": false
+  },
+  "framework": "hardhat",
+  "toolchain": {
+    "node": {
+      "requirement": null,
+      "source": null
+    },
+    "solidity": {
+      "configured_versions": [
+        "0.8.17"
+      ],
+      "pragma_constraints": [
+        {
+          "expression": "0.8.17",
+          "files": [
+            "contracts/mocks/stETHMock.sol"
+          ]
+        },
+        {
+          "expression": ">=0.5.0",
+          "files": [
+            "contracts/OFT/ICommonOFT.sol",
+            "contracts/OFT/IOFTReceiverV2.sol",
+            "contracts/OFT/IOFTV2.sol",
+            "contracts/OFT/interfaces/ILayerZeroEndpoint.sol",
+            "contracts/OFT/interfaces/ILayerZeroReceiver.sol",
+            "contracts/OFT/interfaces/ILayerZeroUserApplicationConfig.sol",
+            "contracts/OFT/util/BitLib.sol"
+          ]
+        },
+        {
+          "expression": ">=0.6.0",
+          "files": [
+            "contracts/OFT/libraries/LzLib.sol"
+          ]
+        },
+        {
+          "expression": ">=0.7.6",
+          "files": [
+            "contracts/OFT/util/ExcessivelySafeCall.sol"
+          ]
+        },
+        {
+          "expression": ">=0.8.0 <0.9.0",
+          "files": [
+            "contracts/OFT/util/BytesLib.sol"
+          ]
+        },
+        {
+          "expression": "^0.8",
+          "files": [
+            "contracts/lybra/miner/stakerewardV2pool.sol"
+          ]
+        },
+        {
+          "expression": "^0.8.0",
+          "files": [
+            "contracts/OFT/BaseOFTV2.sol",
+            "contracts/OFT/OFTCoreV2.sol",
+            "contracts/OFT/lzApp/LzApp.sol",
+            "contracts/OFT/lzApp/NonblockingLzApp.sol",
+            "contracts/mocks/LZEndpointMock.sol",
+            "contracts/mocks/chainLinkMock.sol",
+            "contracts/mocks/mockEtherPriceOracle.sol",
+            "contracts/mocks/mockLBRPriceOracle.sol"
+          ]
+        },
+        {
+          "expression": "^0.8.13",
+          "files": [
+            "discord-export/Code4rena - ARCHIVE-Q2-2023 - lybra-jun23 [1121168405534343270].html_Files/contest.t-7F0EB.sol",
+            "discord-export/Code4rena - ARCHIVE-Q2-2023 - lybra-jun23 [1121168405534343270].txt_Files/contest.t-7F0EB.sol"
+          ]
+        },
+        {
+          "expression": "^0.8.17",
+          "files": [
+            "contracts/lybra/Proxy/LybraProxy.sol",
+            "contracts/lybra/Proxy/LybraProxyAdmin.sol",
+            "contracts/lybra/configuration/LybraConfigurator.sol",
+            "contracts/lybra/governance/AdminTimelock.sol",
+            "contracts/lybra/governance/GovernanceTimelock.sol",
+            "contracts/lybra/governance/LybraGovernance.sol",
+            "contracts/lybra/interfaces/IEUSD.sol",
+            "contracts/lybra/interfaces/IGovernanceTimelock.sol",
+            "contracts/lybra/interfaces/ILybra.sol",
+            "contracts/lybra/interfaces/IPeUSD.sol",
+            "contracts/lybra/interfaces/Iconfigurator.sol",
+            "contracts/lybra/interfaces/IesLBR.sol",
+            "contracts/lybra/miner/EUSDMiningIncentives.sol",
+            "contracts/lybra/miner/ProtocolRewardsPool.sol",
+            "contracts/lybra/miner/esLBRBoost.sol",
+            "contracts/lybra/pools/LybraRETHVault.sol",
+            "contracts/lybra/pools/LybraStETHVault.sol",
+            "contracts/lybra/pools/LybraWbETHVault.sol",
+            "contracts/lybra/pools/LybraWstETHVault.sol",
+            "contracts/lybra/pools/base/LybraEUSDVaultBase.sol",
+            "contracts/lybra/pools/base/LybraPeUSDVaultBase.sol",
+            "contracts/lybra/token/EUSD.sol",
+            "contracts/lybra/token/LBR.sol",
+            "contracts/lybra/token/PeUSD.sol",
+            "contracts/lybra/token/PeUSDMainnetStableVision.sol",
+            "contracts/lybra/token/esLBR.sol",
+            "contracts/mocks/mockCurve.sol",
+            "contracts/mocks/mockEUSD.sol",
+            "contracts/mocks/mockUSDC.sol",
+            "contracts/mocks/mockWstETH.sol"
+          ]
+        },
+        {
+          "expression": "^0.8.4",
+          "files": [
+            "contracts/OFT/interfaces/IStargateFactory.sol",
+            "contracts/OFT/interfaces/IStargatePool.sol",
+            "contracts/OFT/interfaces/IStargateReceiver.sol",
+            "contracts/OFT/interfaces/IStargateRouter.sol",
+            "contracts/OFT/interfaces/IStargateRouterETH.sol",
+            "contracts/OFT/interfaces/IStargateWidget.sol"
+          ]
+        }
+      ],
+      "source_files_scanned": 58
+    },
+    "package_manager": {
+      "name": "npm",
+      "version": null,
+      "lockfile": "package-lock.json"
+    }
+  },
+  "environment": {
+    "variables": {}
+  },
+  "setup": {
+    "network_access": true,
+    "commands": [
+      {
+        "argv": [
+          "npm",
+          "ci"
+        ]
+      }
+    ]
+  },
+  "compile": {
+    "network_access": true,
+    "commands": [
+      {
+        "argv": [
+          "./node_modules/.bin/hardhat",
+          "compile"
+        ]
+      }
+    ],
+    "artifacts": [
+      "artifacts/build-info"
+    ],
+    "entrypoints": []
+  },
+  "analysis_input": {
+    "format": "crytic-compile-archive",
+    "path": "analysis_artifacts/2023-06-lybra_export_archive.json",
+    "adapter": "hardhat",
+    "requires_ast": true
+  },
+  "repo_id": "2023-06-lybra"
+}

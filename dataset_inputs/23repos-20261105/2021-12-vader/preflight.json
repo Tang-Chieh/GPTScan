@@ -1,0 +1,21 @@
+{
+  "repo_id": "2021-12-vader",
+  "status": "ready_for_analysis",
+  "check": {
+    "status": "passed",
+    "compiler_invoked": false,
+    "model_requests": 0,
+    "analysis_limitations": [
+      "Yul memory/storage builtins use Falcon opaque call representation; no complete EVM alias or transient-storage data-flow model"
+    ],
+    "falcon_contracts": 99,
+    "ir_errors": 0,
+    "parser_files": 53,
+    "parser_functions": 78,
+    "archive_sha256": "199e5567616dea6b00c26ab2f1b7b0d39ee69ce727e4d2ee4dca0e1d3725aa88"
+  },
+  "source_commit": "fd2787013608438beae361ce1bb6d9ffba466c45",
+  "archive_sha256": "6e863056d605ca68e1a9398321bff6c65c4b8c4834f0c8044e9c5aeaa1eebd82",
+  "build_provenance_verified": true,
+  "note": "Preflight only; no findings or Judge evaluation. Legacy imports have source comparison, not sidecar attestation."
+}

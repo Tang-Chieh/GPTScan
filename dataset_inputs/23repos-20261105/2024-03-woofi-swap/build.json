@@ -1,0 +1,212 @@
+{
+  "schema_version": "1.0.0",
+  "generation": {
+    "status": "validated",
+    "generator": "scripts/generate_build_json.py",
+    "evidence_files": [
+      ".gitmodules",
+      "WooPoolV2/foundry.toml",
+      "WooPoolV2/hardhat.config.ts",
+      "WooPoolV2/package.json",
+      "WooPoolV2/yarn.lock"
+    ],
+    "warnings": [
+      "Node.js was not declared upstream; Docker validation pinned Node.js 18.20.8",
+      "Docker validation standardizes the Foundry output directory to out so Crytic Compile can consume build-info without recompiling",
+      "Yarn lifecycle scripts are disabled because the nested project's Husky prepare hook requires a same-directory .git folder and is not required for Foundry compilation",
+      "zksolc 1.3.5 was excluded from Solidity compiler versions during manual review",
+      "multiple framework markers detected: foundry, hardhat; selected foundry by deterministic priority"
+    ]
+  },
+  "source": {
+    "repository_url": "https://github.com/sherlock-audit/2024-03-woofi-swap",
+    "ref": "65185691c91541e33f84b77d4c6290182f137092",
+    "repo_path": "candidate-repos/2024-03-woofi-swap",
+    "working_directory": "WooPoolV2",
+    "submodules": true
+  },
+  "framework": "foundry",
+  "toolchain": {
+    "node": {
+      "requirement": null,
+      "source": null,
+      "resolved_version": "18.20.8"
+    },
+    "solidity": {
+      "configured_versions": [
+        "0.4.18",
+        "0.8.14"
+      ],
+      "pragma_constraints": [
+        {
+          "expression": "0.8.14",
+          "files": [
+            "contracts/earn/strategies/VoidStrategy.sol",
+            "contracts/interfaces/IMasterChefReward.sol",
+            "contracts/interfaces/IMasterChefWoo.sol",
+            "contracts/interfaces/IRewarder.sol",
+            "contracts/interfaces/IXWoo.sol"
+          ]
+        },
+        {
+          "expression": "=0.8.14",
+          "files": [
+            "contracts/CrossChain/SgInfo.sol",
+            "contracts/CrossChain/WooCrossChainRouter.sol",
+            "contracts/CrossChain/WooCrossChainRouterV2.sol",
+            "contracts/CrossChain/WooCrossChainRouterV3.sol",
+            "contracts/CrossChain/WooCrossChainRouterV4.sol",
+            "contracts/CrossChain/WooCrossFee.sol",
+            "contracts/CrossChain/WooCrossRouterForWidget.sol",
+            "contracts/IntegrationHelper.sol",
+            "contracts/MasterChefReward.sol",
+            "contracts/MasterChefWoo.sol",
+            "contracts/WOOFiDex/NonceCounter.sol",
+            "contracts/WOOFiDex/WOOFiDexCrossChainRouter.sol",
+            "contracts/WOOFiDex/WOOFiDexDepositor.sol",
+            "contracts/WOOFiDex/WOOFiDexTestVault.sol",
+            "contracts/WooAccessManager.sol",
+            "contracts/WooFeeManager.sol",
+            "contracts/WooPPV2.sol",
+            "contracts/WooPPV3/WooPPV3.sol",
+            "contracts/WooPPV3/WooRouterV3.sol",
+            "contracts/WooPPV3/WooUsdOFT.sol",
+            "contracts/WooPPV3/WooUsdOFTCrossRouter.sol",
+            "contracts/WooRebateManager.sol",
+            "contracts/WooRouterV2.sol",
+            "contracts/WooSimpleRewarder.sol",
+            "contracts/WooVaultManager.sol",
+            "contracts/earn/DataProvider.sol",
+            "contracts/earn/VaultV2.sol",
+            "contracts/earn/WooLendingManager.sol",
+            "contracts/earn/WooLendingManagerV1_2.sol",
+            "contracts/earn/WooSuperChargerVaultV2.sol",
+            "contracts/earn/WooWithdrawManagerV2.sol",
+            "contracts/earn/strategies/BaseStrategy.sol",
+            "contracts/interfaces/AggregatorV3Interface.sol",
+            "contracts/interfaces/CrossChain/ISgInfo.sol",
+            "contracts/interfaces/CrossChain/IWooCrossChainRouterV2.sol",
+            "contracts/interfaces/CrossChain/IWooCrossChainRouterV3.sol",
+            "contracts/interfaces/CrossChain/IWooCrossFee.sol",
+            "contracts/interfaces/CrossChain/IWooCrossRouterForWidget.sol",
+            "contracts/interfaces/CrossChain/IWooUsdOFTCrossRouter.sol",
+            "contracts/interfaces/IDataProvider.sol",
+            "contracts/interfaces/IStrategy.sol",
+            "contracts/interfaces/IVaultV2.sol",
+            "contracts/interfaces/IWooAccessManager.sol",
+            "contracts/interfaces/IWooFeeManager.sol",
+            "contracts/interfaces/IWooLendingManager.sol",
+            "contracts/interfaces/IWooPPV2.sol",
+            "contracts/interfaces/IWooPPV2ForTest.sol",
+            "contracts/interfaces/IWooPPV3.sol",
+            "contracts/interfaces/IWooRebateManager.sol",
+            "contracts/interfaces/IWooRouterV2.sol",
+            "contracts/interfaces/IWooRouterV3.sol",
+            "contracts/interfaces/IWooVaultManager.sol",
+            "contracts/interfaces/IWooracleV2.sol",
+            "contracts/interfaces/IWooracleV3.sol",
+            "contracts/interfaces/WOOFiDex/INonceCounter.sol",
+            "contracts/interfaces/WOOFiDex/IWOOFiDexCrossChainRouter.sol",
+            "contracts/interfaces/WOOFiDex/IWOOFiDexDepositor.sol",
+            "contracts/interfaces/WOOFiDex/IWOOFiDexVault.sol",
+            "contracts/test/TestChainLink.sol",
+            "contracts/test/TestERC20Token.sol",
+            "contracts/test/TestUsdtToken.sol",
+            "contracts/test/WFTM.sol",
+            "contracts/wooracle/WooracleV2.sol",
+            "contracts/wooracle/WooracleV2ZKSync.sol",
+            "contracts/wooracle/WooracleV2Zip.sol",
+            "contracts/wooracle/WooracleV2ZipInherit.sol",
+            "contracts/wooracle/WooracleV2_1.sol",
+            "contracts/wooracle/WooracleV2_1_ZKSync.sol",
+            "contracts/wooracle/WooracleV2_1_ZipInherit.sol",
+            "contracts/wooracle/WooracleV2_2.sol",
+            "contracts/wooracle/WooracleV3.sol",
+            "contracts/wooracle/WooracleV3ZKSync.sol",
+            "contracts/wooracle/WooracleV3ZipInherit.sol"
+          ]
+        },
+        {
+          "expression": ">=0.6.0",
+          "files": [
+            "contracts/libraries/TransferHelper.sol"
+          ]
+        },
+        {
+          "expression": "^0.8.0",
+          "files": [
+            "contracts/interfaces/IWETH.sol",
+            "contracts/interfaces/LayerZero/ILzApp.sol",
+            "contracts/interfaces/Stargate/IStargateEthVault.sol",
+            "contracts/interfaces/Stargate/IStargateReceiver.sol",
+            "contracts/interfaces/Stargate/IStargateRouter.sol",
+            "test/foundry/Greeter.t.sol",
+            "test/foundry/TestHelpers.sol"
+          ]
+        },
+        {
+          "expression": "^0.8.4",
+          "files": [
+            "contracts/WooPPV3/WooPPBase.sol"
+          ]
+        }
+      ],
+      "source_files_scanned": 87
+    },
+    "package_manager": {
+      "name": "yarn",
+      "version": null,
+      "lockfile": "yarn.lock"
+    }
+  },
+  "environment": {
+    "variables": {
+      "FOUNDRY_OUT": "out"
+    }
+  },
+  "setup": {
+    "network_access": true,
+    "commands": [
+      {
+        "argv": [
+          "git",
+          "submodule",
+          "update",
+          "--init",
+          "--recursive"
+        ]
+      },
+      {
+        "argv": [
+          "yarn",
+          "install",
+          "--frozen-lockfile",
+          "--ignore-scripts"
+        ]
+      }
+    ]
+  },
+  "compile": {
+    "network_access": true,
+    "commands": [
+      {
+        "argv": [
+          "forge",
+          "build",
+          "--build-info"
+        ]
+      }
+    ],
+    "artifacts": [
+      "out"
+    ],
+    "entrypoints": []
+  },
+  "analysis_input": {
+    "format": "crytic-compile-archive",
+    "path": "analysis_artifacts/2024-03-woofi-swap_export_archive.json",
+    "adapter": "foundry",
+    "requires_ast": true
+  },
+  "repo_id": "2024-03-woofi-swap"
+}

@@ -1,0 +1,100 @@
+{
+  "schema_version": "1.0.0",
+  "generation": {
+    "status": "validated",
+    "generator": "scripts/generate_build_json.py",
+    "evidence_files": [
+      ".nvmrc",
+      "hardhat.config.ts",
+      "package.json",
+      "yarn.lock"
+    ],
+    "warnings": [
+      "Docker validation pinned Node.js 16.20.2, the nearest installed Node 16 patch release to the repository's declared 16.17.0"
+    ]
+  },
+  "source": {
+    "repository_url": "https://github.com/sherlock-audit/2022-11-telcoin",
+    "ref": "5baaefe0a29c2eccede8b8e1a390fd8931606684",
+    "repo_path": "candidate-repos/2022-11-telcoin",
+    "working_directory": ".",
+    "submodules": false
+  },
+  "framework": "hardhat",
+  "toolchain": {
+    "node": {
+      "requirement": "16.17.0",
+      "source": ".nvmrc",
+      "resolved_version": "16.20.2"
+    },
+    "solidity": {
+      "configured_versions": [
+        "0.8.4"
+      ],
+      "pragma_constraints": [
+        {
+          "expression": "^0.8.0",
+          "files": [
+            "contracts/SimplePlugin.sol",
+            "contracts/StakingModule.sol",
+            "contracts/fee-buyback/FeeBuyback.sol",
+            "contracts/fee-buyback/IFeeBuyback.sol",
+            "contracts/fee-buyback/ISimplePlugin.sol",
+            "contracts/fee-buyback/TieredOwnership.sol",
+            "contracts/interfaces/IPlugin.sol",
+            "contracts/libraries/AuxDataLib.sol",
+            "contracts/test/AuxDataLibWrapper.sol",
+            "contracts/test/InsecureWallet.sol",
+            "contracts/test/MockStakingModule.sol",
+            "contracts/test/TEL.sol",
+            "contracts/test/Token.sol",
+            "contracts/test/YieldSource.sol"
+          ]
+        }
+      ],
+      "source_files_scanned": 14
+    },
+    "package_manager": {
+      "name": "yarn",
+      "version": null,
+      "lockfile": "yarn.lock"
+    }
+  },
+  "environment": {
+    "variables": {}
+  },
+  "setup": {
+    "network_access": true,
+    "commands": [
+      {
+        "argv": [
+          "yarn",
+          "install",
+          "--frozen-lockfile"
+        ]
+      }
+    ]
+  },
+  "compile": {
+    "network_access": true,
+    "commands": [
+      {
+        "argv": [
+          "./node_modules/.bin/hardhat",
+          "compile"
+        ]
+      }
+    ],
+    "artifacts": [
+      "artifacts/build-info"
+    ],
+    "entrypoints": []
+  },
+  "analysis_input": {
+    "format": "crytic-compile-archive",
+    "path": "analysis_artifacts/2022-11-telcoin_export_archive.json",
+    "adapter": "hardhat",
+    "requires_ast": true
+  },
+  "repo_id": "2022-11-telcoin"
+}

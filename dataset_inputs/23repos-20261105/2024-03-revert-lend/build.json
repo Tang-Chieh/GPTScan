@@ -1,0 +1,107 @@
+{
+  "schema_version": "1.0.0",
+  "generation": {
+    "status": "validated",
+    "generator": "scripts/generate_build_json.py",
+    "evidence_files": [
+      ".gitmodules",
+      "foundry.toml"
+    ],
+    "warnings": []
+  },
+  "source": {
+    "repository_url": "https://github.com/code-423n4/2024-03-revert-lend",
+    "ref": "435b054f9ad2404173f36f0f74a5096c894b12b7",
+    "repo_path": "candidate-repos/2024-03-revert-lend",
+    "working_directory": ".",
+    "submodules": true
+  },
+  "framework": "foundry",
+  "toolchain": {
+    "node": {
+      "requirement": null,
+      "source": null
+    },
+    "solidity": {
+      "configured_versions": [
+        "0.8.24"
+      ],
+      "pragma_constraints": [
+        {
+          "expression": "^0.8.0",
+          "files": [
+            "src/InterestRateModel.sol",
+            "src/V3Oracle.sol",
+            "src/V3Vault.sol",
+            "src/automators/AutoExit.sol",
+            "src/automators/Automator.sol",
+            "src/interfaces/IErrors.sol",
+            "src/interfaces/IInterestRateModel.sol",
+            "src/interfaces/IV3Oracle.sol",
+            "src/interfaces/IVault.sol",
+            "src/transformers/AutoCompound.sol",
+            "src/transformers/AutoRange.sol",
+            "src/transformers/LeverageTransformer.sol",
+            "src/transformers/V3Utils.sol",
+            "src/utils/FlashloanLiquidator.sol",
+            "src/utils/Swapper.sol",
+            "test/integration/InterestRateModel.t.sol",
+            "test/integration/V3Oracle.t.sol",
+            "test/integration/V3Utils.t.sol",
+            "test/integration/V3Vault.t.sol",
+            "test/integration/automators/AutoCompound.t.sol",
+            "test/integration/automators/AutoExit.t.sol",
+            "test/integration/automators/AutoRange.t.sol",
+            "test/integration/automators/AutomatorIntegrationTestBase.sol"
+          ]
+        }
+      ],
+      "source_files_scanned": 23
+    },
+    "package_manager": {
+      "name": "none",
+      "version": null,
+      "lockfile": null
+    }
+  },
+  "environment": {
+    "variables": {}
+  },
+  "setup": {
+    "network_access": false,
+    "commands": [
+      {
+        "argv": [
+          "git",
+          "submodule",
+          "update",
+          "--init",
+          "--recursive"
+        ]
+      }
+    ]
+  },
+  "compile": {
+    "network_access": true,
+    "commands": [
+      {
+        "argv": [
+          "forge",
+          "build",
+          "--build-info"
+        ]
+      }
+    ],
+    "artifacts": [
+      "out"
+    ],
+    "entrypoints": []
+  },
+  "analysis_input": {
+    "format": "crytic-compile-archive",
+    "path": "analysis_artifacts/2024-03-revert-lend_export_archive.json",
+    "adapter": "foundry",
+    "requires_ast": true
+  },
+  "repo_id": "2024-03-revert-lend"
+}

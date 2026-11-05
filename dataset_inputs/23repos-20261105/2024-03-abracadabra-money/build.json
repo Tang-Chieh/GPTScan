@@ -1,0 +1,164 @@
+{
+  "schema_version": "1.0.0",
+  "generation": {
+    "status": "validated",
+    "generator": "scripts/generate_build_json.py",
+    "evidence_files": [
+      "foundry.toml",
+      "hardhat.config.js",
+      "package.json",
+      "package.json#engines.node",
+      "yarn.lock"
+    ],
+    "warnings": [
+      "multiple framework markers detected: foundry, hardhat; selected foundry by deterministic priority"
+    ]
+  },
+  "source": {
+    "repository_url": "https://github.com/code-423n4/2024-03-abracadabra-money",
+    "ref": "b2cfb84d2ae8914e557ede95c028d4dd74c2fb3e",
+    "repo_path": "candidate-repos/2024-03-abracadabra-money",
+    "working_directory": ".",
+    "submodules": false
+  },
+  "framework": "foundry",
+  "toolchain": {
+    "node": {
+      "requirement": ">=16.0.0",
+      "source": "package.json#engines.node",
+      "resolved_version": "18.20.8"
+    },
+    "solidity": {
+      "configured_versions": [
+        "0.8.20"
+      ],
+      "pragma_constraints": [
+        {
+          "expression": ">=0.8.0",
+          "files": [
+            "script/Blast.s.sol",
+            "script/BlastOnboarding.s.sol",
+            "script/LockingMultiRewards.s.sol",
+            "script/MIMSwap.s.sol",
+            "script/MIMSwapLaunch.s.sol",
+            "src/DegenBox.sol",
+            "src/blast/BlastBox.sol",
+            "src/blast/BlastDapp.sol",
+            "src/blast/BlastGovernor.sol",
+            "src/blast/BlastMagicLP.sol",
+            "src/blast/BlastOnboarding.sol",
+            "src/blast/BlastOnboardingBoot.sol",
+            "src/blast/BlastTokenRegistry.sol",
+            "src/blast/BlastWrappers.sol",
+            "src/blast/interfaces/IBlastBox.sol",
+            "src/blast/libraries/BlastPoints.sol",
+            "src/blast/libraries/BlastYields.sol",
+            "src/cauldrons/CauldronV4.sol",
+            "src/interfaces/IAggregator.sol",
+            "src/interfaces/IBentoBoxV1.sol",
+            "src/interfaces/IBlast.sol",
+            "src/interfaces/ICauldronV2.sol",
+            "src/interfaces/ICauldronV3.sol",
+            "src/interfaces/ICauldronV4.sol",
+            "src/interfaces/IOracle.sol",
+            "src/interfaces/IStrategy.sol",
+            "src/interfaces/ISwapperV2.sol",
+            "src/interfaces/IWETH.sol",
+            "src/libraries/MathLib.sol",
+            "src/mimswap/MagicLP.sol",
+            "src/mimswap/auxiliary/FeeRateModel.sol",
+            "src/mimswap/auxiliary/FeeRateModelImpl.sol",
+            "src/mimswap/interfaces/ICallee.sol",
+            "src/mimswap/interfaces/IFactory.sol",
+            "src/mimswap/interfaces/IFeeRateModel.sol",
+            "src/mimswap/interfaces/IMagicLP.sol",
+            "src/mimswap/libraries/DecimalMath.sol",
+            "src/mimswap/libraries/Math.sol",
+            "src/mimswap/libraries/PMMPricing.sol",
+            "src/mimswap/periphery/Factory.sol",
+            "src/mimswap/periphery/Router.sol",
+            "src/mixins/FeeCollectable.sol",
+            "src/mixins/MasterContractManager.sol",
+            "src/mixins/OperatableV2.sol",
+            "src/mixins/OperatableV3.sol",
+            "src/oracles/ProxyOracle.sol",
+            "src/oracles/aggregators/MagicLpAggregator.sol",
+            "src/staking/LockingMultiRewards.sol",
+            "utils/Toolkit.sol"
+          ]
+        },
+        {
+          "expression": ">=0.8.19 <0.9.0",
+          "files": [
+            "test/invariant/lockStaking/handlers/StakingHandler.sol"
+          ]
+        },
+        {
+          "expression": "^0.8.13",
+          "files": [
+            "src/libraries/CauldronLib.sol",
+            "test/Blast.t.sol",
+            "test/BlastOnboarding.t.sol",
+            "test/CauldronV4.t.sol",
+            "test/LockingMultiRewards.t.sol",
+            "test/MIMSwap.t.sol",
+            "test/MIMSwapLaunch.t.sol",
+            "test/MagicLpAggregator.t.sol",
+            "test/invariant/lockStaking/handlers/BaseHandler.sol",
+            "test/invariant/lockStaking/stores/TimestampStore.sol",
+            "test/mocks/ERC20Mock.sol",
+            "test/utils/ArrayUtils.sol",
+            "utils/BaseScript.sol",
+            "utils/BaseTest.sol",
+            "utils/CauldronDeployLib.sol",
+            "utils/mocks/BlastMock.sol"
+          ]
+        }
+      ],
+      "source_files_scanned": 66
+    },
+    "package_manager": {
+      "name": "yarn",
+      "version": null,
+      "lockfile": "yarn.lock"
+    }
+  },
+  "environment": {
+    "variables": {}
+  },
+  "setup": {
+    "network_access": true,
+    "commands": [
+      {
+        "argv": [
+          "yarn",
+          "install",
+          "--frozen-lockfile"
+        ]
+      }
+    ]
+  },
+  "compile": {
+    "network_access": true,
+    "commands": [
+      {
+        "argv": [
+          "forge",
+          "build",
+          "--build-info"
+        ]
+      }
+    ],
+    "artifacts": [
+      "out"
+    ],
+    "entrypoints": []
+  },
+  "analysis_input": {
+    "format": "crytic-compile-archive",
+    "path": "analysis_artifacts/2024-03-abracadabra-money_export_archive.json",
+    "adapter": "foundry",
+    "requires_ast": true
+  },
+  "repo_id": "2024-03-abracadabra-money"
+}

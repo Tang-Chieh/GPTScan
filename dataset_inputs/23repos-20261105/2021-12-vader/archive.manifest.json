@@ -1,0 +1,166 @@
+{
+  "schema_version": "1.1.0",
+  "repo_id": "2021-12-vader",
+  "source_commit": "fd2787013608438beae361ce1bb6d9ffba466c45",
+  "build_recipe_fingerprint": "7e2bfe65ddde6f79935027cf29c8db468bf8717168eb023567549a878d889d32",
+  "compile_scope": {
+    "adapter": "truffle",
+    "target": ".",
+    "compile_framework": "truffle",
+    "ignore_compile": "--truffle-ignore-compile",
+    "compiler_arguments": [],
+    "solc_version": null
+  },
+  "analysis_scope": {
+    "scope_root": ".",
+    "policy_version": "production-v1",
+    "implementation_version": "1",
+    "exclude": [
+      "**/mock/**",
+      "**/mocks/**",
+      "**/script/**",
+      "**/scripts/**",
+      "**/test/**",
+      "**/tests/**",
+      "**/*.s.sol",
+      "**/*.t.sol"
+    ],
+    "include": [],
+    "scope_fingerprint": "98c3c961cdc54c3ec248fed0b8db2dfd1c76e6ead1da410e6ff1f26758eb96c9"
+  },
+  "archive_source_root": "/work/2021-12-vader/compile-source",
+  "solidity_compilers": {
+    "configured_versions": [
+      "0.8.9"
+    ],
+    "pragma_constraints": [
+      {
+        "expression": "0.7.6",
+        "files": [
+          "repo/vader-bond/contracts/Ownable.sol",
+          "repo/vader-bond/contracts/Treasury.sol",
+          "repo/vader-bond/contracts/VaderBond.sol",
+          "repo/vader-bond/contracts/interfaces/IERC20Metadata.sol",
+          "repo/vader-bond/contracts/interfaces/ITreasury.sol",
+          "repo/vader-bond/contracts/test/TestToken.sol"
+        ]
+      },
+      {
+        "expression": "0.8.9",
+        "files": [
+          "contracts/interfaces/x-vader/IXVader.sol",
+          "contracts/staking-rewards/IStakingRewards.sol",
+          "contracts/staking-rewards/Owned.sol",
+          "contracts/staking-rewards/Pausable.sol",
+          "contracts/staking-rewards/RewardsDistributionRecipient.sol",
+          "contracts/staking-rewards/StakingRewards.sol",
+          "contracts/x-vader/XVader.sol"
+        ]
+      },
+      {
+        "expression": "=0.8.9",
+        "files": [
+          "contracts/dex-v2/pool/BasePoolV2.sol",
+          "contracts/dex-v2/pool/VaderPoolV2.sol",
+          "contracts/dex-v2/router/VaderRouterV2.sol",
+          "contracts/dex-v2/synths/Synth.sol",
+          "contracts/dex-v2/synths/SynthFactory.sol",
+          "contracts/dex-v2/wrapper/LPToken.sol",
+          "contracts/dex-v2/wrapper/LPWrapper.sol",
+          "contracts/dex/math/VaderMath.sol",
+          "contracts/dex/pool/BasePool.sol",
+          "contracts/dex/pool/VaderPool.sol",
+          "contracts/dex/pool/VaderPoolFactory.sol",
+          "contracts/dex/queue/SwapQueue.sol",
+          "contracts/dex/router/VaderRouter.sol",
+          "contracts/dex/utils/GasThrottle.sol",
+          "contracts/external/UniswapV2ERC20.sol",
+          "contracts/external/UniswapV2Pair.sol",
+          "contracts/external/libraries/Babylonian.sol",
+          "contracts/external/libraries/BitMath.sol",
+          "contracts/external/libraries/FixedPoint.sol",
+          "contracts/external/libraries/FullMath.sol",
+          "contracts/external/libraries/TransferHelper.sol",
+          "contracts/external/libraries/UQ112x112.sol",
+          "contracts/external/libraries/UniswapMath.sol",
+          "contracts/external/libraries/UniswapV2Library.sol",
+          "contracts/external/libraries/UniswapV2OracleLibrary.sol",
+          "contracts/governance/GovernorAlpha.sol",
+          "contracts/governance/Timelock.sol",
+          "contracts/interfaces/dex-v2/pool/IBasePoolV2.sol",
+          "contracts/interfaces/dex-v2/pool/IVaderPoolFactoryV2.sol",
+          "contracts/interfaces/dex-v2/pool/IVaderPoolV2.sol",
+          "contracts/interfaces/dex-v2/router/IVaderRouterV2.sol",
+          "contracts/interfaces/dex-v2/synth/ISynth.sol",
+          "contracts/interfaces/dex-v2/synth/ISynthFactory.sol",
+          "contracts/interfaces/dex-v2/wrapper/ILPToken.sol",
+          "contracts/interfaces/dex-v2/wrapper/ILPWrapper.sol",
+          "contracts/interfaces/dex/pool/IBasePool.sol",
+          "contracts/interfaces/dex/pool/IVaderPool.sol",
+          "contracts/interfaces/dex/pool/IVaderPoolFactory.sol",
+          "contracts/interfaces/dex/queue/IGasQueue.sol",
+          "contracts/interfaces/dex/queue/ISwapQueue.sol",
+          "contracts/interfaces/dex/router/IVaderRouter.sol",
+          "contracts/interfaces/external/chainlink/IAggregator.sol",
+          "contracts/interfaces/external/uniswap/IUniswapV2ERC20.sol",
+          "contracts/interfaces/external/uniswap/IUniswapV2Pair.sol",
+          "contracts/interfaces/governance/ITimelock.sol",
+          "contracts/interfaces/lbt/ILiquidityBasedTWAP.sol",
+          "contracts/interfaces/reserve/IVaderReserve.sol",
+          "contracts/interfaces/shared/IERC20Extended.sol",
+          "contracts/interfaces/tokens/IUSDV.sol",
+          "contracts/interfaces/tokens/IVader.sol",
+          "contracts/interfaces/tokens/converter/IConverter.sol",
+          "contracts/interfaces/tokens/vesting/ILinearVesting.sol",
+          "contracts/lbt/LiquidityBasedTWAP.sol",
+          "contracts/mocks/MockAggregatorV3.sol",
+          "contracts/mocks/MockConstants.sol",
+          "contracts/mocks/MockGovernorAlpha.sol",
+          "contracts/mocks/MockMTree.sol",
+          "contracts/mocks/MockTarget.sol",
+          "contracts/mocks/MockTimelock.sol",
+          "contracts/mocks/MockToken.sol",
+          "contracts/mocks/MockUniswapV2Factory.sol",
+          "contracts/mocks/MockUniswapV2Library.sol",
+          "contracts/mocks/MockUniswapV2Router.sol",
+          "contracts/mocks/MockXVader.sol",
+          "contracts/reserve/VaderReserve.sol",
+          "contracts/shared/ProtocolConstants.sol",
+          "contracts/tokens/USDV.sol",
+          "contracts/tokens/Vader.sol",
+          "contracts/tokens/converter/Converter.sol",
+          "contracts/tokens/vesting/LinearVesting.sol"
+        ]
+      },
+      {
+        "expression": ">=0.4.22 <0.9.0",
+        "files": [
+          "contracts/Migrations.sol"
+        ]
+      },
+      {
+        "expression": ">=0.5.0",
+        "files": [
+          "contracts/interfaces/external/uniswap/IUniswapV2Callee.sol",
+          "contracts/interfaces/external/uniswap/IUniswapV2Factory.sol",
+          "contracts/interfaces/external/weth/IWETH.sol"
+        ]
+      },
+      {
+        "expression": ">=0.6.2",
+        "files": [
+          "contracts/interfaces/external/uniswap/IUniswapV2Router01.sol",
+          "contracts/interfaces/external/uniswap/IUniswapV2Router02.sol"
+        ]
+      },
+      {
+        "expression": "^0.8.0",
+        "files": [
+          "contracts/external/interfaces/AggregatorV3Interface.sol",
+          "contracts/interfaces/external/chainlink/IAggregatorV3.sol"
+        ]
+      }
+    ]
+  },
+  "archive_sha256": "6e863056d605ca68e1a9398321bff6c65c4b8c4834f0c8044e9c5aeaa1eebd82"
+}

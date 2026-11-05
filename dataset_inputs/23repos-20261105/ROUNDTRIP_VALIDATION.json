@@ -1,0 +1,197 @@
+{
+  "status": "passed",
+  "total": 23,
+  "passed": 23,
+  "model_requests": 0,
+  "judge_executed": false,
+  "input_manifest_sha256": "78886bbc5d6c163142592797ee20ce8689b00673f66bffc67c67638de6e1fd59",
+  "code_snapshot_commit": "aff54bf8693b1697732f8efa7eafc4a14686d039",
+  "completed_at": "2026-11-05T14:05:08.866337+08:00",
+  "repos": {
+    "2021-04-marginswap": {
+      "status": "ready_for_analysis",
+      "legacy": true,
+      "falcon_contracts": 28,
+      "parser_files": 22,
+      "parser_functions": 110,
+      "ir_errors": 0
+    },
+    "2021-07-spartan": {
+      "status": "ready_for_analysis",
+      "legacy": false,
+      "falcon_contracts": 25,
+      "parser_files": 26,
+      "parser_functions": 139,
+      "ir_errors": 0
+    },
+    "2021-08-notional": {
+      "status": "ready_for_analysis",
+      "legacy": true,
+      "falcon_contracts": 86,
+      "parser_files": 48,
+      "parser_functions": 184,
+      "ir_errors": 0
+    },
+    "2021-11-malt": {
+      "status": "ready_for_analysis",
+      "legacy": false,
+      "falcon_contracts": 80,
+      "parser_files": 59,
+      "parser_functions": 248,
+      "ir_errors": 0
+    },
+    "2021-12-vader": {
+      "status": "ready_for_analysis",
+      "legacy": false,
+      "falcon_contracts": 99,
+      "parser_files": 53,
+      "parser_functions": 78,
+      "ir_errors": 0
+    },
+    "2022-01-behodler": {
+      "status": "ready_for_analysis",
+      "legacy": false,
+      "falcon_contracts": 127,
+      "parser_files": 72,
+      "parser_functions": 163,
+      "ir_errors": 0
+    },
+    "2022-01-sandclock": {
+      "status": "ready_for_analysis",
+      "legacy": false,
+      "falcon_contracts": 32,
+      "parser_files": 16,
+      "parser_functions": 26,
+      "ir_errors": 0
+    },
+    "2022-08-sentiment": {
+      "status": "ready_for_analysis",
+      "legacy": false,
+      "falcon_contracts": 5,
+      "parser_files": 5,
+      "parser_functions": 2,
+      "ir_errors": 0
+    },
+    "2022-09-notional": {
+      "status": "ready_for_analysis",
+      "legacy": false,
+      "falcon_contracts": 111,
+      "parser_files": 84,
+      "parser_functions": 115,
+      "ir_errors": 0
+    },
+    "2022-11-paraspace": {
+      "status": "ready_for_analysis",
+      "legacy": false,
+      "falcon_contracts": 419,
+      "parser_files": 246,
+      "parser_functions": 500,
+      "ir_errors": 0
+    },
+    "2022-11-telcoin": {
+      "status": "ready_for_analysis",
+      "legacy": false,
+      "falcon_contracts": 37,
+      "parser_files": 8,
+      "parser_functions": 16,
+      "ir_errors": 0
+    },
+    "2023-03-olympus": {
+      "status": "ready_for_analysis",
+      "legacy": false,
+      "falcon_contracts": 47,
+      "parser_files": 20,
+      "parser_functions": 55,
+      "ir_errors": 0
+    },
+    "2023-04-blueberry": {
+      "status": "ready_for_analysis",
+      "legacy": true,
+      "falcon_contracts": 144,
+      "parser_files": 78,
+      "parser_functions": 100,
+      "ir_errors": 0
+    },
+    "2023-05-ussd": {
+      "status": "ready_for_analysis",
+      "legacy": true,
+      "falcon_contracts": 45,
+      "parser_files": 12,
+      "parser_functions": 25,
+      "ir_errors": 0
+    },
+    "2023-06-lybra": {
+      "status": "ready_for_analysis",
+      "legacy": false,
+      "falcon_contracts": 110,
+      "parser_files": 47,
+      "parser_functions": 114,
+      "ir_errors": 0
+    },
+    "2023-06-real-wagmi": {
+      "status": "ready_for_analysis",
+      "legacy": false,
+      "falcon_contracts": 39,
+      "parser_files": 14,
+      "parser_functions": 27,
+      "ir_errors": 0
+    },
+    "2023-06-tokemak": {
+      "status": "ready_for_analysis",
+      "legacy": false,
+      "falcon_contracts": 261,
+      "parser_files": 153,
+      "parser_functions": 233,
+      "ir_errors": 0
+    },
+    "2023-08-dopex": {
+      "status": "ready_for_analysis",
+      "legacy": true,
+      "falcon_contracts": 111,
+      "parser_files": 62,
+      "parser_functions": 131,
+      "ir_errors": 0
+    },
+    "2024-03-abracadabra-money": {
+      "status": "ready_for_analysis",
+      "legacy": true,
+      "falcon_contracts": 87,
+      "parser_files": 44,
+      "parser_functions": 120,
+      "ir_errors": 0
+    },
+    "2024-03-revert-lend": {
+      "status": "ready_for_analysis",
+      "legacy": false,
+      "falcon_contracts": 63,
+      "parser_files": 15,
+      "parser_functions": 83,
+      "ir_errors": 0
+    },
+    "2024-03-woofi-swap": {
+      "status": "ready_for_analysis",
+      "legacy": false,
+      "falcon_contracts": 114,
+      "parser_files": 81,
+      "parser_functions": 273,
+      "ir_errors": 0
+    },
+    "2024-04-panoptic": {
+      "status": "ready_for_analysis",
+      "legacy": false,
+      "falcon_contracts": 39,
+      "parser_files": 20,
+      "parser_functions": 146,
+      "ir_errors": 0
+    },
+    "2025-12-panoptic": {
+      "status": "ready_for_analysis",
+      "legacy": true,
+      "falcon_contracts": 83,
+      "parser_files": 34,
+      "parser_functions": 223,
+      "ir_errors": 0
+    }
+  }
+}
+

@@ -1,0 +1,21 @@
+{
+  "repo_id": "2022-08-sentiment",
+  "status": "ready_for_analysis",
+  "check": {
+    "status": "passed",
+    "compiler_invoked": false,
+    "model_requests": 0,
+    "analysis_limitations": [
+      "Yul memory/storage builtins use Falcon opaque call representation; no complete EVM alias or transient-storage data-flow model"
+    ],
+    "falcon_contracts": 5,
+    "ir_errors": 0,
+    "parser_files": 5,
+    "parser_functions": 2,
+    "archive_sha256": "6ea352aec2b913afd2aa6504c298581a2202f11aa94974c34a61c01d7c5de0ac"
+  },
+  "source_commit": "96a28ee75fbdcd8726be78813c13d3b39306505a",
+  "archive_sha256": "a1644642191d1b00fa9cbc3efde87b7b0659215e8111799a306e54ae400468bf",
+  "build_provenance_verified": true,
+  "note": "Preflight only; no findings or Judge evaluation. Legacy imports have source comparison, not sidecar attestation."
+}

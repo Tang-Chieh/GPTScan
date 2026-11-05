@@ -1,0 +1,176 @@
+{
+  "schema_version": "1.0.0",
+  "generation": {
+    "status": "validated",
+    "generator": "scripts/generate_build_json.py",
+    "evidence_files": [
+      "src/hardhat.config.ts",
+      "src/package.json",
+      "src/yarn.lock"
+    ],
+    "warnings": [
+      "Node.js version was not declared; manual review or a controlled fallback is required"
+    ]
+  },
+  "source": {
+    "repository_url": "https://github.com/code-423n4/2021-11-malt",
+    "ref": "172cad76d6325d20cdeb3434662941d82f4a8e8b",
+    "repo_path": "candidate-repos/2021-11-malt",
+    "working_directory": "src",
+    "submodules": false
+  },
+  "framework": "hardhat",
+  "toolchain": {
+    "node": {
+      "requirement": null,
+      "source": null,
+      "resolved_version": "16.20.2"
+    },
+    "solidity": {
+      "configured_versions": [
+        "0.6.6"
+      ],
+      "pragma_constraints": [
+        {
+          "expression": ">=0.5.0",
+          "files": [
+            "contracts/libraries/UniswapV2Library.sol"
+          ]
+        },
+        {
+          "expression": ">=0.6.0 <0.8.0",
+          "files": [
+            "contracts/interfaces/IBurnMintableERC20.sol",
+            "contracts/libraries/SafeBurnMintableERC20.sol"
+          ]
+        },
+        {
+          "expression": ">=0.6.6",
+          "files": [
+            "contracts/AbstractRewardMine.sol",
+            "contracts/AbstractTransferVerification.sol",
+            "contracts/Auction.sol",
+            "contracts/AuctionBurnReserveSkew.sol",
+            "contracts/AuctionEscapeHatch.sol",
+            "contracts/AuctionParticipant.sol",
+            "contracts/AuctionPool.sol",
+            "contracts/Bonding.sol",
+            "contracts/Create2Deployer.sol",
+            "contracts/DAO.sol",
+            "contracts/DexHandlers/UniswapHandler.sol",
+            "contracts/ERC20Permit.sol",
+            "contracts/ERC20VestedMine.sol",
+            "contracts/Faucet.sol",
+            "contracts/FaucetTwo.sol",
+            "contracts/ForfeitHandler.sol",
+            "contracts/ImpliedCollateralService.sol",
+            "contracts/LiquidityExtension.sol",
+            "contracts/Malt.sol",
+            "contracts/MaltDataLab.sol",
+            "contracts/MiningService.sol",
+            "contracts/MovingAverage.sol",
+            "contracts/Permissions.sol",
+            "contracts/PoolTransferVerification.sol",
+            "contracts/RewardReinvestor.sol",
+            "contracts/RewardSystem/RewardDistributor.sol",
+            "contracts/RewardSystem/RewardOverflowPool.sol",
+            "contracts/RewardSystem/RewardThrottle.sol",
+            "contracts/StabilizerNode.sol",
+            "contracts/SwingTrader.sol",
+            "contracts/Timelock.sol",
+            "contracts/TransferService.sol",
+            "contracts/interfaces/IAuction.sol",
+            "contracts/interfaces/IAuctionBurnReserveSkew.sol",
+            "contracts/interfaces/IAuctionPool.sol",
+            "contracts/interfaces/IAuctionStartController.sol",
+            "contracts/interfaces/IBonding.sol",
+            "contracts/interfaces/IDAO.sol",
+            "contracts/interfaces/IDexHandler.sol",
+            "contracts/interfaces/IDistributor.sol",
+            "contracts/interfaces/IForfeit.sol",
+            "contracts/interfaces/IImpliedCollateralService.sol",
+            "contracts/interfaces/ILiquidityExtension.sol",
+            "contracts/interfaces/IMalt.sol",
+            "contracts/interfaces/IMaltDataLab.sol",
+            "contracts/interfaces/IMiningService.sol",
+            "contracts/interfaces/IMovingAverage.sol",
+            "contracts/interfaces/IOverflow.sol",
+            "contracts/interfaces/IRewardMine.sol",
+            "contracts/interfaces/IRewardThrottle.sol",
+            "contracts/interfaces/IStabilizerNode.sol",
+            "contracts/interfaces/ISupplyDistributionController.sol",
+            "contracts/interfaces/ISwingTrader.sol",
+            "contracts/interfaces/ITransferService.sol",
+            "contracts/interfaces/ITransferVerification.sol"
+          ]
+        },
+        {
+          "expression": "^0.6.6",
+          "files": [
+            "contracts/interfaces/IERC20Permit.sol"
+          ]
+        }
+      ],
+      "source_files_scanned": 59
+    },
+    "package_manager": {
+      "name": "yarn",
+      "version": null,
+      "lockfile": "yarn.lock"
+    }
+  },
+  "environment": {
+    "variables": {}
+  },
+  "setup": {
+    "network_access": true,
+    "commands": [
+      {
+        "argv": [
+          "bash",
+          "-c",
+          "printf 'MALT_DEPLOY_SEED=test test test test test test test test test test test junk\\nMALT_TESTNET_DEPLOY_SEED=test test test test test test test test test test test junk\\n' > .env"
+        ]
+      },
+      {
+        "argv": [
+          "yarn",
+          "install",
+          "--frozen-lockfile"
+        ]
+      },
+      {
+        "argv": [
+          "yarn",
+          "add",
+          "--dev",
+          "--exact",
+          "--ignore-scripts",
+          "hardhat@2.9.3"
+        ]
+      }
+    ]
+  },
+  "compile": {
+    "network_access": true,
+    "commands": [
+      {
+        "argv": [
+          "./node_modules/.bin/hardhat",
+          "compile"
+        ]
+      }
+    ],
+    "artifacts": [
+      "artifacts/build-info"
+    ],
+    "entrypoints": []
+  },
+  "analysis_input": {
+    "format": "crytic-compile-archive",
+    "path": "analysis_artifacts/2021-11-malt_export_archive.json",
+    "adapter": "hardhat",
+    "requires_ast": true
+  },
+  "repo_id": "2021-11-malt"
+}

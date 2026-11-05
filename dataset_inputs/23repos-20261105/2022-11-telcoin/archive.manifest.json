@@ -1,0 +1,59 @@
+{
+  "schema_version": "1.1.0",
+  "repo_id": "2022-11-telcoin",
+  "source_commit": "5baaefe0a29c2eccede8b8e1a390fd8931606684",
+  "build_recipe_fingerprint": "aac8f0eb1e20e5c239f86b5258c5193ee7951cec0e6ce0c8894994669d59722a",
+  "compile_scope": {
+    "adapter": "hardhat",
+    "target": ".",
+    "compile_framework": "hardhat",
+    "ignore_compile": "--hardhat-ignore-compile",
+    "compiler_arguments": [],
+    "solc_version": null
+  },
+  "analysis_scope": {
+    "scope_root": ".",
+    "policy_version": "production-v1",
+    "implementation_version": "1",
+    "exclude": [
+      "**/mock/**",
+      "**/mocks/**",
+      "**/script/**",
+      "**/scripts/**",
+      "**/test/**",
+      "**/tests/**",
+      "**/*.s.sol",
+      "**/*.t.sol"
+    ],
+    "include": [],
+    "scope_fingerprint": "98c3c961cdc54c3ec248fed0b8db2dfd1c76e6ead1da410e6ff1f26758eb96c9"
+  },
+  "archive_source_root": "/work/2022-11-telcoin/compile-source",
+  "solidity_compilers": {
+    "configured_versions": [
+      "0.8.4"
+    ],
+    "pragma_constraints": [
+      {
+        "expression": "^0.8.0",
+        "files": [
+          "contracts/SimplePlugin.sol",
+          "contracts/StakingModule.sol",
+          "contracts/fee-buyback/FeeBuyback.sol",
+          "contracts/fee-buyback/IFeeBuyback.sol",
+          "contracts/fee-buyback/ISimplePlugin.sol",
+          "contracts/fee-buyback/TieredOwnership.sol",
+          "contracts/interfaces/IPlugin.sol",
+          "contracts/libraries/AuxDataLib.sol",
+          "contracts/test/AuxDataLibWrapper.sol",
+          "contracts/test/InsecureWallet.sol",
+          "contracts/test/MockStakingModule.sol",
+          "contracts/test/TEL.sol",
+          "contracts/test/Token.sol",
+          "contracts/test/YieldSource.sol"
+        ]
+      }
+    ]
+  },
+  "archive_sha256": "07d0687742a983258cee302a43370d307f4741ecfcb4c977ad970ab02dea98c5"
+}

@@ -1,0 +1,144 @@
+{
+  "schema_version": "1.0.0",
+  "generation": {
+    "status": "validated",
+    "generator": "scripts/generate_build_json.py",
+    "evidence_files": [],
+    "warnings": [
+      "The contest repository omits its package manifest plus interfaces/IWETH.sol, interfaces/IMarginTrading.sol, and libraries/UniswapStyleLib.sol; reviewed adapter files and pinned dependencies are created only in the runner's ephemeral copy",
+      "Docker validation pinned solc 0.8.3 for the repository's ^0.8.0 sources",
+      "PMDatasetEntrypoint.sol imports all committed in-scope top-level contracts into one Crytic Compile archive"
+    ]
+  },
+  "source": {
+    "repository_url": "https://github.com/code-423n4/2021-04-marginswap",
+    "ref": "412d4ff61c9dfedb2f7d2fe957d911f7dc4ccfcb",
+    "repo_path": "candidate-repos/2021-04-marginswap",
+    "working_directory": ".",
+    "submodules": false
+  },
+  "framework": "plain-solidity",
+  "toolchain": {
+    "node": {
+      "requirement": null,
+      "source": null,
+      "resolved_version": "14.21.3"
+    },
+    "solidity": {
+      "configured_versions": [
+        "0.8.3"
+      ],
+      "pragma_constraints": [
+        {
+          "expression": ">=0.5.0",
+          "files": [
+            "contracts/UniswapStyleLib.sol"
+          ]
+        },
+        {
+          "expression": "^0.8.0",
+          "files": [
+            "contracts/Admin.sol",
+            "contracts/BaseLending.sol",
+            "contracts/BondLending.sol",
+            "contracts/CrossMarginAccounts.sol",
+            "contracts/CrossMarginLiquidation.sol",
+            "contracts/CrossMarginTrading.sol",
+            "contracts/Fund.sol",
+            "contracts/HourlyBondSubscriptionLending.sol",
+            "contracts/IncentiveDistribution.sol",
+            "contracts/IncentivizedHolder.sol",
+            "contracts/IsolatedMarginAccounts.sol",
+            "contracts/IsolatedMarginLiquidation.sol",
+            "contracts/IsolatedMarginTrading.sol",
+            "contracts/Lending.sol",
+            "contracts/MarginRouter.sol",
+            "contracts/PriceAware.sol",
+            "contracts/RoleAware.sol",
+            "contracts/Roles.sol"
+          ]
+        }
+      ],
+      "source_files_scanned": 19
+    },
+    "package_manager": {
+      "name": "npm",
+      "version": null,
+      "lockfile": null
+    }
+  },
+  "environment": {
+    "variables": {}
+  },
+  "setup": {
+    "network_access": true,
+    "commands": [
+      {
+        "argv": [
+          "solc-select",
+          "use",
+          "0.8.3"
+        ]
+      },
+      {
+        "argv": [
+          "npm",
+          "install",
+          "--ignore-scripts",
+          "--no-save",
+          "@openzeppelin/contracts@4.0.0",
+          "@uniswap/v2-core@1.0.1"
+        ]
+      },
+      {
+        "argv": [
+          "mkdir",
+          "-p",
+          "libraries"
+        ]
+      },
+      {
+        "argv": [
+          "cp",
+          "contracts/UniswapStyleLib.sol",
+          "libraries/UniswapStyleLib.sol"
+        ]
+      }
+    ]
+  },
+  "compile": {
+    "network_access": false,
+    "commands": [],
+    "artifacts": [],
+    "entrypoints": [
+      "PMDatasetEntrypoint.sol"
+    ]
+  },
+  "materialize": {
+    "files": [
+      {
+        "path": "interfaces/IWETH.sol",
+        "content": "// SPDX-License-Identifier: BUSL-1.1\npragma solidity ^0.8.0;\n\ninterface IWETH {\n    function deposit() external payable;\n    function withdraw(uint256 amount) external;\n}\n"
+      },
+      {
+        "path": "interfaces/IMarginTrading.sol",
+        "content": "// SPDX-License-Identifier: BUSL-1.1\npragma solidity ^0.8.0;\n\ninterface IMarginTrading {\n    function registerDeposit(address trader, address token, uint256 depositAmount) external returns (uint256 extinguishableDebt);\n    function registerBorrow(address trader, address borrowToken, uint256 borrowAmount) external;\n    function registerWithdrawal(address trader, address withdrawToken, uint256 withdrawAmount) external;\n    function registerOvercollateralizedBorrow(address trader, address depositToken, uint256 depositAmount, address borrowToken, uint256 withdrawAmount) external;\n    function registerTradeAndBorrow(address trader, address tokenFrom, address tokenTo, uint256 inAmount, uint256 outAmount) external returns (uint256 extinguishableDebt, uint256 borrowAmount);\n    function registerLiquidation(address trader) external;\n    function getHoldingAmounts(address trader) external view returns (address[] memory holdingTokens, uint256[] memory holdingAmounts);\n    function getBorrowAmounts(address trader) external view returns (address[] memory borrowTokens, uint256[] memory borrowAmounts);\n}\n"
+      },
+      {
+        "path": "PMDatasetEntrypoint.sol",
+        "content": "// SPDX-License-Identifier: BUSL-1.1\npragma solidity 0.8.3;\n\nimport './contracts/Admin.sol';\nimport './contracts/BaseLending.sol';\nimport './contracts/BondLending.sol';\nimport './contracts/CrossMarginAccounts.sol';\nimport './contracts/CrossMarginLiquidation.sol';\nimport './contracts/CrossMarginTrading.sol';\nimport './contracts/Fund.sol';\nimport './contracts/HourlyBondSubscriptionLending.sol';\nimport './contracts/IncentiveDistribution.sol';\nimport './contracts/IncentivizedHolder.sol';\nimport './contracts/IsolatedMarginAccounts.sol';\nimport './contracts/IsolatedMarginLiquidation.sol';\nimport './contracts/IsolatedMarginTrading.sol';\nimport './contracts/Lending.sol';\nimport './contracts/MarginRouter.sol';\nimport './contracts/PriceAware.sol';\nimport './contracts/RoleAware.sol';\nimport './contracts/Roles.sol';\n"
+      }
+    ]
+  },
+  "analysis_input": {
+    "format": "crytic-compile-archive",
+    "path": "analysis_artifacts/2021-04-marginswap_export_archive.json",
+    "adapter": "plain-solidity",
+    "requires_ast": true,
+    "compiler_arguments": [
+      "--solc-remaps",
+      "@openzeppelin/=node_modules/@openzeppelin/ @uniswap/=node_modules/@uniswap/"
+    ]
+  },
+  "repo_id": "2021-04-marginswap"
+}

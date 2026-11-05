@@ -1,0 +1,210 @@
+{
+  "schema_version": "1.0.0",
+  "generation": {
+    "status": "validated",
+    "generator": "scripts/generate_build_json.py",
+    "evidence_files": [
+      ".gitmodules",
+      "foundry.toml"
+    ],
+    "warnings": []
+  },
+  "source": {
+    "repository_url": "https://github.com/code-423n4/2023-08-dopex",
+    "ref": "00601a3f4e3f662007b077bf1b201c9f5f00a8b6",
+    "repo_path": "candidate-repos/2023-08-dopex",
+    "working_directory": ".",
+    "submodules": true
+  },
+  "materialize": {
+    "files": [
+      {
+        "path": "contracts/uniswap_v2/IUniswapV2Pair.sol",
+        "content": "// SPDX-License-Identifier: UNLICENSED\npragma solidity 0.8.19;\n\ninterface IUniswapV2Pair {\n  function MINIMUM_LIQUIDITY() external pure returns (uint256);\n  function factory() external view returns (address);\n  function token0() external view returns (address);\n  function token1() external view returns (address);\n  function getReserves() external view returns (uint112 reserve0, uint112 reserve1, uint32 blockTimestampLast);\n  function price0CumulativeLast() external view returns (uint256);\n  function price1CumulativeLast() external view returns (uint256);\n  function kLast() external view returns (uint256);\n  function mint(address to) external returns (uint256 liquidity);\n  function burn(address to) external returns (uint256 amount0, uint256 amount1);\n  function swap(uint256 amount0Out, uint256 amount1Out, address to, bytes calldata data) external;\n  function skim(address to) external;\n  function sync() external;\n  function totalSupply() external view returns (uint256);\n  function balanceOf(address) external view returns (uint256);\n}\n"
+      }
+    ]
+  },
+  "framework": "foundry",
+  "toolchain": {
+    "node": {
+      "requirement": null,
+      "source": null
+    },
+    "solidity": {
+      "configured_versions": [],
+      "pragma_constraints": [
+        {
+          "expression": "0.8.19",
+          "files": [
+            "contracts/amo/UniV2LiquidityAmo.sol",
+            "contracts/amo/UniV3LiquidityAmo.sol",
+            "contracts/core/IRdpxV2Core.sol",
+            "contracts/core/RdpxV2Bond.sol",
+            "contracts/core/RdpxV2Core.sol",
+            "contracts/decaying-bonds/IRdpxDecayingBonds.sol",
+            "contracts/decaying-bonds/RdpxDecayingBonds.sol",
+            "contracts/dpxETH/DpxEthToken.sol",
+            "contracts/dpxETH/IDpxEthToken.sol",
+            "contracts/faucet/Faucet.sol",
+            "contracts/helper/ContractWhitelist.sol",
+            "contracts/helper/Pausable.sol",
+            "contracts/interfaces/ICurveFactory.sol",
+            "contracts/interfaces/IERC20WithBurn.sol",
+            "contracts/interfaces/IOptionPricing.sol",
+            "contracts/interfaces/IRdpxEthOracle.sol",
+            "contracts/interfaces/IReLP.sol",
+            "contracts/interfaces/IUniV2LiquidityAmo.sol",
+            "contracts/interfaces/IVolatilityOracle.sol",
+            "contracts/libraries/ABDKMathQuad.sol",
+            "contracts/libraries/BlackScholes.sol",
+            "contracts/libraries/OptionPricingSimple.sol",
+            "contracts/libraries/TransferHelper.sol",
+            "contracts/mocks/MockDpxEthPriceOracle.sol",
+            "contracts/mocks/MockOptionPricing.sol",
+            "contracts/mocks/MockPriceOracle.sol",
+            "contracts/mocks/MockRdpxEthPriceOracle.sol",
+            "contracts/mocks/MockRdpxV2ReceiptToken.sol",
+            "contracts/mocks/MockStakingStrategy.sol",
+            "contracts/mocks/MockToken.sol",
+            "contracts/mocks/MockVolatilityOracle.sol",
+            "contracts/oracles/DpxEthOracle.sol",
+            "contracts/oracles/IDpxEthOracle.sol",
+            "contracts/perp-vault/IPerpetualAtlanticVault.sol",
+            "contracts/perp-vault/IPerpetualAtlanticVaultLP.sol",
+            "contracts/perp-vault/PerpetualAtlanticVault.sol",
+            "contracts/perp-vault/PerpetualAtlanticVaultLP.sol",
+            "contracts/reLP/ReLPContract.sol",
+            "contracts/reserve/IRdpxReserve.sol",
+            "contracts/reserve/RdpxReserve.sol",
+            "contracts/uniswap_V2/IUniswapV2Factory.sol",
+            "contracts/uniswap_V2/IUniswapV2Pair.sol",
+            "contracts/uniswap_V2/IUniswapV2Router.sol",
+            "contracts/uniswap_V2/libraries/UniswapV2Library.sol",
+            "tests/RdpxDecayingBondsTest.t.sol",
+            "tests/perp-vault/Admin.t.sol",
+            "tests/perp-vault/Integration.t.sol",
+            "tests/perp-vault/Setup.t.sol",
+            "tests/perp-vault/Unit.t.sol",
+            "tests/rdpxV2-core/Admin.t.sol",
+            "tests/rdpxV2-core/Integration.t.sol",
+            "tests/rdpxV2-core/Periphery.t.sol",
+            "tests/rdpxV2-core/Setup.t.sol",
+            "tests/rdpxV2-core/Unit.t.sol"
+          ]
+        },
+        {
+          "expression": ">= 0.8.0",
+          "files": [
+            "contracts/uniswap_V3/periphery/libraries/OracleLibrary.sol"
+          ]
+        },
+        {
+          "expression": ">=0.4.0",
+          "files": [
+            "contracts/uniswap_V3/libraries/FixedPoint96.sol",
+            "contracts/uniswap_V3/libraries/FullMath.sol"
+          ]
+        },
+        {
+          "expression": ">=0.5.0",
+          "files": [
+            "contracts/uniswap_V3/libraries/LiquidityAmounts.sol",
+            "contracts/uniswap_V3/libraries/Testing.sol",
+            "contracts/uniswap_V3/libraries/TickMath.sol",
+            "contracts/uniswap_V3/periphery/interfaces/IPeripheryImmutableState.sol",
+            "contracts/uniswap_V3/periphery/libraries/PoolAddress.sol"
+          ]
+        },
+        {
+          "expression": ">=0.6.11",
+          "files": [
+            "contracts/uniswap_V3/IUniswapV3Factory.sol",
+            "contracts/uniswap_V3/IUniswapV3Pool.sol",
+            "contracts/uniswap_V3/IUniswapV3PoolDeployer.sol",
+            "contracts/uniswap_V3/IUniswapV3PositionsNFT.sol",
+            "contracts/uniswap_V3/pool/IUniswapV3PoolActions.sol",
+            "contracts/uniswap_V3/pool/IUniswapV3PoolDerivedState.sol",
+            "contracts/uniswap_V3/pool/IUniswapV3PoolEvents.sol",
+            "contracts/uniswap_V3/pool/IUniswapV3PoolImmutables.sol",
+            "contracts/uniswap_V3/pool/IUniswapV3PoolOwnerActions.sol",
+            "contracts/uniswap_V3/pool/IUniswapV3PoolState.sol"
+          ]
+        },
+        {
+          "expression": ">=0.7.5",
+          "files": [
+            "contracts/uniswap_V3/ISwapRouter.sol",
+            "contracts/uniswap_V3/periphery/interfaces/IERC721Permit.sol",
+            "contracts/uniswap_V3/periphery/interfaces/INonfungiblePositionManager.sol",
+            "contracts/uniswap_V3/periphery/interfaces/IPeripheryPayments.sol",
+            "contracts/uniswap_V3/periphery/interfaces/IPoolInitializer.sol"
+          ]
+        },
+        {
+          "expression": "^0.8.19",
+          "files": [
+            "contracts/interfaces/IRdpxV2ReceiptToken.sol"
+          ]
+        },
+        {
+          "expression": "^0.8.9",
+          "files": [
+            "contracts/interfaces/IStableSwap.sol"
+          ]
+        }
+      ],
+      "source_files_scanned": 79
+    },
+    "package_manager": {
+      "name": "none",
+      "version": null,
+      "lockfile": null
+    }
+  },
+  "environment": {
+    "variables": {}
+  },
+  "setup": {
+    "network_access": false,
+    "commands": [
+      {
+        "argv": [
+          "git",
+          "submodule",
+          "update",
+          "--init",
+          "--recursive"
+        ]
+      }
+    ]
+  },
+  "compile": {
+    "network_access": true,
+    "commands": [
+      {
+        "argv": [
+          "forge",
+          "build",
+          "--build-info",
+          "--skip",
+          "test",
+          "--skip",
+          "mocks",
+          "--via-ir",
+          "--optimize"
+        ]
+      }
+    ],
+    "artifacts": [
+      "out"
+    ],
+    "entrypoints": []
+  },
+  "analysis_input": {
+    "format": "crytic-compile-archive",
+    "path": "analysis_artifacts/2023-08-dopex_export_archive.json",
+    "adapter": "foundry",
+    "requires_ast": true
+  },
+  "repo_id": "2023-08-dopex"
+}

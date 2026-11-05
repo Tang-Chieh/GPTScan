@@ -1,0 +1,190 @@
+{
+  "schema_version": "1.0.0",
+  "repo_id": "2021-08-notional",
+  "generation": {
+    "status": "draft",
+    "generator": "scripts/generate_build_json.py",
+    "evidence_files": [
+      "brownie-config.yaml"
+    ],
+    "warnings": []
+  },
+  "source": {
+    "repository_url": "https://github.com/code-423n4/2021-08-notional",
+    "ref": "774f07ef5cb61c85f3ea9cb77b42da380f9a313a",
+    "repo_path": "candidate-repos/2021-08-notional",
+    "working_directory": ".",
+    "submodules": false
+  },
+  "framework": "brownie",
+  "toolchain": {
+    "node": {
+      "requirement": null,
+      "source": null
+    },
+    "solidity": {
+      "configured_versions": [],
+      "pragma_constraints": [
+        {
+          "expression": ">0.7.0",
+          "files": [
+            "contracts/external/FreeCollateralExternal.sol",
+            "contracts/external/PausedRouter.sol",
+            "contracts/external/Router.sol",
+            "contracts/external/SettleAssetsExternal.sol",
+            "contracts/external/Views.sol",
+            "contracts/external/actions/AccountAction.sol",
+            "contracts/external/actions/BatchAction.sol",
+            "contracts/external/actions/ERC1155Action.sol",
+            "contracts/external/actions/GovernanceAction.sol",
+            "contracts/external/actions/InitializeMarketsAction.sol",
+            "contracts/external/actions/LiquidateCurrencyAction.sol",
+            "contracts/external/actions/LiquidatefCashAction.sol",
+            "contracts/external/actions/TradingAction.sol",
+            "contracts/external/actions/nTokenAction.sol",
+            "contracts/external/actions/nTokenMintAction.sol",
+            "contracts/external/actions/nTokenRedeemAction.sol",
+            "contracts/external/adapters/CompoundToNotionalV2.sol",
+            "contracts/external/adapters/NotionalV1ToNotionalV2.sol",
+            "contracts/external/adapters/nTokenERC20Proxy.sol",
+            "contracts/global/StorageLayoutV1.sol",
+            "contracts/global/Types.sol",
+            "contracts/internal/AccountContextHandler.sol",
+            "contracts/internal/balances/BalanceHandler.sol",
+            "contracts/internal/balances/Incentives.sol",
+            "contracts/internal/balances/TokenHandler.sol",
+            "contracts/internal/liquidation/LiquidateCurrency.sol",
+            "contracts/internal/liquidation/LiquidatefCash.sol",
+            "contracts/internal/liquidation/LiquidationHelpers.sol",
+            "contracts/internal/markets/AssetRate.sol",
+            "contracts/internal/markets/CashGroup.sol",
+            "contracts/internal/markets/DateTime.sol",
+            "contracts/internal/markets/Market.sol",
+            "contracts/internal/nTokenHandler.sol",
+            "contracts/internal/portfolio/BitmapAssetsHandler.sol",
+            "contracts/internal/portfolio/PortfolioHandler.sol",
+            "contracts/internal/portfolio/TransferAssets.sol",
+            "contracts/internal/settlement/SettleBitmapAssets.sol",
+            "contracts/internal/settlement/SettlePortfolioAssets.sol",
+            "contracts/internal/valuation/AssetHandler.sol",
+            "contracts/internal/valuation/ExchangeRate.sol",
+            "contracts/internal/valuation/FreeCollateral.sol",
+            "contracts/math/Bitmap.sol",
+            "contracts/math/FloatingPoint56.sol",
+            "contracts/math/SafeInt256.sol",
+            "contracts/mocks/BaseMockLiquidation.sol",
+            "contracts/mocks/MockAccountContextHandler.sol",
+            "contracts/mocks/MockAggregator.sol",
+            "contracts/mocks/MockAssetHandler.sol",
+            "contracts/mocks/MockAssetRate.sol",
+            "contracts/mocks/MockBalanceHandler.sol",
+            "contracts/mocks/MockBitmap.sol",
+            "contracts/mocks/MockBitmapAssetsHandler.sol",
+            "contracts/mocks/MockCToken.sol",
+            "contracts/mocks/MockCashGroup.sol",
+            "contracts/mocks/MockERC20.sol",
+            "contracts/mocks/MockExchange.sol",
+            "contracts/mocks/MockExchangeRate.sol",
+            "contracts/mocks/MockFlashLender.sol",
+            "contracts/mocks/MockFloatingPoint56.sol",
+            "contracts/mocks/MockFreeCollateral.sol",
+            "contracts/mocks/MockIncentives.sol",
+            "contracts/mocks/MockLiquidation.sol",
+            "contracts/mocks/MockMarket.sol",
+            "contracts/mocks/MockNTokenHandler.sol",
+            "contracts/mocks/MockPortfolioHandler.sol",
+            "contracts/mocks/MockSettleAssets.sol",
+            "contracts/mocks/MockTokenHandler.sol",
+            "interfaces/IERC1155TokenReceiver.sol",
+            "interfaces/notional/NotionalCallback.sol",
+            "interfaces/notional/NotionalGovernance.sol",
+            "interfaces/notional/NotionalProxy.sol",
+            "interfaces/notional/NotionalViews.sol",
+            "interfaces/notional/nERC1155Interface.sol",
+            "interfaces/notional/nTokenERC20.sol"
+          ]
+        },
+        {
+          "expression": ">=0.6.0",
+          "files": [
+            "interfaces/chainlink/AggregatorInterface.sol",
+            "interfaces/chainlink/AggregatorV2V3Interface.sol",
+            "interfaces/chainlink/AggregatorV3Interface.sol"
+          ]
+        },
+        {
+          "expression": ">=0.7.0",
+          "files": [
+            "interfaces/notional/AssetRateAdapter.sol",
+            "interfaces/notional/CashMarketInterface.sol"
+          ]
+        },
+        {
+          "expression": "^0.5.16",
+          "files": [
+            "contracts/mocks/CompoundImports.sol"
+          ]
+        },
+        {
+          "expression": "^0.7.0",
+          "files": [
+            "contracts/external/adapters/cTokenAggregator.sol",
+            "contracts/external/governance/GovernorAlpha.sol",
+            "contracts/external/governance/NoteERC20.sol",
+            "contracts/external/governance/Reservoir.sol",
+            "contracts/global/Constants.sol",
+            "contracts/math/ABDKMath64x64.sol",
+            "contracts/mocks/MockTransferOperator.sol",
+            "contracts/mocks/MockWETH.sol",
+            "contracts/mocks/OpenZeppelinImports.sol",
+            "contracts/proxy/ERC1967/ERC1967Proxy.sol",
+            "contracts/proxy/ERC1967/ERC1967Upgrade.sol",
+            "contracts/proxy/Proxy.sol",
+            "contracts/proxy/nProxy.sol",
+            "contracts/proxy/utils/StorageSlot.sol",
+            "contracts/proxy/utils/UUPSUpgradeable.sol",
+            "interfaces/compound/CErc20Interface.sol",
+            "interfaces/compound/CEtherInterface.sol",
+            "interfaces/compound/CTokenInterface.sol",
+            "interfaces/notional/INoteERC20.sol"
+          ]
+        }
+      ],
+      "source_files_scanned": 99
+    },
+    "package_manager": {
+      "name": "none",
+      "version": null,
+      "lockfile": null
+    }
+  },
+  "environment": {
+    "variables": {}
+  },
+  "setup": {
+    "network_access": false,
+    "commands": []
+  },
+  "compile": {
+    "network_access": true,
+    "commands": [
+      {
+        "argv": [
+          "brownie",
+          "compile",
+          "--all"
+        ]
+      }
+    ],
+    "artifacts": [
+      "build"
+    ],
+    "entrypoints": []
+  },
+  "analysis_input": {
+    "format": "crytic-compile-archive",
+    "path": "analysis_artifacts/2021-08-notional_export_archive.json",
+    "adapter": "brownie",
+    "requires_ast": true
+  }
+}

@@ -4,6 +4,8 @@
 
 Development branch: [`price-manipulation`](https://github.com/Tang-Chieh/GPTScan/tree/price-manipulation).
 **Recommended dataset entrypoint:** [共用 Reusable Dataset archive adapter](docs/REUSABLE_ADAPTER_ZH.md).
+
+**已驗證的 23 個 repo inputs：** [Archive bundle、checksum 與解壓／重現步驟](dataset_inputs/23repos-20261105/README.md)。
 It delegates compilation to the existing Docker runner and feeds verified archives to Falcon
 without recompiling; the old local compilation runner remains available for comparison.
 See [中文重現與修改說明](docs/REPRODUCE_ZH.md) and [validation record](docs/VALIDATION.md).

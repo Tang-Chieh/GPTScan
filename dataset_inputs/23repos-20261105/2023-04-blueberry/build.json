@@ -1,0 +1,183 @@
+{
+  "schema_version": "1.0.0",
+  "generation": {
+    "status": "validated",
+    "generator": "scripts/generate_build_json.py",
+    "evidence_files": [
+      "blueberry-core/hardhat.config.ts",
+      "blueberry-core/package.json",
+      "blueberry-core/yarn.lock"
+    ],
+    "warnings": [
+      "Node.js was not declared upstream; Docker validation pinned Node.js 18.20.8"
+    ]
+  },
+  "source": {
+    "repository_url": "https://github.com/sherlock-audit/2023-04-blueberry",
+    "ref": "96eb1829571dc46e1a387985bd56989702c5e1dc",
+    "repo_path": "candidate-repos/2023-04-blueberry",
+    "working_directory": "blueberry-core",
+    "submodules": false
+  },
+  "framework": "hardhat",
+  "toolchain": {
+    "node": {
+      "requirement": null,
+      "source": null,
+      "resolved_version": "18.20.8"
+    },
+    "solidity": {
+      "configured_versions": [
+        "0.7.6",
+        "0.8.16"
+      ],
+      "pragma_constraints": [
+        {
+          "expression": "0.8.16",
+          "files": [
+            "contracts/BlueBerryBank.sol",
+            "contracts/FeeManager.sol",
+            "contracts/ProtocolConfig.sol",
+            "contracts/interfaces/IBank.sol",
+            "contracts/interfaces/IBaseOracle.sol",
+            "contracts/interfaces/ICoreOracle.sol",
+            "contracts/interfaces/ICurveOracle.sol",
+            "contracts/interfaces/IERC20Wrapper.sol",
+            "contracts/interfaces/IFeeManager.sol",
+            "contracts/interfaces/IHardVault.sol",
+            "contracts/interfaces/IProtocolConfig.sol",
+            "contracts/interfaces/ISoftVault.sol",
+            "contracts/interfaces/IWAuraPools.sol",
+            "contracts/interfaces/IWConvexPools.sol",
+            "contracts/interfaces/IWCurveGauge.sol",
+            "contracts/interfaces/IWERC20.sol",
+            "contracts/interfaces/IWETH.sol",
+            "contracts/interfaces/IWIchiFarm.sol",
+            "contracts/interfaces/aura/IAuraPools.sol",
+            "contracts/interfaces/aura/IAuraRewarder.sol",
+            "contracts/interfaces/balancer/IBalancerPool.sol",
+            "contracts/interfaces/balancer/IBalancerVault.sol",
+            "contracts/interfaces/band/IStdReference.sol",
+            "contracts/interfaces/chainlink/IFeedRegistry.sol",
+            "contracts/interfaces/compound/ICErc20.sol",
+            "contracts/interfaces/compound/ICErc20_2.sol",
+            "contracts/interfaces/compound/ICEtherEx.sol",
+            "contracts/interfaces/compound/IComptroller.sol",
+            "contracts/interfaces/convex/ICvxPools.sol",
+            "contracts/interfaces/convex/IRewarder.sol",
+            "contracts/interfaces/curve/ICurveAddressProvider.sol",
+            "contracts/interfaces/curve/ICurveCryptoFactory.sol",
+            "contracts/interfaces/curve/ICurveCryptoSwapRegistry.sol",
+            "contracts/interfaces/curve/ICurveFactory.sol",
+            "contracts/interfaces/curve/ICurveGaugeController.sol",
+            "contracts/interfaces/curve/ICurvePool.sol",
+            "contracts/interfaces/curve/ICurveRegistry.sol",
+            "contracts/interfaces/curve/ILiquidityGauge.sol",
+            "contracts/interfaces/ichi/IICHIVault.sol",
+            "contracts/interfaces/ichi/IICHIVaultFactory.sol",
+            "contracts/interfaces/ichi/IIchiFarm.sol",
+            "contracts/interfaces/ichi/IIchiV2.sol",
+            "contracts/interfaces/paraswap/IParaswap.sol",
+            "contracts/interfaces/sushi/IMasterChef.sol",
+            "contracts/interfaces/uniswap/ISwapRouter.sol",
+            "contracts/interfaces/uniswap/IUniswapV2Router02.sol",
+            "contracts/libraries/BBMath.sol",
+            "contracts/libraries/Paraswap/PSwapLib.sol",
+            "contracts/libraries/Paraswap/Utils.sol",
+            "contracts/libraries/UniV3/UniV3WrappedLibMockup.sol",
+            "contracts/mock/MockAttack.sol",
+            "contracts/mock/MockERC20.sol",
+            "contracts/mock/MockFeedRegistry.sol",
+            "contracts/mock/MockIchiFarm.sol",
+            "contracts/mock/MockIchiV2.sol",
+            "contracts/mock/MockIchiVault.sol",
+            "contracts/mock/MockOracle.sol",
+            "contracts/mock/MockWETH.sol",
+            "contracts/oracle/AggregatorOracle.sol",
+            "contracts/oracle/BalancerPairOracle.sol",
+            "contracts/oracle/BandAdapterOracle.sol",
+            "contracts/oracle/BaseAdapter.sol",
+            "contracts/oracle/BaseOracleExt.sol",
+            "contracts/oracle/ChainlinkAdapterOracle.sol",
+            "contracts/oracle/CoreOracle.sol",
+            "contracts/oracle/CurveOracle.sol",
+            "contracts/oracle/IchiVaultOracle.sol",
+            "contracts/oracle/UniswapV2Oracle.sol",
+            "contracts/oracle/UniswapV3AdapterOracle.sol",
+            "contracts/oracle/UsingBaseOracle.sol",
+            "contracts/spell/AuraSpell.sol",
+            "contracts/spell/BasicSpell.sol",
+            "contracts/spell/ConvexSpell.sol",
+            "contracts/spell/CurveSpell.sol",
+            "contracts/spell/IchiSpell.sol",
+            "contracts/spell/ShortLongSpell.sol",
+            "contracts/utils/BlueBerryConst.sol",
+            "contracts/utils/BlueBerryErrors.sol",
+            "contracts/utils/ERC1155NaiveReceiver.sol",
+            "contracts/utils/EnsureApprove.sol",
+            "contracts/vault/HardVault.sol",
+            "contracts/vault/SoftVault.sol",
+            "contracts/wrapper/WAuraPools.sol",
+            "contracts/wrapper/WConvexPools.sol",
+            "contracts/wrapper/WCurveGauge.sol",
+            "contracts/wrapper/WERC20.sol",
+            "contracts/wrapper/WIchiFarm.sol"
+          ]
+        },
+        {
+          "expression": ">=0.5.0 <0.8.0",
+          "files": [
+            "contracts/libraries/UniV3/UniV3WrappedLib.sol"
+          ]
+        }
+      ],
+      "source_files_scanned": 88
+    },
+    "package_manager": {
+      "name": "yarn",
+      "version": null,
+      "lockfile": "yarn.lock"
+    }
+  },
+  "environment": {
+    "variables": {
+      "DEPLOY_ACCOUNT_KEY": "0x1111111111111111111111111111111111111111111111111111111111111111",
+      "ALCHEMY_API_KEY": "offline-build",
+      "ETHERSCAN_API_KEY": "offline-build"
+    }
+  },
+  "setup": {
+    "network_access": true,
+    "commands": [
+      {
+        "argv": [
+          "yarn",
+          "install",
+          "--frozen-lockfile"
+        ]
+      }
+    ]
+  },
+  "compile": {
+    "network_access": true,
+    "commands": [
+      {
+        "argv": [
+          "./node_modules/.bin/hardhat",
+          "compile"
+        ]
+      }
+    ],
+    "artifacts": [
+      "artifacts/build-info"
+    ],
+    "entrypoints": []
+  },
+  "analysis_input": {
+    "format": "crytic-compile-archive",
+    "path": "analysis_artifacts/2023-04-blueberry_export_archive.json",
+    "adapter": "hardhat",
+    "requires_ast": true
+  },
+  "repo_id": "2023-04-blueberry"
+}

@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.1.0",
+  "repo_id": "2022-01-sandclock",
+  "source_commit": "a90ad3824955327597be00bb0bd183a9c228a4fb",
+  "build_recipe_fingerprint": "1fbfa2ec94159e0a98f3e6ca41c9cd231876eb6b43439578fa6729b81b1c1509",
+  "compile_scope": {
+    "adapter": "hardhat",
+    "target": ".",
+    "compile_framework": "hardhat",
+    "ignore_compile": "--hardhat-ignore-compile",
+    "compiler_arguments": [],
+    "solc_version": null
+  },
+  "analysis_scope": {
+    "scope_root": "sandclock",
+    "policy_version": "production-v1",
+    "implementation_version": "1",
+    "exclude": [
+      "**/mock/**",
+      "**/mocks/**",
+      "**/script/**",
+      "**/scripts/**",
+      "**/test/**",
+      "**/tests/**",
+      "**/*.s.sol",
+      "**/*.t.sol"
+    ],
+    "include": [],
+    "scope_fingerprint": "98c3c961cdc54c3ec248fed0b8db2dfd1c76e6ead1da410e6ff1f26758eb96c9"
+  },
+  "archive_source_root": "/work/2022-01-sandclock/compile-source/sandclock",
+  "solidity_compilers": {
+    "configured_versions": [
+      "0.8.10"
+    ],
+    "pragma_constraints": [
+      {
+        "expression": "=0.8.10",
+        "files": [
+          "contracts/mock/MockERC20.sol",
+          "contracts/mock/MockStrategy.sol",
+          "contracts/test/TestERC20.sol",
+          "contracts/vault/Depositors.sol"
+        ]
+      },
+      {
+        "expression": "^0.8.10",
+        "files": [
+          "contracts/SandclockFactory.sol",
+          "contracts/Vault.sol",
+          "contracts/integrations/IIntegration.sol",
+          "contracts/mock/MockCurvePool.sol",
+          "contracts/mock/MockEthAnchorRouter.sol",
+          "contracts/mock/MockExchangeRateFeeder.sol",
+          "contracts/mock/MockVault.sol",
+          "contracts/strategy/BaseStrategy.sol",
+          "contracts/strategy/IStrategy.sol",
+          "contracts/strategy/NonUSTStrategy.sol",
+          "contracts/strategy/USTStrategy.sol",
+          "contracts/strategy/anchor/IConversionPool.sol",
+          "contracts/strategy/anchor/IEthAnchorRouter.sol",
+          "contracts/strategy/anchor/IExchangeRateFeeder.sol",
+          "contracts/strategy/curve/ICurve.sol",
+          "contracts/vault/Claimers.sol",
+          "contracts/vault/IClaimers.sol",
+          "contracts/vault/IVault.sol",
+          "contracts/vault/IVaultSponsoring.sol"
+        ]
+      }
+    ]
+  },
+  "archive_sha256": "b846a9a37586a4107fb1a3464a71d2f4eff7fb4f8cb3b2715afb665d2df0199f"
+}

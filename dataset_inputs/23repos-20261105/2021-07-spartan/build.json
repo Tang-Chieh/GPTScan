@@ -1,0 +1,112 @@
+{
+  "schema_version": "1.0.0",
+  "generation": {
+    "status": "validated",
+    "generator": "scripts/generate_build_json.py",
+    "evidence_files": [],
+    "warnings": [
+      "Docker validation pinned the repository's exact solc 0.8.3 requirement",
+      "PMDatasetEntrypoint.sol imports all ten contest-scope top-level contracts into one Crytic Compile archive",
+      "contracts/outside-scope is intentionally excluded and also contains unresolved relative imports in the upstream contest snapshot"
+    ]
+  },
+  "source": {
+    "repository_url": "https://github.com/code-423n4/2021-07-spartan",
+    "ref": "e2555aab44d9760fdd640df9095b7235b70f035e",
+    "repo_path": "candidate-repos/2021-07-spartan",
+    "working_directory": ".",
+    "submodules": false
+  },
+  "framework": "plain-solidity",
+  "toolchain": {
+    "node": {
+      "requirement": null,
+      "source": null
+    },
+    "solidity": {
+      "configured_versions": [
+        "0.8.3"
+      ],
+      "pragma_constraints": [
+        {
+          "expression": "0.8.3",
+          "files": [
+            "contracts/BondVault.sol",
+            "contracts/Dao.sol",
+            "contracts/DaoVault.sol",
+            "contracts/Pool.sol",
+            "contracts/Router.sol",
+            "contracts/Synth.sol",
+            "contracts/Utils.sol",
+            "contracts/interfaces/iBASE.sol",
+            "contracts/interfaces/iBASEv1.sol",
+            "contracts/interfaces/iBEP20.sol",
+            "contracts/interfaces/iBEP677.sol",
+            "contracts/interfaces/iBONDVAULT.sol",
+            "contracts/interfaces/iDAO.sol",
+            "contracts/interfaces/iDAOVAULT.sol",
+            "contracts/interfaces/iPOOL.sol",
+            "contracts/interfaces/iPOOLFACTORY.sol",
+            "contracts/interfaces/iRESERVE.sol",
+            "contracts/interfaces/iROUTER.sol",
+            "contracts/interfaces/iSYNTH.sol",
+            "contracts/interfaces/iSYNTHFACTORY.sol",
+            "contracts/interfaces/iSYNTHVAULT.sol",
+            "contracts/interfaces/iUTILS.sol",
+            "contracts/interfaces/iWBNB.sol",
+            "contracts/outside-scope/FallenSpartans.sol",
+            "contracts/outside-scope/Reserve.sol",
+            "contracts/outside-scope/Sparta.sol",
+            "contracts/poolFactory.sol",
+            "contracts/synthFactory.sol",
+            "contracts/synthVault.sol"
+          ]
+        }
+      ],
+      "source_files_scanned": 29
+    },
+    "package_manager": {
+      "name": "none",
+      "version": null,
+      "lockfile": null
+    }
+  },
+  "environment": {
+    "variables": {}
+  },
+  "setup": {
+    "network_access": false,
+    "commands": [
+      {
+        "argv": [
+          "solc-select",
+          "use",
+          "0.8.3"
+        ]
+      }
+    ]
+  },
+  "compile": {
+    "network_access": true,
+    "commands": [],
+    "artifacts": [],
+    "entrypoints": [
+      "PMDatasetEntrypoint.sol"
+    ]
+  },
+  "materialize": {
+    "files": [
+      {
+        "path": "PMDatasetEntrypoint.sol",
+        "content": "// SPDX-License-Identifier: MIT\npragma solidity 0.8.3;\n\nimport './contracts/BondVault.sol';\nimport './contracts/Dao.sol';\nimport './contracts/DaoVault.sol';\nimport './contracts/Pool.sol';\nimport './contracts/Router.sol';\nimport './contracts/Synth.sol';\nimport './contracts/Utils.sol';\nimport './contracts/poolFactory.sol';\nimport './contracts/synthFactory.sol';\nimport './contracts/synthVault.sol';\n"
+      }
+    ]
+  },
+  "analysis_input": {
+    "format": "crytic-compile-archive",
+    "path": "analysis_artifacts/2021-07-spartan_export_archive.json",
+    "adapter": "plain-solidity",
+    "requires_ast": true
+  },
+  "repo_id": "2021-07-spartan"
+}
