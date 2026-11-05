@@ -94,6 +94,25 @@ Source commit／source bytes 不一致會明確失敗，請勿將 failed 當成�
 這一步才會使用模型額度並嘗試產生 `output.json`／`prediction_case.json`。
 不要把 preflight 成功解讀為已經驗證完整模型分析成功。
 
+### 批次完整執行（另外消耗模型額度）
+
+```bash
+.venv/bin/python scripts/run_reusable_batch.py \
+  --plan outputs/bundle-inputs/archive_plan.json \
+  --reusable-root /path/to/prototype-reusable-dataset \
+  --contract-file /path/to/prototype/src/benchmark_eval/contract.py \
+  --token-file /path/to/authorized/auth-gateway.token \
+  --model openai-codex/gpt-5.6-luna \
+  --timeout-minutes 30 \
+  --output-dir outputs/gptscan-full-batch
+```
+
+逐一使用 archive，不重建 Docker。每 5 秒更新 summary／README，成功且通過
+PredictionCase schema 的結果集中在 `predictions/`。模型回應的 model／usage metadata
+有提供才記錄，不以設定的 model 名稱冒充 server 回應。未進入模型的零候選 repo
+另外標記 coverage note；失敗／逾時不算零 findings。遇到 401／403／429 暫停整批，
+不切換 API key 或其他模型。本指令不跑 Judge，也不讀 ground-truth findings。
+
 ## 分析範圍與授權
 
 Production roots 與依賴閉包選擇保留在 manifest；不是偵測所有測試／script／vendor。
