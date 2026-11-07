@@ -1,0 +1,85 @@
+{
+  "repo_id": "2023-04-blueberry",
+  "detector_metadata": {
+    "detector_version": "gptscan-price-minimal-upstream7-v3",
+    "llm_model": "openai-codex/gpt-5.6-luna"
+  },
+  "predictions": [
+    {
+      "finding_id": "GPTSCAN-645d0c4c1d33e497",
+      "title": "MWE-200: Insecure LP Token Value Calculation",
+      "description": "Liquidity token value/price can be manipulated to cause flashloan attacks.",
+      "impact": "Manipulating LP token valuation inputs may misprice liquidity positions and distort financial operation amounts, potentially causing incorrect payouts or loss of funds. Actual exploitability requires further verification.",
+      "mitigation": "Do not use AMM pool or custom liquidity calculation to caculate LP token value/price.",
+      "vulnerable_code": [
+        {
+          "file": "blueberry-core/contracts/oracle/CurveOracle.sol",
+          "contract": "CurveOracle",
+          "function": "getPrice(address)",
+          "start_line": 122,
+          "end_line": 134
+        }
+      ],
+      "severity": "HIGH",
+      "report_basis": "rule-template; not an LLM-generated exploit proof",
+      "rule_id": "price-manipulation"
+    },
+    {
+      "finding_id": "GPTSCAN-dc8246d6a7bfa6c2",
+      "title": "MWE-200: Insecure LP Token Value Calculation",
+      "description": "Liquidity token value/price can be manipulated to cause flashloan attacks.",
+      "impact": "Manipulating LP token valuation inputs may misprice liquidity positions and distort financial operation amounts, potentially causing incorrect payouts or loss of funds. Actual exploitability requires further verification.",
+      "mitigation": "Do not use AMM pool or custom liquidity calculation to caculate LP token value/price.",
+      "vulnerable_code": [
+        {
+          "file": "blueberry-core/contracts/oracle/UniswapV2Oracle.sol",
+          "contract": "UniswapV2Oracle",
+          "function": "getPrice(address)",
+          "start_line": 33,
+          "end_line": 51
+        }
+      ],
+      "severity": "HIGH",
+      "report_basis": "rule-template; not an LLM-generated exploit proof",
+      "rule_id": "price-manipulation"
+    },
+    {
+      "finding_id": "GPTSCAN-3d073c52e85135c8",
+      "title": "MWE-200: Insecure LP Token Value Calculation",
+      "description": "Liquidity token value/price can be manipulated to cause flashloan attacks.",
+      "impact": "Manipulating LP token valuation inputs may misprice liquidity positions and distort financial operation amounts, potentially causing incorrect payouts or loss of funds. Actual exploitability requires further verification.",
+      "mitigation": "Do not use AMM pool or custom liquidity calculation to caculate LP token value/price.",
+      "vulnerable_code": [
+        {
+          "file": "blueberry-core/contracts/spell/AuraSpell.sol",
+          "contract": "AuraSpell",
+          "function": "openPositionFarm(BasicSpell.OpenPosParam)",
+          "start_line": 63,
+          "end_line": 147
+        }
+      ],
+      "severity": "HIGH",
+      "report_basis": "rule-template; not an LLM-generated exploit proof",
+      "rule_id": "price-manipulation"
+    },
+    {
+      "finding_id": "GPTSCAN-20a71a684d2235f9",
+      "title": "MWE-200: Insecure LP Token Value Calculation",
+      "description": "Liquidity token value/price can be manipulated to cause flashloan attacks.",
+      "impact": "Manipulating LP token valuation inputs may misprice liquidity positions and distort financial operation amounts, potentially causing incorrect payouts or loss of funds. Actual exploitability requires further verification.",
+      "mitigation": "Do not use AMM pool or custom liquidity calculation to caculate LP token value/price.",
+      "vulnerable_code": [
+        {
+          "file": "blueberry-core/contracts/spell/BasicSpell.sol",
+          "contract": "BasicSpell",
+          "function": "_validateMaxPosSize(uint256)",
+          "start_line": 198,
+          "end_line": 207
+        }
+      ],
+      "severity": "HIGH",
+      "report_basis": "rule-template; not an LLM-generated exploit proof",
+      "rule_id": "price-manipulation"
+    }
+  ]
+}

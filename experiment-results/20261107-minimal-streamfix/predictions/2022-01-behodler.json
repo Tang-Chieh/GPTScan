@@ -1,0 +1,220 @@
+{
+  "repo_id": "2022-01-behodler",
+  "detector_metadata": {
+    "detector_version": "gptscan-price-minimal-upstream7-v3",
+    "llm_model": "openai-codex/gpt-5.6-luna"
+  },
+  "predictions": [
+    {
+      "finding_id": "GPTSCAN-44f19166cd311af9",
+      "title": "MWE-200: Insecure LP Token Value Calculation",
+      "description": "Liquidity token value/price can be manipulated to cause flashloan attacks.",
+      "impact": "Manipulating LP token valuation inputs may misprice liquidity positions and distort financial operation amounts, potentially causing incorrect payouts or loss of funds. Actual exploitability requires further verification.",
+      "mitigation": "Do not use AMM pool or custom liquidity calculation to caculate LP token value/price.",
+      "vulnerable_code": [
+        {
+          "file": "contracts/TokenProxies/RebaseProxy.sol",
+          "contract": "RebaseProxy",
+          "function": "redeemRate()",
+          "start_line": 19,
+          "end_line": 24
+        },
+        {
+          "file": "contracts/TokenProxies/RebaseProxy.sol",
+          "contract": "RebaseProxy",
+          "function": "redeem(address,uint256)",
+          "start_line": 40,
+          "end_line": 49
+        }
+      ],
+      "severity": "HIGH",
+      "report_basis": "rule-template; not an LLM-generated exploit proof",
+      "rule_id": "price-manipulation"
+    },
+    {
+      "finding_id": "GPTSCAN-126f03bedae44d8a",
+      "title": "MWE-200: Insecure LP Token Value Calculation",
+      "description": "Liquidity token value/price can be manipulated to cause flashloan attacks.",
+      "impact": "Manipulating LP token valuation inputs may misprice liquidity positions and distort financial operation amounts, potentially causing incorrect payouts or loss of funds. Actual exploitability requires further verification.",
+      "mitigation": "Do not use AMM pool or custom liquidity calculation to caculate LP token value/price.",
+      "vulnerable_code": [
+        {
+          "file": "contracts/TokenProxies/RebaseProxy.sol",
+          "contract": "RebaseProxy",
+          "function": "mint(address,uint256)",
+          "start_line": 26,
+          "end_line": 38
+        }
+      ],
+      "severity": "HIGH",
+      "report_basis": "rule-template; not an LLM-generated exploit proof",
+      "rule_id": "price-manipulation"
+    },
+    {
+      "finding_id": "GPTSCAN-0bb4d2266441241d",
+      "title": "MWE-205: Front Running",
+      "description": "Users are required to transfer assets in advance and minting token/liquidity/earning thus could be frontrun.",
+      "impact": "An attacker may front-run a separate mint, vest or collection operation and redirect tokens, liquidity shares or earnings associated with another user's prior asset transfer to an attacker-controlled recipient. Actual exploitability requires further verification.",
+      "mitigation": "Put asset transfering and token minting in the same function to keep atomicity.",
+      "vulnerable_code": [
+        {
+          "file": "contracts/testing/MockMigrationUniPair.sol",
+          "contract": "MockMigrationUniPair",
+          "function": "mint(address)",
+          "start_line": 32,
+          "end_line": 36
+        }
+      ],
+      "severity": "HIGH",
+      "report_basis": "rule-template; not an LLM-generated exploit proof",
+      "rule_id": "front-running"
+    },
+    {
+      "finding_id": "GPTSCAN-d92febfa742840ca",
+      "title": "MWE-200: Insecure LP Token Value Calculation",
+      "description": "Liquidity token value/price can be manipulated to cause flashloan attacks.",
+      "impact": "Manipulating LP token valuation inputs may misprice liquidity positions and distort financial operation amounts, potentially causing incorrect payouts or loss of funds. Actual exploitability requires further verification.",
+      "mitigation": "Do not use AMM pool or custom liquidity calculation to caculate LP token value/price.",
+      "vulnerable_code": [
+        {
+          "file": "contracts/testing/realBehodler/BehodlerLite.sol",
+          "contract": "BehodlerLite",
+          "function": "addLiquidity(address,uint256)",
+          "start_line": 415,
+          "end_line": 431
+        }
+      ],
+      "severity": "HIGH",
+      "report_basis": "rule-template; not an LLM-generated exploit proof",
+      "rule_id": "price-manipulation"
+    },
+    {
+      "finding_id": "GPTSCAN-0617c9b39ec079d4",
+      "title": "MWE-200: Insecure LP Token Value Calculation",
+      "description": "Liquidity token value/price can be manipulated to cause flashloan attacks.",
+      "impact": "Manipulating LP token valuation inputs may misprice liquidity positions and distort financial operation amounts, potentially causing incorrect payouts or loss of funds. Actual exploitability requires further verification.",
+      "mitigation": "Do not use AMM pool or custom liquidity calculation to caculate LP token value/price.",
+      "vulnerable_code": [
+        {
+          "file": "contracts/testing/realBehodler/LiquidityReceiver.sol",
+          "contract": "PyroToken",
+          "function": "_redeem(address,address,uint256)",
+          "start_line": 513,
+          "end_line": 528
+        }
+      ],
+      "severity": "HIGH",
+      "report_basis": "rule-template; not an LLM-generated exploit proof",
+      "rule_id": "price-manipulation"
+    },
+    {
+      "finding_id": "GPTSCAN-4e1a9f2d61f32f2c",
+      "title": "MWE-200: Insecure LP Token Value Calculation",
+      "description": "Liquidity token value/price can be manipulated to cause flashloan attacks.",
+      "impact": "Manipulating LP token valuation inputs may misprice liquidity positions and distort financial operation amounts, potentially causing incorrect payouts or loss of funds. Actual exploitability requires further verification.",
+      "mitigation": "Do not use AMM pool or custom liquidity calculation to caculate LP token value/price.",
+      "vulnerable_code": [
+        {
+          "file": "contracts/testing/realBehodler/LiquidityReceiver.sol",
+          "contract": "PyroToken",
+          "function": "_redeem(address,address,uint256)",
+          "start_line": 513,
+          "end_line": 528
+        },
+        {
+          "file": "contracts/testing/realBehodler/LiquidityReceiver.sol",
+          "contract": "PyroToken",
+          "function": "redeemFrom(address,address,uint256)",
+          "start_line": 499,
+          "end_line": 507
+        }
+      ],
+      "severity": "HIGH",
+      "report_basis": "rule-template; not an LLM-generated exploit proof",
+      "rule_id": "price-manipulation"
+    },
+    {
+      "finding_id": "GPTSCAN-a317e65c93a90d86",
+      "title": "MWE-200: Insecure LP Token Value Calculation",
+      "description": "Liquidity token value/price can be manipulated to cause flashloan attacks.",
+      "impact": "Manipulating LP token valuation inputs may misprice liquidity positions and distort financial operation amounts, potentially causing incorrect payouts or loss of funds. Actual exploitability requires further verification.",
+      "mitigation": "Do not use AMM pool or custom liquidity calculation to caculate LP token value/price.",
+      "vulnerable_code": [
+        {
+          "file": "contracts/testing/realBehodler/LiquidityReceiver.sol",
+          "contract": "PyroToken",
+          "function": "redeemRate()",
+          "start_line": 530,
+          "end_line": 535
+        }
+      ],
+      "severity": "HIGH",
+      "report_basis": "rule-template; not an LLM-generated exploit proof",
+      "rule_id": "price-manipulation"
+    },
+    {
+      "finding_id": "GPTSCAN-5d5010861b052c87",
+      "title": "MWE-200: Insecure LP Token Value Calculation",
+      "description": "Liquidity token value/price can be manipulated to cause flashloan attacks.",
+      "impact": "Manipulating LP token valuation inputs may misprice liquidity positions and distort financial operation amounts, potentially causing incorrect payouts or loss of funds. Actual exploitability requires further verification.",
+      "mitigation": "Do not use AMM pool or custom liquidity calculation to caculate LP token value/price.",
+      "vulnerable_code": [
+        {
+          "file": "contracts/testing/realBehodler/LiquidityReceiver.sol",
+          "contract": "PyroToken",
+          "function": "redeemRate()",
+          "start_line": 530,
+          "end_line": 535
+        },
+        {
+          "file": "contracts/testing/realBehodler/LiquidityReceiver.sol",
+          "contract": "PyroToken",
+          "function": "setObligationFor(address,uint256,uint256)",
+          "start_line": 558,
+          "end_line": 594
+        }
+      ],
+      "severity": "HIGH",
+      "report_basis": "rule-template; not an LLM-generated exploit proof",
+      "rule_id": "price-manipulation"
+    },
+    {
+      "finding_id": "GPTSCAN-d19a6a3bcad28995",
+      "title": "MWE-205: Front Running",
+      "description": "Users are required to transfer assets in advance and minting token/liquidity/earning thus could be frontrun.",
+      "impact": "An attacker may front-run a separate mint, vest or collection operation and redirect tokens, liquidity shares or earnings associated with another user's prior asset transfer to an attacker-controlled recipient. Actual exploitability requires further verification.",
+      "mitigation": "Put asset transfering and token minting in the same function to keep atomicity.",
+      "vulnerable_code": [
+        {
+          "file": "contracts/testing/realUniswap/RealUniswapV2Pair.sol",
+          "contract": "RealUniswapV2Pair",
+          "function": "mint(address)",
+          "start_line": 150,
+          "end_line": 181
+        }
+      ],
+      "severity": "HIGH",
+      "report_basis": "rule-template; not an LLM-generated exploit proof",
+      "rule_id": "front-running"
+    },
+    {
+      "finding_id": "GPTSCAN-0965d6555d45d32e",
+      "title": "MWE-200: Insecure LP Token Value Calculation",
+      "description": "Liquidity token value/price can be manipulated to cause flashloan attacks.",
+      "impact": "Manipulating LP token valuation inputs may misprice liquidity positions and distort financial operation amounts, potentially causing incorrect payouts or loss of funds. Actual exploitability requires further verification.",
+      "mitigation": "Do not use AMM pool or custom liquidity calculation to caculate LP token value/price.",
+      "vulnerable_code": [
+        {
+          "file": "contracts/testing/realUniswap/RealUniswapV2Pair.sol",
+          "contract": "RealUniswapV2Pair",
+          "function": "burn(address)",
+          "start_line": 184,
+          "end_line": 213
+        }
+      ],
+      "severity": "HIGH",
+      "report_basis": "rule-template; not an LLM-generated exploit proof",
+      "rule_id": "price-manipulation"
+    }
+  ]
+}

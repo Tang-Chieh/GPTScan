@@ -1,0 +1,218 @@
+{
+  "repo_id": "2024-03-woofi-swap",
+  "detector_metadata": {
+    "detector_version": "gptscan-price-minimal-upstream7-v3",
+    "llm_model": "openai-codex/gpt-5.6-luna"
+  },
+  "predictions": [
+    {
+      "finding_id": "GPTSCAN-be9f5c337aab625d",
+      "title": "MWE-209: Wrong Order for Interest or ExchangeRate",
+      "description": "Update of interest or exchange rate should be executed before calculating new balance, share, stake, loan or fee.",
+      "impact": "Financial operations performed before interest or exchange-rate updates may use stale accounting values, causing incorrect balances, shares, debt, fees or rewards and potentially allowing value extraction or loss of funds. Actual exploitability requires further verification.",
+      "mitigation": "Check the business logic and move the statements about updating exchange rate or interest forward.",
+      "vulnerable_code": [
+        {
+          "file": "WooPoolV2/contracts/MasterChefWoo.sol",
+          "contract": "MasterChefWoo",
+          "function": "pendingXWoo(uint256,address)",
+          "start_line": 119,
+          "end_line": 137
+        }
+      ],
+      "severity": "HIGH",
+      "report_basis": "rule-template; not an LLM-generated exploit proof",
+      "rule_id": "wrong-order-interest"
+    },
+    {
+      "finding_id": "GPTSCAN-9dfc9c0ec559fbad",
+      "title": "MWE-209: Wrong Order for Interest or ExchangeRate",
+      "description": "Update of interest or exchange rate should be executed before calculating new balance, share, stake, loan or fee.",
+      "impact": "Financial operations performed before interest or exchange-rate updates may use stale accounting values, causing incorrect balances, shares, debt, fees or rewards and potentially allowing value extraction or loss of funds. Actual exploitability requires further verification.",
+      "mitigation": "Check the business logic and move the statements about updating exchange rate or interest forward.",
+      "vulnerable_code": [
+        {
+          "file": "WooPoolV2/contracts/WooPPV2.sol",
+          "contract": "WooPPV2",
+          "function": "_sellBase(address,uint256,uint256,address,address)",
+          "start_line": 420,
+          "end_line": 465
+        }
+      ],
+      "severity": "HIGH",
+      "report_basis": "rule-template; not an LLM-generated exploit proof",
+      "rule_id": "wrong-order-interest"
+    },
+    {
+      "finding_id": "GPTSCAN-6e56d1fe63186b13",
+      "title": "MWE-209: Wrong Order for Interest or ExchangeRate",
+      "description": "Update of interest or exchange rate should be executed before calculating new balance, share, stake, loan or fee.",
+      "impact": "Financial operations performed before interest or exchange-rate updates may use stale accounting values, causing incorrect balances, shares, debt, fees or rewards and potentially allowing value extraction or loss of funds. Actual exploitability requires further verification.",
+      "mitigation": "Check the business logic and move the statements about updating exchange rate or interest forward.",
+      "vulnerable_code": [
+        {
+          "file": "WooPoolV2/contracts/WooPPV2.sol",
+          "contract": "WooPPV2",
+          "function": "_sellQuote(address,uint256,uint256,address,address)",
+          "start_line": 467,
+          "end_line": 511
+        }
+      ],
+      "severity": "HIGH",
+      "report_basis": "rule-template; not an LLM-generated exploit proof",
+      "rule_id": "wrong-order-interest"
+    },
+    {
+      "finding_id": "GPTSCAN-1ef920d14a028f2f",
+      "title": "MWE-200: Insecure LP Token Value Calculation",
+      "description": "Liquidity token value/price can be manipulated to cause flashloan attacks.",
+      "impact": "Manipulating LP token valuation inputs may misprice liquidity positions and distort financial operation amounts, potentially causing incorrect payouts or loss of funds. Actual exploitability requires further verification.",
+      "mitigation": "Do not use AMM pool or custom liquidity calculation to caculate LP token value/price.",
+      "vulnerable_code": [
+        {
+          "file": "WooPoolV2/contracts/earn/DataProvider.sol",
+          "contract": "DataProvider",
+          "function": "sharePrices(address[])",
+          "start_line": 57,
+          "end_line": 63
+        }
+      ],
+      "severity": "HIGH",
+      "report_basis": "rule-template; not an LLM-generated exploit proof",
+      "rule_id": "price-manipulation"
+    },
+    {
+      "finding_id": "GPTSCAN-cd71eb127ab7b8a9",
+      "title": "MWE-200: Insecure LP Token Value Calculation",
+      "description": "Liquidity token value/price can be manipulated to cause flashloan attacks.",
+      "impact": "Manipulating LP token valuation inputs may misprice liquidity positions and distort financial operation amounts, potentially causing incorrect payouts or loss of funds. Actual exploitability requires further verification.",
+      "mitigation": "Do not use AMM pool or custom liquidity calculation to caculate LP token value/price.",
+      "vulnerable_code": [
+        {
+          "file": "WooPoolV2/contracts/earn/VaultV2.sol",
+          "contract": "WOOFiVaultV2",
+          "function": "deposit(uint256)",
+          "start_line": 102,
+          "end_line": 137
+        }
+      ],
+      "severity": "HIGH",
+      "report_basis": "rule-template; not an LLM-generated exploit proof",
+      "rule_id": "price-manipulation"
+    },
+    {
+      "finding_id": "GPTSCAN-9f9a1f00b82e8690",
+      "title": "MWE-200: Insecure LP Token Value Calculation",
+      "description": "Liquidity token value/price can be manipulated to cause flashloan attacks.",
+      "impact": "Manipulating LP token valuation inputs may misprice liquidity positions and distort financial operation amounts, potentially causing incorrect payouts or loss of funds. Actual exploitability requires further verification.",
+      "mitigation": "Do not use AMM pool or custom liquidity calculation to caculate LP token value/price.",
+      "vulnerable_code": [
+        {
+          "file": "WooPoolV2/contracts/earn/VaultV2.sol",
+          "contract": "WOOFiVaultV2",
+          "function": "withdraw(uint256)",
+          "start_line": 139,
+          "end_line": 171
+        }
+      ],
+      "severity": "HIGH",
+      "report_basis": "rule-template; not an LLM-generated exploit proof",
+      "rule_id": "price-manipulation"
+    },
+    {
+      "finding_id": "GPTSCAN-aaec72cd68f75f49",
+      "title": "MWE-209: Wrong Order for Interest or ExchangeRate",
+      "description": "Update of interest or exchange rate should be executed before calculating new balance, share, stake, loan or fee.",
+      "impact": "Financial operations performed before interest or exchange-rate updates may use stale accounting values, causing incorrect balances, shares, debt, fees or rewards and potentially allowing value extraction or loss of funds. Actual exploitability requires further verification.",
+      "mitigation": "Check the business logic and move the statements about updating exchange rate or interest forward.",
+      "vulnerable_code": [
+        {
+          "file": "WooPoolV2/contracts/earn/WooLendingManagerV1_2.sol",
+          "contract": "WooLendingManagerV1_2",
+          "function": "_repay(address,uint256,uint256)",
+          "start_line": 306,
+          "end_line": 336
+        }
+      ],
+      "severity": "HIGH",
+      "report_basis": "rule-template; not an LLM-generated exploit proof",
+      "rule_id": "wrong-order-interest"
+    },
+    {
+      "finding_id": "GPTSCAN-5c2209fb0ef81867",
+      "title": "MWE-200: Insecure LP Token Value Calculation",
+      "description": "Liquidity token value/price can be manipulated to cause flashloan attacks.",
+      "impact": "Manipulating LP token valuation inputs may misprice liquidity positions and distort financial operation amounts, potentially causing incorrect payouts or loss of funds. Actual exploitability requires further verification.",
+      "mitigation": "Do not use AMM pool or custom liquidity calculation to caculate LP token value/price.",
+      "vulnerable_code": [
+        {
+          "file": "WooPoolV2/contracts/earn/WooSuperChargerVaultV2.sol",
+          "contract": "WooSuperChargerVaultV2",
+          "function": "_deposit(uint256,address)",
+          "start_line": 181,
+          "end_line": 209
+        }
+      ],
+      "severity": "HIGH",
+      "report_basis": "rule-template; not an LLM-generated exploit proof",
+      "rule_id": "price-manipulation"
+    },
+    {
+      "finding_id": "GPTSCAN-a396f1f746569e50",
+      "title": "MWE-200: Insecure LP Token Value Calculation",
+      "description": "Liquidity token value/price can be manipulated to cause flashloan attacks.",
+      "impact": "Manipulating LP token valuation inputs may misprice liquidity positions and distort financial operation amounts, potentially causing incorrect payouts or loss of funds. Actual exploitability requires further verification.",
+      "mitigation": "Do not use AMM pool or custom liquidity calculation to caculate LP token value/price.",
+      "vulnerable_code": [
+        {
+          "file": "WooPoolV2/contracts/earn/WooSuperChargerVaultV2.sol",
+          "contract": "WooSuperChargerVaultV2",
+          "function": "_migrateToNewVault(address)",
+          "start_line": 258,
+          "end_line": 289
+        }
+      ],
+      "severity": "HIGH",
+      "report_basis": "rule-template; not an LLM-generated exploit proof",
+      "rule_id": "price-manipulation"
+    },
+    {
+      "finding_id": "GPTSCAN-377dc8a6d81bf158",
+      "title": "MWE-200: Insecure LP Token Value Calculation",
+      "description": "Liquidity token value/price can be manipulated to cause flashloan attacks.",
+      "impact": "Manipulating LP token valuation inputs may misprice liquidity positions and distort financial operation amounts, potentially causing incorrect payouts or loss of funds. Actual exploitability requires further verification.",
+      "mitigation": "Do not use AMM pool or custom liquidity calculation to caculate LP token value/price.",
+      "vulnerable_code": [
+        {
+          "file": "WooPoolV2/contracts/earn/WooSuperChargerVaultV2.sol",
+          "contract": "WooSuperChargerVaultV2",
+          "function": "borrowFromLendingManager(uint256,address)",
+          "start_line": 358,
+          "end_line": 367
+        }
+      ],
+      "severity": "HIGH",
+      "report_basis": "rule-template; not an LLM-generated exploit proof",
+      "rule_id": "price-manipulation"
+    },
+    {
+      "finding_id": "GPTSCAN-2f10b172b45da69e",
+      "title": "MWE-209: Wrong Order for Interest or ExchangeRate",
+      "description": "Update of interest or exchange rate should be executed before calculating new balance, share, stake, loan or fee.",
+      "impact": "Financial operations performed before interest or exchange-rate updates may use stale accounting values, causing incorrect balances, shares, debt, fees or rewards and potentially allowing value extraction or loss of funds. Actual exploitability requires further verification.",
+      "mitigation": "Check the business logic and move the statements about updating exchange rate or interest forward.",
+      "vulnerable_code": [
+        {
+          "file": "WooPoolV2/contracts/earn/WooSuperChargerVaultV2.sol",
+          "contract": "WooSuperChargerVaultV2",
+          "function": "endWeeklySettle()",
+          "start_line": 397,
+          "end_line": 439
+        }
+      ],
+      "severity": "HIGH",
+      "report_basis": "rule-template; not an LLM-generated exploit proof",
+      "rule_id": "wrong-order-interest"
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "repo_id": "2021-11-malt",
+  "detector_metadata": {
+    "detector_version": "gptscan-price-minimal-upstream7-v3",
+    "llm_model": "openai-codex/gpt-5.6-luna"
+  },
+  "predictions": [
+    {
+      "finding_id": "GPTSCAN-a80f7033b5ae1369",
+      "title": "MWE-202: Insecure Token Buying Behavior",
+      "description": "Buying tokens via swap or AMM can be manipulated to cause sandwich attacks.",
+      "impact": "An attacker may manipulate the execution price around a token purchase, causing the buyer to receive fewer tokens or pay more than intended while the attacker captures the price difference. Actual exploitability requires further verification.",
+      "mitigation": "Do not use swap or AMM to buy tokens.",
+      "vulnerable_code": [
+        {
+          "file": "src/contracts/DexHandlers/UniswapHandler.sol",
+          "contract": "UniswapHandler",
+          "function": "buyMalt()",
+          "start_line": 131,
+          "end_line": 158
+        }
+      ],
+      "severity": "HIGH",
+      "report_basis": "rule-template; not an LLM-generated exploit proof",
+      "rule_id": "insecure-buying-behavior"
+    }
+  ]
+}

@@ -1,0 +1,2516 @@
+{
+  "artifact_version": "0.3",
+  "judge_config": {
+    "threshold": 0.5,
+    "weight_profile": {
+      "I": 0.2,
+      "L": 0.2,
+      "M": 0.2,
+      "R": 0.4,
+      "profile_id": "end-to-end-v2"
+    }
+  },
+  "judge_metadata": {
+    "api": "responses",
+    "auth_mode": "oauth",
+    "batch_size": 10,
+    "calls": [
+      {
+        "ground_truth_id": "H-03",
+        "prediction_ids": [
+          "GPTSCAN-1820dda09211b749",
+          "GPTSCAN-9775da266872fbd6"
+        ],
+        "repo_id": "2021-04-marginswap",
+        "response_id": "resp_0c46d0bc1624f57a016aeed31785b087d0b566268ba57acf03",
+        "returned_model": "gpt-5.6-luna",
+        "usage": {
+          "input_tokens": 1885,
+          "output_tokens": 623,
+          "total_tokens": 2508
+        }
+      },
+      {
+        "ground_truth_id": "H-05",
+        "prediction_ids": [
+          "GPTSCAN-99003c027580631c",
+          "GPTSCAN-4967e8b89e9c8dbc",
+          "GPTSCAN-fdcd9144516a3cd0",
+          "GPTSCAN-b6c928f4096b1f12",
+          "GPTSCAN-a0e995bb024a4c0a"
+        ],
+        "repo_id": "2021-07-spartan",
+        "response_id": "resp_0525635bb359089f016aeed3174f6087d0a530710b0021cc2b",
+        "returned_model": "gpt-5.6-luna",
+        "usage": {
+          "input_tokens": 2518,
+          "output_tokens": 1681,
+          "total_tokens": 4199
+        }
+      },
+      {
+        "ground_truth_id": "H-06",
+        "prediction_ids": [
+          "GPTSCAN-99003c027580631c",
+          "GPTSCAN-4967e8b89e9c8dbc",
+          "GPTSCAN-fdcd9144516a3cd0",
+          "GPTSCAN-b6c928f4096b1f12",
+          "GPTSCAN-a0e995bb024a4c0a"
+        ],
+        "repo_id": "2021-07-spartan",
+        "response_id": "resp_02dd221acab32d64016aeed3177a5487d0bb92a9c912f1f431",
+        "returned_model": "gpt-5.6-luna",
+        "usage": {
+          "input_tokens": 2513,
+          "output_tokens": 2199,
+          "total_tokens": 4712
+        }
+      },
+      {
+        "ground_truth_id": "M-14",
+        "prediction_ids": [
+          "GPTSCAN-99003c027580631c",
+          "GPTSCAN-4967e8b89e9c8dbc",
+          "GPTSCAN-fdcd9144516a3cd0",
+          "GPTSCAN-b6c928f4096b1f12",
+          "GPTSCAN-a0e995bb024a4c0a"
+        ],
+        "repo_id": "2021-07-spartan",
+        "response_id": "resp_06d58524677cdc90016aeed3175c1087d0a426dcbcfafee058",
+        "returned_model": "gpt-5.6-luna",
+        "usage": {
+          "input_tokens": 2473,
+          "output_tokens": 2202,
+          "total_tokens": 4675
+        }
+      },
+      {
+        "ground_truth_id": "H-10",
+        "prediction_ids": [
+          "GPTSCAN-3903369141c197df",
+          "GPTSCAN-9e7ab9eda5fa09b6",
+          "GPTSCAN-e05a9a69808b4ea8"
+        ],
+        "repo_id": "2021-08-notional",
+        "response_id": "resp_05820e426629bb82016aeed3264c5087d0903c3ac49bde22d0",
+        "returned_model": "gpt-5.6-luna",
+        "usage": {
+          "input_tokens": 2414,
+          "output_tokens": 1269,
+          "total_tokens": 3683
+        }
+      },
+      {
+        "ground_truth_id": "M-07",
+        "prediction_ids": [
+          "GPTSCAN-3903369141c197df",
+          "GPTSCAN-9e7ab9eda5fa09b6",
+          "GPTSCAN-e05a9a69808b4ea8"
+        ],
+        "repo_id": "2021-08-notional",
+        "response_id": "resp_0bf32b311e0d53bd016aeed33968d487d0928ed54df96ce5dd",
+        "returned_model": "gpt-5.6-luna",
+        "usage": {
+          "input_tokens": 2293,
+          "output_tokens": 561,
+          "total_tokens": 2854
+        }
+      },
+      {
+        "ground_truth_id": "M-22",
+        "prediction_ids": [
+          "GPTSCAN-a80f7033b5ae1369"
+        ],
+        "repo_id": "2021-11-malt",
+        "response_id": "resp_0fb47d565a850d09016aeed340ef2887d0ad78c549fb35c302",
+        "returned_model": "gpt-5.6-luna",
+        "usage": {
+          "input_tokens": 1764,
+          "output_tokens": 406,
+          "total_tokens": 2170
+        }
+      },
+      {
+        "ground_truth_id": "M-25",
+        "prediction_ids": [
+          "GPTSCAN-a80f7033b5ae1369"
+        ],
+        "repo_id": "2021-11-malt",
+        "response_id": "resp_0ff6676ee5cc4620016aeed341141087d0b8eaef3093d08f99",
+        "returned_model": "gpt-5.6-luna",
+        "usage": {
+          "input_tokens": 1670,
+          "output_tokens": 321,
+          "total_tokens": 1991
+        }
+      },
+      {
+        "ground_truth_id": "M-30",
+        "prediction_ids": [
+          "GPTSCAN-a80f7033b5ae1369"
+        ],
+        "repo_id": "2021-11-malt",
+        "response_id": "resp_0f33a6f16379eed0016aeed341abf887d0abc29658e7c120ac",
+        "returned_model": "gpt-5.6-luna",
+        "usage": {
+          "input_tokens": 1835,
+          "output_tokens": 277,
+          "total_tokens": 2112
+        }
+      },
+      {
+        "ground_truth_id": "H-06",
+        "prediction_ids": [
+          "GPTSCAN-e835e95570d044ee",
+          "GPTSCAN-d514b130be66a381",
+          "GPTSCAN-a46119f216a2358d",
+          "GPTSCAN-538393dbc277a91a",
+          "GPTSCAN-652f633117693a5e"
+        ],
+        "repo_id": "2021-12-vader",
+        "response_id": "resp_0fd3ab76058c31f2016aeed346af3c87d0b22517d1e3c413da",
+        "returned_model": "gpt-5.6-luna",
+        "usage": {
+          "input_tokens": 2570,
+          "output_tokens": 1501,
+          "total_tokens": 4071
+        }
+      },
+      {
+        "ground_truth_id": "H-04",
+        "prediction_ids": [
+          "GPTSCAN-e835e95570d044ee",
+          "GPTSCAN-d514b130be66a381",
+          "GPTSCAN-a46119f216a2358d",
+          "GPTSCAN-538393dbc277a91a",
+          "GPTSCAN-652f633117693a5e"
+        ],
+        "repo_id": "2021-12-vader",
+        "response_id": "resp_0116aea0d92de083016aeed34963c487d0b91b45615273295e",
+        "returned_model": "gpt-5.6-luna",
+        "usage": {
+          "input_tokens": 2429,
+          "output_tokens": 990,
+          "total_tokens": 3419
+        }
+      },
+      {
+        "ground_truth_id": "H-07",
+        "prediction_ids": [
+          "GPTSCAN-e835e95570d044ee",
+          "GPTSCAN-d514b130be66a381",
+          "GPTSCAN-a46119f216a2358d",
+          "GPTSCAN-538393dbc277a91a",
+          "GPTSCAN-652f633117693a5e"
+        ],
+        "repo_id": "2021-12-vader",
+        "response_id": "resp_0b42143a020204ab016aeed349301887d09ca0b408ab8ee3e5",
+        "returned_model": "gpt-5.6-luna",
+        "usage": {
+          "input_tokens": 2463,
+          "output_tokens": 2183,
+          "total_tokens": 4646
+        }
+      },
+      {
+        "ground_truth_id": "M-06",
+        "prediction_ids": [
+          "GPTSCAN-e835e95570d044ee",
+          "GPTSCAN-d514b130be66a381",
+          "GPTSCAN-a46119f216a2358d",
+          "GPTSCAN-538393dbc277a91a",
+          "GPTSCAN-652f633117693a5e"
+        ],
+        "repo_id": "2021-12-vader",
+        "response_id": "resp_0148bb7523a501f7016aeed34a62b887d08e0ab49d5c58cb84",
+        "returned_model": "gpt-5.6-luna",
+        "usage": {
+          "input_tokens": 2415,
+          "output_tokens": 1014,
+          "total_tokens": 3429
+        }
+      },
+      {
+        "ground_truth_id": "H-05",
+        "prediction_ids": [
+          "GPTSCAN-44f19166cd311af9",
+          "GPTSCAN-126f03bedae44d8a",
+          "GPTSCAN-0bb4d2266441241d",
+          "GPTSCAN-d92febfa742840ca",
+          "GPTSCAN-0617c9b39ec079d4",
+          "GPTSCAN-4e1a9f2d61f32f2c",
+          "GPTSCAN-a317e65c93a90d86",
+          "GPTSCAN-5d5010861b052c87",
+          "GPTSCAN-d19a6a3bcad28995",
+          "GPTSCAN-0965d6555d45d32e"
+        ],
+        "repo_id": "2022-01-behodler",
+        "response_id": "resp_0c8354387152a2c9016aeed35d3bd487d082243f340eba0813",
+        "returned_model": "gpt-5.6-luna",
+        "usage": {
+          "input_tokens": 3527,
+          "output_tokens": 1868,
+          "total_tokens": 5395
+        }
+      },
+      {
+        "ground_truth_id": "H-07",
+        "prediction_ids": [
+          "GPTSCAN-44f19166cd311af9",
+          "GPTSCAN-126f03bedae44d8a",
+          "GPTSCAN-0bb4d2266441241d",
+          "GPTSCAN-d92febfa742840ca",
+          "GPTSCAN-0617c9b39ec079d4",
+          "GPTSCAN-4e1a9f2d61f32f2c",
+          "GPTSCAN-a317e65c93a90d86",
+          "GPTSCAN-5d5010861b052c87",
+          "GPTSCAN-d19a6a3bcad28995",
+          "GPTSCAN-0965d6555d45d32e"
+        ],
+        "repo_id": "2022-01-behodler",
+        "response_id": "resp_05c38e7bded0177e016aeed35fdfec87d0a8906a2b19716c58",
+        "returned_model": "gpt-5.6-luna",
+        "usage": {
+          "input_tokens": 3518,
+          "output_tokens": 2241,
+          "total_tokens": 5759
+        }
+      },
+      {
+        "ground_truth_id": "M-7",
+        "prediction_ids": [
+          "GPTSCAN-43f0a81a675a2359",
+          "GPTSCAN-ed3b6e73c5e0b8bd",
+          "GPTSCAN-5d8c1eaa05a06c27",
+          "GPTSCAN-0a7cb324eae3a5a4"
+        ],
+        "repo_id": "2022-09-notional",
+        "response_id": "resp_0d786e3d0cfc056e016aeed363adac87d0b71267862aefead4",
+        "returned_model": "gpt-5.6-luna",
+        "usage": {
+          "input_tokens": 2739,
+          "output_tokens": 1063,
+          "total_tokens": 3802
+        }
+      },
+      {
+        "ground_truth_id": "H-1",
+        "prediction_ids": [
+          "GPTSCAN-b035cbf99646dbf4"
+        ],
+        "repo_id": "2023-03-olympus",
+        "response_id": "resp_0c472dd3d491493f016aeed372347c87d09f4fc3d61a0b7c7e",
+        "returned_model": "gpt-5.6-luna",
+        "usage": {
+          "input_tokens": 1835,
+          "output_tokens": 244,
+          "total_tokens": 2079
+        }
+      },
+      {
+        "ground_truth_id": "H-4",
+        "prediction_ids": [
+          "GPTSCAN-645d0c4c1d33e497",
+          "GPTSCAN-dc8246d6a7bfa6c2",
+          "GPTSCAN-3d073c52e85135c8",
+          "GPTSCAN-20a71a684d2235f9"
+        ],
+        "repo_id": "2023-04-blueberry",
+        "response_id": "resp_0086c93e56cf76dd016aeed379d7fc87d0830c96605c350ebf",
+        "returned_model": "gpt-5.6-luna",
+        "usage": {
+          "input_tokens": 2183,
+          "output_tokens": 1074,
+          "total_tokens": 3257
+        }
+      },
+      {
+        "ground_truth_id": "M-13",
+        "prediction_ids": [
+          "GPTSCAN-8ed0baa5b4fa45c7",
+          "GPTSCAN-d81333ef57a79c35",
+          "GPTSCAN-ebbecd6f5d0b9765"
+        ],
+        "repo_id": "2023-06-lybra",
+        "response_id": "resp_0d59143d3cdcee50016aeed3790a1087d0a4c9d23d7b7e7797",
+        "returned_model": "gpt-5.6-luna",
+        "usage": {
+          "input_tokens": 2229,
+          "output_tokens": 845,
+          "total_tokens": 3074
+        }
+      },
+      {
+        "ground_truth_id": "H-3",
+        "prediction_ids": [
+          "GPTSCAN-68a9598fb13e961c",
+          "GPTSCAN-3f67639f970465c7",
+          "GPTSCAN-1ced5dfc71327f07",
+          "GPTSCAN-a17eb2dd82159c82",
+          "GPTSCAN-3b5f53a161171e7b",
+          "GPTSCAN-9cffc57b2c082703"
+        ],
+        "repo_id": "2023-06-real-wagmi",
+        "response_id": "resp_00ca5e5d4555c150016aeed381251087d08e7551fd42a01f04",
+        "returned_model": "gpt-5.6-luna",
+        "usage": {
+          "input_tokens": 3000,
+          "output_tokens": 1633,
+          "total_tokens": 4633
+        }
+      },
+      {
+        "ground_truth_id": "H-15",
+        "prediction_ids": [
+          "GPTSCAN-569f38a742554c9a",
+          "GPTSCAN-f38e9cd856979d68",
+          "GPTSCAN-db8619b502a85479",
+          "GPTSCAN-4bc99df51718ecb7",
+          "GPTSCAN-f4696a0a66e606c9",
+          "GPTSCAN-061002d555a4c409",
+          "GPTSCAN-58e4fa6baee36f65",
+          "GPTSCAN-ecf27bb58ab3a084",
+          "GPTSCAN-91a2f6c0c1d19a40"
+        ],
+        "repo_id": "2023-06-tokemak",
+        "response_id": "resp_08fa425f0184c5a6016aeed38a5d0487d09a181dbff70ac5a8",
+        "returned_model": "gpt-5.6-luna",
+        "usage": {
+          "input_tokens": 3461,
+          "output_tokens": 2266,
+          "total_tokens": 5727
+        }
+      },
+      {
+        "ground_truth_id": "M-08",
+        "prediction_ids": [
+          "GPTSCAN-6c2ddfd4c5627bce"
+        ],
+        "repo_id": "2023-08-dopex",
+        "response_id": "resp_009a1f9a067fb402016aeed38a418087d094ed614d4fe42b6f",
+        "returned_model": "gpt-5.6-luna",
+        "usage": {
+          "input_tokens": 1724,
+          "output_tokens": 395,
+          "total_tokens": 2119
+        }
+      },
+      {
+        "ground_truth_id": "M-09",
+        "prediction_ids": [
+          "GPTSCAN-6c2ddfd4c5627bce"
+        ],
+        "repo_id": "2023-08-dopex",
+        "response_id": "resp_0c5f671d206aad8e016aeed38f282c87d0ab0ab0e77798646f",
+        "returned_model": "gpt-5.6-luna",
+        "usage": {
+          "input_tokens": 1742,
+          "output_tokens": 245,
+          "total_tokens": 1987
+        }
+      },
+      {
+        "ground_truth_id": "H-04",
+        "prediction_ids": [
+          "GPTSCAN-99cae3b75277c1d7",
+          "GPTSCAN-10a55b5415a23007",
+          "GPTSCAN-62fdcad2e97ab960",
+          "GPTSCAN-af76751b6ce0d827",
+          "GPTSCAN-bc0739f2fa77da70"
+        ],
+        "repo_id": "2024-03-abracadabra-money",
+        "response_id": "resp_044c67c36e285817016aeed393874487d0971af6b35444d23a",
+        "returned_model": "gpt-5.6-luna",
+        "usage": {
+          "input_tokens": 2438,
+          "output_tokens": 2278,
+          "total_tokens": 4716
+        }
+      },
+      {
+        "ground_truth_id": "H-01",
+        "prediction_ids": [
+          "GPTSCAN-99cae3b75277c1d7",
+          "GPTSCAN-10a55b5415a23007",
+          "GPTSCAN-62fdcad2e97ab960",
+          "GPTSCAN-af76751b6ce0d827",
+          "GPTSCAN-bc0739f2fa77da70"
+        ],
+        "repo_id": "2024-03-abracadabra-money",
+        "response_id": "resp_0a1a47e6e7c0bc9b016aeed395b85487d0b2c5b8032703b5dd",
+        "returned_model": "gpt-5.6-luna",
+        "usage": {
+          "input_tokens": 2607,
+          "output_tokens": 1878,
+          "total_tokens": 4485
+        }
+      },
+      {
+        "ground_truth_id": "M-19",
+        "prediction_ids": [
+          "GPTSCAN-ca079b6bd978cc2f",
+          "GPTSCAN-80947d7a6bc388a6",
+          "GPTSCAN-865c4784984f0612",
+          "GPTSCAN-e1b8305cfaa78523",
+          "GPTSCAN-b8e7e03952aeb8f4",
+          "GPTSCAN-2a8b3bb2c91bcef7",
+          "GPTSCAN-a47b0b73934241f2",
+          "GPTSCAN-6d322c8dec9c569d",
+          "GPTSCAN-be319d2bc2418441",
+          "GPTSCAN-9630ac569a47753b"
+        ],
+        "repo_id": "2024-03-revert-lend",
+        "response_id": "resp_078fac0be8e02cf2016aeed3a102b487d0bc3c4bb496f09ecb",
+        "returned_model": "gpt-5.6-luna",
+        "usage": {
+          "input_tokens": 3561,
+          "output_tokens": 1777,
+          "total_tokens": 5338
+        }
+      },
+      {
+        "ground_truth_id": "M-19",
+        "prediction_ids": [
+          "GPTSCAN-04f9cf900db655cf",
+          "GPTSCAN-f80d1a860e87aa79",
+          "GPTSCAN-124c2838684279cc"
+        ],
+        "repo_id": "2024-03-revert-lend",
+        "response_id": "resp_09fa6610256677bd016aeed3b699b487d0827e14eadf3235e5",
+        "returned_model": "gpt-5.6-luna",
+        "usage": {
+          "input_tokens": 2225,
+          "output_tokens": 1122,
+          "total_tokens": 3347
+        }
+      },
+      {
+        "ground_truth_id": "H-1",
+        "prediction_ids": [
+          "GPTSCAN-be9f5c337aab625d",
+          "GPTSCAN-9dfc9c0ec559fbad",
+          "GPTSCAN-6e56d1fe63186b13",
+          "GPTSCAN-1ef920d14a028f2f",
+          "GPTSCAN-cd71eb127ab7b8a9",
+          "GPTSCAN-9f9a1f00b82e8690",
+          "GPTSCAN-aaec72cd68f75f49",
+          "GPTSCAN-5c2209fb0ef81867",
+          "GPTSCAN-a396f1f746569e50",
+          "GPTSCAN-377dc8a6d81bf158"
+        ],
+        "repo_id": "2024-03-woofi-swap",
+        "response_id": "resp_057f603e97a50e42016aeed3ba363087d0bdc9aa43f3f3ec61",
+        "returned_model": "gpt-5.6-luna",
+        "usage": {
+          "input_tokens": 3677,
+          "output_tokens": 1737,
+          "total_tokens": 5414
+        }
+      },
+      {
+        "ground_truth_id": "H-1",
+        "prediction_ids": [
+          "GPTSCAN-2f10b172b45da69e"
+        ],
+        "repo_id": "2024-03-woofi-swap",
+        "response_id": "resp_04ab6345f2ef897a016aeed3bee0d887d0a74e4ef244430e75",
+        "returned_model": "gpt-5.6-luna",
+        "usage": {
+          "input_tokens": 1982,
+          "output_tokens": 198,
+          "total_tokens": 2180
+        }
+      },
+      {
+        "ground_truth_id": "M-01",
+        "prediction_ids": [
+          "GPTSCAN-dc3d2cbf41d2ef66",
+          "GPTSCAN-0e325ebc160a2586",
+          "GPTSCAN-7841397ca1d60bce"
+        ],
+        "repo_id": "2024-04-panoptic",
+        "response_id": "resp_09666e3b2583ea25016aeed3c2e1ac87d088b7349d9d9bde2c",
+        "returned_model": "gpt-5.6-luna",
+        "usage": {
+          "input_tokens": 2042,
+          "output_tokens": 665,
+          "total_tokens": 2707
+        }
+      },
+      {
+        "ground_truth_id": "M-11",
+        "prediction_ids": [
+          "GPTSCAN-2688180308d90412",
+          "GPTSCAN-03163a5552a7b0d3",
+          "GPTSCAN-201e782f15e5c9f9",
+          "GPTSCAN-85825f34183d2e2e",
+          "GPTSCAN-a357ffd6a4f9bf3c",
+          "GPTSCAN-e49f4e7f930bab54"
+        ],
+        "repo_id": "2025-12-panoptic",
+        "response_id": "resp_065b62c039822fd5016aeed3c47aac87d089dd945e6b807b40",
+        "returned_model": "gpt-5.6-luna",
+        "usage": {
+          "input_tokens": 2804,
+          "output_tokens": 948,
+          "total_tokens": 3752
+        }
+      },
+      {
+        "ground_truth_id": "M-03",
+        "prediction_ids": [
+          "GPTSCAN-2688180308d90412",
+          "GPTSCAN-03163a5552a7b0d3",
+          "GPTSCAN-201e782f15e5c9f9",
+          "GPTSCAN-85825f34183d2e2e",
+          "GPTSCAN-a357ffd6a4f9bf3c",
+          "GPTSCAN-e49f4e7f930bab54"
+        ],
+        "repo_id": "2025-12-panoptic",
+        "response_id": "resp_058e9c517263e981016aeed3cd9f0887d09b62bbd5295005da",
+        "returned_model": "gpt-5.6-luna",
+        "usage": {
+          "input_tokens": 2840,
+          "output_tokens": 703,
+          "total_tokens": 3543
+        }
+      },
+      {
+        "ground_truth_id": "M-15",
+        "prediction_ids": [
+          "GPTSCAN-2688180308d90412",
+          "GPTSCAN-03163a5552a7b0d3",
+          "GPTSCAN-201e782f15e5c9f9",
+          "GPTSCAN-85825f34183d2e2e",
+          "GPTSCAN-a357ffd6a4f9bf3c",
+          "GPTSCAN-e49f4e7f930bab54"
+        ],
+        "repo_id": "2025-12-panoptic",
+        "response_id": "resp_0a4b0892f65cbf65016aeed3d0cf7c87d091856e35ec814984",
+        "returned_model": "gpt-5.6-luna",
+        "usage": {
+          "input_tokens": 3014,
+          "output_tokens": 1185,
+          "total_tokens": 4199
+        }
+      }
+    ],
+    "max_concurrency": 4,
+    "model": "gpt-5.6-luna",
+    "prompt_version": "benchmark-judge-v3",
+    "temperature": 0.0
+  },
+  "manifest_sha256": "e88ce520f7a19668638329548caae81969e985c0dc7544c21bf6a685d32adac9",
+  "repositories": [
+    {
+      "pairs": [
+        {
+          "ground_truth_id": "H-03",
+          "prediction_id": "GPTSCAN-1820dda09211b749",
+          "rationale": "R: Describes an update-order/accounting issue, unrelated to AMM spot-price manipulation. L: Localizes IncentiveDistribution.updateAccruedReward rather than PriceAware price functions. I: Discusses stale balances and fees, not manipulated prices affecting borrowing or liquidations. M: Reordering interest or exchange-rate updates does not address manipulable current-block AMM quotes.",
+          "scores": {
+            "I": 0,
+            "L": 0,
+            "M": 0,
+            "R": 0
+          },
+          "weighted_score": 0.0
+        },
+        {
+          "ground_truth_id": "H-03",
+          "prediction_id": "GPTSCAN-9775da266872fbd6",
+          "rationale": "R: Correctly identifies flash-loan manipulation of an AMM-derived price, but frames it specifically as LP-token valuation rather than the broader current spot token-price feed and reserve distortion. L: Correctly identifies PriceAware.getCurrentPriceInPeg, though it omits the related getPriceFromAMM operation. I: Captures mispricing and distorted financial outcomes, but does not specifically identify the protocol’s borrowing, margin, or liquidation consequences and narrows the scope to liquidity positions. M: Avoiding AMM-based valuation is directionally relevant, but it is vague and does not specify replacing the manipulable spot quote with a cumulative-price TWAP across the affected path.",
+          "scores": {
+            "I": 2,
+            "L": 3,
+            "M": 2,
+            "R": 2
+          },
+          "weighted_score": 0.55
+        }
+      ],
+      "repo_id": "2021-04-marginswap"
+    },
+    {
+      "pairs": [
+        {
+          "ground_truth_id": "H-05",
+          "prediction_id": "GPTSCAN-99003c027580631c",
+          "rationale": "R: Focuses on manipulable voting weight and governance, not the LP valuation/realise mechanism. L: Dao.countVotes() is unrelated to the vulnerable Synth/Utils path. I: Governance influence is not the ground-truth impact of burning Synth-held LP tokens and extracting pool assets. M: Filtering flash-loaned voting tokens does not fix manipulated LP valuation.",
+          "scores": {
+            "I": 0,
+            "L": 0,
+            "M": 0,
+            "R": 0
+          },
+          "weighted_score": 0.0
+        },
+        {
+          "ground_truth_id": "H-05",
+          "prediction_id": "GPTSCAN-4967e8b89e9c8dbc",
+          "rationale": "R: Correctly identifies flash-loan manipulation of LP-token valuation, but omits the current-reserve-ratio calculations, premium determination, and LP burning in realise(). L: Pool burn/removal functions are adjacent to the asset-flow consequences but miss the vulnerable Synth.realise() and Utils valuation operations. I: Correctly suggests mispricing and potential loss, but omits the specific attacker extraction of value by burning Synth-held LP and redeeming the attacker’s LP. M: Avoiding AMM/custom valuation is directionally relevant, but does not specify a manipulation-resistant replacement such as TWAP, Chainlink, or a fair-LP formula.",
+          "scores": {
+            "I": 2,
+            "L": 2,
+            "M": 2,
+            "R": 2
+          },
+          "weighted_score": 0.5
+        },
+        {
+          "ground_truth_id": "H-05",
+          "prediction_id": "GPTSCAN-fdcd9144516a3cd0",
+          "rationale": "R: Identifies the core flaw—LP value calculation in Synth.realise() is manipulable through flash-loan-induced AMM changes—though it omits the premium/burn and restore-and-repeat details. L: Correctly localizes Synth.realise(), the primary vulnerable function. I: Captures valuation distortion and possible financial loss, but does not identify the specific extraction from other LP holders through burning Synth-held LP and redeeming the attacker’s LP. M: Rejecting AMM/custom LP valuation is directionally correct, but is incomplete without specifying a manipulation-resistant valuation method.",
+          "scores": {
+            "I": 2,
+            "L": 4,
+            "M": 2,
+            "R": 3
+          },
+          "weighted_score": 0.7000000000000001
+        },
+        {
+          "ground_truth_id": "H-05",
+          "prediction_id": "GPTSCAN-b6c928f4096b1f12",
+          "rationale": "R: Correctly identifies manipulation of the liquidity-holdings valuation used in the vulnerability, with minor omission of the synth-value comparison and resulting burn. L: Correctly identifies Utils.calcLiquidityHoldings(), one of the ground-truth vulnerable valuation operations. I: Describes general mispricing and potential loss, but omits the concrete attacker capability and value extraction from other pool LP holders. M: Avoiding spot/custom AMM valuation is relevant, but the mitigation lacks a concrete manipulation-resistant replacement.",
+          "scores": {
+            "I": 2,
+            "L": 4,
+            "M": 2,
+            "R": 3
+          },
+          "weighted_score": 0.7000000000000001
+        },
+        {
+          "ground_truth_id": "H-05",
+          "prediction_id": "GPTSCAN-a0e995bb024a4c0a",
+          "rationale": "R: Mentions the broadly related category of manipulable LP valuation, but does not identify the actual calcLiquidityHoldings/calcActualSynthUnits mechanism or realise() flow. L: Names the Utils module but localizes to calcAsymmetricValueToken(), not a ground-truth vulnerable operation. I: Gives only a generic mispricing/loss consequence without the specific LP-burning and redemption-based extraction. M: Replacing AMM/custom valuation is directionally relevant, but is incomplete without an oracle or anti-flash-loan valuation method.",
+          "scores": {
+            "I": 1,
+            "L": 1,
+            "M": 2,
+            "R": 1
+          },
+          "weighted_score": 0.30000000000000004
+        },
+        {
+          "ground_truth_id": "H-06",
+          "prediction_id": "GPTSCAN-99003c027580631c",
+          "rationale": "R: Claims manipulable voting weight and governance flash-loan attacks, which is unrelated to the SynthVault spot-price-based reward-weight flaw. L: Localizes Dao.countVotes(), not the SynthVault/Utils deposit valuation path. I: Describes governance influence rather than inflating SynthVault weight and claiming BASE rewards. M: Rejecting flash-loaned voting tokens does not address manipulable AMM pricing or stored reward weight.",
+          "scores": {
+            "I": 0,
+            "L": 0,
+            "M": 0,
+            "R": 0
+          },
+          "weighted_score": 0.0
+        },
+        {
+          "ground_truth_id": "H-06",
+          "prediction_id": "GPTSCAN-4967e8b89e9c8dbc",
+          "rationale": "R: Correctly recognizes that an AMM-derived valuation can be manipulated, but misidentifies the asset and omits the stored SynthVault weight and reward-allocation mechanism. L: Pool._burn() and removeForMember() are not the vulnerable SynthVault deposit or Utils spot-value path. I: Gives only a generic mispricing/payout-loss consequence, not inflated SynthVault weight and disproportionate BASE rewards. M: Avoiding an AMM/custom valuation is directionally related, but the proposed LP-token-specific mitigation does not address the SynthVault path or provide a robust TWAP/on-the-fly calculation.",
+          "scores": {
+            "I": 1,
+            "L": 0,
+            "M": 1,
+            "R": 2
+          },
+          "weighted_score": 0.30000000000000004
+        },
+        {
+          "ground_truth_id": "H-06",
+          "prediction_id": "GPTSCAN-fdcd9144516a3cd0",
+          "rationale": "R: Identifies the broadly relevant AMM-price-manipulation mechanism, but attributes it to LP valuation and omits SynthVault's deposit-time storage of inflated weight. L: Synth.realise() is not the vulnerable SynthVault._deposit()/Utils.calcSpotValueInBase() path. I: States generic valuation distortion and possible loss, rather than the attacker claiming a disproportionate share of BASE rewards. M: Replacing AMM/custom LP valuation is only weakly related and does not specifically fix spot-priced SynthVault weights.",
+          "scores": {
+            "I": 1,
+            "L": 0,
+            "M": 1,
+            "R": 2
+          },
+          "weighted_score": 0.30000000000000004
+        },
+        {
+          "ground_truth_id": "H-06",
+          "prediction_id": "GPTSCAN-b6c928f4096b1f12",
+          "rationale": "R: Captures the relevant use of manipulable AMM-derived pricing, but does not identify that SynthVault stores the inflated synth-to-BASE weight for later reward allocation. L: Utils.calcLiquidityHoldings() is an adjacent valuation function in the right module, but not the actual calcSpotValueInBase()/calcSpotValueInBaseWithPool() operation used by the vulnerable path. I: Describes generic mispricing and possible payout loss, omitting inflated reward weight and BASE-funded reward capture. M: Avoiding AMM/custom LP valuation is directionally related but incomplete and scoped to the wrong valuation use; it does not specify TWAP-based dynamic SynthVault weighting.",
+          "scores": {
+            "I": 1,
+            "L": 2,
+            "M": 1,
+            "R": 2
+          },
+          "weighted_score": 0.4
+        },
+        {
+          "ground_truth_id": "H-06",
+          "prediction_id": "GPTSCAN-a0e995bb024a4c0a",
+          "rationale": "R: Recognizes the general manipulable AMM valuation issue, but frames it as asymmetric LP-token valuation and omits the deposit-time persistence of an inflated SynthVault weight. L: Utils.calcAsymmetricValueToken() is an adjacent function in Utils, but the ground truth localizes calcSpotValueInBase() and its pool-based helper. I: Provides only a generic mispricing/incorrect-payout consequence, not disproportionate BASE reward claims. M: Avoiding AMM/custom LP pricing is at most directionally relevant and does not directly remediate the SynthVault spot-price storage flaw with TWAP/on-the-fly calculation.",
+          "scores": {
+            "I": 1,
+            "L": 2,
+            "M": 1,
+            "R": 2
+          },
+          "weighted_score": 0.4
+        },
+        {
+          "ground_truth_id": "M-14",
+          "prediction_id": "GPTSCAN-99003c027580631c",
+          "rationale": "R: Addresses manipulable voting weight and flash-loan governance, not reserve-dependent bond allocation. L: countVotes() is unrelated to bond()/calcSwapValueInBase(). I: Describes governance influence rather than theft of the DAO's BASE bond allocation. M: Blocking tokens from flash loans does not fix manipulated pool pricing in bonding.",
+          "scores": {
+            "I": 0,
+            "L": 0,
+            "M": 0,
+            "R": 0
+          },
+          "weighted_score": 0.0
+        },
+        {
+          "ground_truth_id": "M-14",
+          "prediction_id": "GPTSCAN-4967e8b89e9c8dbc",
+          "rationale": "R: Correctly recognizes manipulation of pool-derived valuation as the general mechanism, but misidentifies the affected value as LP-token valuation rather than BASE allocation from calcSwapValueInBase(). L: Pool._burn() and removeForMember() are not the vulnerable bond/Utils path. I: Correctly conveys attacker-controlled pricing can cause incorrect payouts or loss, but omits the DAO bond, BASE asset, and recovery of disproportionate supplied BASE. M: Avoiding manipulable AMM/custom pricing is directionally capable of removing the flaw, but the proposed mitigation is framed only for LP valuation and lacks a robust replacement/oracle and bond-path coverage.",
+          "scores": {
+            "I": 2,
+            "L": 0,
+            "M": 2,
+            "R": 2
+          },
+          "weighted_score": 0.4
+        },
+        {
+          "ground_truth_id": "M-14",
+          "prediction_id": "GPTSCAN-fdcd9144516a3cd0",
+          "rationale": "R: Identifies the broad spot-price/valuation-manipulation mechanism, but not the reserve-dependent BASE calculation used during bonding. L: Synth.realise() is unrelated to the vulnerable Dao/Utils execution path. I: Captures possible mispricing and loss from manipulated inputs, but not theft of the DAO's BASE bond allocation or the specific attacker outcome. M: Replacing manipulable AMM/custom pricing could help in principle, but this proposal targets LP valuation in Synth and does not specify a sound price source or cover bonding.",
+          "scores": {
+            "I": 2,
+            "L": 0,
+            "M": 2,
+            "R": 2
+          },
+          "weighted_score": 0.4
+        },
+        {
+          "ground_truth_id": "M-14",
+          "prediction_id": "GPTSCAN-b6c928f4096b1f12",
+          "rationale": "R: Correctly identifies manipulation of AMM-derived pricing inputs, but describes liquidity holdings valuation rather than calcSwapValueInBase determining the bond BASE allocation. L: Utils is the relevant module and the function is adjacent in pricing logic, but calcLiquidityHoldings() is not the identified vulnerable operation. I: Correctly indicates manipulated valuation can cause payout/fund loss, while omitting the DAO bond, BASE commitment, and disproportionate recovery exploit. M: Avoiding current AMM/custom calculations is directionally relevant, but is incomplete without a robust oracle/TWAP or equivalent and is stated for LP valuation rather than the bond path.",
+          "scores": {
+            "I": 2,
+            "L": 2,
+            "M": 2,
+            "R": 2
+          },
+          "weighted_score": 0.5
+        },
+        {
+          "ground_truth_id": "M-14",
+          "prediction_id": "GPTSCAN-a0e995bb024a4c0a",
+          "rationale": "R: Recognizes manipulable pool-based token valuation, but misstates the specific mechanism and affected calculation; the ground truth concerns BASE value computed for bonding. L: Utils and a pricing-related function are adjacent to the vulnerable area, but calcAsymmetricValueToken() is not calcSwapValueInBase() or its pool helper. I: Describes general manipulated pricing causing incorrect payouts/loss, but not theft of DAO bond allocation through manipulated BASE incentives and reversal. M: Removing manipulable AMM/custom pricing could address the issue in principle, but the proposal is incomplete and does not explicitly secure the bond calculation with TWAP or another manipulation-resistant reference.",
+          "scores": {
+            "I": 2,
+            "L": 2,
+            "M": 2,
+            "R": 2
+          },
+          "weighted_score": 0.5
+        }
+      ],
+      "repo_id": "2021-07-spartan"
+    },
+    {
+      "pairs": [
+        {
+          "ground_truth_id": "H-10",
+          "prediction_id": "GPTSCAN-3903369141c197df",
+          "rationale": "R: Identifies the broad issue of manipulable liquidity-token valuation and mentions flash loans, but omits the causal mechanism of changing current reserve composition and the asymmetric fCash haircut effect. L: Points to liquidation withdrawal functions rather than AssetHandler's liquidity-token valuation and claim-calculation functions; these are downstream affected code, not the vulnerable operation. I: Gives only generic mispricing, payout, and loss consequences and does not identify temporary reduction of risk-adjusted collateral value leading to liquidation. M: Avoiding pool/custom current calculations is directionally relevant, but it does not specify a manipulation-resistant TWAP and is incomplete as a concrete fix.",
+          "scores": {
+            "I": 1,
+            "L": 1,
+            "M": 2,
+            "R": 1
+          },
+          "weighted_score": 0.30000000000000004
+        },
+        {
+          "ground_truth_id": "H-10",
+          "prediction_id": "GPTSCAN-9e7ab9eda5fa09b6",
+          "rationale": "R: Correctly recognizes that liquidity-token valuation can be manipulated, but does not explain reserve manipulation, proportional claims, or the additional fCash haircut that drives the collateral reduction. L: CashGroup.loadMarket is an adjacent relevant source of market reserve/rate data, and the liquidation function is downstream, but the actual AssetHandler valuation and claim functions are not identified. I: States generic mispricing and possible financial loss without identifying the attacker-induced undercollateralization and liquidation consequence. M: Rejecting custom or current pool-based valuation is directionally relevant, but the mitigation lacks the required manipulation-resistant TWAP and is not sufficiently specified.",
+          "scores": {
+            "I": 1,
+            "L": 2,
+            "M": 2,
+            "R": 1
+          },
+          "weighted_score": 0.35000000000000003
+        },
+        {
+          "ground_truth_id": "H-10",
+          "prediction_id": "GPTSCAN-e05a9a69808b4ea8",
+          "rationale": "R: Recognizes general liquidity-token price manipulation but misses the specific current-reserve and asymmetric haircut mechanism. L: AssetHandler.getNetCashGroupValue is an adjacent valuation path and calculateOracleRate is relevant market-rate infrastructure, but neither localizes the vulnerable getLiquidityTokenValue/getHaircutCashClaims/_calcToken operations. I: Describes only generic mispricing and possible loss, not temporary reduction of risk-adjusted collateral value causing liquidation eligibility. M: Avoiding custom/current liquidity calculations is directionally related, but it does not require a manipulation-resistant TWAP or otherwise fully address the vulnerable valuation path.",
+          "scores": {
+            "I": 1,
+            "L": 2,
+            "M": 2,
+            "R": 1
+          },
+          "weighted_score": 0.35000000000000003
+        },
+        {
+          "ground_truth_id": "M-07",
+          "prediction_id": "GPTSCAN-3903369141c197df",
+          "rationale": "R: Claims manipulable LP-token valuation/flash-loan attacks, which is unrelated to the lagged rate-oracle manipulation caused by large borrowing. L: Localizes liquidation LP-token withdrawal and incentive functions rather than Market.calculateTrade or _updateRateOracle. I: Mentions generic mispricing, incorrect payouts, and possible loss of funds, but not forcing liquidation of a near-threshold account. M: Avoiding AMM/custom LP valuation does not address the lagged rate oracle or its influence on fCash valuation.",
+          "scores": {
+            "I": 1,
+            "L": 0,
+            "M": 0,
+            "R": 0
+          },
+          "weighted_score": 0.05
+        },
+        {
+          "ground_truth_id": "M-07",
+          "prediction_id": "GPTSCAN-9e7ab9eda5fa09b6",
+          "rationale": "R: Identifies LP-token price manipulation, not the ground-truth stale/lagged rate-oracle mechanism following a large borrow. L: Points to CashGroup.loadMarket and LP-token collateral withdrawal, not the vulnerable Market trade/rate-oracle update path. I: Gives only generic valuation distortion, incorrect payouts, or loss of funds and omits forced liquidation through temporary rate movement. M: Removing AMM/custom LP-token valuation is unrelated to increasing the rate-oracle time window.",
+          "scores": {
+            "I": 1,
+            "L": 0,
+            "M": 0,
+            "R": 0
+          },
+          "weighted_score": 0.05
+        },
+        {
+          "ground_truth_id": "M-07",
+          "prediction_id": "GPTSCAN-e05a9a69808b4ea8",
+          "rationale": "R: The proposed root cause is manipulable LP-token valuation rather than lagged rate-oracle updates and manipulated lastImpliedRate. L: Localizes calculateOracleRate and getNetCashGroupValue, but does not identify Market.calculateTrade or _updateRateOracle as the vulnerable path. I: Describes generic mispricing and possible financial loss, not the specific capability to make an account appear undercollateralized and force liquidation. M: Avoiding AMM/custom LP calculations would not fix the stale rate-window vulnerability.",
+          "scores": {
+            "I": 1,
+            "L": 0,
+            "M": 0,
+            "R": 0
+          },
+          "weighted_score": 0.05
+        }
+      ],
+      "repo_id": "2021-08-notional"
+    },
+    {
+      "pairs": [
+        {
+          "ground_truth_id": "M-22",
+          "prediction_id": "GPTSCAN-a80f7033b5ae1369",
+          "rationale": "R: Identifies a broadly related AMM price-manipulation category, but describes sandwiching a token purchase rather than manipulating the Uniswap spot price used to calculate Malt required for an early exit. L: Points to the relevant UniswapHandler contract but localizes the issue to buyMalt(), not maltMarketPrice(), _calculateMaltRequiredForExit(), or exitEarly(). I: Describes sandwich losses to a buyer, not extracting protocol funds through manipulated early-exit settlement. M: Avoiding AMM purchases does not fix the vulnerable spot-price oracle; a TWAP or equivalent manipulation-resistant price source is needed.",
+          "scores": {
+            "I": 1,
+            "L": 1,
+            "M": 0,
+            "R": 1
+          },
+          "weighted_score": 0.2
+        },
+        {
+          "ground_truth_id": "M-25",
+          "prediction_id": "GPTSCAN-a80f7033b5ae1369",
+          "rationale": "R: Identifies a broad AMM price-manipulation category, but describes sandwiching token purchases rather than flash-loan distortion of current reserves used by _calculateTradeSize() during stabilization. L: Correctly points to UniswapHandler, but localizes buyMalt() instead of the vulnerable _calculateTradeSize() path. I: Describes a generic manipulated purchase price and reduced buyer output, not draining reward tokens from the AMM or destabilizing protocol accounting. M: Avoiding AMM-based token purchases does not fix the stabilization path's reliance on manipulable current reserves, so the mitigation is ineffective.",
+          "scores": {
+            "I": 1,
+            "L": 2,
+            "M": 0,
+            "R": 1
+          },
+          "weighted_score": 0.25
+        },
+        {
+          "ground_truth_id": "M-30",
+          "prediction_id": "GPTSCAN-a80f7033b5ae1369",
+          "rationale": "R: Mentions AMM manipulation generally, which is broadly related, but does not identify the actual flaw of recording attacker-controlled spot reserves/prices into moving averages. L: Identifies UniswapHandler.buyMalt(), unrelated to MaltDataLab tracking functions and MovingAverage.update(). I: Describes sandwich losses to a token buyer, not manipulation of protocol economic operations using distorted averages. M: Avoiding swaps/AMMs for token purchases does not fix the vulnerable oracle sampling and moving-average update path.",
+          "scores": {
+            "I": 0,
+            "L": 0,
+            "M": 0,
+            "R": 1
+          },
+          "weighted_score": 0.1
+        }
+      ],
+      "repo_id": "2021-11-malt"
+    },
+    {
+      "pairs": [
+        {
+          "ground_truth_id": "H-06",
+          "prediction_id": "GPTSCAN-e835e95570d044ee",
+          "rationale": "R: Correctly recognizes that manipulable pool-derived LP valuation inputs can be abused, but omits the specific artificial impermanent-loss calculation and reserve reimbursement mechanism. L: Correctly identifies BasePoolV2._burn(), which is one of the vulnerable code paths. I: Mentions possible incorrect payouts or loss only generically and does not identify VADER compensation or profitable reserve extraction. M: Avoiding AMM/custom spot-based valuation is directionally relevant, but it does not specify a manipulation-resistant oracle such as a TWAP and is incomplete.",
+          "scores": {
+            "I": 1,
+            "L": 4,
+            "M": 2,
+            "R": 2
+          },
+          "weighted_score": 0.55
+        },
+        {
+          "ground_truth_id": "H-06",
+          "prediction_id": "GPTSCAN-d514b130be66a381",
+          "rationale": "R: Identifies manipulable liquidity valuation inputs, which is related, but misses the artificial impermanent-loss and reserve-reimbursement cause. L: Points to a related function in VaderPoolV2, but not the ground-truth burn(uint256,address) path or its calculateLoss flow. I: Gives only a generic mispricing/incorrect-payout consequence, without VADER compensation or reserve extraction. M: The proposed avoidance of AMM/custom valuation is directionally relevant but lacks the required TWAP/oracle treatment and complete coverage.",
+          "scores": {
+            "I": 1,
+            "L": 2,
+            "M": 2,
+            "R": 2
+          },
+          "weighted_score": 0.45
+        },
+        {
+          "ground_truth_id": "H-06",
+          "prediction_id": "GPTSCAN-a46119f216a2358d",
+          "rationale": "R: Describes a front-running/pre-transfer flaw unrelated to reserve manipulation and artificial impermanent-loss calculation. L: BasePool.mint() is not the vulnerable liquidity-removal and loss-calculation path. I: Token or share redirection through front-running is unrelated to extracting reserve reimbursement for engineered loss. M: Atomic asset transfer and minting would not prevent manipulation of pool reserves or impermanent-loss pricing.",
+          "scores": {
+            "I": 0,
+            "L": 0,
+            "M": 0,
+            "R": 0
+          },
+          "weighted_score": 0.0
+        },
+        {
+          "ground_truth_id": "H-06",
+          "prediction_id": "GPTSCAN-538393dbc277a91a",
+          "rationale": "R: Correctly points to manipulable pool-derived valuation inputs, but does not identify the specific artificial impermanent-loss and reserve-payout mechanism. L: Identifies an analogous _burn function in BasePool, but the ground truth concerns BasePoolV2._burn and the associated VaderPoolV2/VaderRouterV2 path. I: States only generic mispricing and possible loss or incorrect payouts, omitting VADER compensation and profitable reserve extraction. M: Avoiding AMM/custom valuation is directionally relevant, but it should use manipulation-resistant relative-price inputs such as a TWAP and is not sufficiently specific.",
+          "scores": {
+            "I": 1,
+            "L": 2,
+            "M": 2,
+            "R": 2
+          },
+          "weighted_score": 0.45
+        },
+        {
+          "ground_truth_id": "H-06",
+          "prediction_id": "GPTSCAN-652f633117693a5e",
+          "rationale": "R: Recognizes the general issue of manipulable liquidity valuation, but misses the artificial impermanent-loss calculation and reserve reimbursement flow. L: XVader.leave() is unrelated to the specified burn, loss-calculation, and removeLiquidity path. I: Provides only a generic mispricing/incorrect-payout consequence and omits VADER compensation and reserve extraction. M: Replacing or avoiding manipulable AMM/custom valuation is directionally relevant, but the mitigation lacks the required manipulation-resistant oracle/TWAP and complete path coverage.",
+          "scores": {
+            "I": 1,
+            "L": 0,
+            "M": 2,
+            "R": 2
+          },
+          "weighted_score": 0.35000000000000003
+        },
+        {
+          "ground_truth_id": "H-04",
+          "prediction_id": "GPTSCAN-e835e95570d044ee",
+          "rationale": "R: Broadly concerns liquidity pricing and manipulation, but misses the actual stale-pair weight omission and zeroed aggregate mechanism. L: Identifies BasePoolV2._burn, unrelated to LiquidityBasedTWAP.syncVaderPrice(). I: Gives a generic mispricing/loss consequence, but not the specific incomplete-weight oracle manipulation or price-query reverts blocking dependent operations. M: Avoiding AMM/custom LP valuation does not preserve skipped TWAP weights or prevent aggregate corruption.",
+          "scores": {
+            "I": 1,
+            "L": 0,
+            "M": 0,
+            "R": 1
+          },
+          "weighted_score": 0.15000000000000002
+        },
+        {
+          "ground_truth_id": "H-04",
+          "prediction_id": "GPTSCAN-d514b130be66a381",
+          "rationale": "R: Broadly concerns liquidity pricing and manipulation, but does not identify the TWAP synchronization and stale-weight accounting flaw. L: Identifies VaderPoolV2.burnFungible, not the vulnerable LiquidityBasedTWAP.syncVaderPrice() path. I: Mentions generic valuation distortion and potential losses, omitting forced oracle-query reverts and the specific attacker outcome. M: The proposed LP valuation change does not fix missing prior weights or the zero total liquidity aggregate.",
+          "scores": {
+            "I": 1,
+            "L": 0,
+            "M": 0,
+            "R": 1
+          },
+          "weighted_score": 0.15000000000000002
+        },
+        {
+          "ground_truth_id": "H-04",
+          "prediction_id": "GPTSCAN-a46119f216a2358d",
+          "rationale": "R: Claims a front-running asset-transfer/minting flaw, unrelated to corrupted Vader TWAP weights. L: BasePool.mint is not the vulnerable synchronization function or code path. I: Describes redirected tokens or shares, not manipulated/incomplete VADER pricing or reverted dependent operations. M: Atomic transfer and minting would not address TWAP weight preservation or aggregate recomputation.",
+          "scores": {
+            "I": 0,
+            "L": 0,
+            "M": 0,
+            "R": 0
+          },
+          "weighted_score": 0.0
+        },
+        {
+          "ground_truth_id": "H-04",
+          "prediction_id": "GPTSCAN-538393dbc277a91a",
+          "rationale": "R: Broadly identifies a liquidity-pricing manipulation concern, but not the root cause of skipped pair weights being omitted from the total during syncVaderPrice(). L: BasePool._burn is unrelated to the LiquidityBasedTWAP vulnerable path. I: Generic mispricing and loss are only loosely related and omit oracle query reverts and the specific affected protocol operations. M: Removing AMM/custom LP valuation does not preserve prior TWAP evaluations or prevent a zero aggregate.",
+          "scores": {
+            "I": 1,
+            "L": 0,
+            "M": 0,
+            "R": 1
+          },
+          "weighted_score": 0.15000000000000002
+        },
+        {
+          "ground_truth_id": "H-04",
+          "prediction_id": "GPTSCAN-652f633117693a5e",
+          "rationale": "R: Concerns liquidity token valuation manipulation, which is broadly pricing-related, but misses the actual TWAP weight corruption mechanism. L: XVader.leave is unrelated to LiquidityBasedTWAP.syncVaderPrice(). I: States generic valuation distortion and possible financial loss rather than the ground-truth oracle manipulation and forced reversion impact. M: Changing LP token valuation methodology would not correct skipped-pair weight handling or totalLiquidityWeight updates.",
+          "scores": {
+            "I": 1,
+            "L": 0,
+            "M": 0,
+            "R": 1
+          },
+          "weighted_score": 0.15000000000000002
+        },
+        {
+          "ground_truth_id": "H-07",
+          "prediction_id": "GPTSCAN-e835e95570d044ee",
+          "rationale": "R: Identifies manipulable pool pricing as a related category, but misstates the affected mechanism as LP-token valuation rather than reserve-based synth exchange rates. L: Points to BasePoolV2._burn, which is not the mintSynth/burnSynth path. I: Gives only generic mispricing or loss-of-funds consequences, not extraction of native reserves through synth minting and redemption. M: Avoiding AMM/custom LP valuation is directionally related but does not fix the synth exchange-rate calculations.",
+          "scores": {
+            "I": 1,
+            "L": 0,
+            "M": 1,
+            "R": 1
+          },
+          "weighted_score": 0.2
+        },
+        {
+          "ground_truth_id": "H-07",
+          "prediction_id": "GPTSCAN-d514b130be66a381",
+          "rationale": "R: Recognizes that manipulable pool pricing can cause a financial exploit, but focuses on LP-token valuation instead of the reserve-based rate used by synth mint and burn. L: VaderPoolV2.burnFungible is an adjacent pool redemption operation, but it is not the vulnerable mintSynth or burnSynth function. I: States only generic incorrect payouts or loss of funds and omits native-reserve extraction via the mint/burn rate sequence. M: The proposed LP-valuation change does not address the exchange-rate calculations in both synth operations.",
+          "scores": {
+            "I": 1,
+            "L": 2,
+            "M": 1,
+            "R": 1
+          },
+          "weighted_score": 0.30000000000000004
+        },
+        {
+          "ground_truth_id": "H-07",
+          "prediction_id": "GPTSCAN-a46119f216a2358d",
+          "rationale": "R: Front-running pre-transferred assets is unrelated to manipulation of pool reserves and synth exchange rates. L: BasePool.mint is not the vulnerable VaderPoolV2 mintSynth/burnSynth path. I: Redirecting tokens or earnings is a different consequence from draining native reserves through synth redemption. M: Atomicizing transfers and minting would not remove the manipulable reserve-based exchange rate.",
+          "scores": {
+            "I": 0,
+            "L": 0,
+            "M": 0,
+            "R": 0
+          },
+          "weighted_score": 0.0
+        },
+        {
+          "ground_truth_id": "H-07",
+          "prediction_id": "GPTSCAN-538393dbc277a91a",
+          "rationale": "R: Mentions manipulable pool pricing, but attributes the issue to LP-token valuation rather than the reserve-based synth conversion mechanism. L: BasePool._burn is outside the vulnerable VaderPoolV2 mintSynth/burnSynth path. I: Provides only a generic mispricing or loss-of-funds impact, not the specific native-asset reserve extraction. M: Avoiding AMM/custom LP calculations does not fix the rates used by synth minting and burning.",
+          "scores": {
+            "I": 1,
+            "L": 0,
+            "M": 1,
+            "R": 1
+          },
+          "weighted_score": 0.2
+        },
+        {
+          "ground_truth_id": "H-07",
+          "prediction_id": "GPTSCAN-652f633117693a5e",
+          "rationale": "R: Identifies a related pool-price manipulation theme, but not the ground-truth flaw of using current reserves for synth mint and burn calculations. L: XVader.leave is not the vulnerable VaderPoolV2 mintSynth/burnSynth code path. I: Describes only generic potential mispricing or loss, omitting the native-reserve drain through favorable synth redemption. M: The LP-token valuation mitigation is not sufficient to replace the exchange-rate source for both synth operations.",
+          "scores": {
+            "I": 1,
+            "L": 0,
+            "M": 1,
+            "R": 1
+          },
+          "weighted_score": 0.2
+        },
+        {
+          "ground_truth_id": "M-06",
+          "prediction_id": "GPTSCAN-e835e95570d044ee",
+          "rationale": "R: Mentions generic manipulation of liquidity-related valuation, but not the root flaw of skewing pool reserves to dominate USDV oracle weighting. L: Points to BasePool._burn, not LiquidityBasedTWAP._updateUSDVPrice or its reserve-weight calculation. I: Describes generic mispricing and possible loss rather than reliance on a manipulated pair and a faulty/deprecated external feed producing an incorrect oracle price. M: Avoiding AMM/custom LP valuation does not fix the oracle's reserve-based weighting; fair-reserve calculation is needed.",
+          "scores": {
+            "I": 1,
+            "L": 0,
+            "M": 0,
+            "R": 1
+          },
+          "weighted_score": 0.15000000000000002
+        },
+        {
+          "ground_truth_id": "M-06",
+          "prediction_id": "GPTSCAN-d514b130be66a381",
+          "rationale": "R: Broadly identifies manipulation of liquidity-related valuation, but misses the reserve manipulation that makes one oracle pair dominate. L: Points to VaderPoolV2.burnFungible, unrelated to LiquidityBasedTWAP._updateUSDVPrice. I: Gives generic valuation distortion and potential fund loss, not the specific incorrect oracle price caused by reliance on a faulty/deprecated feed. M: The proposed LP-token valuation change does not address USDV oracle reserve weighting or fair reserves.",
+          "scores": {
+            "I": 1,
+            "L": 0,
+            "M": 0,
+            "R": 1
+          },
+          "weighted_score": 0.15000000000000002
+        },
+        {
+          "ground_truth_id": "M-06",
+          "prediction_id": "GPTSCAN-a46119f216a2358d",
+          "rationale": "R: Front-running pre-transferred assets is unrelated to manipulated pool reserves and liquidity-weighted oracle pricing. L: Identifies BasePool.mint rather than the LiquidityBasedTWAP update path. I: Describes redirection of tokens or earnings, not an incorrect oracle price from a dominated pair. M: Atomic transfer-and-mint execution does not mitigate reserve-based oracle weighting.",
+          "scores": {
+            "I": 0,
+            "L": 0,
+            "M": 0,
+            "R": 0
+          },
+          "weighted_score": 0.0
+        },
+        {
+          "ground_truth_id": "M-06",
+          "prediction_id": "GPTSCAN-538393dbc277a91a",
+          "rationale": "R: States a broad liquidity-value manipulation issue, but not the specific causal mechanism of skewing reserves to dominate pair weights in the oracle. L: Points to BasePool._burn, not LiquidityBasedTWAP._updateUSDVPrice. I: Claims generic LP mispricing and possible loss rather than faulty-feed reliance and incorrect USDV/VADER pricing. M: Removing or changing LP-token valuation calculations does not correct the oracle's reserve-based weights; fair reserves are required.",
+          "scores": {
+            "I": 1,
+            "L": 0,
+            "M": 0,
+            "R": 1
+          },
+          "weighted_score": 0.15000000000000002
+        },
+        {
+          "ground_truth_id": "M-06",
+          "prediction_id": "GPTSCAN-652f633117693a5e",
+          "rationale": "R: Broadly references manipulable liquidity valuation, but omits the actual oracle reserve-weighting flaw. L: Points to XVader.leave, unrelated to the vulnerable LiquidityBasedTWAP function and operation. I: Gives generic liquidity-position mispricing and potential loss, not the ground-truth consequence of an incorrect oracle price when a faulty feed is made dominant. M: The proposed LP-token valuation change would not fix the LiquidityBasedTWAP reserve weighting.",
+          "scores": {
+            "I": 1,
+            "L": 0,
+            "M": 0,
+            "R": 1
+          },
+          "weighted_score": 0.15000000000000002
+        }
+      ],
+      "repo_id": "2021-12-vader"
+    },
+    {
+      "pairs": [
+        {
+          "ground_truth_id": "H-05",
+          "prediction_id": "GPTSCAN-44f19166cd311af9",
+          "rationale": "R: Broadly mentions flash-loan manipulation of AMM-derived valuation, but describes LP-token valuation rather than spot FLAN/stablecoin balances driving purchasePyroFlan. L: Incorrectly localizes the issue to RebaseProxy.redeemRate/redeem instead of FlanBackstop.purchasePyroFlan(). I: Gives only generic mispricing/payout-loss consequences and omits excess PyroFlan/newly minted FLAN accumulation and repeated below-limit attacks. M: Avoiding manipulable AMM/custom spot valuation is directionally relevant, but it does not specify a robust replacement such as a TWAP and is framed for the wrong LP valuation path.",
+          "scores": {
+            "I": 1,
+            "L": 0,
+            "M": 2,
+            "R": 1
+          },
+          "weighted_score": 0.25
+        },
+        {
+          "ground_truth_id": "H-05",
+          "prediction_id": "GPTSCAN-126f03bedae44d8a",
+          "rationale": "R: Broadly mentions flash-loan manipulation of AMM-derived valuation, but not the ground-truth spot-price inputs in purchasePyroFlan(). L: The cited RebaseProxy.mint() is unrelated to the vulnerable FlanBackstop function. I: Only states generic mispricing and possible losses, without identifying inflated PyroFlan backed by newly minted FLAN or the repeated-attack capability. M: Avoiding AMM/custom valuation is directionally relevant but incomplete and applies to an unrelated path; no TWAP or equivalent manipulation-resistant oracle is specified.",
+          "scores": {
+            "I": 1,
+            "L": 0,
+            "M": 2,
+            "R": 1
+          },
+          "weighted_score": 0.25
+        },
+        {
+          "ground_truth_id": "H-05",
+          "prediction_id": "GPTSCAN-0bb4d2266441241d",
+          "rationale": "R: Claims a front-running/advance-transfer flaw, which is unrelated to spot AMM price manipulation. L: MockMigrationUniPair.mint() is not the vulnerable FlanBackstop.purchasePyroFlan() path. I: Describes redirected assets from front-running rather than excess PyroFlan obtained through manipulated pricing. M: Atomic transfer-and-mint does not address manipulable pair balances or spot pricing.",
+          "scores": {
+            "I": 0,
+            "L": 0,
+            "M": 0,
+            "R": 0
+          },
+          "weighted_score": 0.0
+        },
+        {
+          "ground_truth_id": "H-05",
+          "prediction_id": "GPTSCAN-d92febfa742840ca",
+          "rationale": "R: Broadly identifies flash-loan manipulation of AMM-derived values, but mischaracterizes the target as LP-token valuation rather than purchasePyroFlan’s instantaneous pair-balance price. L: BehodlerLite.addLiquidity() is unrelated to the FlanBackstop purchase path. I: Gives only generic mispricing/payout-loss impact and omits inflated PyroFlan/newly minted FLAN and repeated attacks under the ceiling. M: Avoiding AMM/custom spot valuation is directionally relevant, but lacks a concrete TWAP/oracle replacement and addresses the wrong code path.",
+          "scores": {
+            "I": 1,
+            "L": 0,
+            "M": 2,
+            "R": 1
+          },
+          "weighted_score": 0.25
+        },
+        {
+          "ground_truth_id": "H-05",
+          "prediction_id": "GPTSCAN-0617c9b39ec079d4",
+          "rationale": "R: Broadly recognizes flash-loan manipulation of AMM-based valuation, but not the specific spot FLAN/stablecoin inputs used by purchasePyroFlan(). L: LiquidityReceiver._redeem() is unrelated to FlanBackstop.purchasePyroFlan(). I: States only generic incorrect payouts/losses, not the attacker’s ability to obtain excess newly minted PyroFlan. M: Removing AMM/custom valuation is directionally related, but is incomplete and does not specify TWAP or another manipulation-resistant pricing source.",
+          "scores": {
+            "I": 1,
+            "L": 0,
+            "M": 2,
+            "R": 1
+          },
+          "weighted_score": 0.25
+        },
+        {
+          "ground_truth_id": "H-05",
+          "prediction_id": "GPTSCAN-4e1a9f2d61f32f2c",
+          "rationale": "R: Broadly mentions flash-loan manipulation of AMM-derived valuation, but the stated LP-token redemption mechanism is not the ground-truth purchase pricing mechanism. L: Both cited LiquidityReceiver redemption functions are outside FlanBackstop.purchasePyroFlan(). I: Generic mispricing and possible loss do not capture excess PyroFlan backed by newly minted FLAN or repeated sub-ceiling exploitation. M: Avoiding manipulable AMM/custom valuation could be relevant in principle, but it is underspecified and aimed at an unrelated redemption path rather than replacing the spot input with a TWAP.",
+          "scores": {
+            "I": 1,
+            "L": 0,
+            "M": 2,
+            "R": 1
+          },
+          "weighted_score": 0.25
+        },
+        {
+          "ground_truth_id": "H-05",
+          "prediction_id": "GPTSCAN-a317e65c93a90d86",
+          "rationale": "R: Broadly identifies flash-loan manipulation of an AMM-derived price, but refers to LP-token redeem-rate valuation rather than purchasePyroFlan’s instantaneous pair balances. L: LiquidityReceiver.redeemRate() is not the vulnerable FlanBackstop function. I: Only provides a generic payout/loss consequence and omits the specific PyroFlan over-minting and repeated-attack outcome. M: Avoiding AMM/custom valuation is directionally relevant, but incomplete without a TWAP/oracle and not localized to the affected purchase path.",
+          "scores": {
+            "I": 1,
+            "L": 0,
+            "M": 2,
+            "R": 1
+          },
+          "weighted_score": 0.25
+        },
+        {
+          "ground_truth_id": "H-05",
+          "prediction_id": "GPTSCAN-5d5010861b052c87",
+          "rationale": "R: Broadly relates to flash-loan manipulation of AMM-derived valuation, but does not identify the spot FLAN/stablecoin balance calculation in purchasePyroFlan(). L: The cited LiquidityReceiver functions are unrelated to FlanBackstop.purchasePyroFlan(). I: Generic mispricing/loss is insufficiently specific and omits excess PyroFlan backed by newly minted FLAN and repeated calls below the cap. M: Avoiding AMM/custom valuation is directionally relevant, but lacks a concrete manipulation-resistant replacement and concerns the wrong path.",
+          "scores": {
+            "I": 1,
+            "L": 0,
+            "M": 2,
+            "R": 1
+          },
+          "weighted_score": 0.25
+        },
+        {
+          "ground_truth_id": "H-05",
+          "prediction_id": "GPTSCAN-d19a6a3bcad28995",
+          "rationale": "R: Identifies front-running of a prior asset transfer, not flash-loan or trade-based spot-price manipulation. L: RealUniswapV2Pair.mint() is not the FlanBackstop.purchasePyroFlan() code path. I: Asset redirection through front-running is unrelated to receiving excess PyroFlan from manipulated pricing. M: Atomicizing transfer and mint does not prevent manipulation of the FLAN/stablecoin pair price.",
+          "scores": {
+            "I": 0,
+            "L": 0,
+            "M": 0,
+            "R": 0
+          },
+          "weighted_score": 0.0
+        },
+        {
+          "ground_truth_id": "H-05",
+          "prediction_id": "GPTSCAN-0965d6555d45d32e",
+          "rationale": "R: Broadly mentions flash-loan manipulation of AMM-based valuation, but not the ground-truth use of instantaneous pair balances in purchasePyroFlan(). L: RealUniswapV2Pair.burn() is unrelated to the vulnerable FlanBackstop function. I: Provides only generic valuation/payout-loss impact and omits the specific excess PyroFlan/newly minted FLAN accumulation. M: Avoiding AMM/custom spot valuation is directionally relevant, but incomplete and does not specify a TWAP or equivalent robust oracle.",
+          "scores": {
+            "I": 1,
+            "L": 0,
+            "M": 2,
+            "R": 1
+          },
+          "weighted_score": 0.25
+        },
+        {
+          "ground_truth_id": "H-07",
+          "prediction_id": "GPTSCAN-44f19166cd311af9",
+          "rationale": "R: Correctly identifies the broad flaw that LP-token valuation can be manipulated through flashloan-driven reserve manipulation, but omits the specific execution-time underlying-balance/total-supply formula. L: Points to RebaseProxy rather than the vulnerable LimboDAO setEYEBasedAssetStake() or burnAsset() paths. I: Recognizes valuation distortion and possible financial loss, but omits excess fate, voting power, and conversion to Flan. M: Avoiding spot AMM/custom calculations is directionally relevant, but is incomplete and does not specify a fair manipulation-resistant pricing formula.",
+          "scores": {
+            "I": 2,
+            "L": 0,
+            "M": 2,
+            "R": 2
+          },
+          "weighted_score": 0.4
+        },
+        {
+          "ground_truth_id": "H-07",
+          "prediction_id": "GPTSCAN-126f03bedae44d8a",
+          "rationale": "R: Correctly identifies the broad LP-token price manipulation mechanism, but not the specific reserve-balance-divided-by-supply calculation. L: Identifies RebaseProxy.mint(), not either vulnerable LimboDAO function. I: Describes generic mispricing and possible loss, but not the excess-fate and governance/profit consequences. M: The proposed avoidance of AMM/custom valuation is directionally relevant but incomplete compared with using a manipulation-resistant fair-price formula.",
+          "scores": {
+            "I": 2,
+            "L": 0,
+            "M": 2,
+            "R": 2
+          },
+          "weighted_score": 0.4
+        },
+        {
+          "ground_truth_id": "H-07",
+          "prediction_id": "GPTSCAN-0bb4d2266441241d",
+          "rationale": "R: Claims a front-running issue rather than flashloan manipulation of execution-time LP pricing. L: Localizes MockMigrationUniPair.mint(), unrelated to the LimboDAO pricing paths. I: Describes redirection of assets through front-running, not excess fate from inflated LP valuation. M: Atomic asset transfer and minting would not fix the LP reserve-manipulation vulnerability.",
+          "scores": {
+            "I": 0,
+            "L": 0,
+            "M": 0,
+            "R": 0
+          },
+          "weighted_score": 0.0
+        },
+        {
+          "ground_truth_id": "H-07",
+          "prediction_id": "GPTSCAN-d92febfa742840ca",
+          "rationale": "R: Identifies the general flashloan-manipulable LP valuation flaw, but omits the exact underlying-balance/total-supply pricing mechanism. L: Points to BehodlerLite.addLiquidity(), not LimboDAO.setEYEBasedAssetStake() or burnAsset(). I: Notes generic mispricing and potential loss, but not excess fate, voting power, or Flan profit. M: Avoiding AMM/custom calculations is relevant in direction but lacks a concrete fair, manipulation-resistant replacement.",
+          "scores": {
+            "I": 2,
+            "L": 0,
+            "M": 2,
+            "R": 2
+          },
+          "weighted_score": 0.4
+        },
+        {
+          "ground_truth_id": "H-07",
+          "prediction_id": "GPTSCAN-0617c9b39ec079d4",
+          "rationale": "R: Correctly recognizes that LP valuation inputs can be manipulated via flashloan activity, but does not identify the execution-time reserve-balance formula. L: Identifies LiquidityReceiver._redeem(), not the vulnerable LimboDAO functions. I: Covers generic valuation distortion and possible loss, but omits the specific excess-fate and governance/profit impact. M: Rejecting spot AMM/custom calculations is directionally relevant but materially incomplete as a mitigation.",
+          "scores": {
+            "I": 2,
+            "L": 0,
+            "M": 2,
+            "R": 2
+          },
+          "weighted_score": 0.4
+        },
+        {
+          "ground_truth_id": "H-07",
+          "prediction_id": "GPTSCAN-4e1a9f2d61f32f2c",
+          "rationale": "R: States the broad correct LP-price manipulation mechanism, while omitting the specific underlying EYE balance divided by LP supply and the affected LimboDAO operations. L: Localizes LiquidityReceiver._redeem()/redeemFrom(), not LimboDAO.setEYEBasedAssetStake() or burnAsset(). I: Gives only generic mispricing/payout-loss consequences, not excess fate, voting power, or Flan conversion. M: Avoiding AMM/custom pricing is directionally relevant but does not provide a complete fair-pricing solution.",
+          "scores": {
+            "I": 2,
+            "L": 0,
+            "M": 2,
+            "R": 2
+          },
+          "weighted_score": 0.4
+        },
+        {
+          "ground_truth_id": "H-07",
+          "prediction_id": "GPTSCAN-a317e65c93a90d86",
+          "rationale": "R: Identifies flashloan manipulation of LP valuation at a broad level, but not the precise reserve-read and balance/total-supply calculation. L: Identifies LiquidityReceiver.redeemRate(), unrelated to the LimboDAO vulnerable path. I: Mentions generic mispricing and financial loss, omitting the excess-fate/governance/profit outcome. M: The mitigation may avoid the immediate spot-price source but is vague and incomplete without a manipulation-resistant replacement formula.",
+          "scores": {
+            "I": 2,
+            "L": 0,
+            "M": 2,
+            "R": 2
+          },
+          "weighted_score": 0.4
+        },
+        {
+          "ground_truth_id": "H-07",
+          "prediction_id": "GPTSCAN-5d5010861b052c87",
+          "rationale": "R: Correctly identifies the general manipulable LP-token pricing issue, but omits the specific execution-time reserve formula and its use in LimboDAO. L: Points to LiquidityReceiver.redeemRate()/setObligationFor(), not either ground-truth LimboDAO function. I: Describes generic valuation distortion and possible loss, not excess fate and its voting-power/Flan consequences. M: Avoiding AMM/custom calculations is relevant in principle but incomplete and underspecified.",
+          "scores": {
+            "I": 2,
+            "L": 0,
+            "M": 2,
+            "R": 2
+          },
+          "weighted_score": 0.4
+        },
+        {
+          "ground_truth_id": "H-07",
+          "prediction_id": "GPTSCAN-d19a6a3bcad28995",
+          "rationale": "R: Describes front-running of pre-transferred assets rather than manipulation of LP reserves used for pricing. L: Localizes RealUniswapV2Pair.mint(), not the LimboDAO stake/burn valuation code. I: Claims redirected minting/liquidity/earnings, unrelated to the ground-truth excess-fate impact. M: Atomic transfer-and-minting would not address flashloan manipulation of LP pricing.",
+          "scores": {
+            "I": 0,
+            "L": 0,
+            "M": 0,
+            "R": 0
+          },
+          "weighted_score": 0.0
+        },
+        {
+          "ground_truth_id": "H-07",
+          "prediction_id": "GPTSCAN-0965d6555d45d32e",
+          "rationale": "R: Recognizes the broad flashloan-manipulable LP valuation flaw, but omits the specific underlying-balance/LP-supply formula and LimboDAO context. L: Identifies RealUniswapV2Pair.burn(), not LimboDAO.burnAsset() or setEYEBasedAssetStake(). I: Gives generic mispricing and possible loss, without the excess-fate, voting-power, and Flan-profit consequences. M: Avoiding AMM/custom valuation is directionally relevant but incomplete relative to a fair manipulation-resistant pricing formula.",
+          "scores": {
+            "I": 2,
+            "L": 0,
+            "M": 2,
+            "R": 2
+          },
+          "weighted_score": 0.4
+        }
+      ],
+      "repo_id": "2022-01-behodler"
+    },
+    {
+      "pairs": [],
+      "repo_id": "2022-01-sandclock"
+    },
+    {
+      "pairs": [],
+      "repo_id": "2022-08-sentiment"
+    },
+    {
+      "pairs": [
+        {
+          "ground_truth_id": "M-7",
+          "prediction_id": "GPTSCAN-43f0a81a675a2359",
+          "rationale": "R: Claims manipulable LP pricing/flashloan attacks, not the missing deposit-duration reward accounting that lets entrants capture reinvested BPT. L: Localizes StableMath and pool-oracle code, not the StrategyUtils conversion path or reinvestReward. I: Mentions generic mispricing and possible loss of funds, but not theft of newly reinvested BPT rewards by a just-in-time depositor. M: Avoiding AMM/custom LP valuation does not fix the reward-distribution timing flaw.",
+          "scores": {
+            "I": 1,
+            "L": 0,
+            "M": 0,
+            "R": 0
+          },
+          "weighted_score": 0.05
+        },
+        {
+          "ground_truth_id": "M-7",
+          "prediction_id": "GPTSCAN-ed3b6e73c5e0b8bd",
+          "rationale": "R: Describes price manipulation through swaps/joins rather than the pre-reinvest minting and current-balance redemption accounting flaw. L: Identifies Balancer swap and pool-join functions, not the vulnerable StrategyUtils conversions or MetaStable2TokenAuraVault.reinvestReward path. I: Gives only a generic mispricing/loss consequence, not disproportionate capture of reinvested BPT rewards. M: Replacing AMM/custom valuation calculations would not address missing reward snapshots or same-block entry/exit.",
+          "scores": {
+            "I": 1,
+            "L": 0,
+            "M": 0,
+            "R": 0
+          },
+          "weighted_score": 0.05
+        },
+        {
+          "ground_truth_id": "M-7",
+          "prediction_id": "GPTSCAN-5d8c1eaa05a06c27",
+          "rationale": "R: Time-weighted balance/oracle manipulation is not the ground-truth share-accounting and reward-front-running mechanism. L: The only localized function is an oracle balance helper, whereas the vulnerable path is StrategyUtils conversion plus reinvestReward. I: States possible incorrect payouts or loss generically, without identifying theft of reinvested BPT by newly minted strategy tokens. M: The proposed valuation change does not implement snapshot-based reward accounting or prevent immediate entry and exit.",
+          "scores": {
+            "I": 1,
+            "L": 0,
+            "M": 0,
+            "R": 0
+          },
+          "weighted_score": 0.05
+        },
+        {
+          "ground_truth_id": "M-7",
+          "prediction_id": "GPTSCAN-0a7cb324eae3a5a4",
+          "rationale": "R: Identifies a broadly related share/minting issue, but the claimed first-depositor dilution mechanism is materially different from missing duration-weighted accounting around reinvestReward. L: Correctly names StrategyUtils._convertBPTClaimToStrategyTokens, one of the ground-truth vulnerable conversion functions, but omits the redemption-side operation and reinvestReward context. I: Describes first-depositor share distortion and blocked or lost deposits, not the attacker stealing other users’ newly reinvested BPT rewards. M: Sending initial liquidity to the zero address addresses first-deposit dilution, not the reward snapshot/timing vulnerability.",
+          "scores": {
+            "I": 0,
+            "L": 3,
+            "M": 0,
+            "R": 1
+          },
+          "weighted_score": 0.25
+        }
+      ],
+      "repo_id": "2022-09-notional"
+    },
+    {
+      "pairs": [],
+      "repo_id": "2022-11-paraspace"
+    },
+    {
+      "pairs": [],
+      "repo_id": "2022-11-telcoin"
+    },
+    {
+      "pairs": [
+        {
+          "ground_truth_id": "H-1",
+          "prediction_id": "GPTSCAN-b035cbf99646dbf4",
+          "rationale": "R: Mentions price/valuation manipulation, which is broadly related, but misses the root cause: unrestricted deposit/withdrawal around a predictable oracle update combined with Balancer state manipulation. L: Localizes BLVaultManagerLido valuation helpers, not the vulnerable BLVaultLido deposit and withdraw paths. I: Gives only generic potential mispricing and loss, without identifying repeated sandwich extraction from remaining vault liquidity. M: Avoiding AMM or custom LP valuation does not address the missing minimum holding period and oracle-update sandwich vulnerability.",
+          "scores": {
+            "I": 1,
+            "L": 0,
+            "M": 0,
+            "R": 1
+          },
+          "weighted_score": 0.15000000000000002
+        }
+      ],
+      "repo_id": "2023-03-olympus"
+    },
+    {
+      "pairs": [
+        {
+          "ground_truth_id": "H-4",
+          "prediction_id": "GPTSCAN-645d0c4c1d33e497",
+          "rationale": "R: Identifies manipulable LP-token valuation, a related symptom/category, but does not identify the specific causal flaw of using manipulable underlying-token prices and a minimum-price calculation. L: Correctly localizes CurveOracle.getPrice at the same lines and function. I: Recognizes mispricing and possible losses or incorrect payouts, but omits the specific attacker profit-at-others'-expense consequence and relevant exploit conditions. M: Avoiding AMM/custom LP calculations is directionally related, but is vague and does not specify a sound replacement such as TWAP underlying-asset prices.",
+          "scores": {
+            "I": 2,
+            "L": 4,
+            "M": 2,
+            "R": 1
+          },
+          "weighted_score": 0.5
+        },
+        {
+          "ground_truth_id": "H-4",
+          "prediction_id": "GPTSCAN-dc8246d6a7bfa6c2",
+          "rationale": "R: Identifies only the broad category of manipulable LP valuation and flash-loan-related attacks, without the underlying Curve price-input and minimum-price mechanism. L: Points to UniswapV2Oracle.getPrice, which is not the ground-truth CurveOracle vulnerable path. I: Correctly notes that manipulated valuation can cause mispricing and financial loss, but does not state the specific attacker profit at the expense of other users. M: Avoiding AMM/custom calculations is directionally relevant but vague and does not provide the effective TWAP-based fix.",
+          "scores": {
+            "I": 2,
+            "L": 0,
+            "M": 2,
+            "R": 1
+          },
+          "weighted_score": 0.30000000000000004
+        },
+        {
+          "ground_truth_id": "H-4",
+          "prediction_id": "GPTSCAN-3d073c52e85135c8",
+          "rationale": "R: States a broadly related LP valuation manipulation issue but omits the actual CurveOracle mechanism involving manipulated underlying prices and minimum selection. L: Localizes to AuraSpell.openPositionFarm, unrelated to the specified vulnerable getPrice function. I: Captures possible valuation errors and losses, but omits the specific exploit outcome of attacker profit against other users. M: The proposed avoidance of AMM/custom calculations is only directionally relevant and lacks a technically complete replacement such as TWAP pricing.",
+          "scores": {
+            "I": 2,
+            "L": 0,
+            "M": 2,
+            "R": 1
+          },
+          "weighted_score": 0.30000000000000004
+        },
+        {
+          "ground_truth_id": "H-4",
+          "prediction_id": "GPTSCAN-20a71a684d2235f9",
+          "rationale": "R: Identifies only the general category of manipulable LP-token valuation, not the specific underlying-token price and minimum-price calculation flaw. L: Points to BasicSpell._validateMaxPosSize rather than CurveOracle.getPrice, so it does not localize the vulnerable code path. I: Mentions mispricing and potential losses, but not the specific attacker capability to profit at other users' expense. M: Avoiding AMM/custom LP calculations may be directionally related, but is incomplete and does not specify TWAP pricing for underlying assets.",
+          "scores": {
+            "I": 2,
+            "L": 0,
+            "M": 2,
+            "R": 1
+          },
+          "weighted_score": 0.30000000000000004
+        }
+      ],
+      "repo_id": "2023-04-blueberry"
+    },
+    {
+      "pairs": [],
+      "repo_id": "2023-05-ussd"
+    },
+    {
+      "pairs": [
+        {
+          "ground_truth_id": "M-13",
+          "prediction_id": "GPTSCAN-8ed0baa5b4fa45c7",
+          "rationale": "R: Correctly recognizes that LP-token valuation can be manipulated using a flash-loan/flash-swap-like mechanism, but omits the specific live-balance versus recorded-reserve flaw and the eligibility-check interaction. L: The cited EUSD functions are unrelated; the vulnerable path is EUSDMiningIncentives.stakedLBRLpValue(), isOtherEarningsClaimable(), and purchaseOtherEarnings(). I: Only gives generic mispricing/incorrect-payout or loss consequences and does not identify redirecting a protected victim's accumulated mining reward to the attacker. M: Avoiding manipulable AMM/custom valuation is directionally relevant, but it does not specifically require using getReserves() and is incomplete as a precise fix.",
+          "scores": {
+            "I": 1,
+            "L": 0,
+            "M": 2,
+            "R": 2
+          },
+          "weighted_score": 0.35000000000000003
+        },
+        {
+          "ground_truth_id": "M-13",
+          "prediction_id": "GPTSCAN-d81333ef57a79c35",
+          "rationale": "R: Correctly recognizes that LP-token valuation can be manipulated using a flash-loan/flash-swap-like mechanism, but omits the specific live-balance versus recorded-reserve flaw and the eligibility-check interaction. L: The cited EUSD.mint function is unrelated; the vulnerable path is EUSDMiningIncentives.stakedLBRLpValue(), isOtherEarningsClaimable(), and purchaseOtherEarnings(). I: Only gives generic mispricing/incorrect-payout or loss consequences and does not identify redirecting a protected victim's accumulated mining reward to the attacker. M: Avoiding manipulable AMM/custom valuation is directionally relevant, but it does not specifically require using getReserves() and is incomplete as a precise fix.",
+          "scores": {
+            "I": 1,
+            "L": 0,
+            "M": 2,
+            "R": 2
+          },
+          "weighted_score": 0.35000000000000003
+        },
+        {
+          "ground_truth_id": "M-13",
+          "prediction_id": "GPTSCAN-ebbecd6f5d0b9765",
+          "rationale": "R: Correctly recognizes that LP-token valuation can be manipulated using a flash-loan/flash-swap-like mechanism, but omits the specific live-balance versus recorded-reserve flaw and the eligibility-check interaction. L: The cited EUSD.burn function is unrelated; the vulnerable path is EUSDMiningIncentives.stakedLBRLpValue(), isOtherEarningsClaimable(), and purchaseOtherEarnings(). I: Only gives generic mispricing/incorrect-payout or loss consequences and does not identify redirecting a protected victim's accumulated mining reward to the attacker. M: Avoiding manipulable AMM/custom valuation is directionally relevant, but it does not specifically require using getReserves() and is incomplete as a precise fix.",
+          "scores": {
+            "I": 1,
+            "L": 0,
+            "M": 2,
+            "R": 2
+          },
+          "weighted_score": 0.35000000000000003
+        }
+      ],
+      "repo_id": "2023-06-lybra"
+    },
+    {
+      "pairs": [
+        {
+          "ground_truth_id": "H-3",
+          "prediction_id": "GPTSCAN-68a9598fb13e961c",
+          "rationale": "R: Identifies manipulable liquidity/LP valuation inputs, but omits the specific transaction-local Uniswap V3 slot0 price mechanism and incorrectly frames it primarily as a flashloan attack. L: Localizes to Dispatcher withdrawal functions, which are not the ground-truth vulnerable deposit/reserve path. I: Recognizes mispricing and potentially incorrect financial outcomes, but does not identify incorrect LP issuance, dilution, or the affected provider share. M: Avoiding AMM/custom valuation is directionally relevant, but it does not specifically require a manipulation-resistant TWAP or validated deviation checks.",
+          "scores": {
+            "I": 2,
+            "L": 0,
+            "M": 2,
+            "R": 2
+          },
+          "weighted_score": 0.4
+        },
+        {
+          "ground_truth_id": "H-3",
+          "prediction_id": "GPTSCAN-3f67639f970465c7",
+          "rationale": "R: Identifies manipulable liquidity/LP valuation inputs, but omits the specific transaction-local Uniswap V3 slot0 price mechanism and incorrectly frames it primarily as a flashloan attack. L: Localizes to Dispatcher deposit, not Multipool.deposit(), getSlots(), or _getReserves(), so it is the wrong code path. I: Recognizes mispricing and potentially incorrect financial outcomes, but does not identify incorrect LP issuance, dilution, or the affected provider share. M: Avoiding AMM/custom valuation is directionally relevant, but it does not specifically require a manipulation-resistant TWAP or validated deviation checks.",
+          "scores": {
+            "I": 2,
+            "L": 0,
+            "M": 2,
+            "R": 2
+          },
+          "weighted_score": 0.4
+        },
+        {
+          "ground_truth_id": "H-3",
+          "prediction_id": "GPTSCAN-1ced5dfc71327f07",
+          "rationale": "R: Identifies manipulable liquidity/LP valuation inputs, but omits the specific transaction-local Uniswap V3 slot0 price mechanism and incorrectly frames it primarily as a flashloan attack. L: Factory.estimateWithdrawalAmounts is not the ground-truth Multipool deposit reserve/share-calculation path. I: Recognizes mispricing and potentially incorrect financial outcomes, but does not identify incorrect LP issuance, dilution, or the affected provider share. M: Avoiding AMM/custom valuation is directionally relevant, but it does not specifically require a manipulation-resistant TWAP or validated deviation checks.",
+          "scores": {
+            "I": 2,
+            "L": 0,
+            "M": 2,
+            "R": 2
+          },
+          "weighted_score": 0.4
+        },
+        {
+          "ground_truth_id": "H-3",
+          "prediction_id": "GPTSCAN-a17eb2dd82159c82",
+          "rationale": "R: Identifies manipulable liquidity/LP valuation inputs, but omits the specific transaction-local Uniswap V3 slot0 price mechanism and incorrectly frames it primarily as a flashloan attack. L: Correctly identifies the Multipool deposit/_deposit path, although it omits the underlying getSlots() slot0 read and _getReserves() operation. I: Recognizes mispricing and potentially incorrect financial outcomes, but does not identify incorrect LP issuance, dilution, or the affected provider share. M: Avoiding AMM/custom valuation is directionally relevant, but it does not specifically require a manipulation-resistant TWAP or validated deviation checks.",
+          "scores": {
+            "I": 2,
+            "L": 3,
+            "M": 2,
+            "R": 2
+          },
+          "weighted_score": 0.55
+        },
+        {
+          "ground_truth_id": "H-3",
+          "prediction_id": "GPTSCAN-3b5f53a161171e7b",
+          "rationale": "R: Identifies manipulable liquidity/LP valuation inputs, but omits the specific transaction-local Uniswap V3 slot0 price mechanism and incorrectly frames it primarily as a flashloan attack. L: Names the Multipool contract but localizes to withdraw rather than the vulnerable deposit/getSlots/_getReserves path. I: Recognizes mispricing and potentially incorrect financial outcomes, but does not identify incorrect LP issuance, dilution, or the affected provider share. M: Avoiding AMM/custom valuation is directionally relevant, but it does not specifically require a manipulation-resistant TWAP or validated deviation checks.",
+          "scores": {
+            "I": 2,
+            "L": 1,
+            "M": 2,
+            "R": 2
+          },
+          "weighted_score": 0.45
+        },
+        {
+          "ground_truth_id": "H-3",
+          "prediction_id": "GPTSCAN-9cffc57b2c082703",
+          "rationale": "R: Identifies manipulable liquidity/LP valuation inputs, but omits the specific transaction-local Uniswap V3 slot0 price mechanism and incorrectly frames it primarily as a flashloan attack. L: Correctly identifies _getReserves() and the deposit path, but omits getSlots(), the operation that directly reads manipulable slot0 data. I: Recognizes mispricing and potentially incorrect financial outcomes, but does not identify incorrect LP issuance, dilution, or the affected provider share. M: Avoiding AMM/custom valuation is directionally relevant, but it does not specifically require a manipulation-resistant TWAP or validated deviation checks.",
+          "scores": {
+            "I": 2,
+            "L": 3,
+            "M": 2,
+            "R": 2
+          },
+          "weighted_score": 0.55
+        }
+      ],
+      "repo_id": "2023-06-real-wagmi"
+    },
+    {
+      "pairs": [
+        {
+          "ground_truth_id": "H-15",
+          "prediction_id": "GPTSCAN-569f38a742554c9a",
+          "rationale": "R: Correctly identifies manipulable LP-token valuation and flash-loan-based price manipulation, but omits the specific Maverick reserve-reading mechanism. L: Locates an analogous oracle getPriceInEth operation, but names the wrong oracle contract and implementation. I: Identifies mispricing and potentially incorrect payouts/losses, but omits the specific debt/share and withdrawal outcomes. M: Avoiding AMM spot-reserve/custom valuation is directionally effective, though it does not specify the required fair-reserve/invariant calculation.",
+          "scores": {
+            "I": 2,
+            "L": 2,
+            "M": 3,
+            "R": 2
+          },
+          "weighted_score": 0.55
+        },
+        {
+          "ground_truth_id": "H-15",
+          "prediction_id": "GPTSCAN-f38e9cd856979d68",
+          "rationale": "R: Correctly identifies manipulable LP-token valuation and flash-loan-based price manipulation, but omits the specific Maverick reserve-reading mechanism. L: Locates an analogous oracle getPriceInEth operation, but names the wrong oracle contract and implementation. I: Identifies mispricing and potentially incorrect payouts/losses, but omits the specific debt/share and withdrawal outcomes. M: Avoiding AMM spot-reserve/custom valuation is directionally effective, though it does not specify the required fair-reserve/invariant calculation.",
+          "scores": {
+            "I": 2,
+            "L": 2,
+            "M": 3,
+            "R": 2
+          },
+          "weighted_score": 0.55
+        },
+        {
+          "ground_truth_id": "H-15",
+          "prediction_id": "GPTSCAN-db8619b502a85479",
+          "rationale": "R: Correctly identifies manipulable LP-token valuation and flash-loan-based price manipulation, but omits the specific Maverick reserve-reading mechanism. L: Locates an analogous oracle getPriceInEth operation, but names the wrong oracle contract and implementation. I: Identifies mispricing and potentially incorrect payouts/losses, but omits the specific debt/share and withdrawal outcomes. M: Avoiding AMM spot-reserve/custom valuation is directionally effective, though it does not specify the required fair-reserve/invariant calculation.",
+          "scores": {
+            "I": 2,
+            "L": 2,
+            "M": 3,
+            "R": 2
+          },
+          "weighted_score": 0.55
+        },
+        {
+          "ground_truth_id": "H-15",
+          "prediction_id": "GPTSCAN-4bc99df51718ecb7",
+          "rationale": "R: Correctly identifies manipulable LP-token valuation and flash-loan-based price manipulation, but omits the specific Maverick reserve-reading mechanism. L: Points to a related Stats calculator subsystem, but not the vulnerable MavEthOracle.getPriceInEth code path. I: Identifies mispricing and potentially incorrect payouts/losses, but omits the specific debt/share and withdrawal outcomes. M: Avoiding AMM spot-reserve/custom valuation is directionally effective, though it does not specify the required fair-reserve/invariant calculation.",
+          "scores": {
+            "I": 2,
+            "L": 1,
+            "M": 3,
+            "R": 2
+          },
+          "weighted_score": 0.5
+        },
+        {
+          "ground_truth_id": "H-15",
+          "prediction_id": "GPTSCAN-f4696a0a66e606c9",
+          "rationale": "R: Correctly identifies manipulable LP-token valuation and flash-loan-based price manipulation, but omits the specific Maverick reserve-reading mechanism. L: Names an affected LMPVault withdrawal path rather than the vulnerable MavEthOracle.getPriceInEth operation. I: Identifies mispricing and potentially incorrect payouts/losses, but omits the specific debt/share and withdrawal outcomes. M: Avoiding AMM spot-reserve/custom valuation is directionally effective, though it does not specify the required fair-reserve/invariant calculation.",
+          "scores": {
+            "I": 2,
+            "L": 1,
+            "M": 3,
+            "R": 2
+          },
+          "weighted_score": 0.5
+        },
+        {
+          "ground_truth_id": "H-15",
+          "prediction_id": "GPTSCAN-061002d555a4c409",
+          "rationale": "R: Correctly identifies manipulable LP-token valuation and flash-loan-based price manipulation, but omits the specific Maverick reserve-reading mechanism. L: Names downstream LMPVault debt-reporting/fee code rather than the vulnerable MavEthOracle.getPriceInEth operation. I: Identifies mispricing and potentially incorrect payouts/losses, but omits the specific debt/share and withdrawal outcomes. M: Avoiding AMM spot-reserve/custom valuation is directionally effective, though it does not specify the required fair-reserve/invariant calculation.",
+          "scores": {
+            "I": 2,
+            "L": 1,
+            "M": 3,
+            "R": 2
+          },
+          "weighted_score": 0.5
+        },
+        {
+          "ground_truth_id": "H-15",
+          "prediction_id": "GPTSCAN-58e4fa6baee36f65",
+          "rationale": "R: Correctly identifies manipulable LP-token valuation and flash-loan-based price manipulation, but omits the specific Maverick reserve-reading mechanism. L: Locates an affected LMPVault NAV snapshot rather than the vulnerable MavEthOracle.getPriceInEth operation. I: Identifies mispricing and potentially incorrect payouts/losses, but omits the specific debt/share and withdrawal outcomes. M: Avoiding AMM spot-reserve/custom valuation is directionally effective, though it does not specify the required fair-reserve/invariant calculation.",
+          "scores": {
+            "I": 2,
+            "L": 1,
+            "M": 3,
+            "R": 2
+          },
+          "weighted_score": 0.5
+        },
+        {
+          "ground_truth_id": "H-15",
+          "prediction_id": "GPTSCAN-ecf27bb58ab3a084",
+          "rationale": "R: Correctly identifies manipulable LP-token valuation and flash-loan-based price manipulation, but omits the specific Maverick reserve-reading mechanism. L: Locates a downstream LMPVault NAV consistency check rather than the vulnerable MavEthOracle.getPriceInEth operation. I: Identifies mispricing and potentially incorrect payouts/losses, but omits the specific debt/share and withdrawal outcomes. M: Avoiding AMM spot-reserve/custom valuation is directionally effective, though it does not specify the required fair-reserve/invariant calculation.",
+          "scores": {
+            "I": 2,
+            "L": 1,
+            "M": 3,
+            "R": 2
+          },
+          "weighted_score": 0.5
+        },
+        {
+          "ground_truth_id": "H-15",
+          "prediction_id": "GPTSCAN-91a2f6c0c1d19a40",
+          "rationale": "R: Correctly identifies manipulable LP-token valuation and flash-loan-based price manipulation, but omits the specific Maverick reserve-reading mechanism. L: Names downstream LMPDebt withdrawal-share accounting rather than the vulnerable MavEthOracle.getPriceInEth operation. I: Identifies mispricing and potentially incorrect payouts/losses, but omits the specific debt/share and withdrawal outcomes. M: Avoiding AMM spot-reserve/custom valuation is directionally effective, though it does not specify the required fair-reserve/invariant calculation.",
+          "scores": {
+            "I": 2,
+            "L": 1,
+            "M": 3,
+            "R": 2
+          },
+          "weighted_score": 0.5
+        }
+      ],
+      "repo_id": "2023-06-tokemak"
+    },
+    {
+      "pairs": [
+        {
+          "ground_truth_id": "M-08",
+          "prediction_id": "GPTSCAN-6c2ddfd4c5627bce",
+          "rationale": "R: Identifies a broadly related AMM/liquidity-price manipulation theme, but misses the root cause that user-controlled bond() indirectly controls the transaction-local reLP liquidity operation enabling a sandwich. L: Correctly names ReLPContract.reLP(), but omits the important RdpxV2Core.bond() caller/control path and mislocalizes the flaw to LP valuation calculation. I: Gives only generic mispricing and possible loss-of-funds consequences, not the specific attacker capability to profitably sandwich bond() and its triggered reLP. M: Avoiding AMM/custom LP-value calculations is weakly related but does not prevent user control of reLP through bond(), so it would not fix the ground-truth vulnerability.",
+          "scores": {
+            "I": 1,
+            "L": 2,
+            "M": 1,
+            "R": 1
+          },
+          "weighted_score": 0.30000000000000004
+        },
+        {
+          "ground_truth_id": "M-09",
+          "prediction_id": "GPTSCAN-6c2ddfd4c5627bce",
+          "rationale": "R: Mentions a broad LP valuation/manipulation issue, but does not identify the actual initial-depositor/share-inflation mechanism caused by collateral increasing without corresponding shares. L: Localizes to unrelated ReLPContract.reLP(), rather than PerpetualAtlanticVaultLP.deposit() and convertToShares(). I: Gives only generic mispricing/loss-of-funds consequences and does not identify the early depositor profiting at the expense of later depositors. M: Avoiding AMM/custom LP valuation calculations is unrelated to the vault's missing minimum initial share supply/dead-share protection.",
+          "scores": {
+            "I": 1,
+            "L": 0,
+            "M": 0,
+            "R": 1
+          },
+          "weighted_score": 0.15000000000000002
+        }
+      ],
+      "repo_id": "2023-08-dopex"
+    },
+    {
+      "pairs": [
+        {
+          "ground_truth_id": "H-04",
+          "prediction_id": "GPTSCAN-99cae3b75277c1d7",
+          "rationale": "R: Correctly identifies flash-loan manipulation of an LP-token price/value calculation, but omits the specific reserve-based MagicLP oracle mechanism and inflation of the oracle price. L: Locates DegenBox.withdraw, which is not the MagicLpAggregator._getReserves/latestAnswer path. I: Captures flash-loan-driven mispricing and possible financial loss, but is vague about the inflated oracle valuation and one-transaction exploit. M: Avoiding AMM/custom reserve-based LP valuation would prevent this flaw in principle, though no safe replacement or oracle-deviation check is specified.",
+          "scores": {
+            "I": 2,
+            "L": 0,
+            "M": 3,
+            "R": 2
+          },
+          "weighted_score": 0.45000000000000007
+        },
+        {
+          "ground_truth_id": "H-04",
+          "prediction_id": "GPTSCAN-10a55b5415a23007",
+          "rationale": "R: Describes stale interest or exchange-rate accounting, unrelated to manipulable MagicLP reserves and oracle pricing. L: CauldronV4.init is not the vulnerable MagicLpAggregator path. I: Discusses stale balances/debt/fees rather than flash-loan inflation of the MagicLP oracle valuation. M: Reordering interest or exchange-rate updates does not address reserve-based oracle manipulation.",
+          "scores": {
+            "I": 0,
+            "L": 0,
+            "M": 0,
+            "R": 0
+          },
+          "weighted_score": 0.0
+        },
+        {
+          "ground_truth_id": "H-04",
+          "prediction_id": "GPTSCAN-62fdcad2e97ab960",
+          "rationale": "R: Identifies flash-loan manipulation of an LP-token price/value calculation, but omits the specific reserve-based MagicLP oracle mechanism and inflated oracle price. L: CauldronLib.getUserCollateral is at most an adjacent collateral-valuation/caller path; it does not identify MagicLpAggregator._getReserves or latestAnswer. I: Captures flash-loan-driven LP mispricing and potential financial loss, but not the specific one-transaction inflation of the MagicLP oracle valuation. M: Avoiding AMM/custom reserve-based LP valuation would prevent the flaw in principle, though it lacks the ground-truth Chainlink deviation check or replacement details.",
+          "scores": {
+            "I": 2,
+            "L": 2,
+            "M": 3,
+            "R": 2
+          },
+          "weighted_score": 0.55
+        },
+        {
+          "ground_truth_id": "H-04",
+          "prediction_id": "GPTSCAN-af76751b6ce0d827",
+          "rationale": "R: Correctly points to flash-loan manipulation of LP-token pricing, but does not state that manipulable MagicLP reserves are used by the oracle to inflate its reported price. L: MagicLP._sync and sellShares are relevant reserve-changing operations that could enable manipulation, but the actual vulnerable oracle functions in MagicLpAggregator are omitted. I: Describes LP valuation mispricing and possible loss, but is less specific than the ground-truth inflated oracle valuation within one transaction. M: Removing AMM/custom reserve-based valuation would prevent the vulnerability in principle, but the mitigation is broad and does not provide the Chainlink comparison and deviation limit.",
+          "scores": {
+            "I": 2,
+            "L": 2,
+            "M": 3,
+            "R": 2
+          },
+          "weighted_score": 0.55
+        },
+        {
+          "ground_truth_id": "H-04",
+          "prediction_id": "GPTSCAN-bc0739f2fa77da70",
+          "rationale": "R: Identifies the general flash-loan-manipulable LP price calculation, but omits the reserve-based MagicLP oracle and its inflated reported price. L: Router.previewRemoveLiquidity is an adjacent LP pricing/liquidity operation, not the MagicLpAggregator._getReserves/latestAnswer vulnerable path. I: Correctly conveys flash-loan-induced LP mispricing and possible financial consequences, but not the precise oracle-inflation outcome. M: Prohibiting AMM/custom reserve-based LP valuation would address the underlying issue in principle, though it is incomplete compared with validating against Chainlink and enforcing a deviation bound.",
+          "scores": {
+            "I": 2,
+            "L": 2,
+            "M": 3,
+            "R": 2
+          },
+          "weighted_score": 0.55
+        },
+        {
+          "ground_truth_id": "H-01",
+          "prediction_id": "GPTSCAN-99cae3b75277c1d7",
+          "rationale": "R: Identifies a broad price-manipulation category, but not the post-reserve-update TWAP accumulator flaw. L: DegenBox.withdraw is unrelated to the MagicLP TWAP update path. I: Gives only generic mispricing and possible loss/value extraction, not attacker-controlled TWAP pricing affecting integrators. M: Avoiding AMM/custom LP valuation does not fix the TWAP update ordering.",
+          "scores": {
+            "I": 1,
+            "L": 0,
+            "M": 0,
+            "R": 1
+          },
+          "weighted_score": 0.15000000000000002
+        },
+        {
+          "ground_truth_id": "H-01",
+          "prediction_id": "GPTSCAN-10a55b5415a23007",
+          "rationale": "R: Recognizes a broadly related ordering problem, but misstates the mechanism as interest/exchange-rate accounting rather than TWAP accumulation after reserve updates. L: CauldronV4.init is unrelated to the vulnerable MagicLP path. I: Describes generic stale-accounting losses rather than applications executing at an attacker-controlled TWAP price. M: Moving an update earlier is directionally relevant, but the proposal is not specific to moving _twapUpdate before reserves and is materially incomplete.",
+          "scores": {
+            "I": 1,
+            "L": 0,
+            "M": 2,
+            "R": 1
+          },
+          "weighted_score": 0.25
+        },
+        {
+          "ground_truth_id": "H-01",
+          "prediction_id": "GPTSCAN-62fdcad2e97ab960",
+          "rationale": "R: Broadly concerns manipulable pricing, but does not identify the post-reserve-update TWAP accounting flaw. L: CauldronLib.getUserCollateral is unrelated to the vulnerable MagicLP TWAP path. I: States generic LP mispricing and possible value loss, not the attacker-controlled TWAP consequence for integrating applications. M: Avoiding AMM/custom LP valuation does not address TWAP update ordering.",
+          "scores": {
+            "I": 1,
+            "L": 0,
+            "M": 0,
+            "R": 1
+          },
+          "weighted_score": 0.15000000000000002
+        },
+        {
+          "ground_truth_id": "H-01",
+          "prediction_id": "GPTSCAN-af76751b6ce0d827",
+          "rationale": "R: Identifies price manipulation in the affected MagicLP area, but attributes it to LP-token valuation rather than the causal flaw of _twapUpdate running after reserve changes. L: Correctly names MagicLP._sync(), which is part of the ground-truth vulnerable path, though it does not identify the specific TWAP-before-reserve operation. I: Mentions generic mispricing and value extraction, but omits attacker-controlled TWAP prices used by integrating applications. M: Avoiding AMM/custom LP valuation does not fix the TWAP accumulator ordering.",
+          "scores": {
+            "I": 1,
+            "L": 3,
+            "M": 0,
+            "R": 1
+          },
+          "weighted_score": 0.30000000000000004
+        },
+        {
+          "ground_truth_id": "H-01",
+          "prediction_id": "GPTSCAN-bc0739f2fa77da70",
+          "rationale": "R: Broadly alleges manipulable pricing, but not the specific TWAP post-update accounting mechanism. L: Router.previewRemoveLiquidity is not the vulnerable MagicLP TWAP update path. I: Gives only generic LP valuation distortion and possible loss, not the ground-truth attacker-controlled TWAP impact. M: The proposed valuation-avoidance measure does not address reserve/TWAP update ordering.",
+          "scores": {
+            "I": 1,
+            "L": 0,
+            "M": 0,
+            "R": 1
+          },
+          "weighted_score": 0.15000000000000002
+        }
+      ],
+      "repo_id": "2024-03-abracadabra-money"
+    },
+    {
+      "pairs": [
+        {
+          "ground_truth_id": "M-19",
+          "prediction_id": "GPTSCAN-ca079b6bd978cc2f",
+          "rationale": "R: Identifies the broad category of manipulable liquidity-position valuation, but not the causal flaw of deriving V3 amounts from current slot0 price despite oracle pricing and a permissive deviation bound. L: Locates V3Vault.vaultInfo(), not the vulnerable V3Oracle valuation path. I: Correctly notes valuation distortion and potential financial loss, but omits the specific collateral overstatement and borrowing capability for tight-range positions. M: Avoiding AMM-based valuation is directionally relevant, but it does not specifically require calculating amounts from the oracle-derived price and is imprecise.",
+          "scores": {
+            "I": 2,
+            "L": 0,
+            "M": 2,
+            "R": 1
+          },
+          "weighted_score": 0.30000000000000004
+        },
+        {
+          "ground_truth_id": "M-19",
+          "prediction_id": "GPTSCAN-80947d7a6bc388a6",
+          "rationale": "R: Recognizes generally manipulable LP valuation but misses the spot-price-based amount calculation underlying the finding. L: maxDeposit() in V3Vault is not the ground-truth V3Oracle code path. I: Captures generic mispricing and possible loss, but not overstated collateral enabling excess borrowing under the relevant tight-range/configuration conditions. M: Rejecting AMM/custom valuation is directionally related, though incomplete and not tied to replacing slot0-derived amounts with oracle-price-derived amounts.",
+          "scores": {
+            "I": 2,
+            "L": 0,
+            "M": 2,
+            "R": 1
+          },
+          "weighted_score": 0.30000000000000004
+        },
+        {
+          "ground_truth_id": "M-19",
+          "prediction_id": "GPTSCAN-865c4784984f0612",
+          "rationale": "R: States a broadly related valuation-manipulation issue but does not identify the current pool spot price versus oracle-derived price mechanism. L: maxMint() in V3Vault is unrelated to the specified V3Oracle functions. I: General mispricing and loss are relevant, but the prediction does not identify non-dust collateral overvaluation and borrowing against it. M: The proposed avoidance of AMM/custom valuation could help in principle, but lacks the required oracle-based amount calculation and precise coverage.",
+          "scores": {
+            "I": 2,
+            "L": 0,
+            "M": 2,
+            "R": 1
+          },
+          "weighted_score": 0.30000000000000004
+        },
+        {
+          "ground_truth_id": "M-19",
+          "prediction_id": "GPTSCAN-e1b8305cfaa78523",
+          "rationale": "R: Claims an interest/exchange-rate update-order flaw, unrelated to the oracle-versus-spot-price valuation flaw. L: setLimits() in V3Vault is not a vulnerable V3Oracle path. I: Stale accounting consequences do not describe the ground-truth collateral misvaluation and excess borrowing capability. M: Reordering interest or exchange-rate updates would not fix use of slot0() for position amounts.",
+          "scores": {
+            "I": 0,
+            "L": 0,
+            "M": 0,
+            "R": 0
+          },
+          "weighted_score": 0.0
+        },
+        {
+          "ground_truth_id": "M-19",
+          "prediction_id": "GPTSCAN-b8e7e03952aeb8f4",
+          "rationale": "R: Identifies only the broad symptom/category of manipulable LP valuation, omitting the use of current Uniswap V3 spot price for amount computation. L: _deposit() in V3Vault is not the ground-truth V3Oracle localization. I: Generic valuation distortion and possible loss are relevant, but it omits overstated collateral and borrowing against tight-range positions. M: Avoiding AMM/custom valuation is directionally useful, but does not explicitly mandate oracle-derived amounts and is materially imprecise.",
+          "scores": {
+            "I": 2,
+            "L": 0,
+            "M": 2,
+            "R": 1
+          },
+          "weighted_score": 0.30000000000000004
+        },
+        {
+          "ground_truth_id": "M-19",
+          "prediction_id": "GPTSCAN-2a8b3bb2c91bcef7",
+          "rationale": "R: Broadly recognizes valuation manipulation but not the specific spot-price amount calculation and permissive deviation-check interaction. L: _withdraw() in V3Vault does not match the vulnerable V3Oracle functions. I: Notes generic mispricing and loss, but not the specific attacker outcome of overstating collateral to borrow more. M: The mitigation is related in principle, but does not clearly replace slot0-derived calculations with oracle-derived calculations.",
+          "scores": {
+            "I": 2,
+            "L": 0,
+            "M": 2,
+            "R": 1
+          },
+          "weighted_score": 0.30000000000000004
+        },
+        {
+          "ground_truth_id": "M-19",
+          "prediction_id": "GPTSCAN-a47b0b73934241f2",
+          "rationale": "R: Describes a related LP valuation-manipulation category but not the causal V3Oracle mechanism. L: The listed V3Vault withdrawal/available-balance functions are not the ground-truth code path. I: Generic financial distortion/loss is directionally relevant, but the required tight-range collateral overvaluation and excess borrowing are omitted. M: Avoiding AMM/custom valuation could reduce exposure, but is not a complete or precise oracle-price-based fix.",
+          "scores": {
+            "I": 2,
+            "L": 0,
+            "M": 2,
+            "R": 1
+          },
+          "weighted_score": 0.30000000000000004
+        },
+        {
+          "ground_truth_id": "M-19",
+          "prediction_id": "GPTSCAN-6d322c8dec9c569d",
+          "rationale": "R: Identifies an unrelated interest/exchange-rate ordering issue rather than spot-price-driven V3 position valuation. L: _handleReserveLiquidation() in V3Vault is not the vulnerable V3Oracle path. I: Stale accounting effects do not match the ground-truth manipulation and borrowing impact. M: Moving interest/exchange-rate updates would not address the vulnerable slot0() price input.",
+          "scores": {
+            "I": 0,
+            "L": 0,
+            "M": 0,
+            "R": 0
+          },
+          "weighted_score": 0.0
+        },
+        {
+          "ground_truth_id": "M-19",
+          "prediction_id": "GPTSCAN-be319d2bc2418441",
+          "rationale": "R: Correctly gestures at manipulable LP valuation, but omits the specific use of current pool spot price to calculate amounts and the role of the deviation bound. L: _updateGlobalInterest() and _withdraw() in V3Vault are unrelated to the specified V3Oracle functions. I: Generic mispricing and loss are relevant, but the prediction misses overstated tight-range collateral and excess borrowing. M: Avoiding AMM/custom valuation is directionally relevant but lacks the complete oracle-derived amount calculation fix.",
+          "scores": {
+            "I": 2,
+            "L": 0,
+            "M": 2,
+            "R": 1
+          },
+          "weighted_score": 0.30000000000000004
+        },
+        {
+          "ground_truth_id": "M-19",
+          "prediction_id": "GPTSCAN-9630ac569a47753b",
+          "rationale": "R: Identifies a broad valuation-manipulation issue, not the actual current-slot0-versus-oracle amount-calculation flaw. L: _calculateGlobalInterest() and vaultInfo() in V3Vault do not localize the V3Oracle vulnerable path. I: General position mispricing and potential loss are relevant, but it omits the specific attacker ability to borrow against overstated collateral. M: Avoiding AMM/custom valuation may be directionally helpful, but is incomplete and does not expressly require oracle-derived amounts.",
+          "scores": {
+            "I": 2,
+            "L": 0,
+            "M": 2,
+            "R": 1
+          },
+          "weighted_score": 0.30000000000000004
+        },
+        {
+          "ground_truth_id": "M-19",
+          "prediction_id": "GPTSCAN-04f9cf900db655cf",
+          "rationale": "R: Identifies the broad idea of manipulable LP/liquidity-position valuation, but not the specific use of current slot0 spot price instead of an oracle-derived price for tight-range positions. L: The only location is V3Vault._resetDailyLendIncreaseLimit, which is not the V3Oracle valuation path. I: Recognizes valuation distortion and potential financial loss, but omits the specific overvalued-collateral borrowing capability and relevant tight-range/configuration conditions. M: Avoiding AMM/custom price calculations is directionally relevant, but it does not explicitly require calculating amounts from the oracle-derived price and is incomplete as stated.",
+          "scores": {
+            "I": 2,
+            "L": 0,
+            "M": 2,
+            "R": 1
+          },
+          "weighted_score": 0.30000000000000004
+        },
+        {
+          "ground_truth_id": "M-19",
+          "prediction_id": "GPTSCAN-f80d1a860e87aa79",
+          "rationale": "R: Captures only the broad category of manipulable liquidity-token valuation, without identifying the current slot0 price versus oracle-price mismatch. L: _deposit is at most an adjacent caller/usage path, while _resetDailyLendIncreaseLimit is unrelated; the actual V3Oracle functions and vulnerable amount calculation are omitted. I: Describes mispricing and possible losses, but not the precise ability to overstate tight-range collateral and borrow against it, nor the configuration conditions. M: Rejecting AMM/custom valuation is directionally related, but the mitigation is vague and does not specifically replace slot0-based amount calculation with oracle-derived pricing.",
+          "scores": {
+            "I": 2,
+            "L": 2,
+            "M": 2,
+            "R": 1
+          },
+          "weighted_score": 0.4
+        },
+        {
+          "ground_truth_id": "M-19",
+          "prediction_id": "GPTSCAN-124c2838684279cc",
+          "rationale": "R: Mentions broadly manipulable LP-token valuation but misses the causal flaw of deriving position amounts from the manipulable current pool spot price while valuing with oracle prices. L: V3Vault._resetDailyDebtIncreaseLimit is unrelated to the vulnerable V3Oracle code path. I: Correctly indicates valuation distortion and potential loss in general, but omits overstated collateral borrowing, tight-range positions, and the maxPoolPriceDifference/fringe-configuration conditions. M: Avoiding AMM/custom liquidity calculations is directionally useful, but is not a complete or explicit fix requiring oracle-derived prices for amount0 and amount1.",
+          "scores": {
+            "I": 2,
+            "L": 0,
+            "M": 2,
+            "R": 1
+          },
+          "weighted_score": 0.30000000000000004
+        }
+      ],
+      "repo_id": "2024-03-revert-lend"
+    },
+    {
+      "pairs": [
+        {
+          "ground_truth_id": "H-1",
+          "prediction_id": "GPTSCAN-be9f5c337aab625d",
+          "rationale": "R: Claims an unrelated interest/exchange-rate accounting-order issue rather than multi-swap oracle price compounding without a Chainlink anchor. L: Localizes MasterChefWoo.pendingXWoo, unrelated to the WooPPV2/WooracleV2_2 swap path. I: Describes generic stale accounting effects, not draining base-token reserves through the flash-loan exploit. M: Reordering accounting updates does not address the unsupported no-Chainlink price behavior.",
+          "scores": {
+            "I": 0,
+            "L": 0,
+            "M": 0,
+            "R": 0
+          },
+          "weighted_score": 0.0
+        },
+        {
+          "ground_truth_id": "H-1",
+          "prediction_id": "GPTSCAN-9dfc9c0ec559fbad",
+          "rationale": "R: Broadly gestures at an exchange-rate update/order problem, but misses the actual independent per-swap limits and compounded Wooracle price manipulation. L: Correctly identifies WooPPV2._sellBase, a ground-truth vulnerable function, though it does not identify the relevant price write/read operation. I: Gives only generic possible financial loss/value extraction and omits the attacker’s flash-loaned split sale and reserve-draining outcome. M: Moving an update earlier does not prevent the manipulated oracle state from being reused across swaps.",
+          "scores": {
+            "I": 1,
+            "L": 3,
+            "M": 0,
+            "R": 1
+          },
+          "weighted_score": 0.30000000000000004
+        },
+        {
+          "ground_truth_id": "H-1",
+          "prediction_id": "GPTSCAN-6e56d1fe63186b13",
+          "rationale": "R: Broadly gestures at exchange-rate update ordering but does not identify the compounded same-transaction oracle-price manipulation or missing Chainlink anchor. L: Correctly identifies WooPPV2._sellQuote, which is part of the vulnerable path, but does not specify the relevant manipulated-price read/use. I: States only generic possible financial loss/value extraction, not the flash-loan reserve-draining exploit. M: Reordering interest or exchange-rate statements would not fix the no-Chainlink feasibility-check flaw.",
+          "scores": {
+            "I": 1,
+            "L": 3,
+            "M": 0,
+            "R": 1
+          },
+          "weighted_score": 0.30000000000000004
+        },
+        {
+          "ground_truth_id": "H-1",
+          "prediction_id": "GPTSCAN-1ef920d14a028f2f",
+          "rationale": "R: Recognizes a broad price-manipulation/flash-loan theme, but attributes it to LP-token valuation rather than compounded WooPPV2/Wooracle swap pricing without a Chainlink reference. L: DataProvider.sharePrices is unrelated to the listed WooPPV2 and WooracleV2_2 vulnerable path. I: Gives generic mispricing and possible loss, not draining base-token reserves with a split flash-loan sale. M: Avoiding AMM/custom LP valuation does not address WooPPV2’s oracle state update and unsupported-token behavior.",
+          "scores": {
+            "I": 1,
+            "L": 0,
+            "M": 0,
+            "R": 1
+          },
+          "weighted_score": 0.15000000000000002
+        },
+        {
+          "ground_truth_id": "H-1",
+          "prediction_id": "GPTSCAN-cd71eb127ab7b8a9",
+          "rationale": "R: Broadly identifies manipulable pricing, but not the ground-truth per-swap price compounding and absent Chainlink anchor. L: WOOFiVaultV2.deposit is not the vulnerable swap/oracle code path. I: Describes generic LP mispricing rather than extracting base-token reserves and repaying a flash loan from the proceeds. M: The proposed LP valuation change is unrelated to the WooPPV2/Wooracle vulnerability.",
+          "scores": {
+            "I": 1,
+            "L": 0,
+            "M": 0,
+            "R": 1
+          },
+          "weighted_score": 0.15000000000000002
+        },
+        {
+          "ground_truth_id": "H-1",
+          "prediction_id": "GPTSCAN-9f9a1f00b82e8690",
+          "rationale": "R: Broad price-manipulation category only; it misses the actual same-transaction oracle-price compounding mechanism. L: WOOFiVaultV2.withdraw is unrelated to the ground-truth vulnerable functions. I: Does not describe the attacker’s ability to drain base-token reserves for profit. M: Avoiding AMM/custom LP calculations would not fix the unsupported no-Chainlink swap pricing.",
+          "scores": {
+            "I": 1,
+            "L": 0,
+            "M": 0,
+            "R": 1
+          },
+          "weighted_score": 0.15000000000000002
+        },
+        {
+          "ground_truth_id": "H-1",
+          "prediction_id": "GPTSCAN-aaec72cd68f75f49",
+          "rationale": "R: Mentions a broadly related stale/update-order concept, but not the actual repeated swap-induced Wooracle price manipulation. L: WooLendingManagerV1_2._repay is unrelated to the WooPPV2/Wooracle vulnerable path. I: Generic possible financial effects do not identify reserve extraction via a flash-loaned split sale. M: Reordering lending interest/accounting updates does not address the ground-truth flaw.",
+          "scores": {
+            "I": 1,
+            "L": 0,
+            "M": 0,
+            "R": 1
+          },
+          "weighted_score": 0.15000000000000002
+        },
+        {
+          "ground_truth_id": "H-1",
+          "prediction_id": "GPTSCAN-5c2209fb0ef81867",
+          "rationale": "R: Broadly invokes price manipulation and flash loans, but concerns LP valuation rather than independently bounded swaps compounding Wooracle price. L: WooSuperChargerVaultV2._deposit is not part of the vulnerable code path. I: Gives generic mispricing/loss consequences, not draining pool base reserves and retaining excess tokens. M: Changing LP-token valuation methodology would not prevent the WooPPV2 oracle manipulation.",
+          "scores": {
+            "I": 1,
+            "L": 0,
+            "M": 0,
+            "R": 1
+          },
+          "weighted_score": 0.15000000000000002
+        },
+        {
+          "ground_truth_id": "H-1",
+          "prediction_id": "GPTSCAN-a396f1f746569e50",
+          "rationale": "R: Identifies only a broad manipulable-price theme and misses the missing Chainlink anchor and sequential oracle-state compounding. L: WooSuperChargerVaultV2._migrateToNewVault is unrelated to the vulnerable swap functions. I: Does not state the ground-truth flash-loan reserve-draining capability. M: The proposed LP calculation mitigation is ineffective for the WooPPV2/Wooracle issue.",
+          "scores": {
+            "I": 1,
+            "L": 0,
+            "M": 0,
+            "R": 1
+          },
+          "weighted_score": 0.15000000000000002
+        },
+        {
+          "ground_truth_id": "H-1",
+          "prediction_id": "GPTSCAN-377dc8a6d81bf158",
+          "rationale": "R: Broad price-manipulation category, but not the actual multi-swap WooPPV2/Wooracle mechanism. L: WooSuperChargerVaultV2.borrowFromLendingManager is unrelated to the listed vulnerable path. I: Generic possible payout loss does not capture extraction of base-token reserves with flash-loan repayment. M: Avoiding AMM/custom LP pricing does not remove the no-Chainlink oracle vulnerability.",
+          "scores": {
+            "I": 1,
+            "L": 0,
+            "M": 0,
+            "R": 1
+          },
+          "weighted_score": 0.15000000000000002
+        },
+        {
+          "ground_truth_id": "H-1",
+          "prediction_id": "GPTSCAN-2f10b172b45da69e",
+          "rationale": "R: The prediction concerns ordering interest or exchange-rate updates in a vault, not independently bounded swaps, compounded oracle-price manipulation, or the missing Chainlink anchor. L: It localizes WooSuperChargerVaultV2.endWeeklySettle(), whereas the vulnerable path is in WooPPV2 sell functions and WooracleV2_2.price(). I: It describes stale accounting and generic value extraction, not draining base-token reserves through split flash-loaned swaps and manipulated pricing. M: Moving interest or exchange-rate update statements in the vault would not address the unsupported-token oracle behavior or per-swap price compounding.",
+          "scores": {
+            "I": 0,
+            "L": 0,
+            "M": 0,
+            "R": 0
+          },
+          "weighted_score": 0.0
+        }
+      ],
+      "repo_id": "2024-03-woofi-swap"
+    },
+    {
+      "pairs": [
+        {
+          "ground_truth_id": "M-01",
+          "prediction_id": "GPTSCAN-dc3d2cbf41d2ef66",
+          "rationale": "R: Mentions flash-loan price manipulation and liquidity calculation, but does not identify the root cause of PanopticFactory using an unvalidated Uniswap V3 spot sqrt price during deployment. L: Localizes to CollateralTracker previewWithdraw/withdraw, unrelated to the vulnerable PanopticFactory._mintFullRange path. I: Gives only a generic mispricing/possible loss consequence and does not identify inaccurate per-token liquidity resulting in an unbalanced newly deployed pool. M: Avoiding AMM/custom LP valuation is broadly related to price-manipulation resistance but does not specifically fix the factory's spot-price use and is not a sound complete mitigation.",
+          "scores": {
+            "I": 1,
+            "L": 0,
+            "M": 1,
+            "R": 1
+          },
+          "weighted_score": 0.2
+        },
+        {
+          "ground_truth_id": "M-01",
+          "prediction_id": "GPTSCAN-0e325ebc160a2586",
+          "rationale": "R: Mentions flash-loan price manipulation and liquidity calculation, but does not identify the root cause of PanopticFactory using an unvalidated Uniswap V3 spot sqrt price during deployment. L: Localizes to CollateralTracker.maxRedeem, unrelated to the vulnerable PanopticFactory._mintFullRange path. I: Gives only a generic mispricing/possible loss consequence and does not identify inaccurate per-token liquidity resulting in an unbalanced newly deployed pool. M: Avoiding AMM/custom LP valuation is broadly related to price-manipulation resistance but does not specifically fix the factory's spot-price use and is not a sound complete mitigation.",
+          "scores": {
+            "I": 1,
+            "L": 0,
+            "M": 1,
+            "R": 1
+          },
+          "weighted_score": 0.2
+        },
+        {
+          "ground_truth_id": "M-01",
+          "prediction_id": "GPTSCAN-7841397ca1d60bce",
+          "rationale": "R: Mentions flash-loan price manipulation and liquidity calculation, but does not identify the root cause of PanopticFactory using an unvalidated Uniswap V3 spot sqrt price during deployment. L: Localizes to CollateralTracker._getAccountMargin, unrelated to the vulnerable PanopticFactory._mintFullRange path. I: Gives only a generic mispricing/possible loss consequence and does not identify inaccurate per-token liquidity resulting in an unbalanced newly deployed pool. M: Avoiding AMM/custom LP valuation is broadly related to price-manipulation resistance but does not specifically fix the factory's spot-price use and is not a sound complete mitigation.",
+          "scores": {
+            "I": 1,
+            "L": 0,
+            "M": 1,
+            "R": 1
+          },
+          "weighted_score": 0.2
+        }
+      ],
+      "repo_id": "2024-04-panoptic"
+    },
+    {
+      "pairs": [
+        {
+          "ground_truth_id": "M-11",
+          "prediction_id": "GPTSCAN-2688180308d90412",
+          "rationale": "R: Mentions manipulable pricing, a broadly related category, but does not identify the permissionless pokeOracle/current-tick insertion and once-per-epoch oracle flaw. L: Points to CollateralTracker.maxWithdraw rather than PanopticPool.pokeOracle or OraclePack.computeInternalMedian. I: Gives only generic mispricing and potential loss consequences, omitting incorrect solvency checks, unfair liquidations, and insolvent positions remaining active. M: Avoiding AMM/custom LP valuation does not fix manipulation of the internal oracle.",
+          "scores": {
+            "I": 1,
+            "L": 0,
+            "M": 0,
+            "R": 1
+          },
+          "weighted_score": 0.15000000000000002
+        },
+        {
+          "ground_truth_id": "M-11",
+          "prediction_id": "GPTSCAN-03163a5552a7b0d3",
+          "rationale": "R: Identifies only the broad idea of price manipulation, not the stale, attacker-selected tick recorded once per epoch in the internal oracle. L: Localizes the issue to CollateralTracker._maxWithdrawWithPositions, unrelated to the vulnerable oracle path. I: Describes generic valuation distortion and possible losses, not the ground-truth solvency-validation, liquidation, or insolvency consequences. M: Removing AMM/custom LP calculations is unrelated to securing pokeOracle or computeInternalMedian.",
+          "scores": {
+            "I": 1,
+            "L": 0,
+            "M": 0,
+            "R": 1
+          },
+          "weighted_score": 0.15000000000000002
+        },
+        {
+          "ground_truth_id": "M-11",
+          "prediction_id": "GPTSCAN-201e782f15e5c9f9",
+          "rationale": "R: Broadly references manipulable pricing but misses the actual oracle update mechanism and epoch-locking flaw. L: The listed maxRedeem and donate functions are not the vulnerable PanopticPool/OraclePack functions. I: States generic mispricing and loss potential without identifying incorrect solvency validation, unfair liquidation, or insolvent positions remaining active. M: The proposed LP valuation change would not prevent manipulation of the internal oracle tick.",
+          "scores": {
+            "I": 1,
+            "L": 0,
+            "M": 0,
+            "R": 1
+          },
+          "weighted_score": 0.15000000000000002
+        },
+        {
+          "ground_truth_id": "M-11",
+          "prediction_id": "GPTSCAN-85825f34183d2e2e",
+          "rationale": "R: Only a general price-manipulation claim is related; it does not identify attacker control of the tick passed to a once-per-epoch internal oracle update. L: _accrueInterest in CollateralTracker is unrelated to the vulnerable oracle code path. I: Provides generic mispricing/loss consequences rather than the specific risk-engine consequences in the ground truth. M: Avoiding AMM/custom liquidity calculations does not address permissionless pokeOracle or stale oracle observations.",
+          "scores": {
+            "I": 1,
+            "L": 0,
+            "M": 0,
+            "R": 1
+          },
+          "weighted_score": 0.15000000000000002
+        },
+        {
+          "ground_truth_id": "M-11",
+          "prediction_id": "GPTSCAN-a357ffd6a4f9bf3c",
+          "rationale": "R: Mentions broadly related valuation manipulation but not the causal flaw of inserting a manipulated current tick and preventing replacement within the epoch. L: settleBurn and InteractionHelper.settleAmounts do not localize the vulnerability to pokeOracle or computeInternalMedian. I: Generic incorrect payouts/losses do not capture the specific incorrect solvency checks, liquidations, or active insolvent positions. M: The proposed mitigation targets LP token valuation, not the internal oracle update process.",
+          "scores": {
+            "I": 1,
+            "L": 0,
+            "M": 0,
+            "R": 1
+          },
+          "weighted_score": 0.15000000000000002
+        },
+        {
+          "ground_truth_id": "M-11",
+          "prediction_id": "GPTSCAN-e49f4e7f930bab54",
+          "rationale": "R: Recognizes only a broad price-manipulation theme and misses the permissionless, one-observation-per-epoch oracle flaw. L: SafeTransferFrom and redeem are unrelated to the vulnerable PanopticPool and OraclePack operations. I: Generic mispricing and loss claims are insufficiently specific to the ground-truth oracle-driven solvency and liquidation impacts. M: Avoiding AMM/custom LP calculations would not prevent current-tick manipulation or fix the internal oracle.",
+          "scores": {
+            "I": 1,
+            "L": 0,
+            "M": 0,
+            "R": 1
+          },
+          "weighted_score": 0.15000000000000002
+        },
+        {
+          "ground_truth_id": "M-03",
+          "prediction_id": "GPTSCAN-2688180308d90412",
+          "rationale": "R: Claims manipulable LP-token valuation/flash loans, unrelated to the EMA tuple-ordering flaw. L: Localizes CollateralTracker.maxWithdraw rather than RiskEngine.twapEMA or OraclePack.getEMAs. I: Describes LP mispricing and potential payout loss, not unhealthy accounts bypassing liquidation/force-exercise. M: Avoiding AMM/custom LP valuation does not fix incorrect EMA destructuring.",
+          "scores": {
+            "I": 0,
+            "L": 0,
+            "M": 0,
+            "R": 0
+          },
+          "weighted_score": 0.0
+        },
+        {
+          "ground_truth_id": "M-03",
+          "prediction_id": "GPTSCAN-03163a5552a7b0d3",
+          "rationale": "R: Claims manipulable LP-token valuation/flash loans, unrelated to the EMA tuple-ordering flaw. L: Localizes CollateralTracker._maxWithdrawWithPositions rather than the vulnerable TWAP path. I: Describes LP mispricing and potential payout loss, not liquidation checks returning NotMarginCalled. M: Avoiding AMM/custom LP valuation does not correct EMA ordering or weighting.",
+          "scores": {
+            "I": 0,
+            "L": 0,
+            "M": 0,
+            "R": 0
+          },
+          "weighted_score": 0.0
+        },
+        {
+          "ground_truth_id": "M-03",
+          "prediction_id": "GPTSCAN-201e782f15e5c9f9",
+          "rationale": "R: Claims manipulable LP-token valuation, not RiskEngine using getEMAs values in the wrong order. L: Points to CollateralTracker.maxRedeem and donate, with no relevant RiskEngine/OraclePack localization. I: LP valuation distortion is distinct from insolvent accounts appearing solvent and evading liquidation. M: The proposed LP valuation change would not fix the TWAP calculation.",
+          "scores": {
+            "I": 0,
+            "L": 0,
+            "M": 0,
+            "R": 0
+          },
+          "weighted_score": 0.0
+        },
+        {
+          "ground_truth_id": "M-03",
+          "prediction_id": "GPTSCAN-85825f34183d2e2e",
+          "rationale": "R: Identifies an unrelated LP-token valuation manipulation issue rather than EMA misdestructuring. L: Localizes CollateralTracker._accrueInterest instead of RiskEngine.twapEMA/getEMAs. I: Discusses LP mispricing and possible loss, not stale TWAP-based blocking of liquidation or force-exercise. M: Avoiding AMM/custom LP valuation is ineffective against the ground-truth flaw.",
+          "scores": {
+            "I": 0,
+            "L": 0,
+            "M": 0,
+            "R": 0
+          },
+          "weighted_score": 0.0
+        },
+        {
+          "ground_truth_id": "M-03",
+          "prediction_id": "GPTSCAN-a357ffd6a4f9bf3c",
+          "rationale": "R: The proposed cause is LP-token valuation manipulation, unrelated to wrong EMA tuple ordering. L: Identifies CollateralTracker.settleBurn and InteractionHelper.settleAmounts, not the TWAP code path. I: Mispriced liquidity positions and payouts do not state the ground-truth liquidation/solvency consequence. M: Changing LP valuation calculations would not repair twapEMA.",
+          "scores": {
+            "I": 0,
+            "L": 0,
+            "M": 0,
+            "R": 0
+          },
+          "weighted_score": 0.0
+        },
+        {
+          "ground_truth_id": "M-03",
+          "prediction_id": "GPTSCAN-e49f4e7f930bab54",
+          "rationale": "R: Claims insecure LP-token valuation rather than the incorrect getEMAs destructuring mechanism. L: Localizes SafeTransferLib.safeTransferFrom and CollateralTracker.redeem, unrelated to RiskEngine.twapEMA. I: Describes LP valuation and payout risks, not unhealthy accounts bypassing liquidation/force-exercise. M: Avoiding AMM/custom LP valuation does not address the EMA ordering bug.",
+          "scores": {
+            "I": 0,
+            "L": 0,
+            "M": 0,
+            "R": 0
+          },
+          "weighted_score": 0.0
+        },
+        {
+          "ground_truth_id": "M-15",
+          "prediction_id": "GPTSCAN-2688180308d90412",
+          "rationale": "R: Claims LP-token valuation/flashloan manipulation, not zero-recipient share burning or JIT commission capture. L: Only identifies CollateralTracker generally via maxWithdraw, not the settleMint/settleBurn path. I: Describes generic mispricing/loss rather than incumbent LP commission capture by JIT entrants. M: Avoiding AMM/custom valuation does not fix commission share burns with a zero recipient.",
+          "scores": {
+            "I": 0,
+            "L": 1,
+            "M": 0,
+            "R": 0
+          },
+          "weighted_score": 0.05
+        },
+        {
+          "ground_truth_id": "M-15",
+          "prediction_id": "GPTSCAN-03163a5552a7b0d3",
+          "rationale": "R: The proposed valuation-manipulation mechanism is unrelated to the ground-truth zero-recipient burn flaw. L: Identifies an adjacent CollateralTracker withdrawal helper, not settleMint/settleBurn or builderCode mapping. I: Does not identify JIT capture of commission distributions or fee-model weakening. M: The valuation advice would not prevent assetless share burning.",
+          "scores": {
+            "I": 0,
+            "L": 1,
+            "M": 0,
+            "R": 0
+          },
+          "weighted_score": 0.05
+        },
+        {
+          "ground_truth_id": "M-15",
+          "prediction_id": "GPTSCAN-201e782f15e5c9f9",
+          "rationale": "R: Describes LP-token price manipulation rather than shares burned without corresponding asset removal when feeRecipient is zero. L: Names CollateralTracker functions but misses the vulnerable settlement functions and RiskEngine/PanopticPool path. I: Generic mispricing and possible loss are not the specific JIT commission-capture impact. M: The suggested valuation change does not address instantaneous commission share burns.",
+          "scores": {
+            "I": 0,
+            "L": 1,
+            "M": 0,
+            "R": 0
+          },
+          "weighted_score": 0.05
+        },
+        {
+          "ground_truth_id": "M-15",
+          "prediction_id": "GPTSCAN-85825f34183d2e2e",
+          "rationale": "R: Interest-accrual/LP valuation manipulation is not the ground-truth causal flaw. L: Locates only _accrueInterest in CollateralTracker, not the settleMint/settleBurn burn logic or builderCode==0 mapping. I: Omits the attacker’s JIT deposit-and-exit capture of commission value. M: Removing custom valuation calculations would not fix zero-recipient commission distribution.",
+          "scores": {
+            "I": 0,
+            "L": 1,
+            "M": 0,
+            "R": 0
+          },
+          "weighted_score": 0.05
+        },
+        {
+          "ground_truth_id": "M-15",
+          "prediction_id": "GPTSCAN-a357ffd6a4f9bf3c",
+          "rationale": "R: Still attributes the issue to LP-token valuation manipulation, omitting the assetless share burn caused by a zero fee recipient. L: Correctly identifies CollateralTracker.settleBurn, the vulnerable function, though it does not identify the specific burn-without-asset-removal operation or related callers. I: Does not describe JIT capture of commission distributions or fee self-rebating. M: The proposed valuation change is unrelated and would not prevent the ground-truth flaw.",
+          "scores": {
+            "I": 0,
+            "L": 3,
+            "M": 0,
+            "R": 0
+          },
+          "weighted_score": 0.15000000000000002
+        },
+        {
+          "ground_truth_id": "M-15",
+          "prediction_id": "GPTSCAN-e49f4e7f930bab54",
+          "rationale": "R: Claims valuation manipulation rather than zero-recipient commission share burning. L: Identifies CollateralTracker.redeem and a transfer helper, but not settleMint/settleBurn or the RiskEngine/PanopticPool trigger path. I: Gives only generic mispricing/loss consequences, not JIT capture of incumbent LP commissions. M: The valuation recommendation does not address the vulnerable commission-distribution mechanism.",
+          "scores": {
+            "I": 0,
+            "L": 1,
+            "M": 0,
+            "R": 0
+          },
+          "weighted_score": 0.05
+        }
+      ],
+      "repo_id": "2025-12-panoptic"
+    }
+  ]
+}

@@ -1,0 +1,696 @@
+{
+  "report_version": "0.2",
+  "benchmark_version": "v1",
+  "manifest_sha256": "e88ce520f7a19668638329548caae81969e985c0dc7544c21bf6a685d32adac9",
+  "judge_config": {
+    "threshold": 0.5,
+    "weight_profile": {
+      "profile_id": "end-to-end-v2",
+      "R": 0.4,
+      "L": 0.2,
+      "I": 0.2,
+      "M": 0.2
+    }
+  },
+  "matching_strategy": "greedy",
+  "detector_metadata": {
+    "detector_version": "gptscan-price-minimal-upstream7-v3",
+    "llm_model": "openai-codex/gpt-5.6-luna"
+  },
+  "corpus_metrics": {
+    "macro_soft_f1": 0.06144237405106971,
+    "pooled_soft_precision": 0.04836956521739131,
+    "pooled_soft_recall": 0.10595238095238095,
+    "pooled_soft_f1": 0.0664179104477612,
+    "total_matched_weight": 4.45,
+    "total_ground_truth_count": 42,
+    "total_prediction_count": 92
+  },
+  "repositories": [
+    {
+      "repo_id": "2021-04-marginswap",
+      "metrics": {
+        "repo_id": "2021-04-marginswap",
+        "ground_truth_count": 1,
+        "prediction_count": 2,
+        "matched_weight": 0.55,
+        "soft_precision": 0.275,
+        "soft_recall": 0.55,
+        "soft_f1": 0.3666666666666667
+      },
+      "matched_pairs": [
+        {
+          "prediction_id": "GPTSCAN-9775da266872fbd6",
+          "ground_truth_id": "H-03",
+          "scores": {
+            "R": 2,
+            "L": 3,
+            "I": 2,
+            "M": 2
+          },
+          "weighted_score": 0.55,
+          "rationale": "R: Correctly identifies flash-loan manipulation of an AMM-derived price, but frames it specifically as LP-token valuation rather than the broader current spot token-price feed and reserve distortion. L: Correctly identifies PriceAware.getCurrentPriceInPeg, though it omits the related getPriceFromAMM operation. I: Captures mispricing and distorted financial outcomes, but does not specifically identify the protocol’s borrowing, margin, or liquidation consequences and narrows the scope to liquidity positions. M: Avoiding AMM-based valuation is directionally relevant, but it is vague and does not specify replacing the manipulable spot quote with a cumulative-price TWAP across the affected path."
+        }
+      ],
+      "matching_order": [
+        {
+          "prediction_id": "GPTSCAN-9775da266872fbd6",
+          "ground_truth_id": "H-03"
+        }
+      ],
+      "unmatched_predictions": [
+        "GPTSCAN-1820dda09211b749"
+      ],
+      "unmatched_ground_truths": []
+    },
+    {
+      "repo_id": "2021-07-spartan",
+      "metrics": {
+        "repo_id": "2021-07-spartan",
+        "ground_truth_count": 3,
+        "prediction_count": 5,
+        "matched_weight": 1.2000000000000002,
+        "soft_precision": 0.24000000000000005,
+        "soft_recall": 0.4000000000000001,
+        "soft_f1": 0.30000000000000004
+      },
+      "matched_pairs": [
+        {
+          "prediction_id": "GPTSCAN-b6c928f4096b1f12",
+          "ground_truth_id": "H-05",
+          "scores": {
+            "R": 3,
+            "L": 4,
+            "I": 2,
+            "M": 2
+          },
+          "weighted_score": 0.7000000000000001,
+          "rationale": "R: Correctly identifies manipulation of the liquidity-holdings valuation used in the vulnerability, with minor omission of the synth-value comparison and resulting burn. L: Correctly identifies Utils.calcLiquidityHoldings(), one of the ground-truth vulnerable valuation operations. I: Describes general mispricing and potential loss, but omits the concrete attacker capability and value extraction from other pool LP holders. M: Avoiding spot/custom AMM valuation is relevant, but the mitigation lacks a concrete manipulation-resistant replacement."
+        },
+        {
+          "prediction_id": "GPTSCAN-a0e995bb024a4c0a",
+          "ground_truth_id": "M-14",
+          "scores": {
+            "R": 2,
+            "L": 2,
+            "I": 2,
+            "M": 2
+          },
+          "weighted_score": 0.5,
+          "rationale": "R: Recognizes manipulable pool-based token valuation, but misstates the specific mechanism and affected calculation; the ground truth concerns BASE value computed for bonding. L: Utils and a pricing-related function are adjacent to the vulnerable area, but calcAsymmetricValueToken() is not calcSwapValueInBase() or its pool helper. I: Describes general manipulated pricing causing incorrect payouts/loss, but not theft of DAO bond allocation through manipulated BASE incentives and reversal. M: Removing manipulable AMM/custom pricing could address the issue in principle, but the proposal is incomplete and does not explicitly secure the bond calculation with TWAP or another manipulation-resistant reference."
+        }
+      ],
+      "matching_order": [
+        {
+          "prediction_id": "GPTSCAN-b6c928f4096b1f12",
+          "ground_truth_id": "H-05"
+        },
+        {
+          "prediction_id": "GPTSCAN-a0e995bb024a4c0a",
+          "ground_truth_id": "M-14"
+        }
+      ],
+      "unmatched_predictions": [
+        "GPTSCAN-99003c027580631c",
+        "GPTSCAN-4967e8b89e9c8dbc",
+        "GPTSCAN-fdcd9144516a3cd0"
+      ],
+      "unmatched_ground_truths": [
+        "H-06"
+      ]
+    },
+    {
+      "repo_id": "2021-08-notional",
+      "metrics": {
+        "repo_id": "2021-08-notional",
+        "ground_truth_count": 2,
+        "prediction_count": 3,
+        "matched_weight": 0.0,
+        "soft_precision": 0.0,
+        "soft_recall": 0.0,
+        "soft_f1": 0.0
+      },
+      "matched_pairs": [],
+      "matching_order": [],
+      "unmatched_predictions": [
+        "GPTSCAN-3903369141c197df",
+        "GPTSCAN-9e7ab9eda5fa09b6",
+        "GPTSCAN-e05a9a69808b4ea8"
+      ],
+      "unmatched_ground_truths": [
+        "H-10",
+        "M-07"
+      ]
+    },
+    {
+      "repo_id": "2021-11-malt",
+      "metrics": {
+        "repo_id": "2021-11-malt",
+        "ground_truth_count": 3,
+        "prediction_count": 1,
+        "matched_weight": 0.0,
+        "soft_precision": 0.0,
+        "soft_recall": 0.0,
+        "soft_f1": 0.0
+      },
+      "matched_pairs": [],
+      "matching_order": [],
+      "unmatched_predictions": [
+        "GPTSCAN-a80f7033b5ae1369"
+      ],
+      "unmatched_ground_truths": [
+        "M-22",
+        "M-25",
+        "M-30"
+      ]
+    },
+    {
+      "repo_id": "2021-12-vader",
+      "metrics": {
+        "repo_id": "2021-12-vader",
+        "ground_truth_count": 4,
+        "prediction_count": 5,
+        "matched_weight": 0.55,
+        "soft_precision": 0.11000000000000001,
+        "soft_recall": 0.1375,
+        "soft_f1": 0.12222222222222223
+      },
+      "matched_pairs": [
+        {
+          "prediction_id": "GPTSCAN-e835e95570d044ee",
+          "ground_truth_id": "H-06",
+          "scores": {
+            "R": 2,
+            "L": 4,
+            "I": 1,
+            "M": 2
+          },
+          "weighted_score": 0.55,
+          "rationale": "R: Correctly recognizes that manipulable pool-derived LP valuation inputs can be abused, but omits the specific artificial impermanent-loss calculation and reserve reimbursement mechanism. L: Correctly identifies BasePoolV2._burn(), which is one of the vulnerable code paths. I: Mentions possible incorrect payouts or loss only generically and does not identify VADER compensation or profitable reserve extraction. M: Avoiding AMM/custom spot-based valuation is directionally relevant, but it does not specify a manipulation-resistant oracle such as a TWAP and is incomplete."
+        }
+      ],
+      "matching_order": [
+        {
+          "prediction_id": "GPTSCAN-e835e95570d044ee",
+          "ground_truth_id": "H-06"
+        }
+      ],
+      "unmatched_predictions": [
+        "GPTSCAN-d514b130be66a381",
+        "GPTSCAN-a46119f216a2358d",
+        "GPTSCAN-538393dbc277a91a",
+        "GPTSCAN-652f633117693a5e"
+      ],
+      "unmatched_ground_truths": [
+        "H-04",
+        "H-07",
+        "M-06"
+      ]
+    },
+    {
+      "repo_id": "2022-01-behodler",
+      "metrics": {
+        "repo_id": "2022-01-behodler",
+        "ground_truth_count": 2,
+        "prediction_count": 10,
+        "matched_weight": 0.0,
+        "soft_precision": 0.0,
+        "soft_recall": 0.0,
+        "soft_f1": 0.0
+      },
+      "matched_pairs": [],
+      "matching_order": [],
+      "unmatched_predictions": [
+        "GPTSCAN-44f19166cd311af9",
+        "GPTSCAN-126f03bedae44d8a",
+        "GPTSCAN-0bb4d2266441241d",
+        "GPTSCAN-d92febfa742840ca",
+        "GPTSCAN-0617c9b39ec079d4",
+        "GPTSCAN-4e1a9f2d61f32f2c",
+        "GPTSCAN-a317e65c93a90d86",
+        "GPTSCAN-5d5010861b052c87",
+        "GPTSCAN-d19a6a3bcad28995",
+        "GPTSCAN-0965d6555d45d32e"
+      ],
+      "unmatched_ground_truths": [
+        "H-05",
+        "H-07"
+      ]
+    },
+    {
+      "repo_id": "2022-01-sandclock",
+      "metrics": {
+        "repo_id": "2022-01-sandclock",
+        "ground_truth_count": 2,
+        "prediction_count": 0,
+        "matched_weight": 0.0,
+        "soft_precision": 0.0,
+        "soft_recall": 0.0,
+        "soft_f1": 0.0
+      },
+      "matched_pairs": [],
+      "matching_order": [],
+      "unmatched_predictions": [],
+      "unmatched_ground_truths": [
+        "H-03",
+        "M-11"
+      ]
+    },
+    {
+      "repo_id": "2022-08-sentiment",
+      "metrics": {
+        "repo_id": "2022-08-sentiment",
+        "ground_truth_count": 2,
+        "prediction_count": 0,
+        "matched_weight": 0.0,
+        "soft_precision": 0.0,
+        "soft_recall": 0.0,
+        "soft_f1": 0.0
+      },
+      "matched_pairs": [],
+      "matching_order": [],
+      "unmatched_predictions": [],
+      "unmatched_ground_truths": [
+        "M-10",
+        "H-1"
+      ]
+    },
+    {
+      "repo_id": "2022-09-notional",
+      "metrics": {
+        "repo_id": "2022-09-notional",
+        "ground_truth_count": 1,
+        "prediction_count": 4,
+        "matched_weight": 0.0,
+        "soft_precision": 0.0,
+        "soft_recall": 0.0,
+        "soft_f1": 0.0
+      },
+      "matched_pairs": [],
+      "matching_order": [],
+      "unmatched_predictions": [
+        "GPTSCAN-43f0a81a675a2359",
+        "GPTSCAN-ed3b6e73c5e0b8bd",
+        "GPTSCAN-5d8c1eaa05a06c27",
+        "GPTSCAN-0a7cb324eae3a5a4"
+      ],
+      "unmatched_ground_truths": [
+        "M-7"
+      ]
+    },
+    {
+      "repo_id": "2022-11-paraspace",
+      "metrics": {
+        "repo_id": "2022-11-paraspace",
+        "ground_truth_count": 4,
+        "prediction_count": 0,
+        "matched_weight": 0.0,
+        "soft_precision": 0.0,
+        "soft_recall": 0.0,
+        "soft_f1": 0.0
+      },
+      "matched_pairs": [],
+      "matching_order": [],
+      "unmatched_predictions": [],
+      "unmatched_ground_truths": [
+        "H-05",
+        "M-04",
+        "M-05",
+        "M-22"
+      ]
+    },
+    {
+      "repo_id": "2022-11-telcoin",
+      "metrics": {
+        "repo_id": "2022-11-telcoin",
+        "ground_truth_count": 1,
+        "prediction_count": 0,
+        "matched_weight": 0.0,
+        "soft_precision": 0.0,
+        "soft_recall": 0.0,
+        "soft_f1": 0.0
+      },
+      "matched_pairs": [],
+      "matching_order": [],
+      "unmatched_predictions": [],
+      "unmatched_ground_truths": [
+        "H-1"
+      ]
+    },
+    {
+      "repo_id": "2023-03-olympus",
+      "metrics": {
+        "repo_id": "2023-03-olympus",
+        "ground_truth_count": 1,
+        "prediction_count": 1,
+        "matched_weight": 0.0,
+        "soft_precision": 0.0,
+        "soft_recall": 0.0,
+        "soft_f1": 0.0
+      },
+      "matched_pairs": [],
+      "matching_order": [],
+      "unmatched_predictions": [
+        "GPTSCAN-b035cbf99646dbf4"
+      ],
+      "unmatched_ground_truths": [
+        "H-1"
+      ]
+    },
+    {
+      "repo_id": "2023-04-blueberry",
+      "metrics": {
+        "repo_id": "2023-04-blueberry",
+        "ground_truth_count": 1,
+        "prediction_count": 4,
+        "matched_weight": 0.5,
+        "soft_precision": 0.125,
+        "soft_recall": 0.5,
+        "soft_f1": 0.2
+      },
+      "matched_pairs": [
+        {
+          "prediction_id": "GPTSCAN-645d0c4c1d33e497",
+          "ground_truth_id": "H-4",
+          "scores": {
+            "R": 1,
+            "L": 4,
+            "I": 2,
+            "M": 2
+          },
+          "weighted_score": 0.5,
+          "rationale": "R: Identifies manipulable LP-token valuation, a related symptom/category, but does not identify the specific causal flaw of using manipulable underlying-token prices and a minimum-price calculation. L: Correctly localizes CurveOracle.getPrice at the same lines and function. I: Recognizes mispricing and possible losses or incorrect payouts, but omits the specific attacker profit-at-others'-expense consequence and relevant exploit conditions. M: Avoiding AMM/custom LP calculations is directionally related, but is vague and does not specify a sound replacement such as TWAP underlying-asset prices."
+        }
+      ],
+      "matching_order": [
+        {
+          "prediction_id": "GPTSCAN-645d0c4c1d33e497",
+          "ground_truth_id": "H-4"
+        }
+      ],
+      "unmatched_predictions": [
+        "GPTSCAN-dc8246d6a7bfa6c2",
+        "GPTSCAN-3d073c52e85135c8",
+        "GPTSCAN-20a71a684d2235f9"
+      ],
+      "unmatched_ground_truths": []
+    },
+    {
+      "repo_id": "2023-05-ussd",
+      "metrics": {
+        "repo_id": "2023-05-ussd",
+        "ground_truth_count": 2,
+        "prediction_count": 0,
+        "matched_weight": 0.0,
+        "soft_precision": 0.0,
+        "soft_recall": 0.0,
+        "soft_f1": 0.0
+      },
+      "matched_pairs": [],
+      "matching_order": [],
+      "unmatched_predictions": [],
+      "unmatched_ground_truths": [
+        "H-9",
+        "H-5"
+      ]
+    },
+    {
+      "repo_id": "2023-06-lybra",
+      "metrics": {
+        "repo_id": "2023-06-lybra",
+        "ground_truth_count": 1,
+        "prediction_count": 3,
+        "matched_weight": 0.0,
+        "soft_precision": 0.0,
+        "soft_recall": 0.0,
+        "soft_f1": 0.0
+      },
+      "matched_pairs": [],
+      "matching_order": [],
+      "unmatched_predictions": [
+        "GPTSCAN-8ed0baa5b4fa45c7",
+        "GPTSCAN-d81333ef57a79c35",
+        "GPTSCAN-ebbecd6f5d0b9765"
+      ],
+      "unmatched_ground_truths": [
+        "M-13"
+      ]
+    },
+    {
+      "repo_id": "2023-06-real-wagmi",
+      "metrics": {
+        "repo_id": "2023-06-real-wagmi",
+        "ground_truth_count": 1,
+        "prediction_count": 6,
+        "matched_weight": 0.55,
+        "soft_precision": 0.09166666666666667,
+        "soft_recall": 0.55,
+        "soft_f1": 0.15714285714285717
+      },
+      "matched_pairs": [
+        {
+          "prediction_id": "GPTSCAN-9cffc57b2c082703",
+          "ground_truth_id": "H-3",
+          "scores": {
+            "R": 2,
+            "L": 3,
+            "I": 2,
+            "M": 2
+          },
+          "weighted_score": 0.55,
+          "rationale": "R: Identifies manipulable liquidity/LP valuation inputs, but omits the specific transaction-local Uniswap V3 slot0 price mechanism and incorrectly frames it primarily as a flashloan attack. L: Correctly identifies _getReserves() and the deposit path, but omits getSlots(), the operation that directly reads manipulable slot0 data. I: Recognizes mispricing and potentially incorrect financial outcomes, but does not identify incorrect LP issuance, dilution, or the affected provider share. M: Avoiding AMM/custom valuation is directionally relevant, but it does not specifically require a manipulation-resistant TWAP or validated deviation checks."
+        }
+      ],
+      "matching_order": [
+        {
+          "prediction_id": "GPTSCAN-9cffc57b2c082703",
+          "ground_truth_id": "H-3"
+        }
+      ],
+      "unmatched_predictions": [
+        "GPTSCAN-68a9598fb13e961c",
+        "GPTSCAN-3f67639f970465c7",
+        "GPTSCAN-1ced5dfc71327f07",
+        "GPTSCAN-a17eb2dd82159c82",
+        "GPTSCAN-3b5f53a161171e7b"
+      ],
+      "unmatched_ground_truths": []
+    },
+    {
+      "repo_id": "2023-06-tokemak",
+      "metrics": {
+        "repo_id": "2023-06-tokemak",
+        "ground_truth_count": 1,
+        "prediction_count": 9,
+        "matched_weight": 0.55,
+        "soft_precision": 0.061111111111111116,
+        "soft_recall": 0.55,
+        "soft_f1": 0.11000000000000001
+      },
+      "matched_pairs": [
+        {
+          "prediction_id": "GPTSCAN-569f38a742554c9a",
+          "ground_truth_id": "H-15",
+          "scores": {
+            "R": 2,
+            "L": 2,
+            "I": 2,
+            "M": 3
+          },
+          "weighted_score": 0.55,
+          "rationale": "R: Correctly identifies manipulable LP-token valuation and flash-loan-based price manipulation, but omits the specific Maverick reserve-reading mechanism. L: Locates an analogous oracle getPriceInEth operation, but names the wrong oracle contract and implementation. I: Identifies mispricing and potentially incorrect payouts/losses, but omits the specific debt/share and withdrawal outcomes. M: Avoiding AMM spot-reserve/custom valuation is directionally effective, though it does not specify the required fair-reserve/invariant calculation."
+        }
+      ],
+      "matching_order": [
+        {
+          "prediction_id": "GPTSCAN-569f38a742554c9a",
+          "ground_truth_id": "H-15"
+        }
+      ],
+      "unmatched_predictions": [
+        "GPTSCAN-f38e9cd856979d68",
+        "GPTSCAN-db8619b502a85479",
+        "GPTSCAN-4bc99df51718ecb7",
+        "GPTSCAN-f4696a0a66e606c9",
+        "GPTSCAN-061002d555a4c409",
+        "GPTSCAN-58e4fa6baee36f65",
+        "GPTSCAN-ecf27bb58ab3a084",
+        "GPTSCAN-91a2f6c0c1d19a40"
+      ],
+      "unmatched_ground_truths": []
+    },
+    {
+      "repo_id": "2023-08-dopex",
+      "metrics": {
+        "repo_id": "2023-08-dopex",
+        "ground_truth_count": 2,
+        "prediction_count": 1,
+        "matched_weight": 0.0,
+        "soft_precision": 0.0,
+        "soft_recall": 0.0,
+        "soft_f1": 0.0
+      },
+      "matched_pairs": [],
+      "matching_order": [],
+      "unmatched_predictions": [
+        "GPTSCAN-6c2ddfd4c5627bce"
+      ],
+      "unmatched_ground_truths": [
+        "M-08",
+        "M-09"
+      ]
+    },
+    {
+      "repo_id": "2024-03-abracadabra-money",
+      "metrics": {
+        "repo_id": "2024-03-abracadabra-money",
+        "ground_truth_count": 2,
+        "prediction_count": 5,
+        "matched_weight": 0.55,
+        "soft_precision": 0.11000000000000001,
+        "soft_recall": 0.275,
+        "soft_f1": 0.15714285714285717
+      },
+      "matched_pairs": [
+        {
+          "prediction_id": "GPTSCAN-62fdcad2e97ab960",
+          "ground_truth_id": "H-04",
+          "scores": {
+            "R": 2,
+            "L": 2,
+            "I": 2,
+            "M": 3
+          },
+          "weighted_score": 0.55,
+          "rationale": "R: Identifies flash-loan manipulation of an LP-token price/value calculation, but omits the specific reserve-based MagicLP oracle mechanism and inflated oracle price. L: CauldronLib.getUserCollateral is at most an adjacent collateral-valuation/caller path; it does not identify MagicLpAggregator._getReserves or latestAnswer. I: Captures flash-loan-driven LP mispricing and potential financial loss, but not the specific one-transaction inflation of the MagicLP oracle valuation. M: Avoiding AMM/custom reserve-based LP valuation would prevent the flaw in principle, though it lacks the ground-truth Chainlink deviation check or replacement details."
+        }
+      ],
+      "matching_order": [
+        {
+          "prediction_id": "GPTSCAN-62fdcad2e97ab960",
+          "ground_truth_id": "H-04"
+        }
+      ],
+      "unmatched_predictions": [
+        "GPTSCAN-99cae3b75277c1d7",
+        "GPTSCAN-10a55b5415a23007",
+        "GPTSCAN-af76751b6ce0d827",
+        "GPTSCAN-bc0739f2fa77da70"
+      ],
+      "unmatched_ground_truths": [
+        "H-01"
+      ]
+    },
+    {
+      "repo_id": "2024-03-revert-lend",
+      "metrics": {
+        "repo_id": "2024-03-revert-lend",
+        "ground_truth_count": 1,
+        "prediction_count": 13,
+        "matched_weight": 0.0,
+        "soft_precision": 0.0,
+        "soft_recall": 0.0,
+        "soft_f1": 0.0
+      },
+      "matched_pairs": [],
+      "matching_order": [],
+      "unmatched_predictions": [
+        "GPTSCAN-ca079b6bd978cc2f",
+        "GPTSCAN-80947d7a6bc388a6",
+        "GPTSCAN-865c4784984f0612",
+        "GPTSCAN-e1b8305cfaa78523",
+        "GPTSCAN-b8e7e03952aeb8f4",
+        "GPTSCAN-2a8b3bb2c91bcef7",
+        "GPTSCAN-a47b0b73934241f2",
+        "GPTSCAN-6d322c8dec9c569d",
+        "GPTSCAN-be319d2bc2418441",
+        "GPTSCAN-9630ac569a47753b",
+        "GPTSCAN-04f9cf900db655cf",
+        "GPTSCAN-f80d1a860e87aa79",
+        "GPTSCAN-124c2838684279cc"
+      ],
+      "unmatched_ground_truths": [
+        "M-19"
+      ]
+    },
+    {
+      "repo_id": "2024-03-woofi-swap",
+      "metrics": {
+        "repo_id": "2024-03-woofi-swap",
+        "ground_truth_count": 1,
+        "prediction_count": 11,
+        "matched_weight": 0.0,
+        "soft_precision": 0.0,
+        "soft_recall": 0.0,
+        "soft_f1": 0.0
+      },
+      "matched_pairs": [],
+      "matching_order": [],
+      "unmatched_predictions": [
+        "GPTSCAN-be9f5c337aab625d",
+        "GPTSCAN-9dfc9c0ec559fbad",
+        "GPTSCAN-6e56d1fe63186b13",
+        "GPTSCAN-1ef920d14a028f2f",
+        "GPTSCAN-cd71eb127ab7b8a9",
+        "GPTSCAN-9f9a1f00b82e8690",
+        "GPTSCAN-aaec72cd68f75f49",
+        "GPTSCAN-5c2209fb0ef81867",
+        "GPTSCAN-a396f1f746569e50",
+        "GPTSCAN-377dc8a6d81bf158",
+        "GPTSCAN-2f10b172b45da69e"
+      ],
+      "unmatched_ground_truths": [
+        "H-1"
+      ]
+    },
+    {
+      "repo_id": "2024-04-panoptic",
+      "metrics": {
+        "repo_id": "2024-04-panoptic",
+        "ground_truth_count": 1,
+        "prediction_count": 3,
+        "matched_weight": 0.0,
+        "soft_precision": 0.0,
+        "soft_recall": 0.0,
+        "soft_f1": 0.0
+      },
+      "matched_pairs": [],
+      "matching_order": [],
+      "unmatched_predictions": [
+        "GPTSCAN-dc3d2cbf41d2ef66",
+        "GPTSCAN-0e325ebc160a2586",
+        "GPTSCAN-7841397ca1d60bce"
+      ],
+      "unmatched_ground_truths": [
+        "M-01"
+      ]
+    },
+    {
+      "repo_id": "2025-12-panoptic",
+      "metrics": {
+        "repo_id": "2025-12-panoptic",
+        "ground_truth_count": 3,
+        "prediction_count": 6,
+        "matched_weight": 0.0,
+        "soft_precision": 0.0,
+        "soft_recall": 0.0,
+        "soft_f1": 0.0
+      },
+      "matched_pairs": [],
+      "matching_order": [],
+      "unmatched_predictions": [
+        "GPTSCAN-2688180308d90412",
+        "GPTSCAN-03163a5552a7b0d3",
+        "GPTSCAN-201e782f15e5c9f9",
+        "GPTSCAN-85825f34183d2e2e",
+        "GPTSCAN-a357ffd6a4f9bf3c",
+        "GPTSCAN-e49f4e7f930bab54"
+      ],
+      "unmatched_ground_truths": [
+        "M-11",
+        "M-03",
+        "M-15"
+      ]
+    }
+  ]
+}

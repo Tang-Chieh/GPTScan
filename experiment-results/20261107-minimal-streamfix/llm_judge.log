@@ -1,0 +1,12 @@
+[benchmark_eval] evaluation started: repositories=23, model=gpt-5.6-luna, auth=oauth
+[benchmark_eval] judge plan: repositories=23, predictions=92, jobs=33, batch_size=10, concurrency=4
+[oauth] credential check: expired, expires_in=0s
+[oauth] credential check: expired, expires_in=0s
+[oauth] credential check: expired, expires_in=0s
+[oauth] credential check: expired, expires_in=0s
+[oauth] token refresh started
+[oauth] token refresh completed; credential pair persisted
+[benchmark_eval] judge progress: completed=33/33
+[benchmark_eval] evaluation completed: repositories=23, output=/Users/williamtang/Documents/Codex/2026-07-16/new-chat/GPTScan/outputs/dataset-23-minimal-streamfix-20261107/llm_judge
+evaluated repositories: 23
+output: /Users/williamtang/Documents/Codex/2026-07-16/new-chat/GPTScan/outputs/dataset-23-minimal-streamfix-20261107/llm_judge

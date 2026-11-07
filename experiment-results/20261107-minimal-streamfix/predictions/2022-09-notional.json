@@ -1,0 +1,106 @@
+{
+  "repo_id": "2022-09-notional",
+  "detector_metadata": {
+    "detector_version": "gptscan-price-minimal-upstream7-v3",
+    "llm_model": "openai-codex/gpt-5.6-luna"
+  },
+  "predictions": [
+    {
+      "finding_id": "GPTSCAN-43f0a81a675a2359",
+      "title": "MWE-200: Insecure LP Token Value Calculation",
+      "description": "Liquidity token value/price can be manipulated to cause flashloan attacks.",
+      "impact": "Manipulating LP token valuation inputs may misprice liquidity positions and distort financial operation amounts, potentially causing incorrect payouts or loss of funds. Actual exploitability requires further verification.",
+      "mitigation": "Do not use AMM pool or custom liquidity calculation to caculate LP token value/price.",
+      "vulnerable_code": [
+        {
+          "file": "leveraged-vaults/contracts/vaults/balancer/internal/math/StableMath.sol",
+          "contract": "StableMath",
+          "function": "_calcTokenOutGivenExactBptIn(uint256,uint256[],uint256,uint256,uint256,uint256,uint256)",
+          "start_line": 189,
+          "end_line": 232
+        },
+        {
+          "file": "leveraged-vaults/contracts/vaults/balancer/internal/pool/Boosted3TokenPoolUtils.sol",
+          "contract": "Boosted3TokenPoolUtils",
+          "function": "_getTimeWeightedPrimaryBalance(ThreeTokenPoolContext,BoostedOracleContext,StrategyContext,uint256)",
+          "start_line": 191,
+          "end_line": 220
+        }
+      ],
+      "severity": "HIGH",
+      "report_basis": "rule-template; not an LLM-generated exploit proof",
+      "rule_id": "price-manipulation"
+    },
+    {
+      "finding_id": "GPTSCAN-ed3b6e73c5e0b8bd",
+      "title": "MWE-200: Insecure LP Token Value Calculation",
+      "description": "Liquidity token value/price can be manipulated to cause flashloan attacks.",
+      "impact": "Manipulating LP token valuation inputs may misprice liquidity positions and distort financial operation amounts, potentially causing incorrect payouts or loss of funds. Actual exploitability requires further verification.",
+      "mitigation": "Do not use AMM pool or custom liquidity calculation to caculate LP token value/price.",
+      "vulnerable_code": [
+        {
+          "file": "leveraged-vaults/contracts/vaults/balancer/internal/pool/BalancerUtils.sol",
+          "contract": "BalancerUtils",
+          "function": "_swapGivenIn(bytes32,address,address,uint256,uint256)",
+          "start_line": 125,
+          "end_line": 152
+        },
+        {
+          "file": "leveraged-vaults/contracts/vaults/balancer/internal/pool/Boosted3TokenPoolUtils.sol",
+          "contract": "Boosted3TokenPoolUtils",
+          "function": "_joinPoolExactTokensIn(ThreeTokenPoolContext,uint256,uint256)",
+          "start_line": 234,
+          "end_line": 255
+        }
+      ],
+      "severity": "HIGH",
+      "report_basis": "rule-template; not an LLM-generated exploit proof",
+      "rule_id": "price-manipulation"
+    },
+    {
+      "finding_id": "GPTSCAN-5d8c1eaa05a06c27",
+      "title": "MWE-200: Insecure LP Token Value Calculation",
+      "description": "Liquidity token value/price can be manipulated to cause flashloan attacks.",
+      "impact": "Manipulating LP token valuation inputs may misprice liquidity positions and distort financial operation amounts, potentially causing incorrect payouts or loss of funds. Actual exploitability requires further verification.",
+      "mitigation": "Do not use AMM pool or custom liquidity calculation to caculate LP token value/price.",
+      "vulnerable_code": [
+        {
+          "file": "leveraged-vaults/contracts/vaults/balancer/internal/pool/Boosted3TokenPoolUtils.sol",
+          "contract": "Boosted3TokenPoolUtils",
+          "function": "_getTimeWeightedPrimaryBalance(ThreeTokenPoolContext,BoostedOracleContext,StrategyContext,uint256)",
+          "start_line": 191,
+          "end_line": 220
+        }
+      ],
+      "severity": "HIGH",
+      "report_basis": "rule-template; not an LLM-generated exploit proof",
+      "rule_id": "price-manipulation"
+    },
+    {
+      "finding_id": "GPTSCAN-0a7cb324eae3a5a4",
+      "title": "MWE-204: Unsafe First Deposit",
+      "description": "First depositor can break minting of shares or drain the liquidity of all users.",
+      "impact": "A first depositor may manipulate share issuance so later depositors receive incorrect or zero shares, potentially blocking deposits or causing loss of deposited assets. Actual exploitability requires further verification.",
+      "mitigation": "When totalSupply() == 0, send the first min liquidity LP tokens to the zero address to enable share dilution.",
+      "vulnerable_code": [
+        {
+          "file": "leveraged-vaults/contracts/vaults/balancer/internal/strategy/StrategyUtils.sol",
+          "contract": "StrategyUtils",
+          "function": "_convertBPTClaimToStrategyTokens(StrategyContext,uint256)",
+          "start_line": 27,
+          "end_line": 39
+        },
+        {
+          "file": "leveraged-vaults/contracts/vaults/balancer/internal/pool/TwoTokenPoolUtils.sol",
+          "contract": "TwoTokenPoolUtils",
+          "function": "_deposit(TwoTokenPoolContext,StrategyContext,AuraStakingContext,uint256,CrossCurrencyfCashVault.DepositParams)",
+          "start_line": 181,
+          "end_line": 213
+        }
+      ],
+      "severity": "HIGH",
+      "report_basis": "rule-template; not an LLM-generated exploit proof",
+      "rule_id": "first-deposit"
+    }
+  ]
+}

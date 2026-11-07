@@ -1,0 +1,47 @@
+{
+  "repo_id": "2021-04-marginswap",
+  "detector_metadata": {
+    "detector_version": "gptscan-price-minimal-upstream7-v3",
+    "llm_model": "openai-codex/gpt-5.6-luna"
+  },
+  "predictions": [
+    {
+      "finding_id": "GPTSCAN-1820dda09211b749",
+      "title": "MWE-209: Wrong Order for Interest or ExchangeRate",
+      "description": "Update of interest or exchange rate should be executed before calculating new balance, share, stake, loan or fee.",
+      "impact": "Financial operations performed before interest or exchange-rate updates may use stale accounting values, causing incorrect balances, shares, debt, fees or rewards and potentially allowing value extraction or loss of funds. Actual exploitability requires further verification.",
+      "mitigation": "Check the business logic and move the statements about updating exchange rate or interest forward.",
+      "vulnerable_code": [
+        {
+          "file": "contracts/IncentiveDistribution.sol",
+          "contract": "IncentiveDistribution",
+          "function": "updateAccruedReward(IncentiveDistribution.TrancheMeta,address,Claim)",
+          "start_line": 162,
+          "end_line": 175
+        }
+      ],
+      "severity": "HIGH",
+      "report_basis": "rule-template; not an LLM-generated exploit proof",
+      "rule_id": "wrong-order-interest"
+    },
+    {
+      "finding_id": "GPTSCAN-9775da266872fbd6",
+      "title": "MWE-200: Insecure LP Token Value Calculation",
+      "description": "Liquidity token value/price can be manipulated to cause flashloan attacks.",
+      "impact": "Manipulating LP token valuation inputs may misprice liquidity positions and distort financial operation amounts, potentially causing incorrect payouts or loss of funds. Actual exploitability requires further verification.",
+      "mitigation": "Do not use AMM pool or custom liquidity calculation to caculate LP token value/price.",
+      "vulnerable_code": [
+        {
+          "file": "contracts/PriceAware.sol",
+          "contract": "PriceAware",
+          "function": "getCurrentPriceInPeg(address,uint256,bool)",
+          "start_line": 60,
+          "end_line": 87
+        }
+      ],
+      "severity": "HIGH",
+      "report_basis": "rule-template; not an LLM-generated exploit proof",
+      "rule_id": "price-manipulation"
+    }
+  ]
+}
