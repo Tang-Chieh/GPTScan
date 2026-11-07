@@ -1,6 +1,7 @@
 """Small, bounded model boundary. Gateway bearer tokens are NOT OpenAI keys."""
 import json
 import hashlib
+import math
 from datetime import datetime, timezone
 import os
 import time
@@ -13,6 +14,14 @@ from urllib.request import Request, build_opener, HTTPRedirectHandler, ProxyHand
 class NoRedirect(HTTPRedirectHandler):
     def redirect_request(self, *args, **kwargs):
         return None
+
+
+def request_wall_timeout(explicit=None):
+    """Bound one complete model question independently of the repository budget."""
+    value = float(explicit if explicit is not None else os.environ.get("GPTSCAN_WALL_TIMEOUT", "90"))
+    if not math.isfinite(value) or value <= 0:
+        raise ValueError("Model question timeout must be finite and positive")
+    return value
 
 
 def record_event(status, **fields):
@@ -96,7 +105,9 @@ def send(messages):
         raise ValueError("Unknown provider")
     request = Request(url, data=json.dumps(payload).encode(), headers={
         "Authorization": "Bearer " + token, "Content-Type": "application/json"})
-    for attempt in range(2):
+    # Keep upstream-style transport retries inside the caller's wall timeout.
+    # Never re-ask semantic questions to repair a model answer.
+    while True:
         started = time.monotonic()
         try:
             with opener.open(request, timeout=timeout) as response:
@@ -109,17 +120,20 @@ def send(messages):
                          elapsed_seconds=round(time.monotonic() - started, 3))
             return result
         except HTTPError as error:
-            if error.code >= 500 and attempt == 0:
-                time.sleep(1)
+            if error.code >= 500 or error.code == 429:
+                record_event('transport_retry', error='http', http_status=error.code)
+                time.sleep(30 if error.code == 429 else 1)
                 continue
             record_event("failed", error="http", http_status=error.code)
             raise RuntimeError(f"Model HTTP {error.code}; no provider/model fallback") from None
         except (URLError, TimeoutError):
-            if attempt == 0:
-                time.sleep(1)
-                continue
-            record_event("failed", error="connection_or_timeout")
-            raise RuntimeError("Model connection failed; check gateway/OAuth") from None
-        except (ValueError, KeyError, TypeError):
-            record_event("failed", error="invalid_response")
+            record_event('transport_retry', error='connection_or_timeout')
+            time.sleep(1)
+            continue
+        except (ValueError, KeyError, TypeError) as exc:
+            safe_reasons = {'Model response did not complete', 'Model returned no output text',
+                            'Model stream failed or was incomplete',
+                            'Model stream ended without response.completed', 'Empty model response'}
+            reason = str(exc) if str(exc) in safe_reasons else type(exc).__name__
+            record_event("failed", error="invalid_response", reason=reason)
             raise RuntimeError("Model response format invalid or incomplete") from None

@@ -152,10 +152,12 @@ def main():
     events_path = out / "model_events.jsonl"
     events = [json.loads(line) for line in events_path.read_text().splitlines()] if events_path.exists() else []
     failed = any(event["status"] == "failed" for event in events)
-    success = code == 0 and not timed_out and not failed and (out / "prediction_case.json").is_file()
+    success = code == 0 and not timed_out and (out / "prediction_case.json").is_file()
     if not success and (out / "prediction_case.json").exists():
         (out / "prediction_case.json").rename(out / "partial_prediction_case.json")
-    manifest.update(status="completed" if success else "timed_out" if timed_out else "failed",
+    partial = failed or any(e.get('error') == 'analysis_error' for e in events)
+    manifest.update(status=("completed_with_errors" if partial else "completed") if success else "timed_out" if timed_out else "failed",
+                    processing_completed=success, analysis_complete=success and not partial,
                     returncode=code, elapsed_seconds=round(time.monotonic() - start, 3),
                     model_requests_completed=sum(e["status"] == "completed" for e in events),
                     model_requests_failed=sum(e["status"] == "failed" for e in events))

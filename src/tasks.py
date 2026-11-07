@@ -18,7 +18,6 @@ from rich.progress import Progress
 from rich.table import Table
 from rich_utils import *
 import falcon
-from rule_validation import CandidateRejected, require_rule_condition
 
 logger = logging.getLogger(__name__)
 
@@ -124,7 +123,7 @@ def simple_cli():
     parser.add_argument("--repo-root", help="Original repository root for relative source locations")
     parser.add_argument("--prediction-output", help="Compatibility alias: optional duplicate of the primary PredictionCase output")
     parser.add_argument("--native-output", help="Optional debug-only native GPTScan results JSON; never a Judge input")
-    parser.add_argument("--strict", action="store_true", help="Fail on compile/analysis errors")
+    parser.add_argument("--strict", action="store_true", help="Fail on compilation failure; candidate-level analysis exceptions retain upstream handling")
     parser.add_argument("--archive", help="Verified, path-rebased Crytic Compile archive; never recompile")
     parser.add_argument("--scope-file", help="Shared compiled target inventory from reusable adapter")
     options = parser.parse_args()
@@ -164,7 +163,7 @@ def simple_cli():
         def emit(self, record):
             if record.levelno >= logging.ERROR:
                 self.count += 1
-                record_event("failed", error="analysis_error", component=record.name)
+                record_event("analysis_error", error="analysis_error", component=record.name)
     tracker = ErrorTracker()
     logging.getLogger().addHandler(tracker)
     
@@ -253,7 +252,7 @@ def simple_cli():
                                                                         break
                                                                 validate_flag = validate_flag and v_line_flag
                                                         if validate_flag == False:
-                                                            raise CandidateRejected("The description of variable did not pass the `validate_description` validation")
+                                                            raise Exception("The description of variable did not pass the `validate_description` validation")
                                                 if "exclude_variable" in vul["static"]:
                                                     for to_exclude_key, to_exclude_values in vul["static"]["exclude_variable"].items():
                                                         validate_flag = True
@@ -262,7 +261,7 @@ def simple_cli():
                                                                 validate_flag = False
                                                                 break
                                                         if validate_flag == False:
-                                                            raise CandidateRejected("The description of variable did not pass the `exclude_variable` validation")
+                                                            raise Exception("The description of variable did not pass the `exclude_variable` validation")
                                             elif "format" in vul["static"] and vul["static"]["format"] == "json_single":
                                                 answer = analyze_pipeline.ask_for_static_json_single(vul["static"]["prompt"], function1_text, vul["static"]["output_keys"][0])
                                             elif "format" in vul["static"] and vul["static"]["format"] == "not_need":
@@ -291,9 +290,6 @@ def simple_cli():
 
                                         res_1 = static_check.run_static_check(checker, args, function1, falcon_instance, function1_text, contract, file)
                                         function1_tmp_result[vul["name"]] = res_1
-                                    except CandidateRejected as rejected:
-                                        logger.info("Candidate rejected by rule %s: %s", vul["name"], rejected)
-                                        function1_tmp_result[vul["name"]] = False
                                     except:
                                         logger.error(
                                             "Static analysis failed: Invalid args")
@@ -336,7 +332,7 @@ def simple_cli():
                                                                         break
                                                                 validate_flag = validate_flag and v_line_flag
                                                         if validate_flag == False:
-                                                            raise CandidateRejected("The description of variable did not pass the validation")
+                                                            raise Exception("The description of variable did not pass the validation")
                                                 if "exclude_variable" in vul["static"]:
                                                     for to_exclude_key, to_exclude_values in vul["static"]["exclude_variable"].items():
                                                         validate_flag = True
@@ -345,7 +341,7 @@ def simple_cli():
                                                                 validate_flag = False
                                                                 break
                                                         if validate_flag == False:
-                                                            raise CandidateRejected("The description of variable did not pass the `exclude_variable` validation")
+                                                            raise Exception("The description of variable did not pass the `exclude_variable` validation")
                                             elif "format" in vul["static"] and vul["static"]["format"] == "json_single":
                                                 answer = analyze_pipeline.ask_for_static_json_single(vul["static"]["prompt"], function2_text, vul["static"]["output_keys"][0])
                                             elif "format" in vul["static"] and vul["static"]["format"] == "not_need":
@@ -372,9 +368,6 @@ def simple_cli():
                                                 else:
                                                     args.append(answer[arg])
                                         res_2 = static_check.run_static_check(checker, args, function2_func, falcon_instance, function2_text, function2_contract, function2_file)
-                                    except CandidateRejected as rejected:
-                                        logger.info("Caller candidate rejected by rule %s: %s", vul["name"], rejected)
-                                        res_2 = False
                                     except:
                                         logger.error(
                                             "Static analysis failed: Invalid args")
@@ -466,9 +459,7 @@ def simple_cli():
     write_json_atomic(output_file + ".metadata.json", meta_data)
     if options.native_output:
         write_json_atomic(options.native_output, output_json)
-    if options.strict and tracker.count:
-        raise RuntimeError("Analysis had errors; PredictionCase not exported")
     write_prediction_output(output_json, output_file, options.repo_id,
                             options.repo_root or source_dir, options.model,
-                            "gptscan-price-direct-v2" if options.profile == "price" else "gptscan-general-direct-v2",
+                            "gptscan-price-minimal-upstream7-v3" if options.profile == "price" else "gptscan-general-minimal-v3",
                             alias=options.prediction_output)

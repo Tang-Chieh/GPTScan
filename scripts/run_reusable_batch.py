@@ -3,6 +3,7 @@
 import argparse
 import hashlib
 import json
+import math
 import os
 from pathlib import Path
 import shutil
@@ -30,11 +31,14 @@ def main():
     p.add_argument('--token-file', type=Path, required=True)
     p.add_argument('--output-dir', type=Path, required=True)
     p.add_argument('--timeout-minutes', type=float, default=30)
+    p.add_argument('--request-timeout-seconds', type=float, help='Override per-question wall and transport timeout')
     p.add_argument('--model', default='openai-codex/gpt-5.6-luna')
     p.add_argument('--gateway-url', default='http://127.0.0.1:4000/v1')
     p.add_argument('--gateway-database', type=Path, help='Optional usage-only SQLite snapshots; credentials are never read')
     p.add_argument('--audit-dir', type=Path, help='Optional pre-run audit evidence (only three named usage files are copied)')
     args = p.parse_args()
+    if args.request_timeout_seconds is not None and (not math.isfinite(args.request_timeout_seconds) or args.request_timeout_seconds <= 0):
+        p.error('Request timeout must be finite and positive')
     plan = json.loads(args.plan.read_text()) if args.plan else json.loads(args.selection.read_text())['repos']
     ids = [r['repo_id'] for r in plan]
     if len(ids) != len(set(ids)):
@@ -66,6 +70,7 @@ def main():
                'detector_commit': subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=ROOT, text=True).strip(),
                'contract_sha256': hashlib.sha256(contract.read_bytes()).hexdigest(),
                'analysis_timeout_minutes': args.timeout_minutes, 'repo_ids': ids,
+               'model_question_timeout_seconds': args.request_timeout_seconds,
                'status': 'running', 'repos': {}}
 
     def publish():
@@ -101,7 +106,7 @@ def main():
         record['usage'] = {key: sum(e['usage'][key] for e in metadata if key in e.get('usage', {}))
                            for key in ('input_tokens', 'output_tokens', 'cached_tokens', 'reasoning_tokens')
                            if any(key in e.get('usage', {}) for e in metadata)}
-        return any(e.get('http_status') in (401, 403, 429) for e in events)
+        return any(e.get('status') == 'failed' and e.get('http_status') in (401, 403, 429) for e in events)
 
     for number, item in enumerate(plan, 1):
         name = item['repo_id']
@@ -116,6 +121,8 @@ def main():
                    '--run-analysis', '--token-file', str(args.token_file.resolve()),
                    '--model', args.model, '--gateway-url', args.gateway_url,
                    '--timeout-minutes', str(args.timeout_minutes), '--output-dir', str(run)]
+        if args.request_timeout_seconds is not None:
+            command += ['--request-timeout-seconds', str(args.request_timeout_seconds)]
         if args.plan:
             command += ['--legacy-archive' if item.get('legacy') else '--archive', item['archive']]
             if item.get('build_json'):
@@ -145,7 +152,7 @@ def main():
             else:
                 record.update(status='failed', failure='Adapter stopped before manifest; inspect batch log')
             record['exit_code'] = code
-            if code == 0 and record.get('status') == 'completed':
+            if code == 0 and record.get('status') in ('completed', 'completed_with_errors'):
                 check = subprocess.run([sys.executable, str(ROOT / 'scripts/validate_prediction.py'),
                                         '--contract-file', str(contract), '--prediction', str(run / 'prediction_case.json')],
                                        cwd=ROOT, capture_output=True, text=True)

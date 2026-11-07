@@ -7,10 +7,23 @@ import unittest
 from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'src'))
-from model_transport import extract_response
+from model_transport import extract_response, request_wall_timeout
 
 
 class AuditTests(unittest.TestCase):
+    def test_question_timeout_default_override_and_explicit_value(self):
+        with patch.dict(os.environ, {}, clear=True):
+            self.assertEqual(request_wall_timeout(), 90)
+        with patch.dict(os.environ, {"GPTSCAN_WALL_TIMEOUT": "180"}):
+            self.assertEqual(request_wall_timeout(), 180)
+            self.assertEqual(request_wall_timeout(25), 25)
+
+    def test_question_timeout_rejects_invalid_limits(self):
+        for value in ("0", "-1", "nan", "inf", "bad"):
+            with patch.dict(os.environ, {"GPTSCAN_WALL_TIMEOUT": value}):
+                with self.assertRaises(ValueError):
+                    request_wall_timeout()
+
     def test_audit_keeps_usage_not_text_or_identifier(self):
         with tempfile.TemporaryDirectory() as folder:
             log = Path(folder) / 'events.jsonl'

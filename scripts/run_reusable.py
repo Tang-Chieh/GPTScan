@@ -4,6 +4,7 @@ import argparse
 import fcntl
 import json
 import logging
+import math
 import os
 from pathlib import Path
 import shutil
@@ -35,10 +36,13 @@ def main():
     parser.add_argument("--build-timeout-minutes", type=float, default=30)
     parser.add_argument("--run-analysis", action="store_true", help="Otherwise check archive/Falcon/CallGraph without model requests")
     parser.add_argument("--timeout-minutes", type=float, default=30, help="Separate GPTScan analysis time budget")
+    parser.add_argument("--request-timeout-seconds", type=float, help="Override one model question wall limit and transport timeout; default wall limit remains 90 seconds")
     parser.add_argument("--token-file", type=Path)
     parser.add_argument("--gateway-url", default="http://127.0.0.1:4000/v1")
     parser.add_argument("--model", default="openai-codex/gpt-5.6-luna")
     args = parser.parse_args()
+    if args.request_timeout_seconds is not None and (not math.isfinite(args.request_timeout_seconds) or args.request_timeout_seconds <= 0):
+        parser.error("Request timeout must be finite and positive")
     if args.archive and args.legacy_archive:
         parser.error('--archive and --legacy-archive are mutually exclusive')
     if args.target_root and not args.legacy_archive:
@@ -71,6 +75,9 @@ def main():
                 "run_analysis": args.run_analysis, "original_source": str(source),
                 "source_commit": build["source"]["ref"], "build_timeout_minutes": args.build_timeout_minutes,
                 "analysis_timeout_minutes": args.timeout_minutes, "credential_values_saved": False}
+    if args.request_timeout_seconds is not None:
+        manifest["model_question_timeout_seconds"] = args.request_timeout_seconds
+        manifest["transport_timeout_seconds"] = args.request_timeout_seconds
     save(out / "adapter_manifest.json", manifest)
     try:
         runner = reusable_runner(reusable)
@@ -156,6 +163,9 @@ def main():
         env["GPTSCAN_SCOPE_FILE"] = str(out / "scope.json")
         env["VIRTUAL_ENV"] = sys.prefix
         env["GPTSCAN_EVENTS"] = str(out / "model_events.jsonl")
+        if args.request_timeout_seconds is not None:
+            env["GPTSCAN_WALL_TIMEOUT"] = str(args.request_timeout_seconds)
+            env["GPTSCAN_REQUEST_TIMEOUT"] = str(args.request_timeout_seconds)
         command = [sys.executable, str(ROOT / "scripts/check_archive.py"),
                    "--archive", str(out / "input_export_archive.json"), "--scope", str(out / "scope.json"),
                    "--output", str(out / "archive_check.json")]
@@ -182,13 +192,16 @@ def main():
         events = [json.loads(line) for line in (out / "model_events.jsonl").read_text().splitlines()] if (out / "model_events.jsonl").exists() else []
         manifest.update(completed_model_requests=sum(e["status"] == "completed" for e in events),
                         analysis_error_events=sum(e.get("error") == "analysis_error" for e in events))
-        if code or timed_out or any(e["status"] == "failed" for e in events):
+        if code or timed_out:
             if (out / "prediction_case.json").exists():
                 (out / "prediction_case.json").rename(out / "partial_prediction_case.json")
             manifest["status"] = "timed_out" if timed_out else "failed"
             raise RuntimeError("GPTScan analysis incomplete; see execution.log")
         prediction = json.loads((out / "prediction_case.json").read_text())
-        manifest.update(status="completed", stage="complete", prediction_count=len(prediction["predictions"]))
+        partial = manifest['analysis_error_events'] > 0 or any(e['status'] == 'failed' for e in events)
+        manifest.update(status="completed_with_errors" if partial else "completed", stage="complete",
+                        processing_completed=True, analysis_complete=not partial,
+                        prediction_count=len(prediction["predictions"]))
         save(out / "adapter_manifest.json", manifest)
         print(f"COMPLETED {args.repo_id}: {manifest['prediction_count']} predictions")
         return 0

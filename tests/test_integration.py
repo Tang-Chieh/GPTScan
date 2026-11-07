@@ -15,7 +15,6 @@ sys.path.insert(0, str(ROOT / "src"))
 from model_transport import gateway_url, read_response, send
 from prediction_export import export_prediction_case, write_prediction_output
 from profiles import rule_paths
-from answer_validation import is_yes, parse_choices
 
 spec = importlib.util.spec_from_file_location("dataset_runner", ROOT / "scripts/run_dataset.py")
 runner = importlib.util.module_from_spec(spec)
@@ -110,16 +109,6 @@ class ExportTests(unittest.TestCase):
 
 
 class TransportTests(unittest.TestCase):
-    def test_answer_validation(self):
-        self.assertTrue(is_yes("Yes"))
-        self.assertFalse(is_yes("No."))
-        self.assertEqual(parse_choices('{"1":"yes","2":"no"}', 2), {"1": "yes", "2": "no"})
-        for answer in ('{}', '{"0":"yes"}', '{"1":"maybe"}', '```json\n{"1":"yes"}\n```'):
-            with self.assertRaises(ValueError):
-                parse_choices(answer, 1)
-        with self.assertRaises(ValueError):
-            is_yes("Unable to analyze")
-
     def test_loopback_only(self):
         self.assertEqual(gateway_url("http://127.0.0.1:4000/v1/"), "http://127.0.0.1:4000/v1")
         for url in ("https://example.com/v1", "http://127.0.0.1.evil/v1", "http://x@localhost/v1",

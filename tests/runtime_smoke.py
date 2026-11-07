@@ -61,6 +61,7 @@ def main():
                 Gateway.mode = mode
                 Gateway.bad_json_sent = False
                 out = temporary / mode
+                # Exercise the retained upstream LP rule, not the removed OraclePrice rule.
                 source = temporary / (mode + "-source")
                 source.mkdir()
                 (source / "Oracle.sol").write_text((ROOT / "tests/fixtures/price-repo/Oracle.sol").read_text().replace(
@@ -71,20 +72,45 @@ def main():
                            "--gateway-url", f"http://127.0.0.1:{server.server_port}/v1", "--timeout-minutes", "2"]
                 proc = subprocess.run(command, capture_output=True, text=True, timeout=150)
                 status = json.loads((out / "run_manifest.json").read_text())["status"]
-                if mode == "malformed":
-                    assert proc.returncode != 0 and status == "failed", proc.stdout + proc.stderr
-                    assert not (out / "prediction_case.json").exists()
-                else:
-                    assert proc.returncode == 0 and status == "completed", (out / "execution.log").read_text()
-                    prediction = json.loads((out / "prediction_case.json").read_text())
-                    assert len(prediction["predictions"]) == (1 if mode in {"positive", "retry_json"} else 0)
-                    metadata = json.loads((out / "prediction_case.json.metadata.json").read_text())
-                    assert metadata["compile_succeeded"] and metadata["analysis_errors"] == 0
-                    if mode == "rejected":
-                        assert "Candidate rejected by rule" in (out / "execution.log").read_text()
-                    if mode == "retry_json":
-                        events = [json.loads(line) for line in (out / "model_events.jsonl").read_text().splitlines()]
-                        assert sum(event["status"] == "format_retry" for event in events) == 1
+                expected_errors = mode in {'malformed', 'rejected', 'retry_json'}
+                assert proc.returncode == 0 and status == ('completed_with_errors' if expected_errors else 'completed'), (out / "execution.log").read_text()
+                prediction = json.loads((out / "prediction_case.json").read_text())
+                assert not (out / "output.json").exists(), "Native intermediate output must not be required"
+                assert "results" not in prediction and prediction["repo_id"] == "synthetic-price"
+                assert len(prediction["predictions"]) == (1 if mode == "positive" else 0)
+                metadata = json.loads((out / "prediction_case.json.metadata.json").read_text())
+                assert metadata["output_format"] == "PredictionCase"
+                assert metadata["compile_succeeded"]
+                assert (metadata["analysis_errors"] > 0) == expected_errors
+                if os.environ.get("GPTSCAN_BENCHMARK_CONTRACT"):
+                    subprocess.run([sys.executable, str(ROOT / "scripts/validate_prediction.py"),
+                                    "--contract-file", os.environ["GPTSCAN_BENCHMARK_CONTRACT"],
+                                    "--prediction", str(out / "prediction_case.json")], check=True)
+                if mode == "positive":
+                    # Exercise the CLI's -o directly, optional native debugging and legacy alias.
+                    env = os.environ.copy()
+                    env['SOLC_VERSION'] = '0.8.19'
+                    env['VIRTUAL_ENV'] = sys.prefix
+                    env['PATH'] = str(Path(sys.executable).parent) + os.pathsep + env.get('PATH', '')
+                    direct = subprocess.run([
+                        sys.executable, str(ROOT / 'src/main.py'), '-s', str(source),
+                        '-o', str(out / 'direct.json'), '--repo-id', 'synthetic-price',
+                        '--repo-root', str(source), '--strict',
+                        '--native-output', str(out / 'native-debug.json'),
+                        '--prediction-output', str(out / 'alias.json'),
+                        '--gateway-token-file', str(token),
+                        '--gateway-url', f'http://127.0.0.1:{server.server_port}/v1'],
+                        cwd=out / 'work', env=env, capture_output=True, text=True, timeout=150)
+                    assert direct.returncode == 0, direct.stdout + direct.stderr
+                    primary = json.loads((out / 'direct.json').read_text())
+                    assert primary == json.loads((out / 'alias.json').read_text())
+                    assert primary['predictions'] and 'results' not in primary
+                    assert json.loads((out / 'native-debug.json').read_text())['results']
+                if mode == "rejected":
+                    assert 'validate_description' in (out / "execution.log").read_text()
+                if mode == "retry_json":
+                    events = [json.loads(line) for line in (out / "model_events.jsonl").read_text().splitlines()]
+                    assert sum(event["status"] == "format_retry" for event in events) == 0
                 print(f"Full runtime regression passed: {mode}")
         finally:
             server.shutdown()
