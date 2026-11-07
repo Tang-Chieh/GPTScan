@@ -14,6 +14,7 @@ activate:
 output:
   title: "MWE-201: Insecure Vote Calculation"
   description: Calculating vote amount can be manipulated to cause flashloan attacks.
+  impact: Temporarily borrowed tokens may inflate voting weight and allow an attacker to influence or pass governance decisions without sustained ownership, potentially authorizing harmful protocol changes. Actual exploitability requires further verification.
   recommendation: In vote calculation, add a check for tokens that may come from a flash loan.
 static:
   format: json

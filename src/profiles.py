@@ -1,7 +1,11 @@
 """Explicit detection scope; not post-hoc filtering of general findings."""
 from pathlib import Path
 
-PRICE_RULE_FILES = ("Flashloan_Price.yml", "OraclePrice.yml")
+PRICE_RULE_FILES = (
+    "Flashloan_Price.yml", "FirstDeposit.yml", "Flashloan_Buy.yml",
+    "Flashloan_Vote.yml", "FrontRun.yml", "WrongOrder_Checkpoint.yml",
+    "WrongOrder_Interest.yml",
+)
 
 
 def rule_paths(directory, profile):
@@ -9,5 +13,5 @@ def rule_paths(directory, profile):
     if profile == "price":
         return [root / name for name in PRICE_RULE_FILES]
     if profile == "general":
-        return sorted(path for path in root.glob("*.yml") if path.name != "OraclePrice.yml")
+        return sorted(root.glob("*.yml"))
     raise ValueError("Unknown detection profile")

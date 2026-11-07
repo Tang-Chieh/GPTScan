@@ -25,6 +25,7 @@ activate:
 output:
   title: "MWE-205: Front Running"
   description: Users are required to transfer assets in advance and minting token/liquidity/earning thus could be frontrun.
+  impact: An attacker may front-run a separate mint, vest or collection operation and redirect tokens, liquidity shares or earnings associated with another user's prior asset transfer to an attacker-controlled recipient. Actual exploitability requires further verification.
   recommendation: Put asset transfering and token minting in the same function to keep atomicity.
 static:
   format: not_need

@@ -146,7 +146,12 @@ class DatasetTests(unittest.TestCase):
     def test_profiles(self):
         import yaml
         price = rule_paths(ROOT / "src/rules", "price")
-        self.assertEqual(len(price), 2)
+        self.assertEqual({p.name for p in price}, {
+            "Flashloan_Price.yml", "FirstDeposit.yml", "Flashloan_Buy.yml",
+            "Flashloan_Vote.yml", "FrontRun.yml", "WrongOrder_Checkpoint.yml",
+            "WrongOrder_Interest.yml",
+        })
+        self.assertFalse((ROOT / "src/rules/OraclePrice.yml").exists())
         for path in price:
             rule = yaml.safe_load(path.read_text())
             self.assertTrue(rule["output"]["impact"])
