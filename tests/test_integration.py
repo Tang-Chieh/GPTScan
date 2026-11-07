@@ -13,7 +13,7 @@ from unittest.mock import patch
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 from model_transport import gateway_url, read_response, send
-from prediction_export import export_prediction_case
+from prediction_export import export_prediction_case, write_prediction_output
 from profiles import rule_paths
 from answer_validation import is_yes, parse_choices
 
@@ -61,6 +61,29 @@ class ExportTests(unittest.TestCase):
 
     def test_empty_case_valid(self):
         self.assertEqual(export_prediction_case({"results": []}, "test", self.root, "m", "v")["predictions"], [])
+
+    def test_primary_output_is_judge_input_without_native_intermediate(self):
+        output = self.root / 'output.json'
+        value = write_prediction_output(raw(self.root), output, 'test', self.root, 'm', 'v2')
+        self.assertEqual(json.loads(output.read_text()), value)
+        self.assertEqual(value['repo_id'], 'test')
+        self.assertNotIn('results', value)
+        self.assertEqual({p.name for p in self.root.iterdir()}, {'output.json'})
+
+    def test_compatibility_alias_contains_identical_prediction_case(self):
+        output, alias = self.root / 'output.json', self.root / 'prediction_case.json'
+        write_prediction_output({'results': []}, output, 'test', self.root, 'm', 'v2', alias=alias)
+        self.assertEqual(output.read_bytes(), alias.read_bytes())
+        self.assertEqual(json.loads(output.read_text())['predictions'], [])
+
+    def test_invalid_content_does_not_publish_judge_output(self):
+        output, alias = self.root / 'output.json', self.root / 'prediction_case.json'
+        value = raw(self.root)
+        value['results'][0]['recommendation'] = ''
+        with self.assertRaises(ValueError):
+            write_prediction_output(value, output, 'test', self.root, 'm', 'v2', alias=alias)
+        self.assertFalse(output.exists())
+        self.assertFalse(alias.exists())
 
     def test_missing_semantics_rejected(self):
         for key in ("impact", "recommendation", "title", "description"):

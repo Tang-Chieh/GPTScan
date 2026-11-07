@@ -36,7 +36,7 @@ class Gateway(BaseHTTPRequestHandler):
                 answer = '{"VariableA":{"price":"bad"quote"}}'
             else:
                 answer = json.dumps({"VariableA": {"price": "pool spot price"},
-                                     "VariableB": {"valuation": "not monetary" if self.mode == "rejected" else "collateral valuation"}})
+                                     "VariableB": {"valuation": "not monetary" if self.mode == "rejected" else "LP token value"}})
         else:
             answer = "yes"
         body = json.dumps({"status": "completed", "output": [
@@ -61,12 +61,10 @@ def main():
                 Gateway.mode = mode
                 Gateway.bad_json_sent = False
                 out = temporary / mode
-                source = ROOT / "tests/fixtures/price-repo"
-                if mode == "rejected":
-                    source = temporary / "rule-rejection-source"
-                    source.mkdir()
-                    (source / "Oracle.sol").write_text((ROOT / "tests/fixtures/price-repo/Oracle.sol").read_text().replace(
-                        "function borrow(", "function getLiquidity("))
+                source = temporary / (mode + "-source")
+                source.mkdir()
+                (source / "Oracle.sol").write_text((ROOT / "tests/fixtures/price-repo/Oracle.sol").read_text().replace(
+                    "function borrow(", "function getLiquidity("))
                 command = [sys.executable, str(ROOT / "scripts/run_dataset.py"),
                            "--repo-id", "synthetic-price", "--repo-path", str(source),
                            "--output-dir", str(out), "--token-file", str(token), "--solc-version", "0.8.19",
@@ -80,7 +78,7 @@ def main():
                     assert proc.returncode == 0 and status == "completed", (out / "execution.log").read_text()
                     prediction = json.loads((out / "prediction_case.json").read_text())
                     assert len(prediction["predictions"]) == (1 if mode in {"positive", "retry_json"} else 0)
-                    metadata = json.loads((out / "output.json.metadata.json").read_text())
+                    metadata = json.loads((out / "prediction_case.json.metadata.json").read_text())
                     assert metadata["compile_succeeded"] and metadata["analysis_errors"] == 0
                     if mode == "rejected":
                         assert "Candidate rejected by rule" in (out / "execution.log").read_text()

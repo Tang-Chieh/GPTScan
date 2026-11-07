@@ -171,8 +171,8 @@ def main():
         manifest.update(stage="analysis")
         save(out / "adapter_manifest.json", manifest)
         command = [sys.executable, str(ROOT / "src/main.py"), "-s", scope["project_root"],
-                   "-o", str(out / "output.json"), "--strict", "--repo-id", args.repo_id,
-                   "--repo-root", scope['repository_root'], "--prediction-output", str(out / "prediction_case.json"),
+                   "-o", str(out / "prediction_case.json"), "--strict", "--repo-id", args.repo_id,
+                   "--repo-root", scope['repository_root'],
                    "--archive", str(out / "input_export_archive.json"), "--scope-file", str(out / "scope.json"),
                    "--profile", "price", "--model", args.model, "--gateway-url", args.gateway_url,
                    "--gateway-token-file", str(args.token_file.resolve())]

@@ -113,20 +113,28 @@ def simple_cli():
     parser.add_argument("-s", "--source", help="The source code directory", required=True)
     # not need ast, compile first
     # parser.add_argument("-a", "--ast", help="The AST directory", required=True)
-    parser.add_argument("-o", "--output", help="The output file", required=True)
+    parser.add_argument("-o", "--output", help="Primary output: Judge-ready PredictionCase JSON", required=True)
     parser.add_argument("-k", "--gptkey", help="Legacy API key; prefer OPENAI_API_KEY in explicit API mode")
     parser.add_argument("--provider", choices=("codex-gateway", "api"), default="codex-gateway")
     parser.add_argument("--profile", choices=("price", "general"), default="price")
     parser.add_argument("--model", default="openai-codex/gpt-5.6-luna")
     parser.add_argument("--gateway-url", default="http://127.0.0.1:4000/v1")
     parser.add_argument("--gateway-token-file")
-    parser.add_argument("--repo-id")
+    parser.add_argument("--repo-id", required=True, help="Repository identity for the canonical Judge output")
     parser.add_argument("--repo-root", help="Original repository root for relative source locations")
-    parser.add_argument("--prediction-output", help="Write PredictionCase after a successful scan")
+    parser.add_argument("--prediction-output", help="Compatibility alias: optional duplicate of the primary PredictionCase output")
+    parser.add_argument("--native-output", help="Optional debug-only native GPTScan results JSON; never a Judge input")
     parser.add_argument("--strict", action="store_true", help="Fail on compile/analysis errors")
     parser.add_argument("--archive", help="Verified, path-rebased Crytic Compile archive; never recompile")
     parser.add_argument("--scope-file", help="Shared compiled target inventory from reusable adapter")
     options = parser.parse_args()
+    output_paths = {os.path.realpath(options.output), os.path.realpath(options.output + ".metadata.json")}
+    if options.prediction_output:
+        output_paths.add(os.path.realpath(options.prediction_output))
+    if options.native_output and os.path.realpath(options.native_output) in output_paths:
+        parser.error("--native-output must not overwrite the PredictionCase or its metadata")
+    if options.prediction_output and os.path.realpath(options.prediction_output) == os.path.realpath(options.output + ".metadata.json"):
+        parser.error("--prediction-output must not overwrite metadata")
     if bool(options.archive) != bool(options.scope_file):
         parser.error("--archive and --scope-file must be provided together")
     if options.scope_file:
@@ -453,13 +461,14 @@ def simple_cli():
     console.print(summary_table)
 
 
-    json.dump(output_json, open(output_file, "w"), indent=4)
-    json.dump(meta_data, open(output_file+".metadata.json", "w"), indent=4)
+    from prediction_export import write_json_atomic, write_prediction_output
+    meta_data["output_format"] = "PredictionCase"
+    write_json_atomic(output_file + ".metadata.json", meta_data)
+    if options.native_output:
+        write_json_atomic(options.native_output, output_json)
     if options.strict and tracker.count:
-        raise RuntimeError("Analysis had errors; raw output retained but PredictionCase not exported")
-    if options.prediction_output:
-        from prediction_export import export_prediction_case
-        prediction = export_prediction_case(output_json, options.repo_id,
-                                            options.repo_root or source_dir, options.model,
-                                            "gptscan-price-v1" if options.profile == "price" else "gptscan-general-adapted-v1")
-        json.dump(prediction, open(options.prediction_output, "w"), indent=2)
+        raise RuntimeError("Analysis had errors; PredictionCase not exported")
+    write_prediction_output(output_json, output_file, options.repo_id,
+                            options.repo_root or source_dir, options.model,
+                            "gptscan-price-direct-v2" if options.profile == "price" else "gptscan-general-direct-v2",
+                            alias=options.prediction_output)

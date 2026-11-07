@@ -109,8 +109,8 @@ def main():
     for name in ("rules", "jars", "whitelist.json", "modifier_whitelist.json"):
         (work / name).symlink_to(ROOT / "src" / name)
     command = [sys.executable, str(ROOT / "src/main.py"), "-s", str(project),
-               "-o", str(out / "output.json"), "--strict", "--repo-id", args.repo_id,
-               "--repo-root", str(source), "--prediction-output", str(out / "prediction_case.json"),
+               "-o", str(out / "prediction_case.json"), "--strict", "--repo-id", args.repo_id,
+               "--repo-root", str(source),
                "--provider", "codex-gateway", "--profile", args.profile, "--model", args.model,
                "--gateway-url", args.gateway_url]
     if args.token_file:

@@ -2,7 +2,33 @@
 import hashlib
 import json
 import os
+import tempfile
 from pathlib import Path
+
+
+def write_json_atomic(path, value):
+    """Publish a complete JSON document, never a partially written Judge input."""
+    path = Path(path)
+    temporary = None
+    try:
+        with tempfile.NamedTemporaryFile(mode="w", encoding="utf-8", dir=path.parent,
+                                         prefix=path.name + ".", suffix=".tmp", delete=False) as stream:
+            temporary = Path(stream.name)
+            json.dump(value, stream, ensure_ascii=False, indent=2)
+            stream.write("\n")
+        os.replace(temporary, path)
+    finally:
+        if temporary is not None and temporary.exists():
+            temporary.unlink()
+
+
+def write_prediction_output(raw, output, repo_id, repo_root, model, detector_version, alias=None):
+    """Build canonical output in memory; no native JSON intermediary is required."""
+    prediction = export_prediction_case(raw, repo_id, repo_root, model, detector_version)
+    write_json_atomic(output, prediction)
+    if alias and Path(alias).resolve() != Path(output).resolve():
+        write_json_atomic(alias, prediction)
+    return prediction
 
 
 def nonempty(value, name):
