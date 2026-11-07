@@ -3,6 +3,7 @@ import json
 import hashlib
 import math
 from datetime import datetime, timezone
+from http.client import IncompleteRead
 import os
 import time
 from pathlib import Path
@@ -14,6 +15,42 @@ from urllib.request import Request, build_opener, HTTPRedirectHandler, ProxyHand
 class NoRedirect(HTTPRedirectHandler):
     def redirect_request(self, *args, **kwargs):
         return None
+
+
+class StreamResponseError(ValueError):
+    """Transport diagnostics only: never retain provider messages or partial text."""
+    def __init__(self, event_type, reason, retryable=False):
+        self.event_type = event_type
+        self.reason = reason
+        self.retryable = retryable
+        super().__init__(f"Model stream {event_type}: {reason}")
+
+
+def stream_failure(event):
+    """Distinguish explicit incomplete output from a recoverable transport failure."""
+    kind = event.get('type')
+    response = event.get('response') if isinstance(event.get('response'), dict) else {}
+    error = response.get('error') or event.get('error') or event
+    error = error if isinstance(error, dict) else {}
+    details = response.get('incomplete_details')
+    details = details if isinstance(details, dict) else {}
+    code = details.get('reason') if kind == 'response.incomplete' else error.get('code') or error.get('type')
+    fatal = {'max_output_tokens', 'content_filter', 'context_length_exceeded', 'invalid_request_error',
+             'invalid_api_key', 'authentication_error', 'permission_denied', 'insufficient_quota',
+             'token_expired', 'unauthorized', 'rate_limit_exceeded'}
+    transient = {'server_error', 'internal_server_error', 'upstream_error', 'connection_error',
+                 'network_error', 'timeout', 'request_timeout', 'overloaded_error'}
+    if code in fatal:
+        return StreamResponseError(kind, code)
+    if code in transient:
+        return StreamResponseError(kind, code, True)
+    # Inspect but never log free-text provider messages (which may contain secrets).
+    message = error.get('message', '')
+    if kind != 'response.incomplete' and isinstance(message, str) and any(
+            token in message.lower() for token in ('connection reset', 'connection lost', 'disconnected',
+                                                  'socket hang up', 'fetch failed', 'network error')):
+        return StreamResponseError(kind, 'connection_interrupted', True)
+    return StreamResponseError(kind, 'unspecified_incomplete' if kind == 'response.incomplete' else 'unspecified_failure')
 
 
 def request_wall_timeout(explicit=None):
@@ -41,6 +78,10 @@ def gateway_url(value):
 
 
 def extract_response(body):
+    if not isinstance(body, dict):
+        raise StreamResponseError('protocol_error', 'invalid_response_shape')
+    if body.get('status') in {'failed', 'incomplete'}:
+        raise stream_failure({'type': 'response.' + body['status'], 'response': body})
     if body.get("status") != "completed":
         raise ValueError("Model response did not complete")
     text = "".join(part.get("text", "") for item in body.get("output", [])
@@ -64,18 +105,66 @@ def extract_response(body):
 
 
 def read_response(response):
-    if "text/event-stream" not in response.headers.get("Content-Type", ""):
-        return extract_response(json.load(response))
+    try:
+        if "text/event-stream" not in response.headers.get("Content-Type", "").lower():
+            return extract_response(json.load(response))
+        for event in sse_events(response):
+            if event.get("type") == "response.completed":
+                return extract_response(event["response"])
+            if event.get("type") in {"error", "response.failed", "response.incomplete"}:
+                raise stream_failure(event)
+    except (IncompleteRead, ConnectionError):
+        raise StreamResponseError('connection', 'connection_interrupted', True) from None
+    raise StreamResponseError('eof', 'missing_completed_event', True)
+
+
+def sse_events(response):
+    """Join data fields until a blank line; ignore comments, ids and heartbeats."""
+    data = []
+    event_name = None
+    first = True
+
+    def decode_event():
+        raw = '\n'.join(data)
+        if not raw.strip() or raw.strip() == '[DONE]':
+            return None
+        try:
+            event = json.loads(raw)
+        except (ValueError, TypeError):
+            raise StreamResponseError('protocol_error', 'invalid_event_json', True) from None
+        if not isinstance(event, dict):
+            raise StreamResponseError('protocol_error', 'invalid_event_shape')
+        if 'type' not in event and event_name:
+            event['type'] = event_name
+        return event
+
     for raw_line in response:
-        line = raw_line.decode("utf-8").strip()
-        if not line.startswith("data:") or line[5:].strip() == "[DONE]":
+        try:
+            line = raw_line.decode('utf-8-sig' if first else 'utf-8').rstrip('\r\n')
+        except UnicodeError:
+            raise StreamResponseError('protocol_error', 'invalid_event_encoding', True) from None
+        first = False
+        if line == '':
+            if data:
+                event = decode_event()
+                if event is not None:
+                    yield event
+            data, event_name = [], None
+        elif line.startswith(':'):
             continue
-        event = json.loads(line[5:])
-        if event.get("type") == "response.completed":
-            return extract_response(event["response"])
-        if event.get("type") in {"error", "response.failed", "response.incomplete"}:
-            raise ValueError("Model stream failed or was incomplete")
-    raise ValueError("Model stream ended without response.completed")
+        else:
+            field, _, value = line.partition(':')
+            value = value[1:] if value.startswith(' ') else value
+            if field == 'data':
+                data.append(value)
+            elif field == 'event':
+                event_name = value
+    if data:
+        # Some compatible gateways omit the final blank line. A complete JSON
+        # terminal event is still required; text deltas alone never succeed.
+        event = decode_event()
+        if event is not None:
+            yield event
 
 
 def send(messages):
@@ -107,6 +196,7 @@ def send(messages):
         "Authorization": "Bearer " + token, "Content-Type": "application/json"})
     # Keep upstream-style transport retries inside the caller's wall timeout.
     # Never re-ask semantic questions to repair a model answer.
+    stream_retries = 0
     while True:
         started = time.monotonic()
         try:
@@ -119,6 +209,16 @@ def send(messages):
                          observed_at=datetime.now(timezone.utc).isoformat(),
                          elapsed_seconds=round(time.monotonic() - started, 3))
             return result
+        except StreamResponseError as error:
+            fields = {'error': 'stream_response', 'event_type': error.event_type,
+                      'reason': error.reason, 'attempt': stream_retries + 1}
+            if error.retryable and stream_retries < 1:
+                record_event('transport_retry', **fields)
+                stream_retries += 1
+                time.sleep(1)
+                continue
+            record_event('failed', **fields)
+            raise RuntimeError(str(error)) from None
         except HTTPError as error:
             if error.code >= 500 or error.code == 429:
                 record_event('transport_retry', error='http', http_status=error.code)
