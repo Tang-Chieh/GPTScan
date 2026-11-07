@@ -1,5 +1,7 @@
 # GPTScan：Price Manipulation + Codex Gateway + PredictionCase
 
+> 2026-11-06：目前使用 [七條原版規則](RULE_SELECTION_20261106_ZH.md)，主要 `-o` 已 [直接輸出 Judge input](DIRECT_JUDGE_OUTPUT_ZH.md)。下方舊版輸出結構只供歷史對照；runner 現在直接產生 `prediction_case.json`，不預設寫原生 `output.json`。
+
 > 更新：dataset 的建議入口現在是 [`run_reusable.py`](REUSABLE_ADAPTER_ZH.md)，
 > 重用既有 Docker build/archive 並直接載入 Falcon。以下 `run_dataset.py` 是先前的
 > 本機編譯模式，保留供比較；不要把其限制誤認為新 adapter 仍須逐 repo 本機設定。

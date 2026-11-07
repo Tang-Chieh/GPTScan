@@ -1,5 +1,7 @@
 # 共用 Reusable Dataset → GPTScan adapter
 
+> 2026-11-06 輸出更新：runner 現在直接以 `-o prediction_case.json` 產生 Judge input，不預設寫原生 `output.json`；原生 JSON 可由 scanner 的 `--native-output` 選擇保存。詳見 [直接輸出說明](DIRECT_JUDGE_OUTPUT_ZH.md)。以下舊輸出清單描述的是先前版本。
+
 2026-11-05 的 dataset 相容性、舊 archive 模式與 compiler-context build 修正見
 [COMPATIBILITY_20261105_ZH.md](COMPATIBILITY_20261105_ZH.md)。該更新保留 strict
 archive 驗證，並在 archive 模式改用 compiler signature／Falcon resolved CallGraph；

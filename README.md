@@ -1,8 +1,14 @@
 # GPTScan
 
+**11/07 完整實驗與評估：** [23-repo predictions、執行診斷、正式 report.md 與重現步驟](experiment-results/20261107-minimal-streamfix/README.md)。登入資料、環境與重複build caches未上傳。
+
+**目前適配原則：** [最小改動 baseline 與原版容錯行為](docs/MINIMAL_BASELINE_20261106_ZH.md)。保留候選級例外處理；`completed_with_errors` 不代表全部候選成功，會另附執行診斷。
+
 ## Tang-Chieh fork: Price Manipulation / Codex Gateway / LLM Judge
 
 Development branch: [`price-manipulation`](https://github.com/Tang-Chieh/GPTScan/tree/price-manipulation).
+**目前規則設定（2026-11-06）：** [七條原版規則，只補 impact；OraclePrice 已移除](docs/RULE_SELECTION_20261106_ZH.md)。既有 23-repo 結果使用舊規則組，不代表此次調整後的結果。
+**目前主要輸出：** [`-o` 直接產生 Judge 可讀的 PredictionCase](docs/DIRECT_JUDGE_OUTPUT_ZH.md)；原生 results JSON 僅由 `--native-output` 選擇保存。
 **Recommended dataset entrypoint:** [共用 Reusable Dataset archive adapter](docs/REUSABLE_ADAPTER_ZH.md).
 
 **已驗證的 23 個 repo inputs：** [Archive bundle、checksum 與解壓／重現步驟](dataset_inputs/23repos-20261105/README.md)。
@@ -10,8 +16,9 @@ It delegates compilation to the existing Docker runner and feeds verified archiv
 without recompiling; the old local compilation runner remains available for comparison.
 See [中文重現與修改說明](docs/REPRODUCE_ZH.md) and [validation record](docs/VALIDATION.md).
 The fork accepts existing dataset repos without flattening, uses an explicitly selected local
-subscription gateway, selects price-manipulation rules before analysis, and exports
-`PredictionCase` alongside native JSON. Ground truth and credentials are not included.
+subscription gateway, selects price-manipulation rules before analysis, and directly writes
+`PredictionCase` as its primary output (native JSON is opt-in). Ground truth and credentials
+are not included in the archive bundle.
 Compatibility is tested with a synthetic fixture; this is not a claim that all dataset repos
 or the original paper benchmark have been reproduced. The upstream README below is retained;
 its API-key command describes the upstream interface, not the fork's default gateway workflow.
